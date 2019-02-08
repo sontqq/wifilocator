@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.yandex.android:search:3.1.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/search-3.1.2.aar/8bcdcc4a3594f82882e756629d7db310/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/search-3.1.2.aar/8bcdcc4a3594f82882e756629d7db310/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

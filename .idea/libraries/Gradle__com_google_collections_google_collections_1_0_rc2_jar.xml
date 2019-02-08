@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.collections:google-collections:1.0-rc2@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.collections/google-collections/1.0-rc2/9cebebe5d264eb81233027742f776c0d85ce3d6c/google-collections-1.0-rc2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.collections/google-collections/1.0-rc2/95017d07e978d27c3d8d439bb476f892a4eaff0a/google-collections-1.0-rc2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
