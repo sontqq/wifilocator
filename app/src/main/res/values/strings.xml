@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WiFi Locator</string>
+    <string name="adunit_real">ca-app-pub-4051604993335718/9467563857</string>
+    <string name="adunit_sample">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="adunit_firebase">ca-app-pub-4051604993335718/2751904272</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+</resources>

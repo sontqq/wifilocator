@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "974094309796",
+    "firebase_url": "https://gpswifilocator.firebaseio.com",
+    "project_id": "gpswifilocator",
+    "storage_bucket": "gpswifilocator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974094309796:android:050298db28b0f4c0",
+        "android_client_info": {
+          "package_name": "com.sontme.esp.getlocation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974094309796-0ictauidn96hq7q2e3iitae01htktoah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sontme.esp.getlocation",
+            "certificate_hash": "763079eacc3bc957c98367b8d134a2804e88d968"
+          }
+        },
+        {
+          "client_id": "974094309796-lksuib3o5rluoaapg7p7pok34l6k3v29.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFKCarwsAKGb9_7dkYkw8GuqYnZiBaqhc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974094309796-lksuib3o5rluoaapg7p7pok34l6k3v29.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-4051604993335718~5748521133"
+    }
+  ],
+  "configuration_version": "1"
+}

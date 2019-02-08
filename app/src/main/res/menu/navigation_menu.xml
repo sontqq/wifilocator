@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+    <item android:id="@+id/main"
+        android:icon="@drawable/homeicon"
+        android:title="Main"/>
+    <item android:id="@+id/map"
+        android:icon="@drawable/mapicon"
+        android:title="Map"/>
+    <item android:id="@+id/list"
+        android:icon="@drawable/menuarrow"
+        android:title="List"/>
+    <item android:id="@+id/nearby"
+        android:icon="@drawable/mapicon"
+        android:title="Nearby"/>
+</group>
+    <group>
+        <item android:id="@+id/exit"
+            android:icon="@drawable/exiticon"
+            android:title="Exit"/>
+    </group>
+</menu>

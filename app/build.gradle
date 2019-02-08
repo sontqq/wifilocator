@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    def Properties versionProps = new Properties()
+    def versionPropsFile = file('version.properties')
+    if (versionPropsFile.exists())
+        versionProps.load(new FileInputStream(versionPropsFile))
+    def code = (versionProps['VERSION_CODE'] ?: "0").toInteger() + 1
+    versionProps['VERSION_CODE'] = code.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+
+    defaultConfig {
+        applicationId "com.sontme.esp.getlocation"
+        versionCode code
+        versionName "2.1"
+        minSdkVersion 23
+        targetSdkVersion 28
+        multiDexEnabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+apply plugin: 'io.fabric'
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://github.com/yandexmobile/yandexmapkit-android/raw/maven/' }
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+//    implementation 'io.nlopez.smartlocation:library:3.3.3'
+//    implementation 'com.github.delight-im:Android-SimpleLocation:v1.0.1'
+    implementation 'com.github.GrenderG:Toasty:1.3.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+//     implementation 'com.google.android.gms:play-services-ads:17.1.1'
+    implementation 'com.google.firebase:firebase-ads:17.1.2'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    // Required Dependency by Audience Network SDK
+    implementation 'com.facebook.android:audience-network-sdk:5.1.1'
+
+    // Main MapKit library.
+    //implementation 'com.yandex.android:mapkit:3.1.2'
+    // Additional MapKit modules.
+    // Remove these dependencies if your app doesn't use them.
+    //implementation 'com.yandex.android:directions:3.1.2'
+    //implementation 'com.yandex.android:places:3.1.2'
+    //implementation 'com.yandex.android:search:3.1.2'
+    //implementation 'com.yandex.android:transport:3.1.2'
+    //implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+    //implementation 'com.splunk:mint-android-sdk:5.2.4'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
+        transitive = true;
+    }
+    implementation 'ru.yandex:yandexmapkit:2.5.4@aar'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'org.osmdroid:osmdroid-android:6.0.3'
+    implementation group: 'com.google.collections', name: 'google-collections', version: '1.0-rc2'
+    implementation 'com.github.MKergall:osmbonuspack:6.5.2'
+
+
+
+
+}
