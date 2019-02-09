@@ -173,16 +173,17 @@ public class NearbyActivity extends AppCompatActivity {
             circlePoints.add(new GeoPoint(lat, lon).destinationPoint(radius, f));
         }
         oPolygon.setPoints(circlePoints);
-        oPolygon.setStrokeWidth(9.5f);
+        oPolygon.setStrokeWidth(15.5f);
         oPolygon.setFillColor(Color.argb(60,91,192,222));
         oPolygon.setStrokeColor(Color.argb(85,92,184,92));
+
         map.getOverlays().add(oPolygon);
 
     }
-    @Override
+    /*@Override
     protected void onResume(){
         super.onResume();
-    }
+    }*/
     protected void drawMarkers(MapView map, Map<Location, ApStrings> loc_ssid) {
         map.getOverlays().clear();
         map.invalidate();

@@ -1089,6 +1089,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_warning_outline_white
 drawable ic_warning_white_48dp
+drawable list
 drawable mapicon
 drawable marker_cluster
 drawable marker_default

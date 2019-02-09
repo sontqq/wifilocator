@@ -13,7 +13,7 @@
         android:icon="@drawable/menuarrow"
         android:title="List"/>
     <item android:id="@+id/nearby"
-        android:icon="@drawable/mapicon"
+        android:icon="@drawable/list"
         android:title="Nearby"/>
 </group>
     <group>

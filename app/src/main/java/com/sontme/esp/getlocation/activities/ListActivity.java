@@ -200,7 +200,7 @@ public class ListActivity extends AppCompatActivity {
             s = (elapsedHours + "h " + elapsedMinutes + "m ");
         }
         else{
-            s = (elapsedDays + "d" + elapsedHours + "h " + elapsedMinutes + "m ");
+            s = (elapsedDays + "d " + elapsedHours + "h " + elapsedMinutes + "m ");
         }
         return s;
     }
