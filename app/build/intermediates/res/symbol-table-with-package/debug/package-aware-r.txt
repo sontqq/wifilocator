@@ -1091,6 +1091,8 @@ drawable ic_warning_outline_white
 drawable ic_warning_white_48dp
 drawable list
 drawable mapicon
+drawable mapmark
+drawable mappin
 drawable marker_cluster
 drawable marker_default
 drawable marker_default_focused_base
@@ -1120,6 +1122,8 @@ drawable osm_ic_follow_me_on
 drawable osm_ic_ic_map_ortho
 drawable person
 drawable pin
+drawable pin1
+drawable pin2
 drawable previous
 drawable route
 drawable sharp_add_black_36

@@ -100,9 +100,9 @@ public class ListActivity extends AppCompatActivity {
             public void run() {
                 // Download list
                 getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped.php");
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 5000);
             }
-        }, 1000);
+        }, 5000);
 
     }
 

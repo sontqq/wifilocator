@@ -20,22 +20,22 @@ public final class R {
         public static final int ic_menu_mapmode = 0x7f070088;
         public static final int ic_menu_mylocation = 0x7f070089;
         public static final int ic_menu_offline = 0x7f07008a;
-        public static final int marker_default = 0x7f070093;
-        public static final int marker_default_focused_base = 0x7f070094;
-        public static final int moreinfo_arrow = 0x7f070096;
-        public static final int moreinfo_arrow_pressed = 0x7f070097;
-        public static final int navto_small = 0x7f07009b;
-        public static final int next = 0x7f07009c;
-        public static final int osm_ic_center_map = 0x7f0700a9;
-        public static final int osm_ic_follow_me = 0x7f0700aa;
-        public static final int osm_ic_follow_me_on = 0x7f0700ab;
-        public static final int osm_ic_ic_map_ortho = 0x7f0700ac;
-        public static final int person = 0x7f0700ad;
-        public static final int previous = 0x7f0700af;
-        public static final int sharp_add_black_36 = 0x7f0700b1;
-        public static final int sharp_remove_black_36 = 0x7f0700b2;
-        public static final int zoom_in = 0x7f0700db;
-        public static final int zoom_out = 0x7f0700dc;
+        public static final int marker_default = 0x7f070095;
+        public static final int marker_default_focused_base = 0x7f070096;
+        public static final int moreinfo_arrow = 0x7f070098;
+        public static final int moreinfo_arrow_pressed = 0x7f070099;
+        public static final int navto_small = 0x7f07009d;
+        public static final int next = 0x7f07009e;
+        public static final int osm_ic_center_map = 0x7f0700ab;
+        public static final int osm_ic_follow_me = 0x7f0700ac;
+        public static final int osm_ic_follow_me_on = 0x7f0700ad;
+        public static final int osm_ic_ic_map_ortho = 0x7f0700ae;
+        public static final int person = 0x7f0700af;
+        public static final int previous = 0x7f0700b3;
+        public static final int sharp_add_black_36 = 0x7f0700b5;
+        public static final int sharp_remove_black_36 = 0x7f0700b6;
+        public static final int zoom_in = 0x7f0700df;
+        public static final int zoom_out = 0x7f0700e0;
     }
     public static final class id {
         private id() {}

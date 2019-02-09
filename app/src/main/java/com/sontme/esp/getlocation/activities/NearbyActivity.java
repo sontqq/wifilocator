@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -95,7 +96,7 @@ public class NearbyActivity extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
-        GeoPoint startPoint = new GeoPoint(47.9358853, 20.367813);
+        GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         mapController.setCenter(startPoint);
 
         dl = (DrawerLayout)findViewById(R.id.drawler4);
@@ -162,8 +163,8 @@ public class NearbyActivity extends AppCompatActivity {
         drawCircle(map);
     }
     protected void drawCircle(MapView map){
-        Polygon oPolygon = new Polygon(map);
-        final double radius = 50;
+        Polygon oPolygon = new Circle(map);
+        final double radius = 100;
         Double lat = Double.valueOf(Global.latitude);
         Double lon = Double.valueOf(Global.longitude);
         ArrayList<GeoPoint> circlePoints = new ArrayList<GeoPoint>();
@@ -173,18 +174,22 @@ public class NearbyActivity extends AppCompatActivity {
             circlePoints.add(new GeoPoint(lat, lon).destinationPoint(radius, f));
         }
         oPolygon.setPoints(circlePoints);
-        oPolygon.setStrokeWidth(15.5f);
-        oPolygon.setFillColor(Color.argb(60,91,192,222));
-        oPolygon.setStrokeColor(Color.argb(85,92,184,92));
+        oPolygon.setStrokeWidth(20.0f);
 
+        oPolygon.setFillColor(Color.argb(60,233,150,122));
+        oPolygon.setStrokeColor(Color.argb(85,255,0,255));
+        oPolygon.setOnClickListener(new Polygon.OnClickListener() {
+            @Override
+            public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
+                Toast.makeText(getBaseContext(),"Markers count: " + mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
         map.getOverlays().add(oPolygon);
 
     }
-    /*@Override
-    protected void onResume(){
-        super.onResume();
-    }*/
-    protected void drawMarkers(MapView map, Map<Location, ApStrings> loc_ssid) {
+
+    protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
         map.getOverlays().clear();
         map.invalidate();
         int counter = 0;
@@ -206,6 +211,15 @@ public class NearbyActivity extends AppCompatActivity {
             Marker m = new Marker(map);
             m.setTitle(ssid);
 
+            m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker, MapView mapView) {
+                    marker.showInfoWindow();
+                    //map.getOverlays().remove(marker);
+                    Toast.makeText(getBaseContext(),"Marker id: "+marker.getId(),Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
             m.setSubDescription(description);
             m.setIcon(resize(pin,100));
             m.setPosition(geo);
@@ -331,5 +345,31 @@ public class NearbyActivity extends AppCompatActivity {
         }
         else return 0;
     }
-    
+
+    public Context getContext() {
+        return getApplicationContext();
+    }
+}
+
+class Circle extends Polygon{
+    private MapView map;
+
+    public Circle(MapView map){
+        this.map = map;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e, MapView mapView) {
+        if (e.getAction() == MotionEvent.ACTION_UP && contains(e)) {
+            return true;
+        }
+        return super.onSingleTapUp(e, mapView);
+    }
+
+    @Override
+    public boolean onLongPress(MotionEvent e, MapView mapView){
+        mapView.getOverlayManager().remove(e);
+        Log.d("TAPI","LONGTAPTAPTAPTAPTAP_" + e.toString());
+        return super.onLongPress(e, mapView);
+    }
 }

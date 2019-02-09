@@ -2,6 +2,7 @@ package com.sontme.esp.getlocation.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
@@ -111,10 +113,25 @@ public class MapActivity extends AppCompatActivity {
         GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         OverlayItem point = new OverlayItem("Actual", "Position", geo);
         ItemizedIconOverlay<OverlayItem> itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(this, overlayItemArray, null);
-        if(geoPoints.size() < 2) {
+        line.setOnClickListener(new Polyline.OnClickListener() {
+            @Override
+            public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
+                Toast.makeText(mapView.getContext(), "Clicked line! " + polyline.getPoints().size() + "pts was tapped", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+        if(map.getOverlays().size() < 2){
+        //if(geoPoints.size() < 2) {
             geoPoints.add(geo);
             map.getOverlays().add(itemizedIconOverlay);
             overlayItemArray.add(point);
+            //RGB(205, 92, 92)
+            //RGB(240, 128, 128)
+            //RGB(250, 128, 114)
+            //RGB(233, 150, 122)
+            //RGB(255, 160, 122)
+            line.setColor(Color.argb(90,240,128,128));
+            line.setWidth(20.0f);
             line.setPoints(geoPoints);
             map.getOverlayManager().add(line);
         }
@@ -122,7 +139,8 @@ public class MapActivity extends AppCompatActivity {
         if(geoPoints.contains(geo) != true) {
             geoPoints.add(geo);
             map.getOverlays().add(itemizedIconOverlay);
-            //overlayItemArray.add(point);
+            line.setColor(Color.argb(90,240,128,128));
+            line.setWidth(20.0f);
             line.setPoints(geoPoints);
             map.getOverlayManager().add(line);
         }
