@@ -332,7 +332,6 @@ public class NearbyActivity extends AppCompatActivity {
         else return 0;
     }
 
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
