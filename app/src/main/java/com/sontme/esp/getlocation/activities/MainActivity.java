@@ -550,24 +550,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-    public LocationListener mListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            Log.d("APP", "LOCATION CHANGED !!!!");
-        }
 
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-        }
-    };
     public boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {

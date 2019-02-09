@@ -7,13 +7,13 @@
         android:icon="@drawable/homeicon"
         android:title="Main"/>
     <item android:id="@+id/map"
-        android:icon="@drawable/mapicon"
-        android:title="Map"/>
+        android:icon="@drawable/route"
+        android:title="Route"/>
     <item android:id="@+id/list"
-        android:icon="@drawable/menuarrow"
+        android:icon="@drawable/list"
         android:title="List"/>
     <item android:id="@+id/nearby"
-        android:icon="@drawable/list"
+        android:icon="@drawable/mapicon"
         android:title="Nearby"/>
 </group>
     <group>

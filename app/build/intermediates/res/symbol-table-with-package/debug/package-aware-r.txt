@@ -1121,6 +1121,7 @@ drawable osm_ic_ic_map_ortho
 drawable person
 drawable pin
 drawable previous
+drawable route
 drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable toast_frame
