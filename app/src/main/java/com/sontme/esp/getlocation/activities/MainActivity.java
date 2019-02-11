@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        /*
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             public void uncaughtException(Thread t, Throwable e) {
                 Log.w("APPERROR", "UNHANDLED EXCEPTION! RESTARTING!" + e.toString());
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
                 android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(2);
             }
-        });
+        });*/
 
         new Timer().schedule(new TimerTask() {
             @Override

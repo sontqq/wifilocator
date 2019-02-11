@@ -2,7 +2,10 @@ package com.sontme.esp.getlocation.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -26,8 +29,10 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polyline;
+import org.osmdroid.views.overlay.infowindow.InfoWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +105,7 @@ public class MapActivity extends AppCompatActivity {
         GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         mapController.setCenter(startPoint);
         updateMap(map);
+        drawPoint(map);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -108,6 +114,7 @@ public class MapActivity extends AppCompatActivity {
                 handler.postDelayed(this, 1000);
             }
         }, 1000);
+
     }
     private void updateMap(MapView map) {
         GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
@@ -120,8 +127,8 @@ public class MapActivity extends AppCompatActivity {
                 return false;
             }
         });
-        if(map.getOverlays().size() < 2){
-        //if(geoPoints.size() < 2) {
+        /*
+        if(geoPoints.size() < 2) {
             geoPoints.add(geo);
             map.getOverlays().add(itemizedIconOverlay);
             overlayItemArray.add(point);
@@ -130,11 +137,13 @@ public class MapActivity extends AppCompatActivity {
             //RGB(250, 128, 114)
             //RGB(233, 150, 122)
             //RGB(255, 160, 122)
+            //InfoWindow infoWindow = new MyInfoWindow(R.layout.bonuspack_bubble, mMapView);
+            //line.setInfoWindow(infoWindow);
             line.setColor(Color.argb(90,240,128,128));
             line.setWidth(20.0f);
             line.setPoints(geoPoints);
             map.getOverlayManager().add(line);
-        }
+        }*/
 
         if(geoPoints.contains(geo) != true) {
             geoPoints.add(geo);
@@ -152,6 +161,32 @@ public class MapActivity extends AppCompatActivity {
         if(t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
+    }
+    public void drawPoint(MapView map){
+        map.getOverlays().clear();
+        map.invalidate();
+        Drawable pin = getResources().getDrawable(R.drawable.wifi5);
+        GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        Marker m = new Marker(map);
+        m.setTitle("Start Point");
+        m.setSubDescription("The location where you started");
+        m.setIcon(resize(pin,100));
+        m.setPosition(geo);
+        m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker, MapView mapView) {
+                Toast.makeText(getBaseContext(),"Marker count: "+mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+        map.getOverlays().add(m);
+        map.invalidate();
+    }
+    private Drawable resize(Drawable image, Integer size) {
+        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, size, size, false);
+        return new BitmapDrawable(getResources(), bitmapResized);
     }
 
 }

@@ -82,13 +82,13 @@ public final class R {
         public static final int common_google_signin_btn_text_light_focused = 0x7f050035;
         public static final int common_google_signin_btn_text_light_pressed = 0x7f050036;
         public static final int common_google_signin_btn_tint = 0x7f050037;
-        public static final int notification_action_color_filter = 0x7f050075;
-        public static final int notification_icon_bg_color = 0x7f050076;
-        public static final int notification_material_background_media_default_color = 0x7f050077;
-        public static final int primary_text_default_material_dark = 0x7f05007c;
-        public static final int ripple_material_light = 0x7f050081;
-        public static final int secondary_text_default_material_dark = 0x7f050082;
-        public static final int secondary_text_default_material_light = 0x7f050083;
+        public static final int notification_action_color_filter = 0x7f050076;
+        public static final int notification_icon_bg_color = 0x7f050077;
+        public static final int notification_material_background_media_default_color = 0x7f050078;
+        public static final int primary_text_default_material_dark = 0x7f05007d;
+        public static final int ripple_material_light = 0x7f050082;
+        public static final int secondary_text_default_material_dark = 0x7f050083;
+        public static final int secondary_text_default_material_light = 0x7f050084;
     }
     public static final class dimen {
         private dimen() {}
@@ -193,19 +193,19 @@ public final class R {
         public static final int notification_background = 0x7f080096;
         public static final int notification_main_column = 0x7f080097;
         public static final int notification_main_column_container = 0x7f080098;
-        public static final int radio = 0x7f0800ab;
-        public static final int right_icon = 0x7f0800ad;
-        public static final int right_side = 0x7f0800ae;
-        public static final int satellite = 0x7f0800b0;
-        public static final int standard = 0x7f0800dd;
-        public static final int status_bar_latest_event_content = 0x7f0800df;
-        public static final int terrain = 0x7f0800e9;
-        public static final int text = 0x7f0800ea;
-        public static final int text2 = 0x7f0800eb;
-        public static final int time = 0x7f0800f6;
-        public static final int title = 0x7f0800f7;
-        public static final int wide = 0x7f08010d;
-        public static final int wrap_content = 0x7f080110;
+        public static final int radio = 0x7f0800b2;
+        public static final int right_icon = 0x7f0800b4;
+        public static final int right_side = 0x7f0800b5;
+        public static final int satellite = 0x7f0800b7;
+        public static final int standard = 0x7f0800e4;
+        public static final int status_bar_latest_event_content = 0x7f0800e6;
+        public static final int terrain = 0x7f0800f0;
+        public static final int text = 0x7f0800f1;
+        public static final int text2 = 0x7f0800f2;
+        public static final int time = 0x7f0800fd;
+        public static final int title = 0x7f0800fe;
+        public static final int wide = 0x7f080114;
+        public static final int wrap_content = 0x7f080117;
     }
     public static final class integer {
         private integer() {}

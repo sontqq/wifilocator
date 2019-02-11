@@ -8,32 +8,41 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.Circle;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
+import org.osmdroid.views.overlay.infowindow.InfoWindow;
 import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlay;
 import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlayOptions;
 import org.osmdroid.views.overlay.simplefastpoint.SimplePointTheme;
@@ -95,6 +104,13 @@ public class NearbyActivity extends AppCompatActivity {
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
+        /*map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InfoWindow.closeAllInfoWindowsOn(map);
+                popUpWin.closeAllInfoWindowsOn(map);
+            }
+        });*/
         mapController.setZoom(18.0);
         GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         mapController.setCenter(startPoint);
@@ -162,9 +178,10 @@ public class NearbyActivity extends AppCompatActivity {
         map.invalidate();
         drawCircle(map);
     }
+
     protected void drawCircle(MapView map){
-        Polygon oPolygon = new Circle(map);
-        final double radius = 100;
+        Polygon oPolygon = new Circlee(map);
+        final double radius = 150;
         Double lat = Double.valueOf(Global.latitude);
         Double lon = Double.valueOf(Global.longitude);
         ArrayList<GeoPoint> circlePoints = new ArrayList<GeoPoint>();
@@ -175,14 +192,16 @@ public class NearbyActivity extends AppCompatActivity {
         }
         oPolygon.setPoints(circlePoints);
         oPolygon.setStrokeWidth(20.0f);
-
+        final InfoWindow pop = new popUpWin(R.layout.popup, map);
+        oPolygon.setTitle("karika title");
+        oPolygon.setSubDescription("karika subdest");
+        oPolygon.setInfoWindow(pop);
         oPolygon.setFillColor(Color.argb(60,233,150,122));
         oPolygon.setStrokeColor(Color.argb(85,255,0,255));
         oPolygon.setOnClickListener(new Polygon.OnClickListener() {
             @Override
             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
-                Toast.makeText(getBaseContext(),"Markers count: " + mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
-                return true;
+                return false;
             }
         });
         map.getOverlays().add(oPolygon);
@@ -190,37 +209,44 @@ public class NearbyActivity extends AppCompatActivity {
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
+        HashMap<String, String> apDesc = new HashMap<String, String>();
         map.getOverlays().clear();
         map.invalidate();
         int counter = 0;
         Drawable pin = getResources().getDrawable(R.drawable.wifi4);
         for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
             Location coords = entry.getKey();
+
             String time = entry.getValue().getTime();
             String ssid = entry.getValue().getSsid();
             String bssid = entry.getValue().getMac();
             String source = entry.getValue().getSource();
             String str = entry.getValue().getStr();
+            String la = entry.getValue().getLati();
+            String lo = entry.getValue().getLongi();
 
-            String description = "<b>Record:</b> " + time;
-            description = description + "<br><b>Mac:</b> " + bssid;
-            description = description + "<br><b>Strength:</b> " + str;
-            description = description + "<br><b>Source:</b> " + source;
+            String description = "Time: " + time + "\n" + "MAC: " + bssid;
+            String snippet = "Source: " + source;
 
             GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
             Marker m = new Marker(map);
-            m.setTitle(ssid);
-
             m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    marker.showInfoWindow();
-                    //map.getOverlays().remove(marker);
-                    Toast.makeText(getBaseContext(),"Marker id: "+marker.getId(),Toast.LENGTH_SHORT).show();
+                    if(marker.isInfoWindowShown()){
+                        marker.closeInfoWindow();
+                    }
+                    else{
+                        marker.showInfoWindow();
+                    }
                     return true;
                 }
             });
+            m.setTitle(ssid);
+            m.setSnippet(snippet);
             m.setSubDescription(description);
+            final InfoWindow pop = new popUpWin(R.layout.popup, map);
+            m.setInfoWindow(pop);
             m.setIcon(resize(pin,100));
             m.setPosition(geo);
             m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
@@ -229,7 +255,7 @@ public class NearbyActivity extends AppCompatActivity {
         }
         map.invalidate();
         NearbyActivity.loc_ssid2.clear();
-        Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
     }
 
     protected void drawSimpleMarkers(MapView m, Map<Location, ApStrings> loc_ssid){
@@ -287,15 +313,8 @@ public class NearbyActivity extends AppCompatActivity {
                     String bssid = splittedStr[3];
                     String str = splittedStr[4];
                     String source;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-DD hh:mm:ss");
-                    Date convertedDate = new Date();
-                    try {
-                        convertedDate = dateFormat.parse(recordTime);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
                     try{
-                         source = splittedStr[9];
+                         source = splittedStr[8];
                     }
                     catch(Exception e){
                         source = "No data";
@@ -306,11 +325,9 @@ public class NearbyActivity extends AppCompatActivity {
                     x.setLatitude(lati);
                     x.setLongitude(longi);
                     ApStrings desc = new ApStrings(recordTime,ssid,bssid,str,source);
-
                     loc_ssid2.put(x,desc);
                 }
                 drawMarkers(map,loc_ssid2);
-                //drawStartPoint(map);
                 drawCircle(map);
             }
 
@@ -351,25 +368,103 @@ public class NearbyActivity extends AppCompatActivity {
     }
 }
 
-class Circle extends Polygon{
+class Circlee extends Polygon {
     private MapView map;
 
-    public Circle(MapView map){
+    public Circlee(MapView map){
         this.map = map;
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e, MapView mapView) {
-        if (e.getAction() == MotionEvent.ACTION_UP && contains(e)) {
+        /*if (e.getAction() == MotionEvent.ACTION_UP && contains(e)) {
             return true;
         }
-        return super.onSingleTapUp(e, mapView);
+        return super.onSingleTapUp(e, mapView);*/
+        return false;
     }
 
     @Override
     public boolean onLongPress(MotionEvent e, MapView mapView){
-        mapView.getOverlayManager().remove(e);
+        Toast.makeText(mapView.getContext(),"Items: " + mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
         Log.d("TAPI","LONGTAPTAPTAPTAPTAP_" + e.toString());
         return super.onLongPress(e, mapView);
     }
 }
+
+class popUpWin extends InfoWindow {
+
+    private int layoutID;
+    private MapView map;
+
+
+    public popUpWin(int layoutResId, MapView map) {
+        super(layoutResId, map);
+        this.layoutID = layoutID;
+        this.map = map;
+        }
+    public int getlayid(){
+        return layoutID;
+    }
+
+    @Override
+    public void onOpen(Object item) {
+        InfoWindow.closeAllInfoWindowsOn(map);
+        popUpWin.closeAllInfoWindowsOn(map);
+        String title;
+        String desc;
+        String snip;
+
+        LinearLayout layout = (LinearLayout) mView.findViewById(R.id.plinlay);
+        Button btn = (Button) mView.findViewById(R.id.pbtn);
+        TextView ssid = (TextView) mView.findViewById(R.id.pssid);
+        TextView descr = (TextView) mView.findViewById(R.id.pdesc);
+        TextView psnip = (TextView) mView.findViewById(R.id.psnip);
+        ImageView img = (ImageView) mView.findViewById(R.id.pimg);
+        TextView pstat = (TextView) mView.findViewById(R.id.pstat);
+
+        if(item instanceof Marker) {
+            final Marker marker = (Marker)item;
+
+            title = marker.getTitle();
+            desc = marker.getSubDescription();
+            snip = marker.getSnippet();
+            String descarray[] = desc.split("\n");
+
+            String android_id = Settings.Secure.getString(map.getContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+            String source_;
+            if(snip.contains(android_id)){
+                String[] a = snip.split("_");
+                source_ =  "Source: THIS_" + a[1];
+                psnip.setText(source_);
+            }
+            else{
+                psnip.setText(snip);
+            }
+
+            ssid.setText("SSID: " + title);
+            descr.setText(desc);
+
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("CLICKED BUTTON", "title: " + marker.getTitle());
+                    Log.d("CLICKED BUTTON", "desc: " + marker.getSubDescription());
+                    marker.remove(map);
+                }
+            });
+        }
+        if(item instanceof Circlee) {
+            final Circlee circle = (Circlee) item;
+        }
+    }
+
+    @Override
+    public void onClose() {
+
+    }
+}
+
+

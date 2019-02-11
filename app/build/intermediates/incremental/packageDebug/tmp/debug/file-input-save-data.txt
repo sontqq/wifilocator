@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Feb 07 23:39:54 CET 2019
+#Mon Feb 11 07:58:46 CET 2019
 4.path=crashlytics-build.properties
 8.set=DEX
 6.path=lib/armeabi/libyandexmapkit.so

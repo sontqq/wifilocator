@@ -2,6 +2,7 @@ package com.sontme.esp.getlocation.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -47,10 +48,17 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        ListView yourListView = (ListView) findViewById(R.id.mainListView);
+        final ListView yourListView = (ListView) findViewById(R.id.mainListView);
 
         customAdapter = new ListAdapter(this, R.layout.row, aplist);
         yourListView.setAdapter(customAdapter);
+        customAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                yourListView.setSelection(customAdapter.getCount() - 1);
+            }
+        });
 
         dl = (DrawerLayout) findViewById(R.id.drawler3);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
@@ -104,6 +112,7 @@ public class ListActivity extends AppCompatActivity {
             }
         }, 5000);
 
+        yourListView.setSelection(customAdapter.getCount() - 1);
     }
 
     public void getList(final Context context, String url) {

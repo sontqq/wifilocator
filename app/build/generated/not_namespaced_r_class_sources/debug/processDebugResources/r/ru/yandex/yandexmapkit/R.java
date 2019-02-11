@@ -12,55 +12,55 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static final int ymk_balloon_black = 0x7f0700c0;
-        public static final int ymk_balloon_tail_black = 0x7f0700c1;
-        public static final int ymk_balloon_text_color = 0x7f0700c2;
-        public static final int ymk_empty_image = 0x7f0700c3;
-        public static final int ymk_find_me_drawable = 0x7f0700c4;
-        public static final int ymk_no_map_image = 0x7f0700c5;
-        public static final int ymk_scale = 0x7f0700c6;
-        public static final int ymk_sgrayvga = 0x7f0700c7;
-        public static final int ymk_sgreenvga = 0x7f0700c8;
-        public static final int ymk_sredvga = 0x7f0700c9;
-        public static final int ymk_stricolorvga = 0x7f0700ca;
-        public static final int ymk_syellowvga = 0x7f0700cb;
-        public static final int ymk_tlight_loading = 0x7f0700cc;
-        public static final int ymk_tlight_no_level_active = 0x7f0700cd;
-        public static final int ymk_tlight_no_level_active_pressed = 0x7f0700ce;
-        public static final int ymk_tlight_no_level_inactive = 0x7f0700cf;
-        public static final int ymk_tlight_no_level_inactive_pressed = 0x7f0700d0;
-        public static final int ymk_tlight_no_level_loading_1 = 0x7f0700d1;
-        public static final int ymk_tlight_no_level_loading_2 = 0x7f0700d2;
-        public static final int ymk_tlight_no_level_loading_3 = 0x7f0700d3;
-        public static final int ymk_user_location_gps = 0x7f0700d4;
-        public static final int ymk_user_location_lbs = 0x7f0700d5;
-        public static final int ymk_where_am_i = 0x7f0700d6;
-        public static final int ymk_where_am_i_pressed = 0x7f0700d7;
-        public static final int ymk_ya_logo = 0x7f0700d8;
-        public static final int ymk_zoom_minus = 0x7f0700d9;
-        public static final int ymk_zoom_minus_drawable = 0x7f0700da;
-        public static final int ymk_zoom_minus_pressed = 0x7f0700db;
-        public static final int ymk_zoom_plus = 0x7f0700dc;
-        public static final int ymk_zoom_plus_drawable = 0x7f0700dd;
-        public static final int ymk_zoom_plus_pressed = 0x7f0700de;
+        public static final int ymk_balloon_black = 0x7f0700c1;
+        public static final int ymk_balloon_tail_black = 0x7f0700c2;
+        public static final int ymk_balloon_text_color = 0x7f0700c3;
+        public static final int ymk_empty_image = 0x7f0700c4;
+        public static final int ymk_find_me_drawable = 0x7f0700c5;
+        public static final int ymk_no_map_image = 0x7f0700c6;
+        public static final int ymk_scale = 0x7f0700c7;
+        public static final int ymk_sgrayvga = 0x7f0700c8;
+        public static final int ymk_sgreenvga = 0x7f0700c9;
+        public static final int ymk_sredvga = 0x7f0700ca;
+        public static final int ymk_stricolorvga = 0x7f0700cb;
+        public static final int ymk_syellowvga = 0x7f0700cc;
+        public static final int ymk_tlight_loading = 0x7f0700cd;
+        public static final int ymk_tlight_no_level_active = 0x7f0700ce;
+        public static final int ymk_tlight_no_level_active_pressed = 0x7f0700cf;
+        public static final int ymk_tlight_no_level_inactive = 0x7f0700d0;
+        public static final int ymk_tlight_no_level_inactive_pressed = 0x7f0700d1;
+        public static final int ymk_tlight_no_level_loading_1 = 0x7f0700d2;
+        public static final int ymk_tlight_no_level_loading_2 = 0x7f0700d3;
+        public static final int ymk_tlight_no_level_loading_3 = 0x7f0700d4;
+        public static final int ymk_user_location_gps = 0x7f0700d5;
+        public static final int ymk_user_location_lbs = 0x7f0700d6;
+        public static final int ymk_where_am_i = 0x7f0700d7;
+        public static final int ymk_where_am_i_pressed = 0x7f0700d8;
+        public static final int ymk_ya_logo = 0x7f0700d9;
+        public static final int ymk_zoom_minus = 0x7f0700da;
+        public static final int ymk_zoom_minus_drawable = 0x7f0700db;
+        public static final int ymk_zoom_minus_pressed = 0x7f0700dc;
+        public static final int ymk_zoom_plus = 0x7f0700dd;
+        public static final int ymk_zoom_plus_drawable = 0x7f0700de;
+        public static final int ymk_zoom_plus_pressed = 0x7f0700df;
     }
     public static final class id {
         private id() {}
 
-        public static final int ymk_balloon_text_view = 0x7f080111;
-        public static final int ymk_find_me = 0x7f080112;
-        public static final int ymk_scale = 0x7f080113;
-        public static final int ymk_screen_buttons_bottom = 0x7f080114;
-        public static final int ymk_screen_buttons_top = 0x7f080115;
-        public static final int ymk_semaphore = 0x7f080116;
-        public static final int ymk_zoom_in = 0x7f080117;
-        public static final int ymk_zoom_out = 0x7f080118;
+        public static final int ymk_balloon_text_view = 0x7f080118;
+        public static final int ymk_find_me = 0x7f080119;
+        public static final int ymk_scale = 0x7f08011a;
+        public static final int ymk_screen_buttons_bottom = 0x7f08011b;
+        public static final int ymk_screen_buttons_top = 0x7f08011c;
+        public static final int ymk_semaphore = 0x7f08011d;
+        public static final int ymk_zoom_in = 0x7f08011e;
+        public static final int ymk_zoom_out = 0x7f08011f;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int ymk_balloon_default_layout = 0x7f0b0047;
-        public static final int ymk_screen_buttons_layout = 0x7f0b0048;
+        public static final int ymk_balloon_default_layout = 0x7f0b0048;
+        public static final int ymk_screen_buttons_layout = 0x7f0b0049;
     }
     public static final class string {
         private string() {}

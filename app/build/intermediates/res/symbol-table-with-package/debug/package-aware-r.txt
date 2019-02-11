@@ -712,6 +712,7 @@ color mtrl_textinput_default_box_stroke_color
 color mtrl_textinput_disabled_color
 color mtrl_textinput_filled_box_default_background_color
 color mtrl_textinput_hovered_box_stroke_color
+color nicered1
 color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
@@ -1124,6 +1125,7 @@ drawable person
 drawable pin
 drawable pin1
 drawable pin2
+drawable popup_shape
 drawable previous
 drawable route
 drawable sharp_add_black_36
@@ -1335,11 +1337,18 @@ id parallax
 id parent
 id parentPanel
 id parent_matrix
+id pbtn
+id pdesc
 id percent
+id pimg
 id pin
 id placeholder
+id plinlay
 id progress_circular
 id progress_horizontal
+id psnip
+id pssid
+id pstat
 id publisherAdView
 id radio
 id right
@@ -1537,6 +1546,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout popup
 layout row
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
