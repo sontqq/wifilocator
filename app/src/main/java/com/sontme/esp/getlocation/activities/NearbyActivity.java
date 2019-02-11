@@ -3,7 +3,9 @@ package com.sontme.esp.getlocation.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -34,6 +36,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -41,6 +44,7 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
 import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlay;
@@ -209,7 +213,19 @@ public class NearbyActivity extends AppCompatActivity {
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
-        HashMap<String, String> apDesc = new HashMap<String, String>();
+        final RadiusMarkerClusterer clusterer = new RadiusMarkerClusterer(this);
+        final List<Overlay> overlays = map.getOverlays();
+        overlays.clear();
+
+        Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
+                R.drawable.wifi4_cluster);
+
+        clusterer.setIcon(getResizedBitmap(icon,100,100));
+        clusterer.setRadius(85);
+        clusterer.mTextAnchorU = 0.70f;
+        clusterer.mTextAnchorV = 0.27f;
+        clusterer.getTextPaint().setTextSize(20.0f);
+
         map.getOverlays().clear();
         map.invalidate();
         int counter = 0;
@@ -250,9 +266,11 @@ public class NearbyActivity extends AppCompatActivity {
             m.setIcon(resize(pin,100));
             m.setPosition(geo);
             m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            map.getOverlays().add(m);
+            //map.getOverlays().add(m);
+            clusterer.add(m);
             counter++;
         }
+        overlays.add(clusterer);
         map.invalidate();
         NearbyActivity.loc_ssid2.clear();
         //Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
@@ -366,6 +384,23 @@ public class NearbyActivity extends AppCompatActivity {
     public Context getContext() {
         return getApplicationContext();
     }
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
 }
 
 class Circlee extends Polygon {
@@ -402,9 +437,6 @@ class popUpWin extends InfoWindow {
         super(layoutResId, map);
         this.layoutID = layoutID;
         this.map = map;
-        }
-    public int getlayid(){
-        return layoutID;
     }
 
     @Override
@@ -429,7 +461,7 @@ class popUpWin extends InfoWindow {
             title = marker.getTitle();
             desc = marker.getSubDescription();
             snip = marker.getSnippet();
-            String descarray[] = desc.split("\n");
+            //String descarray[] = desc.split("\n");
 
             String android_id = Settings.Secure.getString(map.getContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
@@ -442,17 +474,18 @@ class popUpWin extends InfoWindow {
             else{
                 psnip.setText(snip);
             }
-
             ssid.setText("SSID: " + title);
             descr.setText(desc);
-
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("CLICKED BUTTON", "title: " + marker.getTitle());
                     Log.d("CLICKED BUTTON", "desc: " + marker.getSubDescription());
+                    map.invalidate();
                     marker.remove(map);
+                    marker.closeInfoWindow();
+                    map.invalidate();
                 }
             });
         }

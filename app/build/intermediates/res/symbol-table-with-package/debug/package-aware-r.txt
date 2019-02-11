@@ -1137,6 +1137,7 @@ drawable wifi1
 drawable wifi2
 drawable wifi3
 drawable wifi4
+drawable wifi4_cluster
 drawable wifi5
 drawable wifi6
 drawable ymk_balloon_black
