@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="753"
+    android:versionCode="803"
     android:versionName="2.1" >
 
     <uses-sdk
@@ -62,7 +62,6 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/computer"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="com.sontme.esp.getlocation.activities.NearbyActivity" />
         <activity android:name="com.sontme.esp.getlocation.activities.ListActivity" />

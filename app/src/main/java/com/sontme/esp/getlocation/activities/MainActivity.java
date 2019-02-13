@@ -1,6 +1,7 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -13,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -56,6 +58,10 @@ import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
@@ -83,6 +89,9 @@ import io.fabric.sdk.android.Fabric;
 
 import android.support.design.widget.NavigationView;
 
+import org.osmdroid.util.LocationUtils;
+import org.w3c.dom.Text;
+
 //import static com.sontme.esp.getlocation.BackgroundService.timer;
 
 public class MainActivity extends AppCompatActivity {
@@ -96,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
     public PublisherAdView mPublisherAdView;
 
     public Context context = this;
-    static Runnable runnable = null;
+
     public static int zoomval = 17;
 
-    static Timer timer = new Timer();
+    //static Timer timer = new Timer();
 
     public static TextView alti;
     public static TextView longi;
@@ -125,25 +134,77 @@ public class MainActivity extends AppCompatActivity {
     public static TextView add;
 
     //endregion
+    Location mlocation;
+    Handler handler = new Handler();
+   // Runnable test;
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            queryLocation();
+
+            longi.setText("Longitude: " + Global.longitude);
+            lati.setText("Latitude: " + Global.latitude);
+            alti.setText("Altitude: " + Global.altitude);
+            spd.setText("Speed: " + Global.speed + " km/h");
+            dst.setText("Distance: " + Global.distance + " meters");
+            add.setText("Address: " + Global.address);
+            c.setText("Count: " + Global.count);
+
+            handler.postDelayed(this, 1000);
+        }
+    };
 
     public void queryLocation() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        String provider = locationManager.GPS_PROVIDER;
+        final LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                mlocation = location;
+                Log.d("Location Changes", location.toString());
+
+                Global.latitude = String.valueOf(location.getLatitude());
+                Global.longitude = String.valueOf(location.getLongitude());
+                Global.accuracy = String.valueOf(location.getAccuracy());
+                Global.altitude = String.valueOf(location.getAltitude());
+                Global.bearing = String.valueOf(location.getBearing());
+                Global.speed = String.valueOf(location.getSpeed());
+                Global.time = String.valueOf(location.getTime());
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                Log.d("Status Changed", String.valueOf(status));
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                Log.d("Provider Enabled", provider);
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                Log.d("Provider Disabled", provider);
+            }
+        };
+
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setSpeedRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
+        criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
+
+        // Now create a location manager
+        final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        final Looper looper = null;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED) {
-        } else {
-        ActivityCompat.requestPermissions(this, new String[] {
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION },
-                1);
-    }
-        Location myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
+        locationManager.requestSingleUpdate(criteria, locationListener, looper);
+        /*
         //region DEFINING VARIABLES
         double latitude = myLocation.getLatitude();
         double longitude = myLocation.getLongitude();
@@ -158,8 +219,8 @@ public class MainActivity extends AppCompatActivity {
         long down = getDownloadAmount();
         long up = getUploadAmount();
         Long time = myLocation.getTime(); // GPS time
-        String device = myLocation.getProvider();
-        String address = HandleLocations.getCompleteAddressString(getBaseContext(),latitude, longitude);
+
+        String address = HandleLocations.getCompleteAddressString(getBaseContext(), latitude, longitude);
         Global.latitude = String.valueOf(latitude);
         Global.longitude = String.valueOf(longitude);
         Global.altitude = String.valueOf(altitude);
@@ -167,28 +228,34 @@ public class MainActivity extends AppCompatActivity {
         Global.distance = String.valueOf(roundedDist);
         Global.accuracy = String.valueOf(accuracy);
         Global.bearing = String.valueOf(bearing);
-        Global.address = address;
+        Global.address = address;*/
         SimpleDateFormat niceTime = new SimpleDateFormat("mm:ss");
-        long current = System.currentTimeMillis();
-        long asd = current - (time);
-        String nc = niceTime.format(asd);
+//        long current = System.currentTimeMillis();
+//        long asd = current - (Long.valueOf(Global.time));
+ //       String nc = niceTime.format(asd);
         //endregion
-        if (latitude != 0 && longitude != 0) {
-            counter++;
-            Global.count++;
-            if (counter == 1) {
-                // START POSITION (Activity/Program start)
-                initialLong = longitude;
-                initialLat = latitude;
+        try {
+            if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
+                counter++;
+                Global.count++;
+                if (counter == 1) {
+                    // START POSITION (Activity/Program start)
+                    initialLong = Double.valueOf(Global.longitude);
+                    initialLat = Double.valueOf(Global.latitude);
+                }
             }
+            Log.d("INITIAL",String.valueOf(initialLat) + String.valueOf(initialLong));
         }
-        if (nc.contains("00:00") || nc.contains("59:59") || nc.contains("59:58") || nc.contains("00:59:58")) {
+        catch (Exception e){}
+       /* if (nc.contains("00:00") || nc.contains("59:59") || nc.contains("59:58") || nc.contains("00:59:58")) {
             nc = "Now";
         } else {
             nc = nc + " ago";
-        }
-        aplist(getBaseContext(), latitude, longitude);
-        showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
+        }*/
+       if(Global.latitude != null) {
+           aplist(getBaseContext(), Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+       }
+        /*showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
                 + "\nLast Change: " + nc
                 + "\nDistance: " + roundedDist + " meters"
                 + "\nLongitude: " + longitude
@@ -196,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 + "\nAddress: " + address
                 + "\nSpeed: " + rSpeed2 + " km/h"
                 + "\nAccuracy: " + accuracy + " meters"
-                + "\nProvider: " + provider + " | Bandwidth: " + down + "/" + up + " mb");
+                + "\nProvider: " + provider + " | Bandwidth: " + down + "/" + up + " mb");*/
     }
 
     private DrawerLayout dl;
@@ -212,34 +279,33 @@ public class MainActivity extends AppCompatActivity {
         init();
         logUser();
 
-        dl = (DrawerLayout)findViewById(R.id.drawler);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        dl = (DrawerLayout) findViewById(R.id.drawler);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv = (NavigationView)findViewById(R.id.nv);
+        nv = (NavigationView) findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch(id)
-                {
+                switch (id) {
                     case R.id.main:
                         dl.closeDrawers();
                         return true;
                     case R.id.map:
                         dl.closeDrawers();
-                        Intent i = new Intent(MainActivity.this,MapActivity.class);
+                        Intent i = new Intent(MainActivity.this, MapActivity.class);
                         startActivity(i);
                         return true;
                     case R.id.list:
                         dl.closeDrawers();
-                        Intent i2 = new Intent(MainActivity.this,ListActivity.class);
+                        Intent i2 = new Intent(MainActivity.this, ListActivity.class);
                         startActivity(i2);
                         return true;
                     case R.id.nearby:
                         dl.closeDrawers();
-                        Intent i4 = new Intent(MainActivity.this,NearbyActivity.class);
+                        Intent i4 = new Intent(MainActivity.this, NearbyActivity.class);
                         startActivity(i4);
                         return true;
                     default:
@@ -255,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
         mPublisherAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                Toasty.info(getBaseContext(),"Advertisement loaded!",Toast.LENGTH_SHORT,false).show();
+                Toasty.info(getBaseContext(), "Advertisement loaded!", Toast.LENGTH_SHORT, false).show();
             }
 
             @Override
@@ -266,68 +332,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        /*
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            public void uncaughtException(Thread t, Throwable e) {
-                Log.w("APPERROR", "UNHANDLED EXCEPTION! RESTARTING!" + e.toString());
-                writeLog(getBaseContext(), e.getMessage() + "\n\r");
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                PendingIntent pendingintent = PendingIntent.getActivity(getBaseContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingintent);
-                //startActivity(intent);
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(2);
-            }
-        });*/
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (runUI == true) {
-                            //queryLocation();
-                        }
-                        if (isMyServiceRunning(BackgroundService.class) == true) {
-                            srvStatus.setText("Service status: On");
-                        } else {
-                            srvStatus.setText("Service status: Off");
-                        }
-                        if (Global.maptype == null) {
-                            Global.maptype = "map";
-                        }
-                        String url = "https://static-maps.yandex.ru/1.x/?lang=en_US" +
-                                "&size=300,450" +
-                                "&l=" + Global.maptype +
-                                "&z=" + zoomval +
-                                "&ll=" + Global.longitude + "," + Global.latitude + "" +
-                                "&pt=" + Global.longitude + "," + Global.latitude + ",round";
-                        try {
-                            if (Global.wanarun) { // and also isNetworkAvailable()
-                                SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-                                String currentDateandTime = dateformat.format(new Date());
-                                writeLog(getBaseContext(), currentDateandTime + "\n\r");
-                                //new DownloadImageTask((ImageView) ((map)context).findViewById(R.id.mapimagee)).execute(url);
-                                if(runUI == true) {
-                                    new DownloadImageTask((ImageView) findViewById(R.id.mapimg)).execute(url);
-                                }
-                            }
-                        } catch (Exception e) {
-                            Log.d("APP", "HTTP ERROR");
-                        }
-                        longi.setText("Longitude: " + Global.longitude);
-                        lati.setText("Latitude: " + Global.latitude);
-                        alti.setText("Altitude: " + Global.altitude);
-                        spd.setText("Speed: " + Global.speed + " km/h");
-                        dst.setText("Distance: " + Global.distance + " meters");
-                        add.setText("Address: " + Global.address);
-                        c.setText("Count: " + Global.count);
-                    }
-                });
-            }
-        }, 0, 3000);
 
         //region UI ELEMENTS
         alti = (TextView) findViewById(R.id.alti);
@@ -459,9 +463,6 @@ public class MainActivity extends AppCompatActivity {
                         startService(serviceIntent);
                     }
                 }
-                timer.cancel();
-                timer.purge();
-                timer.scheduleAtFixedRate(new mainTask(), 0, serviceRefreshInterval);
             }
         });
         stop_srv.setOnClickListener(new View.OnClickListener() {
@@ -472,33 +473,35 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     stopService(new Intent(getBaseContext(), BackgroundService.class));
                 }
-                timer.cancel();
             }
         });
         //endregion
-        //region START SERVICE
-        //endregion
-
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv);
-        View hView =  navigationView.getHeaderView(0);
-        TextView tex = (TextView)hView.findViewById(R.id.header_verinfo);
+        View hView = navigationView.getHeaderView(0);
+        TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
+
+        queryLocation();
+        handler.postDelayed(runnable, 1000);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(t.onOptionsItemSelected(item))
+        if (t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
     }
@@ -526,6 +529,7 @@ public class MainActivity extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
+
     public static int ConvertDBM(int dbm) {
         int quality;
         if (dbm <= -100)
@@ -536,19 +540,9 @@ public class MainActivity extends AppCompatActivity {
             quality = 2 * (dbm + 100);
         return quality;
     }
+
     public double mpsTokmh(double mps) {
         return mps * 3.6;
-    }
-    public boolean areWeLocal() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 192.168.0.43");
-            int exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     public boolean isMyServiceRunning(Class<?> serviceClass) {
@@ -560,6 +554,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
     public void showNotif(String Title, String Text) {
         Intent notificationIntent = new Intent(getBaseContext(), MainActivity.class);
 
@@ -594,6 +589,7 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(0, notification2);
 
     }
+
     public static ArrayList<String> aplist(final Context context, double lati, double longi) {
         ArrayList<String> apList = new ArrayList<String>();
         try {
@@ -602,13 +598,11 @@ public class MainActivity extends AppCompatActivity {
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
                 String enc = "notavailable";
-                if(!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")){
+                if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
-                }
-                else if(result.capabilities.contains("WEP")){
+                } else if (result.capabilities.contains("WEP")) {
                     enc = "WEP";
-                }
-                else if(result.capabilities.contains("WPA")){
+                } else if (result.capabilities.contains("WPA")) {
                     enc = "WPA";
                 }
                 String android_id = Settings.Secure.getString(context.getContentResolver(),
@@ -617,54 +611,43 @@ public class MainActivity extends AppCompatActivity {
                 //String versionName = BuildConfig.VERSION_NAME;
                 String url = "http://sont.sytes.net/mcuinsert2.php";
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + ConvertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
-                saveRecordHttp(url+reqBody);
+                saveRecordHttp(url + reqBody);
             }
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
         return apList;
     }
+
     public void logUser() {
-        // TODO: Use the current user's information
-        // You can call any combination of these three methods
         Crashlytics.setUserIdentifier("12345");
         Crashlytics.setUserEmail("sont16@gmail.com");
         Crashlytics.setUserName("wifilocatoruser");
     }
+
     public long getDownloadAmount() {
         long dl = TrafficStats.getUidRxBytes(this.getApplicationInfo().uid) / 1024 / 1024;
         return dl;
     }
+
     public long getUploadAmount() {
         long ul = TrafficStats.getUidTxBytes(this.getApplicationInfo().uid) / 1024 / 1024;
         return ul;
     }
+
     public String readFile() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String name = preferences.getString("wifilog", "");
         return name;
     }
-    public boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
+
     public void writeLog(Context c, String data) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("wifilog", readFile() + data);
         editor.apply();
     }
-    public String convertLongTimeWithTimeZome(long time) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeZone(TimeZone.getTimeZone("UTC"));
-        cal.setTimeInMillis(time);
-        return (cal.get(Calendar.YEAR) + " " + (cal.get(Calendar.MONTH) + 1) + " "
-                + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.HOUR_OF_DAY) + ":"
-                + cal.get(Calendar.MINUTE));
 
-    }
     public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
 
         final int R = 6371; // Radius of the earth
@@ -681,49 +664,27 @@ public class MainActivity extends AppCompatActivity {
         distance = Math.pow(distance, 2) + Math.pow(height, 2);
         return Math.sqrt(distance);
     }
-    public class mainTask extends TimerTask {
-        public void run() {
-            Message message = mHandler.obtainMessage(0);
-            message.sendToTarget();
-        }
-    }
-    Handler mHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message message) {
-            switch (message.what) {
-                case 1:
-                    // to stop the timer
-                    //mHandler.removeCallbacksAndMessages(runnable);
-                    break;
-                default:
-                    break;
-            }
-            if (Global.wanarun) { // and also isNetworkAvailable()
-                queryLocation();
-            }
-        }
-    };
+
     public void init() {
         int interval = 1000;
-        timer.scheduleAtFixedRate(new mainTask(), 0, interval);
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
-        if(checkPermissionLocation() == false) {
+        if (checkPermissionLocation() == false) {
             Toasty.error(getBaseContext(), "Missing location permission!", Toast.LENGTH_SHORT, false).show();
             requestPermissionLocation();
         }
         // TURN ON WIFI
         if (!wifi.isWifiEnabled()) {
-            Toasty.info(getBaseContext(),"Turning on WiFi..",Toast.LENGTH_SHORT).show();
+            Toasty.info(getBaseContext(), "Turning on WiFi..", Toast.LENGTH_SHORT).show();
             wifi.setWifiEnabled(true);
         }
     }
-    public static void saveRecordHttp(String path){
+
+    public static void saveRecordHttp(String path) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                //Toasty.success(context,"HTTP SUCCESS",Toast.LENGTH_SHORT,false).show();
             }
 
             @Override
@@ -737,24 +698,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public boolean checkPermissionLocation(){
+
+    public boolean checkPermissionLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
-    public void requestPermissionLocation(){
-        // requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_PERMISSION_LOCATION);
+
+    public void requestPermissionLocation() {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
     }
-    private void openFragment(final Fragment fragment, int element){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(element, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+
 }
+
 

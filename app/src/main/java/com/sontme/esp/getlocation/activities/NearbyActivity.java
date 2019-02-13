@@ -108,13 +108,6 @@ public class NearbyActivity extends AppCompatActivity {
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
-        /*map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InfoWindow.closeAllInfoWindowsOn(map);
-                popUpWin.closeAllInfoWindowsOn(map);
-            }
-        });*/
         mapController.setZoom(18.0);
         GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         mapController.setCenter(startPoint);
@@ -169,18 +162,6 @@ public class NearbyActivity extends AppCompatActivity {
         Bitmap b = ((BitmapDrawable)image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, size, size, false);
         return new BitmapDrawable(getResources(), bitmapResized);
-    }
-    protected void drawStartPoint(MapView map){
-        Drawable pin = getResources().getDrawable(R.drawable.wifi6);
-        GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
-        Marker m = new Marker(map);
-        m.setTitle("Starting position");
-        m.setSubDescription("Location where you started");
-        m.setIcon(resize(pin, 150));
-        m.setPosition(geo);
-        map.getOverlays().add(m);
-        map.invalidate();
-        drawCircle(map);
     }
 
     protected void drawCircle(MapView map){
@@ -276,31 +257,6 @@ public class NearbyActivity extends AppCompatActivity {
         //Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
     }
 
-    protected void drawSimpleMarkers(MapView m, Map<Location, ApStrings> loc_ssid){
-        List<IGeoPoint> points = new ArrayList<>();
-        for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
-            Location coords = entry.getKey();
-            int lat = (int) (coords.getLatitude() * 1E6);
-            int lng = (int) (coords.getLongitude() * 1E6);
-
-            points.add(new GeoPoint(lat,lng));
-
-            SimplePointTheme pt = new SimplePointTheme(points, true);
-            Paint textStyle = new Paint();
-            textStyle.setStyle(Paint.Style.FILL);
-            //textStyle.setColor(Color.parseColor("#0000ff"));
-            textStyle.setTextAlign(Paint.Align.CENTER);
-            //textStyle.setTextSize(24);
-            SimpleFastPointOverlayOptions opt = SimpleFastPointOverlayOptions.getDefaultStyle()
-                    .setAlgorithm(SimpleFastPointOverlayOptions.RenderingAlgorithm.MAXIMUM_OPTIMIZATION)
-                    .setRadius(7).setIsClickable(true).setCellSize(15).setTextStyle(textStyle);
-            final SimpleFastPointOverlay sfpo = new SimpleFastPointOverlay(pt, opt);
-            m.getOverlays().add(sfpo);
-            map.getOverlays().add(sfpo);
-        }
-        m.invalidate();
-        map.invalidate();
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(t.onOptionsItemSelected(item))
@@ -358,12 +314,6 @@ public class NearbyActivity extends AppCompatActivity {
             public void onRetry(int retryNo) {
             }
         });
-    }
-
-    public void getNearest(Location loc, Location[] coll){
-        HandleLocations handle = new HandleLocations(loc.getLatitude(),loc.getLongitude());
-        Location nearest = handle.getNearestPoint(loc, coll);
-        Log.d("Nearest: ",String.valueOf(nearest.getLatitude() + " " + nearest.getLongitude()));
     }
 
     public static String html2text(String html) {

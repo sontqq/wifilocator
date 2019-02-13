@@ -17,6 +17,7 @@ MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\sont1\.grad
 MERGED from [ru.yandex:yandexmapkit:2.5.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\yandexmapkit-2.5.4.aar\280bc37b87f06674e463709b56cef1e4\AndroidManifest.xml:2:1-23:12
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\ce3c485e7e0e90abffdbf89487400908\AndroidManifest.xml:2:1-13:12
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:2:1-29:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:2:1-9:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\ec76a8863279c6c1e2deac6a47ed7fea\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:transition:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\388e9b08be1cbc13c62f25b7eb95426b\AndroidManifest.xml:17:1-22:12
@@ -29,6 +30,7 @@ MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] C:\Users\sont1\
 MERGED from [com.google.firebase:firebase-iid:17.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.0.3.aar\32aa57132453f44b09f87649b85da5da\AndroidManifest.xml:17:1-59:12
 MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\c333d537402743e562d93eec37652eab\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\b72c69f54a23ca8817717c45dbcc5f51\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-16.0.0.aar\b550c741932807dfaaa58da96bbe910f\AndroidManifest.xml:17:1-24:12
@@ -241,6 +243,8 @@ MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\sont1\.grad
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ce8230b8750af494d74cde68991fb754\AndroidManifest.xml:11:5-17:19
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\ce3c485e7e0e90abffdbf89487400908\AndroidManifest.xml:11:5-20
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\ce3c485e7e0e90abffdbf89487400908\AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:26:5-32:19
@@ -257,6 +261,8 @@ MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gr
 MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\c333d537402743e562d93eec37652eab\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\b72c69f54a23ca8817717c45dbcc5f51\AndroidManifest.xml:7:5-20
@@ -423,6 +429,8 @@ MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\cach
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\ce3c485e7e0e90abffdbf89487400908\AndroidManifest.xml:7:5-9:41
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:7:5-9:41
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:5:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\ec76a8863279c6c1e2deac6a47ed7fea\AndroidManifest.xml:20:5-44
@@ -447,6 +455,8 @@ MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gr
 MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\c333d537402743e562d93eec37652eab\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\b72c69f54a23ca8817717c45dbcc5f51\AndroidManifest.xml:5:5-44

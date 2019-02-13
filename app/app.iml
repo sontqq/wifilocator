@@ -132,6 +132,7 @@
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:cardview-v7:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-iid:17.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.crashlytics.sdk.android:crashlytics-core:2.6.7@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.collections:google-collections:1.0-rc2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.crashlytics.sdk.android:crashlytics:2.9.8@aar" level="project" />
@@ -144,6 +145,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.exoplayer:exoplayer-dash:r2.4.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-ads:17.1.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-places-placereport:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:28.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:interpolator:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:transition:28.0.0@aar" level="project" />

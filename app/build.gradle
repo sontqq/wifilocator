@@ -75,6 +75,7 @@ dependencies {
     implementation group: 'com.google.collections', name: 'google-collections', version: '1.0-rc2'
     implementation 'com.github.MKergall:osmbonuspack:6.5.2'
 
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 
 
 
