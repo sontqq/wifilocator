@@ -1217,11 +1217,6 @@ id bubble_image
 id bubble_moreinfo
 id bubble_subdescription
 id bubble_title
-id button1
-id button2
-id button3
-id button4
-id button5
 id button6
 id buttonPanel
 id c
@@ -1307,7 +1302,6 @@ id main
 id mainListView
 id map
 id mapimg
-id mapzoom
 id masked
 id media_actions
 id menu_bottom
@@ -1376,8 +1370,6 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
-id seekBar
-id seekVal
 id select_dialog_listview
 id selected
 id shortcut
@@ -1408,7 +1400,6 @@ id stop_srv
 id stretch
 id submenuarrow
 id submit_area
-id sw
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1461,7 +1452,6 @@ id ymk_screen_buttons_top
 id ymk_semaphore
 id ymk_zoom_in
 id ymk_zoom_out
-id zoomvalue
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration

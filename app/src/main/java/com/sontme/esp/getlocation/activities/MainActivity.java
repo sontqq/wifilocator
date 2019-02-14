@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,12 +14,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
@@ -92,7 +95,6 @@ import android.support.design.widget.NavigationView;
 import org.osmdroid.util.LocationUtils;
 import org.w3c.dom.Text;
 
-//import static com.sontme.esp.getlocation.BackgroundService.timer;
 
 public class MainActivity extends AppCompatActivity {
     //region DEFINING VARIABLES
@@ -121,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
     public static Button exitb;
     public static Switch sw;
     public static SeekBar sb;
-    public static TextView seekVal;
     public static TextView srvStatus;
     public static ImageView mapimg;
     public static SeekBar mapzoom;
@@ -136,22 +137,23 @@ public class MainActivity extends AppCompatActivity {
     //endregion
     Location mlocation;
     Handler handler = new Handler();
-   // Runnable test;
 
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             queryLocation();
+            try {
+                longi.setText("Longitude: " + Global.longitude);
+                lati.setText("Latitude: " + Global.latitude);
+                alti.setText("Altitude: " + Global.altitude);
+                spd.setText("Speed: " + Global.speed + " km/h");
+                dst.setText("Distance: " + round(Double.valueOf(Global.distance), 2) + " meters");
+                add.setText("Address: " + Global.address);
+                c.setText("Count: " + Global.count);
+            }
+            catch (Exception e){}
 
-            longi.setText("Longitude: " + Global.longitude);
-            lati.setText("Latitude: " + Global.latitude);
-            alti.setText("Altitude: " + Global.altitude);
-            spd.setText("Speed: " + Global.speed + " km/h");
-            dst.setText("Distance: " + Global.distance + " meters");
-            add.setText("Address: " + Global.address);
-            c.setText("Count: " + Global.count);
-
-            handler.postDelayed(this, 1000);
+            //handler.postDelayed(this, 1000);
         }
     };
 
@@ -167,8 +169,10 @@ public class MainActivity extends AppCompatActivity {
                 Global.accuracy = String.valueOf(location.getAccuracy());
                 Global.altitude = String.valueOf(location.getAltitude());
                 Global.bearing = String.valueOf(location.getBearing());
-                Global.speed = String.valueOf(location.getSpeed());
+                Global.speed = String.valueOf(mpsTokmh(location.getSpeed()));
                 Global.time = String.valueOf(location.getTime());
+                Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), initialLat, Double.valueOf(Global.longitude), initialLong));
+                Global.address = getCompleteAddressString(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
             }
 
             @Override
@@ -203,37 +207,8 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        Log.d("GPS PROVIDER: " + Global.count + " ",locationManager.getBestProvider(criteria,false));
         locationManager.requestSingleUpdate(criteria, locationListener, looper);
-        /*
-        //region DEFINING VARIABLES
-        double latitude = myLocation.getLatitude();
-        double longitude = myLocation.getLongitude();
-        double speed = mpsTokmh(myLocation.getSpeed());
-        String rSpeed = String.format("%.2f", speed); // 2 decimal accurate
-        String rSpeed2 = rSpeed.replace(",", "."); // replace , with .
-        double bearing = myLocation.getBearing();
-        double altitude = myLocation.getAltitude();
-        double accuracy = myLocation.getAccuracy();
-        double distance = getDistance(latitude, initialLat, longitude, initialLong);
-        double roundedDist = Math.round(distance * 100.0) / 100.0;
-        long down = getDownloadAmount();
-        long up = getUploadAmount();
-        Long time = myLocation.getTime(); // GPS time
-
-        String address = HandleLocations.getCompleteAddressString(getBaseContext(), latitude, longitude);
-        Global.latitude = String.valueOf(latitude);
-        Global.longitude = String.valueOf(longitude);
-        Global.altitude = String.valueOf(altitude);
-        Global.speed = String.valueOf(speed);
-        Global.distance = String.valueOf(roundedDist);
-        Global.accuracy = String.valueOf(accuracy);
-        Global.bearing = String.valueOf(bearing);
-        Global.address = address;*/
-        SimpleDateFormat niceTime = new SimpleDateFormat("mm:ss");
-//        long current = System.currentTimeMillis();
-//        long asd = current - (Long.valueOf(Global.time));
- //       String nc = niceTime.format(asd);
-        //endregion
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
                 counter++;
@@ -244,26 +219,24 @@ public class MainActivity extends AppCompatActivity {
                     initialLat = Double.valueOf(Global.latitude);
                 }
             }
-            Log.d("INITIAL",String.valueOf(initialLat) + String.valueOf(initialLong));
+            Log.d("INITIAL", String.valueOf(initialLat) + String.valueOf(initialLong));
+        } catch (Exception e) {
         }
-        catch (Exception e){}
-       /* if (nc.contains("00:00") || nc.contains("59:59") || nc.contains("59:58") || nc.contains("00:59:58")) {
-            nc = "Now";
-        } else {
-            nc = nc + " ago";
-        }*/
-       if(Global.latitude != null) {
-           aplist(getBaseContext(), Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
-       }
-        /*showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                + "\nLast Change: " + nc
-                + "\nDistance: " + roundedDist + " meters"
-                + "\nLongitude: " + longitude
-                + "\nLatitude: " + latitude
-                + "\nAddress: " + address
-                + "\nSpeed: " + rSpeed2 + " km/h"
-                + "\nAccuracy: " + accuracy + " meters"
-                + "\nProvider: " + provider + " | Bandwidth: " + down + "/" + up + " mb");*/
+
+        if (Global.latitude != null) {
+            aplist(getBaseContext(), Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        }
+        try {
+            showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
+                    + "\nLast Change: " + Global.time
+                    + "\nDistance: " + Global.distance + " meters"
+                    + "\nLongitude: " + Global.longitude
+                    + "\nLatitude: " + Global.latitude
+                    + "\nAddress: " + Global.address
+                    + "\nSpeed: " + String.valueOf(round(Double.valueOf(Global.speed), 2)) + " km/h"
+                    + "\nAccuracy: " + Global.accuracy + " meters");
+        }
+        catch(Exception e){}
     }
 
     private DrawerLayout dl;
@@ -284,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv = (NavigationView) findViewById(R.id.nv);
+        nv = findViewById(R.id.nv);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -344,61 +317,12 @@ public class MainActivity extends AppCompatActivity {
         start_srv = (Button) findViewById(R.id.srv);
         stop_srv = (Button) findViewById(R.id.stop_srv);
         exitb = (Button) findViewById(R.id.exitb);
-        sw = (Switch) findViewById(R.id.sw);
-        sb = (SeekBar) findViewById(R.id.seekBar);
-        seekVal = (TextView) findViewById(R.id.seekVal);
         srvStatus = (TextView) findViewById(R.id.srvStatus);
         mapimg = (ImageView) findViewById(R.id.mapimg);
 
-        mapzoom = (SeekBar) findViewById(R.id.mapzoom);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        zoomvalue = (TextView) findViewById(R.id.zoomvalue);
-        seekVal.setText(String.valueOf(serviceRefreshInterval / 1000) + " secs");
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.maptype = "map";
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.maptype = "map,trf,skl";
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.maptype = "sat";
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.maptype = "sat,skl";
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Global.maptype = "map,trf,skl";
-            }
-        });
         //endregion
         //region UI ELEMENT LISTENERS
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    runUI = true;
-                } else {
-                    runUI = false;
-                }
-            }
-        });
+
 
         exitb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -409,43 +333,7 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
-        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (progress > 999) {
-                    serviceRefreshInterval = progress;
-                    seekVal.setText(String.valueOf(progress / 1000) + " secs");
-                } else {
-                    serviceRefreshInterval = 1000;
-                    seekBar.setProgress(1000);
-                    seekVal.setText(String.valueOf(serviceRefreshInterval / 1000) + " secs");
-                }
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
-
-        mapzoom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                zoomval = progress;
-                zoomvalue.setText(String.valueOf(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
         start_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -477,14 +365,14 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nv);
+        NavigationView navigationView = findViewById(R.id.nv);
         View hView = navigationView.getHeaderView(0);
         TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
 
         queryLocation();
-        handler.postDelayed(runnable, 1000);
+        handler.postDelayed(runnable, 2000);
 
     }
 
@@ -506,30 +394,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.d("HTTP ERROR", e.getMessage());
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
-
     public static int ConvertDBM(int dbm) {
         int quality;
         if (dbm <= -100)
@@ -539,6 +403,15 @@ public class MainActivity extends AppCompatActivity {
         else
             quality = 2 * (dbm + 100);
         return quality;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public double mpsTokmh(double mps) {
@@ -572,21 +445,40 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
         PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
 
-        //sendBroadcast(intent2);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                context);
-        Notification notification2 = builder.setContentIntent(intent)
-                .addAction(R.drawable.gpsicon, "Pause", pendingIntent4)
-                .addAction(R.drawable.gpsicon, "Resume", pendingIntent3)
-                .addAction(R.drawable.gpsicon, "Exit", pendingIntent2)
-                .setSmallIcon(R.drawable.computer).setTicker(Text).setWhen(0)
-                .setAutoCancel(true)
-                .setContentTitle(Title)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(Text))
-                .setContentText(Text).build();
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification2);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getBaseContext().getApplicationContext(), "0");
+        Intent ii = new Intent(getBaseContext().getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 0, ii, 0);
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText(Text);
+        bigText.setBigContentTitle(Title);
+        bigText.setSummaryText("Current Status");
+
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setSmallIcon(R.drawable.computer);
+        mBuilder.setContentTitle(Title);
+        mBuilder.setContentText(Text);
+        mBuilder.setPriority(Notification.PRIORITY_MIN);
+        mBuilder.setStyle(bigText);
+        mBuilder.setVibrate(new long[]{ 0L });
+        mBuilder.setSound(null);
+        mBuilder.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND);
+        mBuilder.addAction(R.drawable.computer,"Exit",pendingIntent2);
+        mBuilder.addAction(R.drawable.computer,"Pause",pendingIntent3);
+        mBuilder.addAction(R.drawable.computer,"Resume",pendingIntent4);
+
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("0",
+                    Title,
+                    NotificationManager.IMPORTANCE_NONE);
+            mNotificationManager.createNotificationChannel(channel);
+        }
+        mNotificationManager.notify(0, mBuilder.build());
 
     }
 
@@ -623,29 +515,6 @@ public class MainActivity extends AppCompatActivity {
         Crashlytics.setUserIdentifier("12345");
         Crashlytics.setUserEmail("sont16@gmail.com");
         Crashlytics.setUserName("wifilocatoruser");
-    }
-
-    public long getDownloadAmount() {
-        long dl = TrafficStats.getUidRxBytes(this.getApplicationInfo().uid) / 1024 / 1024;
-        return dl;
-    }
-
-    public long getUploadAmount() {
-        long ul = TrafficStats.getUidTxBytes(this.getApplicationInfo().uid) / 1024 / 1024;
-        return ul;
-    }
-
-    public String readFile() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String name = preferences.getString("wifilog", "");
-        return name;
-    }
-
-    public void writeLog(Context c, String data) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("wifilog", readFile() + data);
-        editor.apply();
     }
 
     public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
@@ -711,6 +580,26 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
     }
 
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strAdd;
+    }
 }
 
 

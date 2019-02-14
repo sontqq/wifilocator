@@ -10,6 +10,7 @@ android {
     def code = (versionProps['VERSION_CODE'] ?: "0").toInteger() + 1
     versionProps['VERSION_CODE'] = code.toString()
     versionProps.store(versionPropsFile.newWriter(), null)
+    ext.enableCrashlytics = true
 
     defaultConfig {
         applicationId "com.sontme.esp.getlocation"

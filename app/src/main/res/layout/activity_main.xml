@@ -22,28 +22,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <SeekBar
-                android:id="@+id/seekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:max="60000"
-                android:progress="1" />
-
-            <TextView
-                android:id="@+id/seekVal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:text="1 secs" />
 
             <TextView
                 android:id="@+id/srvStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Service status: Off" />
+                android:text="Service status: Off"
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/srv"
@@ -71,67 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="MAP" />
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TRF" />
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="SAT" />
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="HYB" />
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ALL" />
-
-            </LinearLayout>
-
-            <Switch
-                android:id="@+id/sw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Run UI Thread?" />
-
-            <TextView
-                android:id="@+id/zoomvalue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:text="17" />
-
-            <SeekBar
-                android:id="@+id/mapzoom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:max="17"
-                android:progress="17" />
+                android:orientation="horizontal"/>
 
             <TextView
                 android:id="@+id/alti"
@@ -227,6 +153,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal|center|bottom"
+                    android:foregroundGravity="bottom"
                     ads:adSize="BANNER"
                     ads:adUnitId="ca-app-pub-4051604993335718/9467563857">
 
