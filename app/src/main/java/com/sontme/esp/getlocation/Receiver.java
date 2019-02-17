@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import com.sontme.esp.getlocation.activities.MainActivity;
 
-import es.dmoral.toasty.Toasty;
-
-//import static com.sontme.esp.getlocation.BackgroundService.runnable;
 
 public class Receiver extends BroadcastReceiver {
     @Override
@@ -29,7 +26,7 @@ public class Receiver extends BroadcastReceiver {
         // CATCH NOTIFICATION BUTTON PRESS
         String code = intent.getStringExtra("code");
         if (intent.getAction() == "exit") {
-            Toasty.info(context, "EXIT PRESSED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "EXIT PRESSED", Toast.LENGTH_SHORT).show();
             Log.d("RECEIVER", "NOTIFICATION BUTTON PRESSED");
             cancelNotification(context, 0);
             context.stopService(intent);
@@ -40,11 +37,15 @@ public class Receiver extends BroadcastReceiver {
         }
         if (intent.getAction() == "pause") {
             Global.wanarun = false;
-            Toasty.info(context, "Pausing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Pausing", Toast.LENGTH_SHORT).show();
         }
         if (intent.getAction() == "resume") {
-            Toasty.info(context, "Resuming", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Resuming", Toast.LENGTH_SHORT).show();
             Global.wanarun = true;
+        }
+        if (intent.getAction() == "btn") {
+            Toast.makeText(context,"NotifButtonPressed",Toast.LENGTH_SHORT).show();
+            Log.d("NOTIF","NOTIFPRESSED");
         }
     }
 

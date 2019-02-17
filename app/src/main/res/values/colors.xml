@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="nicered1">#F08080</color>
+    <color name="notifText2">#F8F8F8</color>
+    <color name="notifText">#ffc305</color>
+    <color name="notifBackground">#581845</color>
+    <color name="notifBackground2">#581845</color>
+    <color name="buttonColor">#fffde1</color>
+
 </resources>

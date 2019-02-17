@@ -184,6 +184,7 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <color name="buttonColor">#fffde1</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
     <color name="cardview_dark_background">#FF424242</color>
@@ -243,6 +244,10 @@
     <color name="mtrl_textinput_filled_box_default_background_color">#0A000000</color>
     <color name="mtrl_textinput_hovered_box_stroke_color">#DE000000</color>
     <color name="nicered1">#F08080</color>
+    <color name="notifBackground">#581845</color>
+    <color name="notifBackground2">#581845</color>
+    <color name="notifText">#ffc305</color>
+    <color name="notifText2">#F8F8F8</color>
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
     <color name="notification_material_background_media_default_color">#ff424242</color>
@@ -2120,7 +2125,7 @@
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">1f46c422-d8ac-4717-88f3-69cbd46b00a0</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">d41ed924-7ae7-4c63-8c7c-849361063c52</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
@@ -2161,15 +2166,6 @@
     <string name="hills">Hills</string>
     <string name="map_mode">Map Source</string>
     <string name="mapbox">MapBox</string>
-    <string name="mapkit_build_date">${build.date}</string>
-    <string name="mapkit_build_number">${build.number}</string>
-    <string name="mapkit_build_year">${build.date.year}</string>
-    <string name="mapkit_clid_number">${clid.number}</string>
-    <string name="mapkit_enable_debug">${enable_debug}</string>
-    <string name="mapkit_startup_url">${startup.url}</string>
-    <string name="mapkit_upload_brunch">${upload_brunch}</string>
-    <string name="mapkit_version_app">${version.app}</string>
-    <string name="mapkit_version_number">${version.number}</string>
     <string name="mapnik" translatable="false">Mapnik</string>
     <string name="mapquest_aerial">Mapquest Aerial</string>
     <string name="mapquest_osm">Mapquest</string>
@@ -2224,14 +2220,8 @@
     <string name="set_mode_online">Set to online mode</string>
     <string name="set_mode_show_me">showing and tracking my current location</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="toast_message">Toast message</string>
     <string name="topo">Topographic</string>
     <string name="unknown">Unknown</string>
-    <string name="ymk_findme_not_found">Не удалось определить местоположение</string>
-    <string name="ymk_kilometers_short">км</string>
-    <string name="ymk_lang">ru</string>
-    <string name="ymk_meters_short">м</string>
-    <string name="ymk_my_place">Мое местоположение</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -2243,9 +2233,12 @@
   </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#85144b</item>
+        <item name="colorPrimaryDark">#00cec9</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/nicered1</item>
+
+
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>

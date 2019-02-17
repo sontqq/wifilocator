@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="869"
+    android:versionCode="1034"
     android:versionName="2.1" >
 
     <uses-sdk
@@ -32,8 +32,7 @@
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true" />
+        android:normalScreens="true" />
 
     <uses-feature
         android:name="android.hardware.location.network"

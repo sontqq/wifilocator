@@ -1,6 +1,7 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
@@ -25,6 +26,7 @@ import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
+import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -49,9 +51,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -76,6 +80,7 @@ import com.sontme.esp.getlocation.Receiver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -87,7 +92,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
-import es.dmoral.toasty.Toasty;
 import io.fabric.sdk.android.Fabric;
 
 import android.support.design.widget.NavigationView;
@@ -98,19 +102,14 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     //region DEFINING VARIABLES
-    public static final int REQUEST_PERMISSION_LOCATION = 255;
+
     public int counter = 0;
     public double initialLong;
     public double initialLat;
-    public int serviceRefreshInterval = 1000;
-    public boolean runUI = false;
     public PublisherAdView mPublisherAdView;
 
     public Context context = this;
 
-    public static int zoomval = 17;
-
-    //static Timer timer = new Timer();
 
     public static TextView alti;
     public static TextView longi;
@@ -121,17 +120,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button start_srv;
     public static Button stop_srv;
     public static Button exitb;
-    public static Switch sw;
-    public static SeekBar sb;
     public static TextView srvStatus;
-    public static ImageView mapimg;
-    public static SeekBar mapzoom;
-    public static TextView zoomvalue;
-    public static Button button1;
-    public static Button button2;
-    public static Button button3;
-    public static Button button4;
-    public static Button button5;
     public static TextView add;
 
     //endregion
@@ -150,10 +139,10 @@ public class MainActivity extends AppCompatActivity {
                 dst.setText("Distance: " + round(Double.valueOf(Global.distance), 2) + " meters");
                 add.setText("Address: " + Global.address);
                 c.setText("Count: " + Global.count);
+            } catch (Exception e) {
+                Log.d("RUNEXCEPTION: ", e.toString());
             }
-            catch (Exception e){}
-
-            //handler.postDelayed(this, 1000);
+            handler.postDelayed(this, 2000);
         }
     };
 
@@ -173,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 Global.time = String.valueOf(location.getTime());
                 Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), initialLat, Double.valueOf(Global.longitude), initialLong));
                 Global.address = getCompleteAddressString(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+
             }
 
             @Override
@@ -207,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        Log.d("GPS PROVIDER: " + Global.count + " ",locationManager.getBestProvider(criteria,false));
+        Log.d("Location PROVIDER: " + Global.count + " ", locationManager.getBestProvider(criteria, false));
         locationManager.requestSingleUpdate(criteria, locationListener, looper);
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
@@ -228,15 +218,15 @@ public class MainActivity extends AppCompatActivity {
         }
         try {
             showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                    + "\nLast Change: " + Global.time
+                    + "\nLast Change: " + convertTime(Long.valueOf(Global.time))
                     + "\nDistance: " + Global.distance + " meters"
                     + "\nLongitude: " + Global.longitude
                     + "\nLatitude: " + Global.latitude
                     + "\nAddress: " + Global.address
                     + "\nSpeed: " + String.valueOf(round(Double.valueOf(Global.speed), 2)) + " km/h"
                     + "\nAccuracy: " + Global.accuracy + " meters");
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }
 
     private DrawerLayout dl;
@@ -294,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
         mPublisherAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                Toasty.info(getBaseContext(), "Advertisement loaded!", Toast.LENGTH_SHORT, false).show();
+                Toast.makeText(getBaseContext(), "Advertisement loaded!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -318,7 +308,6 @@ public class MainActivity extends AppCompatActivity {
         stop_srv = (Button) findViewById(R.id.stop_srv);
         exitb = (Button) findViewById(R.id.exitb);
         srvStatus = (TextView) findViewById(R.id.srvStatus);
-        mapimg = (ImageView) findViewById(R.id.mapimg);
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -338,10 +327,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isMyServiceRunning(BackgroundService.class)) {
-                    Toasty.warning(getBaseContext(), "Service is already running!", Toast.LENGTH_SHORT, false).show();
+                    Toast.makeText(getBaseContext(), "Service is already running!", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent serviceIntent = new Intent(getApplicationContext(), BackgroundService.class);
-                    serviceIntent.putExtra("serviceinterval", String.valueOf(serviceRefreshInterval));
+                    serviceIntent.putExtra("serviceinterval", String.valueOf(1000));
                     serviceIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     serviceIntent.setAction(Intent.ACTION_MAIN);
                     serviceIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -357,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!isMyServiceRunning(BackgroundService.class)) {
-                    Toasty.warning(getBaseContext(), "No service running!", Toast.LENGTH_SHORT, false).show();
+                    Toast.makeText(getBaseContext(), "No service running!", Toast.LENGTH_SHORT).show();
                 } else {
                     stopService(new Intent(getBaseContext(), BackgroundService.class));
                 }
@@ -365,14 +354,15 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-        NavigationView navigationView = findViewById(R.id.nv);
-        View hView = navigationView.getHeaderView(0);
+        View hView = nv.getHeaderView(0);
         TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
 
+        turnGPSOn();
         queryLocation();
-        handler.postDelayed(runnable, 2000);
+        handler.postDelayed(runnable, 5000);
+        // showNotif("WiFi Locator", "Application started!");
 
     }
 
@@ -385,7 +375,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -428,11 +417,26 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void showNotif(String Title, String Text) {
-        Intent notificationIntent = new Intent(getBaseContext(), MainActivity.class);
+    public String convertTime(long time) {
+        Date date = new Date(time);
+        Format format = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");
+        return format.format(date);
+    }
 
-        PendingIntent intent = PendingIntent.getActivity(getBaseContext(), 0,
-                notificationIntent, 0);
+    public void showNotif(String Title, String Text) {
+
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
+        //contentView.setImageViewResource(R.id.notif_img, R.drawable.computer_low);
+        //contentView.setTextViewText(R.id.notif_title, Title);
+
+        String[] det = Text.split("\\s+");
+        contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
+        contentView.setTextViewText(R.id.notif_time, "Time #" + Global.lastNearby);
+        contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
+        contentView.setTextViewText(R.id.notif_text3, Global.lastSSID);
+        contentView.setTextViewText(R.id.notif_lat, Global.latitude);
+        contentView.setTextViewText(R.id.notif_long, Global.longitude);
+        contentView.setTextViewText(R.id.notif_add, Global.address);
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -456,17 +460,20 @@ public class MainActivity extends AppCompatActivity {
         bigText.setSummaryText("Current Status");
 
         mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setSmallIcon(R.drawable.computer);
-        mBuilder.setContentTitle(Title);
-        mBuilder.setContentText(Text);
-        mBuilder.setPriority(Notification.PRIORITY_MIN);
+        mBuilder.setSmallIcon(R.drawable.computer_low);
+        //mBuilder.setContentTitle(Title);
+        //mBuilder.setContentText(Text);
+        mBuilder.setContent(contentView);
+        mBuilder.setPriority(Notification.PRIORITY_DEFAULT);
         mBuilder.setStyle(bigText);
-        mBuilder.setVibrate(new long[]{ 0L });
+        mBuilder.setVibrate(new long[]{0L});
         mBuilder.setSound(null);
-        mBuilder.setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND);
-        mBuilder.addAction(R.drawable.computer,"Exit",pendingIntent2);
-        mBuilder.addAction(R.drawable.computer,"Pause",pendingIntent3);
-        mBuilder.addAction(R.drawable.computer,"Resume",pendingIntent4);
+        mBuilder.setLights(0xFFff0000, 600, 500);
+        mBuilder.setDefaults(Notification.FLAG_SHOW_LIGHTS);
+
+        mBuilder.addAction(R.drawable.computer_low, "Pause", pendingIntent4);
+        mBuilder.addAction(R.drawable.computer_low, "Resume", pendingIntent3);
+        mBuilder.addAction(R.drawable.computer_low, "Exit", pendingIntent2);
 
 
         NotificationManager mNotificationManager =
@@ -482,13 +489,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static ArrayList<String> aplist(final Context context, double lati, double longi) {
+    public ArrayList<String> aplist(final Context context, double lati, double longi) {
         ArrayList<String> apList = new ArrayList<String>();
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
+            Log.d("APLISTCOUNT: ", String.valueOf(scanResults.size()));
+
             for (ScanResult result : scanResults) {
+                Global.lastSSID = result.SSID + " " + ConvertDBM(result.level) + "%";
+                Global.lastNearby = String.valueOf(scanResults.size());
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -535,16 +546,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init() {
-        int interval = 1000;
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
         if (checkPermissionLocation() == false) {
-            Toasty.error(getBaseContext(), "Missing location permission!", Toast.LENGTH_SHORT, false).show();
+            Toast.makeText(getBaseContext(), "Missing location permission!", Toast.LENGTH_SHORT).show();
             requestPermissionLocation();
         }
         // TURN ON WIFI
         if (!wifi.isWifiEnabled()) {
-            Toasty.info(getBaseContext(), "Turning on WiFi..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Turning on WiFi..", Toast.LENGTH_SHORT).show();
             wifi.setWifiEnabled(true);
         }
     }
@@ -590,7 +600,7 @@ public class MainActivity extends AppCompatActivity {
                 StringBuilder strReturnedAddress = new StringBuilder("");
 
                 for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("");
                 }
                 strAdd = strReturnedAddress.toString();
             } else {
@@ -599,6 +609,18 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return strAdd;
+    }
+
+    private void turnGPSOn(){
+        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+
+        if(!provider.contains("gps")){ //if gps is disabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            sendBroadcast(poke);
+        }
     }
 }
 

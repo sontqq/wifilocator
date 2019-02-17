@@ -9,6 +9,7 @@
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:orientation="vertical"
+
     android:paddingLeft="0dp"
     android:paddingRight="0dp">
 

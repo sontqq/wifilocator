@@ -41,6 +41,7 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
@@ -108,7 +109,7 @@ public class NearbyActivity extends AppCompatActivity {
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
-        mapController.setZoom(18.0);
+        mapController.setZoom(17.0);
         GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         mapController.setCenter(startPoint);
 
@@ -177,7 +178,7 @@ public class NearbyActivity extends AppCompatActivity {
         }
         oPolygon.setPoints(circlePoints);
         oPolygon.setStrokeWidth(20.0f);
-        final InfoWindow pop = new popUpWin(R.layout.popup, map);
+        final InfoWindow pop = new PopUpWin(R.layout.popup, map);
         oPolygon.setTitle("karika title");
         oPolygon.setSubDescription("karika subdest");
         oPolygon.setInfoWindow(pop);
@@ -194,23 +195,28 @@ public class NearbyActivity extends AppCompatActivity {
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
-        final RadiusMarkerClusterer clusterer = new RadiusMarkerClusterer(this);
+        //final RadiusMarkerClusterer clusterer = new RadiusMarkerClusterer(this);
+        final RadiusMarkerClusterer clusterer = new CustomCluster(this);
         final List<Overlay> overlays = map.getOverlays();
+        MapController mapController = (MapController) map.getController();
+
         overlays.clear();
 
         Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.wifi4_cluster);
+                R.drawable.wifi4_cluster_25);
 
-        clusterer.setIcon(getResizedBitmap(icon,100,100));
+        //clusterer.setIcon(getResizedBitmap(icon,100,100));
+        clusterer.setIcon(icon);
         clusterer.setRadius(85);
         clusterer.mTextAnchorU = 0.70f;
         clusterer.mTextAnchorV = 0.27f;
         clusterer.getTextPaint().setTextSize(20.0f);
+        
 
         map.getOverlays().clear();
         map.invalidate();
         int counter = 0;
-        Drawable pin = getResources().getDrawable(R.drawable.wifi4);
+        Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
         for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
             Location coords = entry.getKey();
 
@@ -242,19 +248,27 @@ public class NearbyActivity extends AppCompatActivity {
             m.setTitle(ssid);
             m.setSnippet(snippet);
             m.setSubDescription(description);
-            final InfoWindow pop = new popUpWin(R.layout.popup, map);
+            final InfoWindow pop = new PopUpWin(R.layout.popup, map);
             m.setInfoWindow(pop);
-            m.setIcon(resize(pin,100));
+            //m.setIcon(resize(pin,100));
+            m.setIcon(pin);
             m.setPosition(geo);
             m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             //map.getOverlays().add(m);
             clusterer.add(m);
+            //map.invalidate();
             counter++;
         }
         overlays.add(clusterer);
+
+        if(map.getMaxZoomLevel() <= 17){
+            mapController.setZoom(18);
+        }
+        //mapController.setZoom(map.getZoomLevel()-0.01);
+
         map.invalidate();
         NearbyActivity.loc_ssid2.clear();
-        //Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -293,13 +307,16 @@ public class NearbyActivity extends AppCompatActivity {
                     catch(Exception e){
                         source = "No data";
                     }
-                    double longi = ParseDouble(splittedStr[6]);
-                    double lati = ParseDouble(splittedStr[7]);
-                    Location x = new Location("");
-                    x.setLatitude(lati);
-                    x.setLongitude(longi);
-                    ApStrings desc = new ApStrings(recordTime,ssid,bssid,str,source);
-                    loc_ssid2.put(x,desc);
+                    try {
+                        double longi = ParseDouble(splittedStr[6]);
+                        double lati = ParseDouble(splittedStr[7]);
+                        Location x = new Location("");
+                        x.setLatitude(lati);
+                        x.setLongitude(longi);
+                        ApStrings desc = new ApStrings(recordTime, ssid, bssid, str, source);
+                        loc_ssid2.put(x, desc);
+                    }
+                    catch (Exception e){}
                 }
                 drawMarkers(map,loc_ssid2);
                 drawCircle(map);
@@ -377,13 +394,13 @@ class Circlee extends Polygon {
     }
 }
 
-class popUpWin extends InfoWindow {
+class PopUpWin extends InfoWindow {
 
     private int layoutID;
     private MapView map;
 
 
-    public popUpWin(int layoutResId, MapView map) {
+    public PopUpWin(int layoutResId, MapView map) {
         super(layoutResId, map);
         this.layoutID = layoutID;
         this.map = map;
@@ -392,7 +409,7 @@ class popUpWin extends InfoWindow {
     @Override
     public void onOpen(Object item) {
         InfoWindow.closeAllInfoWindowsOn(map);
-        popUpWin.closeAllInfoWindowsOn(map);
+        PopUpWin.closeAllInfoWindowsOn(map);
         String title;
         String desc;
         String snip;
@@ -411,7 +428,6 @@ class popUpWin extends InfoWindow {
             title = marker.getTitle();
             desc = marker.getSubDescription();
             snip = marker.getSnippet();
-            //String descarray[] = desc.split("\n");
 
             String android_id = Settings.Secure.getString(map.getContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
@@ -432,15 +448,12 @@ class popUpWin extends InfoWindow {
                 public void onClick(View v) {
                     Log.d("CLICKED BUTTON", "title: " + marker.getTitle());
                     Log.d("CLICKED BUTTON", "desc: " + marker.getSubDescription());
-                    map.invalidate();
+                    //map.invalidate();
                     marker.remove(map);
                     marker.closeInfoWindow();
                     map.invalidate();
                 }
             });
-        }
-        if(item instanceof Circlee) {
-            final Circlee circle = (Circlee) item;
         }
     }
 
@@ -450,4 +463,24 @@ class popUpWin extends InfoWindow {
     }
 }
 
+class CustomCluster extends RadiusMarkerClusterer {
 
+    private Context ctx;
+    private static int counter;
+
+    public CustomCluster(Context ctx) {
+        super(ctx);
+        this.ctx = ctx;
+        counter++;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e, MapView mapView) {
+        Log.d("CLUSTER","CLUSTER TAPPED: " + e.getX() + ", " + e.getY());
+        return super.onSingleTapUp(e, mapView);
+    }
+
+    public static int getNumOfInstance() {
+        return counter;
+    }
+}

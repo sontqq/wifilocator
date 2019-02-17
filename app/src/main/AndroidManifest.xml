@@ -34,7 +34,7 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.NearbyActivity"></activity>
+        <activity android:name=".activities.NearbyActivity" />
         <activity android:name=".activities.ListActivity" />
         <activity android:name=".activities.MapActivity" />
 

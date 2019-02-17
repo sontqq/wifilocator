@@ -17,6 +17,8 @@ public class Global extends Application{
     public static String address;
     public static String speed;
     public static String accuracy;
+    public static String lastSSID;
+    public static String lastNearby;
     public static int count = 0;
     public static String provider;
     public static String maptype;

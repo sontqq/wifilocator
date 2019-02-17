@@ -3,6 +3,7 @@ package com.sontme.esp.getlocation;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.widget.Toast;
 
 public class BackgroundService extends Service {
 
@@ -22,6 +23,7 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
+        Toast.makeText(getBaseContext(),"Service started",Toast.LENGTH_SHORT).show();
     }
 
     @Override

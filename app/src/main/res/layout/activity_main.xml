@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#dfe6e9"
     tools:openDrawer="start">
 
     <ScrollView
@@ -121,12 +122,6 @@
                 android:hint="asd"
                 android:inputType="numberDecimal"
                 android:text="Distance" />
-
-            <ImageView
-                android:id="@+id/mapimg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
