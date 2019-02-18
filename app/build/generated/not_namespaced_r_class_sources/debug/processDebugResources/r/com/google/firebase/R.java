@@ -104,8 +104,8 @@ public final class R {
         public static final int notification_background = 0x7f080096;
         public static final int notification_main_column = 0x7f080097;
         public static final int notification_main_column_container = 0x7f080098;
-        public static final int right_icon = 0x7f0800b4;
-        public static final int right_side = 0x7f0800b5;
+        public static final int right_icon = 0x7f0800b5;
+        public static final int right_side = 0x7f0800b6;
         public static final int status_bar_latest_event_content = 0x7f0800e4;
         public static final int text = 0x7f0800ee;
         public static final int text2 = 0x7f0800ef;

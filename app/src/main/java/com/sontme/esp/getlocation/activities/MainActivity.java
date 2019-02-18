@@ -66,7 +66,12 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.loopj.android.http.AsyncHttpClient;
@@ -84,12 +89,20 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeMap;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
@@ -99,17 +112,15 @@ import android.support.design.widget.NavigationView;
 import org.osmdroid.util.LocationUtils;
 import org.w3c.dom.Text;
 
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
 
 public class MainActivity extends AppCompatActivity {
     //region DEFINING VARIABLES
 
     public int counter = 0;
-    public double initialLong;
-    public double initialLat;
     public PublisherAdView mPublisherAdView;
-
     public Context context = this;
-
 
     public static TextView alti;
     public static TextView longi;
@@ -120,96 +131,65 @@ public class MainActivity extends AppCompatActivity {
     public static Button start_srv;
     public static Button stop_srv;
     public static Button exitb;
-    public static TextView srvStatus;
     public static TextView add;
+    public static TextView provider;
+    public static TextView uniq;
 
     //endregion
     Location mlocation;
+    LocationRequest mPlayLocationRequest;
+
     Handler handler = new Handler();
 
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            queryLocation();
             try {
                 longi.setText("Longitude: " + Global.longitude);
                 lati.setText("Latitude: " + Global.latitude);
                 alti.setText("Altitude: " + Global.altitude);
                 spd.setText("Speed: " + Global.speed + " km/h");
-                dst.setText("Distance: " + round(Double.valueOf(Global.distance), 2) + " meters");
+                dst.setText("Distance: " + String.valueOf(round(Double.valueOf(Global.distance), 2) + " meters"));
                 add.setText("Address: " + Global.address);
                 c.setText("Count: " + Global.count);
-            } catch (Exception e) {
-                Log.d("RUNEXCEPTION: ", e.toString());
-            }
-            handler.postDelayed(this, 2000);
+                provider.setText("Provider: " + Global.provider);
+                dst.setText("Distance: " + Global.distance);
+                uniq.setText("Unique APs found: " + Global.uniqueAPS.size());
+                queryLocation(null);
+            }catch (Exception e){}
+            handler.postDelayed(this, 1000);
         }
     };
 
-    public void queryLocation() {
-        final LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                mlocation = location;
-                Log.d("Location Changes", location.toString());
-
-                Global.latitude = String.valueOf(location.getLatitude());
-                Global.longitude = String.valueOf(location.getLongitude());
-                Global.accuracy = String.valueOf(location.getAccuracy());
-                Global.altitude = String.valueOf(location.getAltitude());
-                Global.bearing = String.valueOf(location.getBearing());
-                Global.speed = String.valueOf(mpsTokmh(location.getSpeed()));
-                Global.time = String.valueOf(location.getTime());
-                Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), initialLat, Double.valueOf(Global.longitude), initialLong));
-                Global.address = getCompleteAddressString(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
-
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                Log.d("Status Changed", String.valueOf(status));
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-                Log.d("Provider Enabled", provider);
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                Log.d("Provider Disabled", provider);
-            }
-        };
-
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-        criteria.setPowerRequirement(Criteria.POWER_LOW);
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-        criteria.setSpeedRequired(false);
-        criteria.setCostAllowed(true);
-        criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
-        criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
-
-        // Now create a location manager
-        final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        final Looper looper = null;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+    public void queryLocation(Location LocRes) {
+        if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
+            try {
+                Global.accuracy = String.valueOf(LocRes.getAccuracy());
+                Global.latitude = String.valueOf(LocRes.getLatitude());
+                Global.longitude = String.valueOf(LocRes.getLongitude());
+                Global.speed = String.valueOf(round(mpsTokmh(LocRes.getSpeed()), 2));
+                Global.altitude = String.valueOf(LocRes.getAltitude());
+                Global.bearing = String.valueOf(LocRes.getBearing());
+                Global.time = String.valueOf(convertTime(LocRes.getTime()));
+                Global.address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                Global.provider = LocRes.getProvider();
+                Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
+            }catch(Exception e){}
+            Log.d("GOOGLEAPIPLAY ", LocRes.toString());
         }
-        Log.d("Location PROVIDER: " + Global.count + " ", locationManager.getBestProvider(criteria, false));
-        locationManager.requestSingleUpdate(criteria, locationListener, looper);
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
                 counter++;
                 Global.count++;
                 if (counter == 1) {
                     // START POSITION (Activity/Program start)
-                    initialLong = Double.valueOf(Global.longitude);
-                    initialLat = Double.valueOf(Global.latitude);
+                    //Global.initLong = Double.valueOf(Global.longitude);
+                    //Global.initLat = Double.valueOf(Global.latitude);
+                    Global.initLat = Global.latitude;
+                    Global.initLong = Global.longitude;
                 }
             }
-            Log.d("INITIAL", String.valueOf(initialLat) + String.valueOf(initialLong));
+            Log.d("INITIAL", String.valueOf(Global.initLat) + String.valueOf(Global.initLong));
         } catch (Exception e) {
         }
 
@@ -218,14 +198,16 @@ public class MainActivity extends AppCompatActivity {
         }
         try {
             showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                    + "\nLast Change: " + convertTime(Long.valueOf(Global.time))
+                    + "\nLast Change: " + Global.time
                     + "\nDistance: " + Global.distance + " meters"
                     + "\nLongitude: " + Global.longitude
                     + "\nLatitude: " + Global.latitude
                     + "\nAddress: " + Global.address
-                    + "\nSpeed: " + String.valueOf(round(Double.valueOf(Global.speed), 2)) + " km/h"
+                    + "\nProvider: " + Global.provider
+                    + "\nSpeed: " + String.valueOf(round(mpsTokmh(Double.valueOf(Global.speed)), 2)) + " km/h"
                     + "\nAccuracy: " + Global.accuracy + " meters");
         } catch (Exception e) {
+            Log.d("NOTIF EXCEPTION: ", e.toString());
         }
     }
 
@@ -307,7 +289,8 @@ public class MainActivity extends AppCompatActivity {
         start_srv = (Button) findViewById(R.id.srv);
         stop_srv = (Button) findViewById(R.id.stop_srv);
         exitb = (Button) findViewById(R.id.exitb);
-        srvStatus = (TextView) findViewById(R.id.srvStatus);
+        provider = findViewById(R.id.prov);
+        uniq = findViewById(R.id.uniq);
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -326,30 +309,14 @@ public class MainActivity extends AppCompatActivity {
         start_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isMyServiceRunning(BackgroundService.class)) {
-                    Toast.makeText(getBaseContext(), "Service is already running!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent serviceIntent = new Intent(getApplicationContext(), BackgroundService.class);
-                    serviceIntent.putExtra("serviceinterval", String.valueOf(1000));
-                    serviceIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    serviceIntent.setAction(Intent.ACTION_MAIN);
-                    serviceIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        startForegroundService(serviceIntent);
-                    } else {
-                        startService(serviceIntent);
-                    }
-                }
+                startUpdatesPlay();
             }
+
         });
         stop_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isMyServiceRunning(BackgroundService.class)) {
-                    Toast.makeText(getBaseContext(), "No service running!", Toast.LENGTH_SHORT).show();
-                } else {
-                    stopService(new Intent(getBaseContext(), BackgroundService.class));
-                }
+                startUpdatesGPS();
             }
         });
         //endregion
@@ -360,10 +327,81 @@ public class MainActivity extends AppCompatActivity {
         tex.setText(version);
 
         turnGPSOn();
-        queryLocation();
-        handler.postDelayed(runnable, 5000);
-        // showNotif("WiFi Locator", "Application started!");
+        //queryLocation(null);
+        handler.postDelayed(runnable, 1000);
+//        showNotif("WiFi Locator", "Application started!");
 
+    }
+
+    public void startUpdatesGPS() {
+        final LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                mlocation = location;
+                Log.d("Location Changes", location.toString());
+                queryLocation(location);
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+                Log.d("Status Changed", String.valueOf(status));
+                // Toast.makeText(getApplicationContext(),"Status changed: " + provider + " " + status,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+                Log.d("Provider Enabled", provider);
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                Log.d("Provider Disabled", provider);
+            }
+        };
+
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setSpeedRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
+        criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
+
+        // Now create a location manager
+        final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        //locationManager.requestSingleUpdate(criteria, locationListener, looper);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+
+    }
+
+    public void startUpdatesPlay() {
+        mPlayLocationRequest = new LocationRequest();
+        mPlayLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mPlayLocationRequest.setInterval(1000);
+        mPlayLocationRequest.setFastestInterval(500);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+        builder.addLocationRequest(mPlayLocationRequest);
+        LocationSettingsRequest locationSettingsRequest = builder.build();
+
+        SettingsClient settingsClient = LocationServices.getSettingsClient(getApplicationContext());
+        settingsClient.checkLocationSettings(locationSettingsRequest);
+
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        getFusedLocationProviderClient(getApplicationContext()).requestLocationUpdates(mPlayLocationRequest, new LocationCallback() {
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        queryLocation(locationResult.getLastLocation());
+                    }
+                },
+                Looper.myLooper());
     }
 
     @Override
@@ -426,9 +464,6 @@ public class MainActivity extends AppCompatActivity {
     public void showNotif(String Title, String Text) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
-        //contentView.setImageViewResource(R.id.notif_img, R.drawable.computer_low);
-        //contentView.setTextViewText(R.id.notif_title, Title);
-
         String[] det = Text.split("\\s+");
         contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
         contentView.setTextViewText(R.id.notif_time, "Time #" + Global.lastNearby);
@@ -437,6 +472,7 @@ public class MainActivity extends AppCompatActivity {
         contentView.setTextViewText(R.id.notif_lat, Global.latitude);
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
         contentView.setTextViewText(R.id.notif_add, Global.address);
+        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(Global.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -461,8 +497,6 @@ public class MainActivity extends AppCompatActivity {
 
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSmallIcon(R.drawable.computer_low);
-        //mBuilder.setContentTitle(Title);
-        //mBuilder.setContentText(Text);
         mBuilder.setContent(contentView);
         mBuilder.setPriority(Notification.PRIORITY_DEFAULT);
         mBuilder.setStyle(bigText);
@@ -489,8 +523,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<String> aplist(final Context context, double lati, double longi) {
-        ArrayList<String> apList = new ArrayList<String>();
+    public void aplist(final Context context, double lati, double longi) {
+        HashMap<String, Integer> strongestNearby = new HashMap<String, Integer>();
+        //ValueComparator bvc = new ValueComparator(strongestNearby);
+        //TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
@@ -500,6 +538,12 @@ public class MainActivity extends AppCompatActivity {
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + ConvertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
+                if (!Global.uniqueAPS.contains(result.BSSID)) {
+                    Global.uniqueAPS.add(result.BSSID);
+                }
+                //strongestNearby.put(result.SSID, ConvertDBM(result.level));
+                //sortByValue(strongestNearby);
+
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -519,7 +563,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
-        return apList;
+        //return apList;
     }
 
     public void logUser() {
@@ -611,10 +655,10 @@ public class MainActivity extends AppCompatActivity {
         return strAdd;
     }
 
-    private void turnGPSOn(){
+    private void turnGPSOn() {
         String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 
-        if(!provider.contains("gps")){ //if gps is disabled
+        if (!provider.contains("gps")) { //if gps is disabled
             final Intent poke = new Intent();
             poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
             poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
@@ -622,6 +666,21 @@ public class MainActivity extends AppCompatActivity {
             sendBroadcast(poke);
         }
     }
+
+
 }
+/*
+public class MapUtil {
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
 
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
 
+        return result;
+    }
+}
+*/

@@ -127,30 +127,15 @@ public class MapActivity extends AppCompatActivity {
                 return false;
             }
         });
-        /*
-        if(geoPoints.size() < 2) {
-            geoPoints.add(geo);
-            map.getOverlays().add(itemizedIconOverlay);
-            overlayItemArray.add(point);
-            //RGB(205, 92, 92)
-            //RGB(240, 128, 128)
-            //RGB(250, 128, 114)
-            //RGB(233, 150, 122)
-            //RGB(255, 160, 122)
-            //InfoWindow infoWindow = new MyInfoWindow(R.layout.bonuspack_bubble, mMapView);
-            //line.setInfoWindow(infoWindow);
-            line.setColor(Color.argb(90,240,128,128));
-            line.setWidth(20.0f);
-            line.setPoints(geoPoints);
-            map.getOverlayManager().add(line);
-        }*/
 
         if(geoPoints.contains(geo) != true) {
             geoPoints.add(geo);
             map.getOverlays().add(itemizedIconOverlay);
             line.setColor(Color.argb(90,240,128,128));
             line.setWidth(20.0f);
-            line.setPoints(geoPoints);
+            try {
+                line.setPoints(geoPoints);
+            }catch (Exception e){}
             map.getOverlayManager().add(line);
         }
         map.invalidate();

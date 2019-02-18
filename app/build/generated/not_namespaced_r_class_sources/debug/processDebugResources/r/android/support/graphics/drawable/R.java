@@ -110,9 +110,9 @@ public final class R {
         public static final int notification_background = 0x7f080096;
         public static final int notification_main_column = 0x7f080097;
         public static final int notification_main_column_container = 0x7f080098;
-        public static final int right = 0x7f0800b3;
-        public static final int right_icon = 0x7f0800b4;
-        public static final int right_side = 0x7f0800b5;
+        public static final int right = 0x7f0800b4;
+        public static final int right_icon = 0x7f0800b5;
+        public static final int right_side = 0x7f0800b6;
         public static final int start = 0x7f0800e3;
         public static final int tag_transition_group = 0x7f0800ea;
         public static final int tag_unhandled_key_event_manager = 0x7f0800eb;

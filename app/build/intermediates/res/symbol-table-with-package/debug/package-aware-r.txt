@@ -1286,7 +1286,6 @@ id nearby
 id never
 id none
 id normal
-id normalad
 id notif_add
 id notif_lat
 id notif_long
@@ -1294,6 +1293,7 @@ id notif_ssid
 id notif_text2
 id notif_text3
 id notif_time
+id notif_uniq
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -1318,6 +1318,7 @@ id placeholder
 id plinlay
 id progress_circular
 id progress_horizontal
+id prov
 id psnip
 id pssid
 id pstat
@@ -1368,7 +1369,6 @@ id src_atop
 id src_in
 id src_over
 id srv
-id srvStatus
 id ssid
 id standard
 id start
@@ -1409,6 +1409,7 @@ id transition_transform
 id txtLati
 id txtLongi
 id uniform
+id uniq
 id unlabeled
 id up
 id useLogo

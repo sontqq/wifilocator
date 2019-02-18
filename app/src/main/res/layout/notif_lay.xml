@@ -85,21 +85,40 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="0"
-        android:gravity="center"
+        android:layout_weight="1"
         android:orientation="horizontal">
+
 
         <TextView
             android:id="@+id/notif_add"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/notifText"
-            android:textAlignment="textStart" />
+            android:text="Address"
+            android:textAlignment="textStart"
+            android:textColor="@color/notifText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/notif_uniq"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Unique APs"
+            android:textAlignment="textStart"
+            android:textColor="@color/notifText" />
+
+
     </LinearLayout>
 
 </LinearLayout>

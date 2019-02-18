@@ -20,31 +20,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/srvStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Service status: Off"
-                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/srv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Start Service" />
+                android:text="START FUSED" />
 
             <Button
                 android:id="@+id/stop_srv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Stop Service" />
+                android:text="START GPS" />
 
             <Button
                 android:id="@+id/exitb"
@@ -58,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
             <TextView
                 android:id="@+id/alti"
@@ -123,49 +115,44 @@
                 android:inputType="numberDecimal"
                 android:text="Distance" />
 
+            <TextView
+                android:id="@+id/prov"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:hint="asd"
+                android:inputType="numberDecimal"
+                android:text="Provider" />
+
+            <TextView
+                android:id="@+id/uniq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:hint="asd"
+                android:inputType="numberDecimal"
+                android:text="Unique APs" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:gravity="bottom|center"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/normalad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal|center|bottom"
-
-                    android:hint="normalad"
-                    android:text="Advertisement" />
 
                 <com.google.android.gms.ads.doubleclick.PublisherAdView
                     android:id="@+id/publisherAdView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal|center|bottom"
-                    android:foregroundGravity="bottom"
                     ads:adSize="BANNER"
                     ads:adUnitId="ca-app-pub-4051604993335718/9467563857">
 
                 </com.google.android.gms.ads.doubleclick.PublisherAdView>
-
-                <!--
-        ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-4051604993335718/9467563857">
-        -->
-
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
     <FrameLayout
         android:id="@+id/placeholder"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

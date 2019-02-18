@@ -6,6 +6,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Global extends Application{
     // actual global variables
     public static String longitude;
@@ -24,7 +27,10 @@ public class Global extends Application{
     public static String maptype;
     public static int bytes;
     public static boolean wanarun = true;
-    public static String aplist;
+    public static String initLat;
+    public static String initLong;
+    public static List<String> uniqueAPS = new ArrayList<>();
+
 
     public void setCount(){
         this.count++;

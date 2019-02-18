@@ -16,7 +16,7 @@ android {
         applicationId "com.sontme.esp.getlocation"
         versionCode code
         versionName "2.1"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 28
         multiDexEnabled = true
     }
@@ -25,6 +25,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 apply plugin: 'io.fabric'
@@ -64,7 +68,6 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.0.3'
     //implementation group: 'com.google.collections', name: 'google-collections', version: '1.0-rc2'
     implementation 'com.github.MKergall:osmbonuspack:6.5.2'
-
     implementation 'com.google.android.gms:play-services-location:16.0.0'
 
 
