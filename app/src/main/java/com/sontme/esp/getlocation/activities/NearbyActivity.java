@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -30,6 +33,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -43,6 +50,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.Projection;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
@@ -53,6 +61,9 @@ import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlayOptions;
 import org.osmdroid.views.overlay.simplefastpoint.SimplePointTheme;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -99,18 +110,47 @@ public class NearbyActivity extends AppCompatActivity {
 
         map = (MapView) findViewById(R.id.osmmap2);
         btn = (Button)findViewById(R.id.button6);
+        Button btn2 = findViewById(R.id.btn_export2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
             }
         });
-
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = findViewById(R.id.osmmap2);
+                Bitmap bitmap = viewToBitmap(view);
+                try {
+                    FileOutputStream output = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+                    output.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                galleryAddPic();
+                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
+                superToast.setText("Image Saved!");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_VERY_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
+            }
+        });
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(17.0);
-        GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        GeoPoint startPoint = null;
+        if(Global.latitude != null) {
+            startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        }
+        else{
+            startPoint = new GeoPoint(47.935900, 20.367770);
+        }
         mapController.setCenter(startPoint);
 
         dl = (DrawerLayout)findViewById(R.id.drawler4);
@@ -168,8 +208,15 @@ public class NearbyActivity extends AppCompatActivity {
     protected void drawCircle(MapView map){
         Polygon oPolygon = new Circlee(map);
         final double radius = 150;
-        Double lat = Double.valueOf(Global.latitude);
-        Double lon = Double.valueOf(Global.longitude);
+        Double lat = null;
+        Double lon = null;
+        try {
+            lat = Double.valueOf(Global.latitude);
+            lon = Double.valueOf(Global.longitude);
+        }catch (Exception e){
+            lat = 47.935902;
+            lon = 20.367769;
+        }
         ArrayList<GeoPoint> circlePoints = new ArrayList<GeoPoint>();
         GeoPoint p = new GeoPoint(lat,lon);
         circlePoints.add(p);
@@ -192,6 +239,20 @@ public class NearbyActivity extends AppCompatActivity {
         });
         map.getOverlays().add(oPolygon);
 
+    }
+
+    public Bitmap viewToBitmap(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
+    }
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
@@ -250,13 +311,10 @@ public class NearbyActivity extends AppCompatActivity {
             m.setSubDescription(description);
             final InfoWindow pop = new PopUpWin(R.layout.popup, map);
             m.setInfoWindow(pop);
-            //m.setIcon(resize(pin,100));
             m.setIcon(pin);
             m.setPosition(geo);
             m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            //map.getOverlays().add(m);
             clusterer.add(m);
-            //map.invalidate();
             counter++;
         }
         overlays.add(clusterer);
@@ -268,7 +326,13 @@ public class NearbyActivity extends AppCompatActivity {
 
         map.invalidate();
         NearbyActivity.loc_ssid2.clear();
-        Toast.makeText(getBaseContext(),counter + "aps found",Toast.LENGTH_SHORT).show();
+
+        SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
+        superToast.setText(counter + " Access Points found");
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_VERY_LONG);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
     }
 
     @Override
@@ -324,7 +388,12 @@ public class NearbyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                Toast.makeText(getBaseContext(), "Failed to retreive AP list", Toast.LENGTH_SHORT).show();
+                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
+                superToast.setText("Failed to retrieve AP list");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_VERY_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
             }
 
             @Override
@@ -388,7 +457,14 @@ class Circlee extends Polygon {
 
     @Override
     public boolean onLongPress(MotionEvent e, MapView mapView){
-        Toast.makeText(mapView.getContext(),"Items: " + mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
+        /*
+        SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
+        superToast.setText("Mark count: "+mapView.getOverlays().size());
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_VERY_LONG);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
+        */
         Log.d("TAPI","LONGTAPTAPTAPTAPTAP_" + e.toString());
         return super.onLongPress(e, mapView);
     }
@@ -434,7 +510,7 @@ class PopUpWin extends InfoWindow {
             String source_;
             if(snip.contains(android_id)){
                 String[] a = snip.split("_");
-                source_ =  "Source: THIS_" + a[1];
+                source_ =  "Source: YOU_" + a[1];
                 psnip.setText(source_);
             }
             else{
@@ -448,7 +524,7 @@ class PopUpWin extends InfoWindow {
                 public void onClick(View v) {
                     Log.d("CLICKED BUTTON", "title: " + marker.getTitle());
                     Log.d("CLICKED BUTTON", "desc: " + marker.getSubDescription());
-                    //map.invalidate();
+
                     marker.remove(map);
                     marker.closeInfoWindow();
                     map.invalidate();
@@ -476,11 +552,49 @@ class CustomCluster extends RadiusMarkerClusterer {
 
     @Override
     public boolean onSingleTapUp(MotionEvent e, MapView mapView) {
-        Log.d("CLUSTER","CLUSTER TAPPED: " + e.getX() + ", " + e.getY());
+
+        Projection proj = mapView.getProjection();
+        GeoPoint loc = (GeoPoint) proj.fromPixels((int)e.getX(), (int)e.getY());
+        String longitude = Double.toString(((double)loc.getLongitudeE6())/1000000);
+        String latitude = Double.toString(((double)loc.getLatitudeE6())/1000000);
+
+        String asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())),1));
+        SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
+        superToast.setText(asd + " meters away from you");
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_LONG);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
         return super.onSingleTapUp(e, mapView);
     }
 
     public static int getNumOfInstance() {
         return counter;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+    public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
+
+        final int R = 6371; // Radius of the earth
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+        double el1 = 0;
+        double el2 = 0;
+        double height = el1 - el2;
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+        return Math.sqrt(distance);
     }
 }

@@ -3,9 +3,12 @@ package com.sontme.esp.getlocation.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -16,9 +19,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
@@ -34,6 +40,10 @@ import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +52,7 @@ public class MapActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
+    private Button export;
 
     static List<GeoPoint> geoPoints = new ArrayList<>();
     static ArrayList<OverlayItem> overlayItemArray = new ArrayList<OverlayItem>();
@@ -88,7 +99,30 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         });
-
+        Button export = findViewById(R.id.btn_export);
+        export.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = findViewById(R.id.osmmap);
+                Bitmap bitmap = viewToBitmap(view);
+                try {
+                    FileOutputStream output = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+                    output.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                galleryAddPic();
+                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
+                superToast.setText("Image Saved!");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_VERY_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
+            }
+        });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv2);
         View hView =  navigationView.getHeaderView(0);
         TextView tex = (TextView)hView.findViewById(R.id.header_verinfo);
@@ -102,7 +136,13 @@ public class MapActivity extends AppCompatActivity {
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
-        GeoPoint startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        GeoPoint startPoint = null;
+        if(Global.latitude != null) {
+            startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        }
+        else{
+            startPoint = new GeoPoint(47.935900, 20.367770);
+        }
         mapController.setCenter(startPoint);
         updateMap(map);
         drawPoint(map);
@@ -116,14 +156,38 @@ public class MapActivity extends AppCompatActivity {
         }, 1000);
 
     }
+    public Bitmap viewToBitmap(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
+    }
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
     private void updateMap(MapView map) {
-        GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        GeoPoint geo = null;
+        if(Global.latitude != null) {
+            geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        }
+        else{
+            geo = new GeoPoint(47.935900, 20.367770);
+        }
         OverlayItem point = new OverlayItem("Actual", "Position", geo);
         ItemizedIconOverlay<OverlayItem> itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(this, overlayItemArray, null);
         line.setOnClickListener(new Polyline.OnClickListener() {
             @Override
             public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
-                Toast.makeText(mapView.getContext(), "Clicked line! " + polyline.getPoints().size() + "pts was tapped", Toast.LENGTH_LONG).show();
+                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
+                superToast.setText(polyline.getPoints().size() + " points tapped");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
                 return false;
             }
         });
@@ -151,7 +215,13 @@ public class MapActivity extends AppCompatActivity {
         map.getOverlays().clear();
         map.invalidate();
         Drawable pin = getResources().getDrawable(R.drawable.wifi5);
-        GeoPoint geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        GeoPoint geo = null;
+        if(Global.latitude != null) {
+            geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        }
+        else{
+            geo = new GeoPoint(47.935900, 20.367770);
+        }
         Marker m = new Marker(map);
         m.setTitle("Start Point");
         m.setSubDescription("The location where you started");
@@ -161,7 +231,13 @@ public class MapActivity extends AppCompatActivity {
         m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker, MapView mapView) {
-                Toast.makeText(getBaseContext(),"Marker count: "+mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(),"Marker count: "+mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
+                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
+                superToast.setText("Marker count: "+mapView.getOverlays().size());
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
                 return false;
             }
         });

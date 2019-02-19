@@ -9,5 +9,6 @@
     <color name="notifBackground">#581845</color>
     <color name="notifBackground2">#581845</color>
     <color name="buttonColor">#fffde1</color>
+    <color name="webgray">#eaeaea</color>
 
 </resources>

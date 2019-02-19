@@ -15,6 +15,7 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim rotatezoom
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -743,6 +744,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
+color webgray
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1129,10 +1131,14 @@ drawable pin2
 drawable popup_shape
 drawable previous
 drawable route
+drawable selector_button_kitkat
+drawable selector_button_lollipop
+drawable selector_button_standard
 drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable web_shape
 drawable wifi1
 drawable wifi2
 drawable wifi3
@@ -1182,12 +1188,16 @@ id auto
 id barrier
 id beginning
 id blocking
+id border
 id bottom
+id btn_export
+id btn_export2
 id bubble_description
 id bubble_image
 id bubble_moreinfo
 id bubble_subdescription
 id bubble_title
+id button
 id button6
 id buttonPanel
 id c
@@ -1218,6 +1228,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id divider
 id drawler
 id drawler2
 id drawler3
@@ -1316,6 +1327,7 @@ id pimg
 id pin
 id placeholder
 id plinlay
+id progress_bar
 id progress_circular
 id progress_horizontal
 id prov
@@ -1415,6 +1427,7 @@ id up
 id useLogo
 id view_offset_helper
 id visible
+id webview
 id wide
 id withText
 id wrap
@@ -1510,6 +1523,10 @@ layout row
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout supertoast
+layout supertoast_button
+layout supertoast_progress_bar
+layout supertoast_progress_circle
 layout support_simple_spinner_dropdown_item
 menu navigation_menu
 mipmap ic_launcher

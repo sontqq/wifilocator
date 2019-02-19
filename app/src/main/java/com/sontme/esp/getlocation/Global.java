@@ -29,6 +29,7 @@ public class Global extends Application{
     public static boolean wanarun = true;
     public static String initLat;
     public static String initLong;
+    public static int nearbyCount;
     public static List<String> uniqueAPS = new ArrayList<>();
 
 
@@ -41,4 +42,76 @@ public class Global extends Application{
                 + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
 
     }
+
+    public String getInitLat(){
+        if(initLat != null) {
+            return initLat;
+        }
+        else{
+            return "47.936291";
+        }
+    }
+    public String getInitLong(){
+        if(initLong != null) {
+            return initLong;
+        }
+        else{
+            return "20.367531";
+        }
+    }
+    public String getLat(){
+        if(latitude != null) {
+            return latitude;
+        }
+        else{
+            return "47.936291";
+        }
+    }
+    public String getLong()
+    {
+        if(longitude != null) {
+            return longitude;
+        }
+        else{
+            return "20.367531";
+        }
+    }
+
+    ///
+
+
+    public static String getInitLat_(){
+        if(initLat != null) {
+            return initLat;
+        }
+        else{
+            return "47.936291";
+        }
+    }
+    public static String getInitLong_(){
+        if(initLong != null) {
+            return initLong;
+        }
+        else{
+            return "20.367531";
+        }
+    }
+    public static String getLat_(){
+        if(latitude != null) {
+            return latitude;
+        }
+        else{
+            return "47.936291";
+        }
+    }
+    public static String getLong_()
+    {
+        if(longitude != null) {
+            return longitude;
+        }
+        else{
+            return "20.367531";
+        }
+    }
+
 }

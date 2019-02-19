@@ -1,20 +1,14 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
@@ -22,27 +16,17 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.RingtoneManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.TrafficStats;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -51,66 +35,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
-import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
-import com.sontme.esp.getlocation.HandleLocations;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
 
 import android.support.design.widget.NavigationView;
-
-import org.osmdroid.util.LocationUtils;
-import org.w3c.dom.Text;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -157,6 +125,12 @@ public class MainActivity extends AppCompatActivity {
                 uniq.setText("Unique APs found: " + Global.uniqueAPS.size());
                 queryLocation(null);
             }catch (Exception e){}
+            if(Global.longitude == null){
+                alti.setText("Altitude");
+                longi.setText("Longitude");
+                lati.setText("Latitude");
+                spd.setText("Speed km/h");
+            }
             handler.postDelayed(this, 1000);
         }
     };
@@ -183,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 Global.count++;
                 if (counter == 1) {
                     // START POSITION (Activity/Program start)
-                    //Global.initLong = Double.valueOf(Global.longitude);
-                    //Global.initLat = Double.valueOf(Global.latitude);
                     Global.initLat = Global.latitude;
                     Global.initLong = Global.longitude;
                 }
@@ -266,7 +238,12 @@ public class MainActivity extends AppCompatActivity {
         mPublisherAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                Toast.makeText(getBaseContext(), "Advertisement loaded!", Toast.LENGTH_SHORT).show();
+                SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+                superToast.setText("Advertisement loaded");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
             }
 
             @Override
@@ -291,10 +268,26 @@ public class MainActivity extends AppCompatActivity {
         exitb = (Button) findViewById(R.id.exitb);
         provider = findViewById(R.id.prov);
         uniq = findViewById(R.id.uniq);
+        WebView webview = findViewById(R.id.webview);
+
+        webview.clearCache(true);
+        webview.clearHistory();
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setDomStorageEnabled(true);
+        webview.getSettings().setAllowFileAccess(true);
+        webview.getSettings().setAllowFileAccessFromFileURLs(true);
+        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webview.getSettings().setAppCacheEnabled(true);
+        webview.getSettings().setLoadsImagesAutomatically(true);
+        webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        //webview.getSettings().setLoadWithOverviewMode(true);
+        //webview.getSettings().setUseWideViewPort(true);
+        //webview.setInitialScale(1);
+        webview.setBackgroundColor(Color.argb(100,234,234,234));
+        webview.loadUrl("https://sont.sytes.net/osm.php");
 
         //endregion
         //region UI ELEMENT LISTENERS
-
 
         exitb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -327,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
         tex.setText(version);
 
         turnGPSOn();
-        //queryLocation(null);
         handler.postDelayed(runnable, 1000);
 //        showNotif("WiFi Locator", "Application started!");
 
@@ -345,7 +337,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 Log.d("Status Changed", String.valueOf(status));
-                // Toast.makeText(getApplicationContext(),"Status changed: " + provider + " " + status,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -374,9 +365,7 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        //locationManager.requestSingleUpdate(criteria, locationListener, looper);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-
     }
 
     public void startUpdatesPlay() {
@@ -472,6 +461,7 @@ public class MainActivity extends AppCompatActivity {
         contentView.setTextViewText(R.id.notif_lat, Global.latitude);
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
         contentView.setTextViewText(R.id.notif_add, Global.address);
+        //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(Global.nearbyCount));
         contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(Global.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
@@ -524,26 +514,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aplist(final Context context, double lati, double longi) {
-        HashMap<String, Integer> strongestNearby = new HashMap<String, Integer>();
-        //ValueComparator bvc = new ValueComparator(strongestNearby);
-        //TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-
+        Map<String, Integer> map = new HashMap<String, Integer>();
 
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
-            Log.d("APLISTCOUNT: ", String.valueOf(scanResults.size()));
-
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + ConvertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
+                Global.nearbyCount = scanResults.size();
+                map.put(result.SSID, ConvertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
-                //strongestNearby.put(result.SSID, ConvertDBM(result.level));
-                //sortByValue(strongestNearby);
-
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -560,6 +544,7 @@ public class MainActivity extends AppCompatActivity {
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + ConvertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
                 saveRecordHttp(url + reqBody);
             }
+
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
@@ -593,12 +578,22 @@ public class MainActivity extends AppCompatActivity {
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
         if (checkPermissionLocation() == false) {
-            Toast.makeText(getBaseContext(), "Missing location permission!", Toast.LENGTH_SHORT).show();
+            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+            superToast.setText("Missing LOCATION PERMISSION");
+            superToast.setAnimations(Style.ANIMATIONS_SCALE);
+            superToast.setDuration(Style.DURATION_LONG);
+            superToast.setTouchToDismiss(true);
+            superToast.show();
             requestPermissionLocation();
         }
         // TURN ON WIFI
         if (!wifi.isWifiEnabled()) {
-            Toast.makeText(getBaseContext(), "Turning on WiFi..", Toast.LENGTH_SHORT).show();
+            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+            superToast.setText("Turning on WiFi");
+            superToast.setAnimations(Style.ANIMATIONS_SCALE);
+            superToast.setDuration(Style.DURATION_LONG);
+            superToast.setTouchToDismiss(true);
+            superToast.show();
             wifi.setWifiEnabled(true);
         }
     }
@@ -667,20 +662,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-}
-/*
-public class MapUtil {
-    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
-        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-
-        Map<K, V> result = new LinkedHashMap<>();
-        for (Entry<K, V> entry : list) {
-            result.put(entry.getKey(), entry.getValue());
+    public String getStrongest(Map<String, Integer> apsx){
+        Set s = apsx.entrySet();
+        Iterator it = s.iterator();
+        for(int i=0;i<=1;i++){
+            Map.Entry entry = (Map.Entry) it.next();
+            String key = (String) entry.getKey();
+            String value = (String) entry.getValue();
+            Log.d("entries: " +i + ": ",key + " => " + value);
         }
-
-        return result;
+        return null;
     }
 }
-*/

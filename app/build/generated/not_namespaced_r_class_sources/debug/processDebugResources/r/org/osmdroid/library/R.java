@@ -32,19 +32,19 @@ public final class R {
         public static final int osm_ic_ic_map_ortho = 0x7f0700aa;
         public static final int person = 0x7f0700ab;
         public static final int previous = 0x7f0700b0;
-        public static final int sharp_add_black_36 = 0x7f0700b2;
-        public static final int sharp_remove_black_36 = 0x7f0700b3;
-        public static final int zoom_in = 0x7f0700bf;
-        public static final int zoom_out = 0x7f0700c0;
+        public static final int sharp_add_black_36 = 0x7f0700b5;
+        public static final int sharp_remove_black_36 = 0x7f0700b6;
+        public static final int zoom_in = 0x7f0700c3;
+        public static final int zoom_out = 0x7f0700c4;
     }
     public static final class id {
         private id() {}
 
-        public static final int bubble_description = 0x7f080027;
-        public static final int bubble_image = 0x7f080028;
-        public static final int bubble_moreinfo = 0x7f080029;
-        public static final int bubble_subdescription = 0x7f08002a;
-        public static final int bubble_title = 0x7f08002b;
+        public static final int bubble_description = 0x7f08002a;
+        public static final int bubble_image = 0x7f08002b;
+        public static final int bubble_moreinfo = 0x7f08002c;
+        public static final int bubble_subdescription = 0x7f08002d;
+        public static final int bubble_title = 0x7f08002e;
     }
     public static final class layout {
         private layout() {}

@@ -70,6 +70,8 @@ dependencies {
     implementation 'com.github.MKergall:osmbonuspack:6.5.2'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
 
+    implementation 'com.github.johnpersano:supertoasts:2.0'
+
 
 
 }

@@ -9,25 +9,42 @@
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:orientation="vertical"
-
     android:paddingLeft="0dp"
     android:paddingRight="0dp">
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/osmmap"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_export"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="Export to Gallery" />
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/osmmap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nv2"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/navigation_menu">
 
 
+
     </android.support.design.widget.NavigationView>
+
+
+
 
 </android.support.v4.widget.DrawerLayout>
