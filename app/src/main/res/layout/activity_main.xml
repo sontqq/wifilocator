@@ -133,21 +133,7 @@
                 android:inputType="numberDecimal"
                 android:text="Unique APs" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
-                <com.google.android.gms.ads.doubleclick.PublisherAdView
-                    android:id="@+id/publisherAdView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="ca-app-pub-4051604993335718/9467563857">
-
-                </com.google.android.gms.ads.doubleclick.PublisherAdView>
-            </LinearLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -165,6 +151,21 @@
 
             </ScrollView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.google.android.gms.ads.doubleclick.PublisherAdView
+                    android:id="@+id/publisherAdView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-4051604993335718/9467563857">
+
+                </com.google.android.gms.ads.doubleclick.PublisherAdView>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

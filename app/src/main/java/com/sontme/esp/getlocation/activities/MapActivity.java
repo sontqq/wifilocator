@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.google.android.gms.maps.model.Cap;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
@@ -197,6 +199,7 @@ public class MapActivity extends AppCompatActivity {
             map.getOverlays().add(itemizedIconOverlay);
             line.setColor(Color.argb(90,240,128,128));
             line.setWidth(20.0f);
+            line.getPaint().setStrokeJoin(Paint.Join.ROUND);
             try {
                 line.setPoints(geoPoints);
             }catch (Exception e){}

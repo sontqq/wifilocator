@@ -147,7 +147,8 @@ public class ListActivity extends AppCompatActivity {
                         convertedDate = dateFormat.parse(time);
                     } catch (ParseException e) {
                     }
-                    String d = dateDiff(convertedDate);
+                    //String d = dateDiff(convertedDate);
+                    String d = String.valueOf(convertedDate);
                     ApStrings one_row = new ApStrings(lat, lon, d, ssid, mac, str, source);
                     if (uniqueMacList.contains(mac) == false) {
                         uniqueMacList.add(mac);

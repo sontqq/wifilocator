@@ -256,7 +256,6 @@ public class NearbyActivity extends AppCompatActivity {
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
-        //final RadiusMarkerClusterer clusterer = new RadiusMarkerClusterer(this);
         final RadiusMarkerClusterer clusterer = new CustomCluster(this);
         final List<Overlay> overlays = map.getOverlays();
         MapController mapController = (MapController) map.getController();
@@ -266,7 +265,6 @@ public class NearbyActivity extends AppCompatActivity {
         Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.wifi4_cluster_25);
 
-        //clusterer.setIcon(getResizedBitmap(icon,100,100));
         clusterer.setIcon(icon);
         clusterer.setRadius(85);
         clusterer.mTextAnchorU = 0.70f;
@@ -278,16 +276,14 @@ public class NearbyActivity extends AppCompatActivity {
         map.invalidate();
         int counter = 0;
         Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
+        InfoWindow pop = new PopUpWin(R.layout.popup, map);
         for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
             Location coords = entry.getKey();
 
             String time = entry.getValue().getTime();
             String ssid = entry.getValue().getSsid();
             String bssid = entry.getValue().getMac();
-            String source = entry.getValue().getSource();
-            String str = entry.getValue().getStr();
-            String la = entry.getValue().getLati();
-            String lo = entry.getValue().getLongi();
+            String source = entry.getValue().getSource();;
 
             String description = "Time: " + time + "\n" + "MAC: " + bssid;
             String snippet = "Source: " + source;
@@ -309,7 +305,6 @@ public class NearbyActivity extends AppCompatActivity {
             m.setTitle(ssid);
             m.setSnippet(snippet);
             m.setSubDescription(description);
-            final InfoWindow pop = new PopUpWin(R.layout.popup, map);
             m.setInfoWindow(pop);
             m.setIcon(pin);
             m.setPosition(geo);
