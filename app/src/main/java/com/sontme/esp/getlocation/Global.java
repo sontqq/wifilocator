@@ -11,19 +11,19 @@ import java.util.List;
 
 public class Global extends Application{
     // actual global variables
-    public static String longitude;
-    public static String latitude;
-    public static String altitude;
-    public static String bearing;
+    public static String longitude = "0";
+    public static String latitude = "0";
+    public static String altitude = "0";
+    public static String bearing = "0";
     public static String time;
-    public static String distance;
-    public static String address;
-    public static String speed;
-    public static String accuracy;
+    public static String distance = "0.00";
+    public static String address = "Not available";
+    public static String speed = "0.00";
+    public static String accuracy = "0";
     public static String lastSSID;
     public static String lastNearby;
     public static int count = 0;
-    public static String provider;
+    public static String provider = "Not available";
     public static String maptype;
     public static int bytes;
     public static boolean wanarun = true;

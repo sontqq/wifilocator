@@ -15,8 +15,8 @@ android {
     defaultConfig {
         applicationId "com.sontme.esp.getlocation"
         versionCode code
-        versionName "2.1"
-        minSdkVersion 24
+        versionName "3.0"
+        minSdkVersion 26
         targetSdkVersion 28
         multiDexEnabled = true
     }

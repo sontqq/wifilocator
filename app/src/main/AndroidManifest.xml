@@ -34,9 +34,15 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.NearbyActivity" />
-        <activity android:name=".activities.ListActivity" />
-        <activity android:name=".activities.MapActivity" />
+        <activity android:name=".activities.NearbyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ListActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.MapActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".Receiver">
             <intent-filter>
@@ -53,7 +59,9 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
             // vagy singleTask
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

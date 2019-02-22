@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="1188"
-    android:versionName="2.1" >
+    android:versionCode="1244"
+    android:versionName="3.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="26"
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -63,9 +63,18 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.sontme.esp.getlocation.activities.NearbyActivity" />
-        <activity android:name="com.sontme.esp.getlocation.activities.ListActivity" />
-        <activity android:name="com.sontme.esp.getlocation.activities.MapActivity" />
+        <activity
+            android:name="com.sontme.esp.getlocation.activities.NearbyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sontme.esp.getlocation.activities.ListActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sontme.esp.getlocation.activities.MapActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <receiver android:name="com.sontme.esp.getlocation.Receiver" >
             <intent-filter>
@@ -82,7 +91,9 @@
 
         <activity
             android:name="com.sontme.esp.getlocation.activities.MainActivity"
-            android:launchMode="singleTask" >
+            android:configChanges="orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
             // vagy singleTask
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

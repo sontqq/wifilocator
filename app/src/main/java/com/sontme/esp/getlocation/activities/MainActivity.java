@@ -6,8 +6,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -19,9 +21,11 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -59,6 +63,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
@@ -79,6 +84,8 @@ import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
 
 import android.support.design.widget.NavigationView;
+
+import org.w3c.dom.Text;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -103,33 +110,43 @@ public class MainActivity extends AppCompatActivity {
     public static TextView provider;
     public static TextView uniq;
 
+    public static Button startServiceBtn;
+    public static Button stopServiceBtn;
+
     //endregion
-    Location mlocation;
-    LocationRequest mPlayLocationRequest;
+    public Location mlocation;
+    public LocationRequest mPlayLocationRequest;
 
-    Handler handler = new Handler();
+    public Handler handler = new Handler();
+    boolean mBounded;
+    public BackgroundService backgroundService;
+    public IBinder mBinder = new MainActivity.LocalBinder();
 
-    private Runnable runnable = new Runnable() {
+    public Runnable runnable = new Runnable() {
         @Override
         public void run() {
             try {
-                longi.setText("Longitude: " + Global.longitude);
-                lati.setText("Latitude: " + Global.latitude);
-                alti.setText("Altitude: " + Global.altitude);
-                spd.setText("Speed: " + Global.speed + " km/h");
-                dst.setText("Distance: " + String.valueOf(round(Double.valueOf(Global.distance), 2) + " meters"));
-                add.setText("Address: " + Global.address);
-                c.setText("Count: " + Global.count);
-                provider.setText("Provider: " + Global.provider);
-                dst.setText("Distance: " + Global.distance);
-                uniq.setText("Unique APs found: " + Global.uniqueAPS.size());
+                longi.setText(Global.longitude);
+                lati.setText(Global.latitude);
+                alti.setText(Global.altitude);
+                spd.setText(Global.speed + " km/h");
+                dst.setText(String.valueOf(round(Double.valueOf(Global.distance), 2) + " meters"));
+                add.setText(Global.address);
+                c.setText(Global.count);
+                provider.setText(Global.provider);
+                uniq.setText(Global.uniqueAPS.size());
                 queryLocation(null);
             }catch (Exception e){}
             if(Global.longitude == null){
-                alti.setText("Altitude");
-                longi.setText("Longitude");
-                lati.setText("Latitude");
-                spd.setText("Speed km/h");
+                alti.setText("0");
+                longi.setText("0");
+                lati.setText("0");
+                spd.setText("0.00 km/h");
+                dst.setText("0.00 meter");
+                add.setText("Not available");
+                c.setText("0");
+                provider.setText("Not available");
+                uniq.setText("0");
             }
             handler.postDelayed(this, 1000);
         }
@@ -183,12 +200,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private DrawerLayout dl;
-    private ActionBarDrawerToggle t;
-    private NavigationView nv;
+    public DrawerLayout dl;
+    public ActionBarDrawerToggle t;
+    public NavigationView nv;
+
+
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
+
+    public class LocalBinder extends Binder {
+        public MainActivity getServerInstance() {
+            return MainActivity.this;
+        }
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
@@ -269,6 +298,8 @@ public class MainActivity extends AppCompatActivity {
         provider = findViewById(R.id.prov);
         uniq = findViewById(R.id.uniq);
         WebView webview = findViewById(R.id.webview);
+        startServiceBtn = findViewById(R.id.startService);
+        stopServiceBtn = findViewById(R.id.stopService);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -280,9 +311,9 @@ public class MainActivity extends AppCompatActivity {
         webview.getSettings().setAppCacheEnabled(true);
         webview.getSettings().setLoadsImagesAutomatically(true);
         webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        //webview.getSettings().setLoadWithOverviewMode(true);
-        //webview.getSettings().setUseWideViewPort(true);
-        //webview.setInitialScale(1);
+        webview.getSettings().setLoadWithOverviewMode(true);
+        webview.getSettings().setUseWideViewPort(true);
+        webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100,234,234,234));
         webview.loadUrl("https://sont.sytes.net/osm.php");
 
@@ -298,7 +329,6 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
-
         start_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,6 +342,42 @@ public class MainActivity extends AppCompatActivity {
                 startUpdatesGPS();
             }
         });
+        startServiceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Starting service",Toast.LENGTH_SHORT);
+                if(!isMyServiceRunning(BackgroundService.class)) {
+                    Intent myService = new Intent(MainActivity.this, BackgroundService.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        startForegroundService(myService);
+                    } else {
+                        startService(myService);
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Service is ALREADY running",Toast.LENGTH_SHORT);
+                }
+            }
+        });
+        stopServiceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Stopping service",Toast.LENGTH_SHORT);
+                if(isMyServiceRunning(BackgroundService.class)) {
+                    Intent myService = new Intent(MainActivity.this, BackgroundService.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        stopService(myService);
+                    } else {
+                        stopService(myService);
+                    }
+                    Toast.makeText(getApplicationContext(),"Service stopped",Toast.LENGTH_SHORT);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Service IS NOT running",Toast.LENGTH_SHORT);
+                };
+            }
+        });
+
         //endregion
 
         View hView = nv.getHeaderView(0);
@@ -323,7 +389,43 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(runnable, 1000);
 //        showNotif("WiFi Locator", "Application started!");
 
+        Intent mIntent = new Intent(this, BackgroundService.class);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+
+        String android_id = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        Log.d("ID:",android_id);
+        if(android_id == "ae3b8f5d1877b6ec"){ // testphone
+            Intent fIntent = new Intent(this, BackgroundService.class);
+            startForegroundService(fIntent);
+            Toast.makeText(this,"Started Service Autimatically",Toast.LENGTH_SHORT).show();
+        }
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(mBounded) {
+            unbindService(mConnection);
+            mBounded = false;
+        }
+    };
+
+    ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+            backgroundService = null;
+
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Toast.makeText(getApplicationContext(), "Service is connected", Toast.LENGTH_SHORT).show();
+            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder)service;
+            backgroundService = mLocalBinder.getServerInstance();
+        }
+    };
 
     public void startUpdatesGPS() {
         final LocationListener locationListener = new LocationListener() {
@@ -394,12 +496,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
@@ -629,7 +731,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
     }
 
-    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
@@ -650,7 +752,7 @@ public class MainActivity extends AppCompatActivity {
         return strAdd;
     }
 
-    private void turnGPSOn() {
+    public void turnGPSOn() {
         String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 
         if (!provider.contains("gps")) { //if gps is disabled
@@ -673,4 +775,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
+/*
+    public class LocalBinder extends Binder {
+        public MainActivity getServerInstance() {
+            return MainActivity.this;
+        }
+    }*/
+
 }
