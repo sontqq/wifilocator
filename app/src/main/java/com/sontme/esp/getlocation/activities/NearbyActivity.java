@@ -145,12 +145,14 @@ public class NearbyActivity extends AppCompatActivity {
         map.setMultiTouchControls(true);
         mapController.setZoom(17.0);
         GeoPoint startPoint = null;
-        if(Global.latitude != null) {
+        if (Global.latitude != "0") {
             startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
-        }
-        else{
+        } else if (Global.initLat != "0") {
+            startPoint = new GeoPoint(Double.valueOf(Global.initLat), Double.valueOf(Global.initLong));
+        } else{
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
+
         mapController.setCenter(startPoint);
 
         dl = (DrawerLayout)findViewById(R.id.drawler4);
@@ -195,8 +197,6 @@ public class NearbyActivity extends AppCompatActivity {
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
         getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
-
-
     }
 
     private Drawable resize(Drawable image, Integer size) {
@@ -383,16 +383,23 @@ public class NearbyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
                 SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-                superToast.setText("Failed to retrieve AP list");
+                superToast.setText("Retrying...");
                 superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_LONG);
+                superToast.setDuration(Style.DURATION_VERY_SHORT);
                 superToast.setTouchToDismiss(true);
                 superToast.show();
             }
 
             @Override
             public void onRetry(int retryNo) {
+                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
+                superToast.setText("Retrying...");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_VERY_SHORT);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
             }
         });
     }
@@ -452,14 +459,6 @@ class Circlee extends Polygon {
 
     @Override
     public boolean onLongPress(MotionEvent e, MapView mapView){
-        /*
-        SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
-        superToast.setText("Mark count: "+mapView.getOverlays().size());
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_VERY_LONG);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
-        */
         Log.d("TAPI","LONGTAPTAPTAPTAPTAP_" + e.toString());
         return super.onLongPress(e, mapView);
     }
@@ -552,8 +551,19 @@ class CustomCluster extends RadiusMarkerClusterer {
         GeoPoint loc = (GeoPoint) proj.fromPixels((int)e.getX(), (int)e.getY());
         String longitude = Double.toString(((double)loc.getLongitudeE6())/1000000);
         String latitude = Double.toString(((double)loc.getLatitudeE6())/1000000);
+        String asd = "0";
+        if (Double.valueOf(Global.latitude) != 0) {
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())), 1));
+            Log.d("TAPI1: ", asd);
+        } else if (Double.valueOf(Global.initLat) != 0) {
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getInitLat_()), Double.valueOf(longitude), Double.valueOf(Global.getInitLong_())), 1));
+            Log.d("TAPI2: ", asd);
+        } else {
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(47.935900), Double.valueOf(longitude), Double.valueOf(20.367770)), 1));
+            Log.d("TAPI3: ", asd);
+        }
+        Log.d("TAPI4: ", String.valueOf(Double.valueOf(Global.latitude)));
 
-        String asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())),1));
         SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
         superToast.setText(asd + " meters away from you");
         superToast.setAnimations(Style.ANIMATIONS_SCALE);

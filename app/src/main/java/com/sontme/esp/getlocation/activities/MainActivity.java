@@ -2,10 +2,12 @@ package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +38,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +64,10 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
+import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
+import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
+import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
@@ -69,19 +76,28 @@ import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
+import okhttp3.WebSocket;
 
 import android.support.design.widget.NavigationView;
 
@@ -109,18 +125,21 @@ public class MainActivity extends AppCompatActivity {
     public static TextView add;
     public static TextView provider;
     public static TextView uniq;
-
+    public static TextView servicestatus;
     public static Button startServiceBtn;
     public static Button stopServiceBtn;
+    public static Button release_btn;
 
     //endregion
+
+    public DevicePolicyManager mDPM;
+    public ComponentName mAdminName;
+
     public Location mlocation;
     public LocationRequest mPlayLocationRequest;
-
     public Handler handler = new Handler();
-    boolean mBounded;
+    public boolean mBounded;
     public BackgroundService backgroundService;
-    public IBinder mBinder = new MainActivity.LocalBinder();
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -135,9 +154,17 @@ public class MainActivity extends AppCompatActivity {
                 c.setText(Global.count);
                 provider.setText(Global.provider);
                 uniq.setText(Global.uniqueAPS.size());
+                WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+                Global.ipaddress = ipv4;
+                TextView ip = findViewById(R.id.ip);
+                ip.setText(Global.ipaddress);
+                servicestatus.setText("Not yet available");
+
                 queryLocation(null);
-            }catch (Exception e){}
-            if(Global.longitude == null){
+            } catch (Exception e) {
+            }
+            if (Global.longitude == null) {
                 alti.setText("0");
                 longi.setText("0");
                 lati.setText("0");
@@ -147,6 +174,9 @@ public class MainActivity extends AppCompatActivity {
                 c.setText("0");
                 provider.setText("Not available");
                 uniq.setText("0");
+                servicestatus.setText("Not available");
+                TextView ip = findViewById(R.id.ip);
+                ip.setText(Global.ipaddress);
             }
             handler.postDelayed(this, 1000);
         }
@@ -155,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
     public void queryLocation(Location LocRes) {
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
+                WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
                 Global.accuracy = String.valueOf(LocRes.getAccuracy());
                 Global.latitude = String.valueOf(LocRes.getLatitude());
                 Global.longitude = String.valueOf(LocRes.getLongitude());
@@ -165,7 +197,9 @@ public class MainActivity extends AppCompatActivity {
                 Global.address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
                 Global.provider = LocRes.getProvider();
                 Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
-            }catch(Exception e){}
+                Global.ipaddress = ipv4;
+            } catch (Exception e) {
+            }
             Log.d("GOOGLEAPIPLAY ", LocRes.toString());
         }
         try {
@@ -204,18 +238,6 @@ public class MainActivity extends AppCompatActivity {
     public ActionBarDrawerToggle t;
     public NavigationView nv;
 
-
-    public IBinder onBind(Intent intent) {
-        return mBinder;
-    }
-
-    public class LocalBinder extends Binder {
-        public MainActivity getServerInstance() {
-            return MainActivity.this;
-        }
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -224,7 +246,15 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         logUser();
+        adminPermission();
 
+        String ipv4 = getLocalIpAddress();
+        Global.ipaddress = ipv4;
+        TextView ip = findViewById(R.id.ip);
+        ip.setText(Global.ipaddress);
+
+
+        //region DRAWER
         dl = (DrawerLayout) findViewById(R.id.drawler);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
@@ -283,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        //endregion
         //region UI ELEMENTS
         alti = (TextView) findViewById(R.id.alti);
         add = (TextView) findViewById(R.id.add);
@@ -300,6 +330,8 @@ public class MainActivity extends AppCompatActivity {
         WebView webview = findViewById(R.id.webview);
         startServiceBtn = findViewById(R.id.startService);
         stopServiceBtn = findViewById(R.id.stopService);
+        servicestatus = findViewById(R.id.servstatus);
+        release_btn = findViewById(R.id.release_btn);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -314,8 +346,8 @@ public class MainActivity extends AppCompatActivity {
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);
         webview.setInitialScale(1);
-        webview.setBackgroundColor(Color.argb(100,234,234,234));
-        webview.loadUrl("https://sont.sytes.net/osm.php");
+        webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
+        //webview.loadUrl("https://sont.sytes.net/osm.php");
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -345,39 +377,37 @@ public class MainActivity extends AppCompatActivity {
         startServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Starting service",Toast.LENGTH_SHORT);
-                if(!isMyServiceRunning(BackgroundService.class)) {
-                    Intent myService = new Intent(MainActivity.this, BackgroundService.class);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        startForegroundService(myService);
-                    } else {
-                        startService(myService);
+                Toast.makeText(getBaseContext(), "Starting service", Toast.LENGTH_SHORT);
+                //WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                //String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+                //ip.setText(ipv4);
+                startService(new Intent(MainActivity.this, BackgroundService.class));
+                /*if(!isMyServiceRunning(BackgroundService.class)) {
+                    try {
+                        startService(new Intent(MainActivity.this, BackgroundService.class));
+                    }catch (Exception e){
+                        Toast.makeText(getBaseContext(),"Service start error: " + e.getMessage(),Toast.LENGTH_LONG);
                     }
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Service is ALREADY running",Toast.LENGTH_SHORT);
-                }
+                    Toast.makeText(getBaseContext(),"Service is ALREADY running",Toast.LENGTH_SHORT);
+                }*/
             }
         });
         stopServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Stopping service",Toast.LENGTH_SHORT);
-                if(isMyServiceRunning(BackgroundService.class)) {
-                    Intent myService = new Intent(MainActivity.this, BackgroundService.class);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        stopService(myService);
-                    } else {
-                        stopService(myService);
-                    }
-                    Toast.makeText(getApplicationContext(),"Service stopped",Toast.LENGTH_SHORT);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Service IS NOT running",Toast.LENGTH_SHORT);
-                };
+                Toast.makeText(getApplicationContext(), "Stopping service", Toast.LENGTH_SHORT);
+                Intent myService = new Intent(MainActivity.this, BackgroundService.class);
+                stopService(myService);
             }
         });
-
+        release_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                releaseQueue();
+            }
+        });
         //endregion
 
         View hView = nv.getHeaderView(0);
@@ -387,42 +417,48 @@ public class MainActivity extends AppCompatActivity {
 
         turnGPSOn();
         handler.postDelayed(runnable, 1000);
-//        showNotif("WiFi Locator", "Application started!");
 
-        Intent mIntent = new Intent(this, BackgroundService.class);
+        Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
         String android_id = Settings.Secure.getString(context.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-        Log.d("ID:",android_id);
-        if(android_id == "ae3b8f5d1877b6ec"){ // testphone
-            Intent fIntent = new Intent(this, BackgroundService.class);
-            startForegroundService(fIntent);
-            Toast.makeText(this,"Started Service Autimatically",Toast.LENGTH_SHORT).show();
+        Log.d("ANDROIDID:", android_id);
+        if (android_id.equals("73bedfbd149e01de")) {
+            Log.d("PHONE:", "SAJAT");
+        } else /*if(android_id.equals("ae3b8f5d1877b6ec"))*/ {
+            Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
+            startService(fIntent);
+            Toast.makeText(getBaseContext(), "Started Service Autimatically", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if(mBounded) {
+        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+        superToast.setText("Exiting");
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_VERY_SHORT);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
+        if (mBounded) {
             unbindService(mConnection);
             mBounded = false;
         }
-    };
+    }
 
     ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
             backgroundService = null;
-
         }
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Toast.makeText(getApplicationContext(), "Service is connected", Toast.LENGTH_SHORT).show();
-            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder)service;
+            //Toast.makeText(getApplicationContext(), "Service is connected", Toast.LENGTH_SHORT).show();
+            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
             backgroundService = mLocalBinder.getServerInstance();
         }
     };
@@ -433,7 +469,10 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 mlocation = location;
                 Log.d("Location Changes", location.toString());
+
                 queryLocation(location);
+                Global.provider = location.getProvider();
+                provider.setText(Global.provider);
             }
 
             @Override
@@ -495,9 +534,34 @@ public class MainActivity extends AppCompatActivity {
                 Looper.myLooper());
     }
 
+    public String getLocalIpAddress() {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress()) {
+                        String sAddr = addr.getHostAddress();
+                        boolean isIPv4 = sAddr.indexOf(':') < 0;
+                        if (isIPv4)
+                            return sAddr;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+        } // for now eat exceptions
+        return "";
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+        superToast.setText("Resuming");
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_VERY_SHORT);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
     }
 
     @Override
@@ -512,7 +576,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static int ConvertDBM(int dbm) {
+    public static int convertDBM(int dbm) {
         int quality;
         if (dbm <= -100)
             quality = 0;
@@ -534,16 +598,6 @@ public class MainActivity extends AppCompatActivity {
 
     public double mpsTokmh(double mps) {
         return mps * 3.6;
-    }
-
-    public boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public String convertTime(long time) {
@@ -623,10 +677,10 @@ public class MainActivity extends AppCompatActivity {
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                Global.lastSSID = result.SSID + " " + ConvertDBM(result.level) + "%";
+                Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
                 Global.nearbyCount = scanResults.size();
-                map.put(result.SSID, ConvertDBM(result.level));
+                map.put(result.SSID, convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -642,8 +696,11 @@ public class MainActivity extends AppCompatActivity {
                         Settings.Secure.ANDROID_ID);
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
-                String url = "http://sont.sytes.net/mcuinsert2.php";
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + ConvertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                String url = "https://sont.sytes.net/mcuinsert2.php";
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                if (!Global.queue.contains(url + reqBody)) {
+                    Global.queue.add(url + reqBody);
+                }
                 saveRecordHttp(url + reqBody);
             }
 
@@ -719,6 +776,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void releaseQueue() {
+        Iterator it = Global.queue.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            String iteratorValue = (String) it.next();
+            saveRecordHttp(iteratorValue);
+            i++;
+        }
+        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+        String txt = "Queue Released (" + i + ")";
+        superToast.setText(txt);
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_LONG);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
+    }
+
     public boolean checkPermissionLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return false;
@@ -764,23 +838,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String getStrongest(Map<String, Integer> apsx){
+    public String getStrongest(Map<String, Integer> apsx) {
         Set s = apsx.entrySet();
         Iterator it = s.iterator();
-        for(int i=0;i<=1;i++){
+        for (int i = 0; i <= 1; i++) {
             Map.Entry entry = (Map.Entry) it.next();
             String key = (String) entry.getKey();
             String value = (String) entry.getValue();
-            Log.d("entries: " +i + ": ",key + " => " + value);
+            Log.d("entries: " + i + ": ", key + " => " + value);
         }
         return null;
     }
 
-/*
-    public class LocalBinder extends Binder {
-        public MainActivity getServerInstance() {
-            return MainActivity.this;
+    public void adminPermission() {
+        try {
+            if (!mDPM.isAdminActive(mAdminName)) {
+                try {
+                    Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "extrainfo");
+                    startActivityForResult(intent, 0);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }*/
-
+    }
 }

@@ -1267,6 +1267,7 @@ id image
 id imageView
 id info
 id invisible
+id ip
 id italic
 id item_touch_helper_previous_elevation
 id labeled
@@ -1336,6 +1337,7 @@ id pssid
 id pstat
 id publisherAdView
 id radio
+id release_btn
 id right
 id right_icon
 id right_side
@@ -1362,6 +1364,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id servstatus
 id shortcut
 id showCustom
 id showHome
@@ -1429,9 +1432,11 @@ id txt_add
 id txt_alti
 id txt_c
 id txt_dst
+id txt_ip
 id txt_lati
 id txt_longi
 id txt_prov
+id txt_service
 id txt_spd
 id txt_uniq
 id uniform

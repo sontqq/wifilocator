@@ -1,6 +1,7 @@
 package com.sontme.esp.getlocation;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,6 +18,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.TrafficStats;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
@@ -27,6 +29,8 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.telephony.TelephonyManager;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -37,12 +41,19 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
+import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
+import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
+import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
+import org.w3c.dom.Text;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +61,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
+import okhttp3.WebSocket;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -59,7 +71,6 @@ public class BackgroundService extends Service {
     public LocationRequest mPlayLocationRequest;
 
     IBinder mBinder = new LocalBinder();
-    MainActivity mainActivity;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -68,13 +79,8 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
-
-        Intent mIntent = new Intent(this, MainActivity.class);
-        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-
-        Toast.makeText(getBaseContext(),"Service started_1",Toast.LENGTH_SHORT).show();
-
-        startUpdatesGPS();
+        Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
+        //startUpdatesGPS();
 
     }
 
@@ -118,9 +124,7 @@ public class BackgroundService extends Service {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1, locationListener);
-        //locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER,);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
     public void startUpdatesPlay() {
@@ -161,12 +165,12 @@ public class BackgroundService extends Service {
                 Global.address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
                 Global.provider = LocRes.getProvider();
                 Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
-            }catch(Exception e){}
+            } catch (Exception e) {
+            }
             Log.d("GOOGLEAPIPLAY ", LocRes.toString());
         }
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
-                Global.count++;
                 Global.count++;
                 if (Global.count == 1) {
                     // START POSITION (Activity/Program start)
@@ -182,7 +186,7 @@ public class BackgroundService extends Service {
             aplist(getBaseContext(), Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         }
         try {
-            showNotif("WIFI Locator", "Count: " + String.valueOf(Global.count)
+            showNotif("WIFI Locator", "Count: " + String.valueOf(Global.count) + " (Service)"
                     + "\nLast Change: " + Global.time
                     + "\nDistance: " + Global.distance + " meters"
                     + "\nLongitude: " + Global.longitude
@@ -196,7 +200,7 @@ public class BackgroundService extends Service {
         }
     }
 
-    public static void saveRecordHttp(String path) {
+    public void saveRecordHttp(String path) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
@@ -217,16 +221,15 @@ public class BackgroundService extends Service {
 
     public void aplist(final Context context, double lati, double longi) {
         Map<String, Integer> map = new HashMap<String, Integer>();
-
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                Global.lastSSID = result.SSID + " " + ConvertDBM(result.level) + "%";
+                Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
                 Global.nearbyCount = scanResults.size();
-                map.put(result.SSID, ConvertDBM(result.level));
+                map.put(result.SSID, convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -242,18 +245,18 @@ public class BackgroundService extends Service {
                         Settings.Secure.ANDROID_ID);
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
-                String url = "http://sont.sytes.net/mcuinsert2.php";
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + ConvertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                String url = "https://sont.sytes.net/mcuinsert2.php";
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                Global.queue.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
+                Log.d("", "Memory usage: " + Global.getUsedMemorySize() + " mb");
             }
-
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
-        //return apList;
     }
 
-    public static int ConvertDBM(int dbm) {
+    public int convertDBM(int dbm) {
         int quality;
         if (dbm <= -100)
             quality = 0;
@@ -264,7 +267,7 @@ public class BackgroundService extends Service {
         return quality;
     }
 
-    public static double round(double value, int places) {
+    public double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         long factor = (long) Math.pow(10, places);
@@ -346,7 +349,7 @@ public class BackgroundService extends Service {
         return format.format(date);
     }
 
-    public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
+    public double getDistance(double lat1, double lat2, double lon1, double lon2) {
 
         final int R = 6371; // Radius of the earth
         double latDistance = Math.toRadians(lat2 - lat1);
@@ -386,48 +389,95 @@ public class BackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getBaseContext(),"Service started_2",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
+        startUpdatesGPS();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder builder = new Notification.Builder(this, "wifilocatorservice")
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("WiFi Locator Service started")
+                    .setAutoCancel(true);
+            Notification notification = builder.build();
+            startForeground(1, notification);
+        } else {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("WiFi Locator Service started")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+            Notification notification = builder.build();
+            startForeground(1, notification);
+        }
+
+        AsyncHttpServer server = new AsyncHttpServer();
+        List<WebSocket> _sockets = new ArrayList<WebSocket>();
+        server.get("/", new HttpServerRequestCallback() {
+            @Override
+            public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
+                String tosend = null;
+                String os = System.getProperty("os.version");
+                String sdk = android.os.Build.VERSION.SDK;
+                String device = android.os.Build.DEVICE;
+                String model = android.os.Build.MODEL;
+                String prod = android.os.Build.PRODUCT;
+                String serviceName = Context.TELEPHONY_SERVICE;
+                TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
+                String IMEI, IMSI;
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                IMEI = m_telephonyManager.getDeviceId();
+                IMSI = m_telephonyManager.getSubscriberId();
+                String osf = android.os.Build.VERSION.RELEASE;
+                long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
+                long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
+
+                ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
+                String stat = null;
+                for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
+                    long received = TrafficStats.getUidRxBytes(runningApp.uid);
+                    long sent = TrafficStats.getUidTxBytes(runningApp.uid);
+                    stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
+                    Log.d("NETSTAT", stat);
+                }
+
+                tosend = request.toString();
+                tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
+                tosend = tosend + "<br>ID: " + Build.ID;
+                tosend = tosend + "<br>User: " + Build.USER;
+                tosend = tosend + "<br>Host: " + Build.HOST;
+                tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
+                tosend = tosend + "<br>Board: " + Build.BOARD;
+                tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
+                tosend = tosend + "<br>" + stat;
+                response.send(tosend);
+                Toast.makeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
+            }
+        });
+        server.listen(8888);
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getBaseContext(),"Service stopped_1",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStart(Intent intent, int startid) {
-        Toast.makeText(getBaseContext(),"Service started_3",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Toast.makeText(getBaseContext(),"Service stopped_2",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
     }
 
     public class LocalBinder extends Binder {
         public BackgroundService getServerInstance() {
             return BackgroundService.this;
         }
-
     }
-
-
-    ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Toast.makeText(getApplicationContext(), "Service is disconnected (appexit?)", Toast.LENGTH_SHORT).show();
-            mainActivity = null;
-
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            Toast.makeText(getApplicationContext(), "Service is connected (appstart?)", Toast.LENGTH_SHORT).show();
-            MainActivity.LocalBinder mLocalBinder = (MainActivity.LocalBinder)service;
-            mainActivity = mLocalBinder.getServerInstance();
-        }
-    };
-
 
 }

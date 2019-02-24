@@ -72,6 +72,8 @@ dependencies {
 
     implementation 'com.github.johnpersano:supertoasts:2.0'
 
+    implementation 'com.koushikdutta.async:androidasync:2.+'
+
 
 
 }

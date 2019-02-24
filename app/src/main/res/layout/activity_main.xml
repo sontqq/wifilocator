@@ -6,8 +6,9 @@
     android:id="@+id/drawler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dfe6e9"
+    android:scrollHorizontally="false"
     android:orientation="vertical"
+    android:background="#dfe6e9"
     tools:openDrawer="start">
 
     <ScrollView
@@ -69,10 +70,28 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+                <Button
+                    android:id="@+id/release_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Release Queue" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/statfelirat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/web_shape"
+
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -165,6 +184,24 @@
                         android:text="Unique APs"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/txt_service"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="Service"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="IP"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -236,7 +273,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:inputType="numberDecimal"
+                        android:maxLines="3"
+                        android:singleLine="false"
+                        android:autoSizeTextType="uniform"
+                        android:inputType="textMultiLine"
+                        android:scrollHorizontally="false"
                         android:text="Not available" />
 
 
@@ -247,6 +288,22 @@
                         android:layout_weight="1"
                         android:inputType="numberDecimal"
                         android:text="0" />
+
+                    <TextView
+                        android:id="@+id/servstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="Not available" />
+
+                    <TextView
+                        android:id="@+id/ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="Not available" />
 
                 </LinearLayout>
 
@@ -267,15 +324,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="0dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="0dp">
 
             </LinearLayout>
 
