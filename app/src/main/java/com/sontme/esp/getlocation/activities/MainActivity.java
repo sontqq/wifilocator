@@ -2,18 +2,26 @@ package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -52,7 +60,11 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.crashlytics.android.Crashlytics;
+import com.ederdoski.simpleble.interfaces.BleCallback;
+import com.ederdoski.simpleble.models.BluetoothLE;
+import com.ederdoski.simpleble.utils.BluetoothLEHelper;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.google.android.gms.ads.AdListener;
@@ -64,6 +76,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
+
+import com.koushikdutta.async.http.AsyncHttpResponse;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
@@ -76,12 +90,14 @@ import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
 
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
@@ -97,6 +113,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
+import lecho.lib.hellocharts.formatter.SimpleLineChartValueFormatter;
+import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.ChartData;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.Chart;
+import lecho.lib.hellocharts.view.LineChartView;
+import lecho.lib.hellocharts.view.PieChartView;
 import okhttp3.WebSocket;
 
 import android.support.design.widget.NavigationView;
@@ -138,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
     public Location mlocation;
     public LocationRequest mPlayLocationRequest;
     public Handler handler = new Handler();
-    public boolean mBounded;
     public BackgroundService backgroundService;
 
     public Runnable runnable = new Runnable() {
@@ -149,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 lati.setText(Global.latitude);
                 alti.setText(Global.altitude);
                 spd.setText(Global.speed + " km/h");
-                dst.setText(String.valueOf(round(Double.valueOf(Global.distance), 2) + " meters"));
+                dst.setText(String.valueOf(Global.round(Double.valueOf(Global.distance), 2) + " meters"));
                 add.setText(Global.address);
                 c.setText(Global.count);
                 provider.setText(Global.provider);
@@ -190,13 +217,13 @@ public class MainActivity extends AppCompatActivity {
                 Global.accuracy = String.valueOf(LocRes.getAccuracy());
                 Global.latitude = String.valueOf(LocRes.getLatitude());
                 Global.longitude = String.valueOf(LocRes.getLongitude());
-                Global.speed = String.valueOf(round(mpsTokmh(LocRes.getSpeed()), 2));
+                Global.speed = String.valueOf(Global.round(mpsTokmh(LocRes.getSpeed()), 2));
                 Global.altitude = String.valueOf(LocRes.getAltitude());
                 Global.bearing = String.valueOf(LocRes.getBearing());
-                Global.time = String.valueOf(convertTime(LocRes.getTime()));
-                Global.address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                Global.time = String.valueOf(Global.convertTime(getBaseContext(), LocRes.getTime()));
+                Global.address = Global.getCompleteAddressString(getBaseContext(), LocRes.getLatitude(), LocRes.getLongitude());
                 Global.provider = LocRes.getProvider();
-                Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
+                Global.distance = String.valueOf(Global.getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
                 Global.ipaddress = ipv4;
             } catch (Exception e) {
             }
@@ -227,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     + "\nLatitude: " + Global.latitude
                     + "\nAddress: " + Global.address
                     + "\nProvider: " + Global.provider
-                    + "\nSpeed: " + String.valueOf(round(mpsTokmh(Double.valueOf(Global.speed)), 2)) + " km/h"
+                    + "\nSpeed: " + String.valueOf(Global.round(mpsTokmh(Double.valueOf(Global.speed)), 2)) + " km/h"
                     + "\nAccuracy: " + Global.accuracy + " meters");
         } catch (Exception e) {
             Log.d("NOTIF EXCEPTION: ", e.toString());
@@ -237,6 +264,9 @@ public class MainActivity extends AppCompatActivity {
     public DrawerLayout dl;
     public ActionBarDrawerToggle t;
     public NavigationView nv;
+
+    String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d"};
+    Map<String, String> BLEdevices = new HashMap<String, String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -248,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         logUser();
         adminPermission();
 
-        String ipv4 = getLocalIpAddress();
+        String ipv4 = Global.getLocalIpAddress();
         Global.ipaddress = ipv4;
         TextView ip = findViewById(R.id.ip);
         ip.setText(Global.ipaddress);
@@ -332,6 +362,8 @@ public class MainActivity extends AppCompatActivity {
         stopServiceBtn = findViewById(R.id.stopService);
         servicestatus = findViewById(R.id.servstatus);
         release_btn = findViewById(R.id.release_btn);
+        Button blebtn1 = findViewById(R.id.blebtn1);
+        Button blebtn2 = findViewById(R.id.blebtn2);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -347,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
         webview.getSettings().setUseWideViewPort(true);
         webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
-        //webview.loadUrl("https://sont.sytes.net/osm.php");
+        webview.loadUrl("https://sont.sytes.net/osm.php");
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -408,6 +440,58 @@ public class MainActivity extends AppCompatActivity {
                 releaseQueue();
             }
         });
+        blebtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BluetoothAdapter bluetoothAdapter;
+                final BluetoothManager bluetoothManager =
+                        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                bluetoothAdapter = bluetoothManager.getAdapter();
+                if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, 5);
+                }
+                bluetoothAdapter.startDiscovery();
+                bluetoothAdapter.startLeScan(leScanCallback);
+
+
+            }
+        });
+        blebtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                BluetoothAdapter bluetoothAdapter;
+                final BluetoothManager bluetoothManager =
+                        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                bluetoothAdapter = bluetoothManager.getAdapter();
+
+                bluetoothAdapter.stopLeScan(leScanCallback);
+                bluetoothAdapter.cancelDiscovery();
+                */
+                String bl_list = null;
+
+                for (String key : BLEdevices.keySet()) {
+                    System.out.println("key : " + key);
+                    System.out.println("value : " + BLEdevices.get(key));
+                    if (bl_list == null) {
+                        bl_list = "Name: " + key + " Address: " + BLEdevices.get(key) + "\n";
+                    } else {
+                        bl_list = bl_list + "Name: " + key + " Address: " + BLEdevices.get(key) + "\n";
+                    }
+                }
+
+                new AlertDialog.Builder(context)
+                        .setTitle("BLE Devices")
+                        .setMessage(bl_list)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
         //endregion
 
         View hView = nv.getHeaderView(0);
@@ -431,11 +515,14 @@ public class MainActivity extends AppCompatActivity {
             startService(fIntent);
             Toast.makeText(getBaseContext(), "Started Service Autimatically", Toast.LENGTH_SHORT).show();
         }
+        getChartHttp("https://sont.sytes.net/wifis_chart.php");
+        getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        /*
         SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
         superToast.setText("Exiting");
         superToast.setAnimations(Style.ANIMATIONS_SCALE);
@@ -446,6 +533,7 @@ public class MainActivity extends AppCompatActivity {
             unbindService(mConnection);
             mBounded = false;
         }
+        */
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
@@ -534,24 +622,20 @@ public class MainActivity extends AppCompatActivity {
                 Looper.myLooper());
     }
 
-    public String getLocalIpAddress() {
-        try {
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for (NetworkInterface intf : interfaces) {
-                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
-                for (InetAddress addr : addrs) {
-                    if (!addr.isLoopbackAddress()) {
-                        String sAddr = addr.getHostAddress();
-                        boolean isIPv4 = sAddr.indexOf(':') < 0;
-                        if (isIPv4)
-                            return sAddr;
-                    }
+    private BluetoothAdapter.LeScanCallback leScanCallback =
+            new BluetoothAdapter.LeScanCallback() {
+                @Override
+                public void onLeScan(final BluetoothDevice device, int rssi,
+                                     byte[] scanRecord) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("BLE_DEVICE_FOUND_", device.getName() + " _ " + device.getAddress() + " _ " + device.getBondState() + " _ " + device.getUuids());
+                            BLEdevices.put(device.getName(), device.getAddress());
+                        }
+                    });
                 }
-            }
-        } catch (Exception ex) {
-        } // for now eat exceptions
-        return "";
-    }
+            };
 
     @Override
     public void onResume() {
@@ -576,34 +660,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static int convertDBM(int dbm) {
-        int quality;
-        if (dbm <= -100)
-            quality = 0;
-        else if (dbm >= -50)
-            quality = 100;
-        else
-            quality = 2 * (dbm + 100);
-        return quality;
-    }
-
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
-    }
-
     public double mpsTokmh(double mps) {
         return mps * 3.6;
-    }
-
-    public String convertTime(long time) {
-        Date date = new Date(time);
-        Format format = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");
-        return format.format(date);
     }
 
     public void showNotif(String Title, String Text) {
@@ -670,17 +728,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aplist(final Context context, double lati, double longi) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        //Map<String, Integer> map = new HashMap<String, Integer>();
 
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
+                Global.lastSSID = result.SSID + " " + Global.convertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
                 Global.nearbyCount = scanResults.size();
-                map.put(result.SSID, convertDBM(result.level));
+                //map.put(result.SSID, Global.convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -697,7 +755,7 @@ public class MainActivity extends AppCompatActivity {
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
                 String url = "https://sont.sytes.net/mcuinsert2.php";
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
                 if (!Global.queue.contains(url + reqBody)) {
                     Global.queue.add(url + reqBody);
                 }
@@ -707,7 +765,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
-        //return apList;
     }
 
     public void logUser() {
@@ -716,27 +773,10 @@ public class MainActivity extends AppCompatActivity {
         Crashlytics.setUserName("wifilocatoruser");
     }
 
-    public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
-
-        final int R = 6371; // Radius of the earth
-        double latDistance = Math.toRadians(lat2 - lat1);
-        double lonDistance = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
-        double el1 = 0;
-        double el2 = 0;
-        double height = el1 - el2;
-        distance = Math.pow(distance, 2) + Math.pow(height, 2);
-        return Math.sqrt(distance);
-    }
-
     public void init() {
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
-        if (checkPermissionLocation() == false) {
+        if (Global.checkPermissionLocation(getApplicationContext()) == false) {
             SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
             superToast.setText("Missing LOCATION PERMISSION");
             superToast.setAnimations(Style.ANIMATIONS_SCALE);
@@ -776,6 +816,105 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void getChartHttp(String path) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(path, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                LineChartView chart = findViewById(R.id.chart);
+                List<PointValue> values = new ArrayList<PointValue>();
+
+                String str = null;
+                try {
+                    str = new String(responseBody, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String lines[] = str.trim().split("\\r?\\n");
+                int i = 0;
+                try {
+                    for (String line : lines) {
+                        String[] words = line.trim().split("\\s+");
+                        values.add(new PointValue(i, Integer.valueOf(words[1])).setLabel(String.valueOf(i)));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Collections.shuffle(Arrays.asList(myColors));
+                Line line = new Line(values).setColor(Color.parseColor(myColors[0]));
+                line.setStrokeWidth(5);
+                List<Line> liness = new ArrayList<Line>();
+                liness.add(line);
+                LineChartData data = new LineChartData();
+                data.setLines(liness);
+                chart.setOnValueTouchListener(new ValueTouchListener());
+                chart.setLineChartData(data);
+            }
+
+            @Override
+            public boolean getUseSynchronousMode() {
+                return false;
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                getChartHttp("https://sont.sytes.net/wifis_chart.php");
+            }
+        });
+    }
+
+    public void getChartHttp2(String path) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(path, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                PieChartView pieChartView = findViewById(R.id.chart2);
+                List<SliceValue> values = new ArrayList<SliceValue>();
+
+                String str = null;
+                try {
+                    str = new String(responseBody, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String lines[] = str.trim().split("xxx");
+                try {
+                    int i = 0;
+                    Collections.shuffle(Arrays.asList(myColors));
+                    for (String line : lines) {
+                        String[] words = line.trim().split("\\s+");
+                        values.add(new SliceValue(Float.valueOf(words[1])).setLabel(words[0]).setColor(Color.parseColor(myColors[i])));
+                        i++;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                PieChartData pieChartData = new PieChartData(values);
+                pieChartView.setPieChartData(pieChartData);
+                pieChartData.setCenterText1("Recorded data per Device");
+                pieChartData.setHasCenterCircle(true);
+                pieChartData.setHasLabels(true);
+                pieChartData.setHasLabelsOnlyForSelected(true);
+                pieChartData.setHasLabelsOutside(true);
+                pieChartView.setValueSelectionEnabled(true);
+
+                pieChartData.setValues(values);
+
+            }
+
+            @Override
+            public boolean getUseSynchronousMode() {
+                return false;
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+            }
+        });
+    }
+
     public void releaseQueue() {
         Iterator it = Global.queue.iterator();
         int i = 0;
@@ -793,37 +932,8 @@ public class MainActivity extends AppCompatActivity {
         superToast.show();
     }
 
-    public boolean checkPermissionLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void requestPermissionLocation() {
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-    }
-
-    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
-            if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
-                StringBuilder strReturnedAddress = new StringBuilder("");
-
-                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("");
-                }
-                strAdd = strReturnedAddress.toString();
-            } else {
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return strAdd;
     }
 
     public void turnGPSOn() {
@@ -836,18 +946,6 @@ public class MainActivity extends AppCompatActivity {
             poke.setData(Uri.parse("3"));
             sendBroadcast(poke);
         }
-    }
-
-    public String getStrongest(Map<String, Integer> apsx) {
-        Set s = apsx.entrySet();
-        Iterator it = s.iterator();
-        for (int i = 0; i <= 1; i++) {
-            Map.Entry entry = (Map.Entry) it.next();
-            String key = (String) entry.getKey();
-            String value = (String) entry.getValue();
-            Log.d("entries: " + i + ": ", key + " => " + value);
-        }
-        return null;
     }
 
     public void adminPermission() {
@@ -864,6 +962,17 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private class ValueTouchListener implements LineChartOnValueSelectListener {
+        @Override
+        public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
+            Toast.makeText(getApplicationContext(), String.valueOf(value.getLabel()), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onValueDeselected() {
         }
     }
 }

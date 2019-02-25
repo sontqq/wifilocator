@@ -74,6 +74,12 @@ dependencies {
 
     implementation 'com.koushikdutta.async:androidasync:2.+'
 
+    implementation "com.ederdoski.ble:simpleble:1.0"
 
+    //implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+
+    //implementation 'com.jjoe64:graphview:4.2.2'
+
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
 
 }

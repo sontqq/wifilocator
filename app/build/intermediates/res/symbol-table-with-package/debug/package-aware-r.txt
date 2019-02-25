@@ -1187,6 +1187,8 @@ id async
 id auto
 id barrier
 id beginning
+id blebtn1
+id blebtn2
 id blocking
 id border
 id bottom
@@ -1206,6 +1208,8 @@ id center
 id center_horizontal
 id center_vertical
 id chains
+id chart
+id chart2
 id checkbox
 id chronometer
 id clip_horizontal

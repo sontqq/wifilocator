@@ -1,14 +1,37 @@
 package com.sontme.esp.getlocation;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.sontme.esp.getlocation.activities.MainActivity;
+
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Queue;
 
 public class Global extends Application{
@@ -36,7 +59,83 @@ public class Global extends Application{
     public static List<String> uniqueAPS = new ArrayList<>();
     public static Queue<String> queue = new LinkedList<String>();
 
+    public static DevicePolicyManager mDPM;
+    public static ComponentName mAdminName;
 
+    public static void superToast(Context c, String text) {
+        SuperActivityToast superToast = new SuperActivityToast(c);
+        superToast.setText(text);
+        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+        superToast.setDuration(Style.DURATION_LONG);
+        superToast.setTouchToDismiss(true);
+        superToast.show();
+    }
+
+    public static String getCompleteAddressString(Context c, double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(c, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("");
+                }
+                strAdd = strReturnedAddress.toString();
+            } else {
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strAdd;
+    }
+
+    public static String convertTime(Context c, long time) {
+        Date date = new Date(time);
+        Format format = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");
+        return format.format(date);
+    }
+
+    public static String getLocalIpAddress() {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress()) {
+                        String sAddr = addr.getHostAddress();
+                        boolean isIPv4 = sAddr.indexOf(':') < 0;
+                        if (isIPv4)
+                            return sAddr;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+        } // for now eat exceptions
+        return "";
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+    public static int convertDBM(int dbm) {
+        int quality;
+        if (dbm <= -100)
+            quality = 0;
+        else if (dbm >= -50)
+            quality = 100;
+        else
+            quality = 2 * (dbm + 100);
+        return quality;
+    }
     public static long getUsedMemorySize() {
 
         long freeSize = 0L;
@@ -54,6 +153,30 @@ public class Global extends Application{
 
     }
 
+    public static double getDistance(double lat1, double lat2, double lon1, double lon2) {
+
+        final int R = 6371; // Radius of the earth
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+        double el1 = 0;
+        double el2 = 0;
+        double height = el1 - el2;
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+        return Math.sqrt(distance);
+    }
+
+    public static boolean checkPermissionLocation(Context c) {
+        if (ContextCompat.checkSelfPermission(c, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public void setCount(){
         this.count++;
