@@ -181,38 +181,25 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        customAdapter.clear();
+
+        final ListView yourListView = (ListView) findViewById(R.id.mainListView);
+        customAdapter = new ListAdapter(this, R.layout.row, aplist);
+        yourListView.setAdapter(customAdapter);
+        customAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                yourListView.setSelection(customAdapter.getCount() - 1);
+            }
+        });
+        yourListView.setSelection(customAdapter.getCount() - 1);
+        //customAdapter.clear();
         getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped.php");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-    }
-
-
-    public String dateDiff(Date startDate) {
-        Date currentTime = Calendar.getInstance().getTime();
-        long different = currentTime.getTime() - startDate.getTime();
-        long secondsInMilli = 1000;
-        long minutesInMilli = secondsInMilli * 60;
-        long hoursInMilli = minutesInMilli * 60;
-        long daysInMilli = hoursInMilli * 24;
-        long elapsedDays = different / daysInMilli;
-        different = different % daysInMilli;
-        long elapsedHours = different / hoursInMilli;
-        different = different % hoursInMilli;
-        long elapsedMinutes = different / minutesInMilli;
-        different = different % minutesInMilli;
-        long elapsedSeconds = different / secondsInMilli;
-        String s = null;
-        if(elapsedDays == 0) {
-            s = (elapsedHours + "h " + elapsedMinutes + "m ");
-        }
-        else{
-            s = (elapsedDays + "d " + elapsedHours + "h " + elapsedMinutes + "m ");
-        }
-        return s;
     }
 
 }

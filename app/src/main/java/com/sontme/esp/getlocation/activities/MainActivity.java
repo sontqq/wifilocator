@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Criteria;
@@ -265,6 +266,8 @@ public class MainActivity extends AppCompatActivity {
     public ActionBarDrawerToggle t;
     public NavigationView nv;
 
+    //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
+    String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
     String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d"};
     Map<String, String> BLEdevices = new HashMap<String, String>();
 
@@ -460,24 +463,15 @@ public class MainActivity extends AppCompatActivity {
         blebtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                BluetoothAdapter bluetoothAdapter;
-                final BluetoothManager bluetoothManager =
-                        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-                bluetoothAdapter = bluetoothManager.getAdapter();
-
-                bluetoothAdapter.stopLeScan(leScanCallback);
-                bluetoothAdapter.cancelDiscovery();
-                */
                 String bl_list = null;
 
                 for (String key : BLEdevices.keySet()) {
                     System.out.println("key : " + key);
                     System.out.println("value : " + BLEdevices.get(key));
                     if (bl_list == null) {
-                        bl_list = "Name: " + key + " Address: " + BLEdevices.get(key) + "\n";
+                        bl_list = "Name: " + key + " Address: " + BLEdevices.get(key) + "\n\n";
                     } else {
-                        bl_list = bl_list + "Name: " + key + " Address: " + BLEdevices.get(key) + "\n";
+                        bl_list = bl_list + "Name: " + key + " Address: " + BLEdevices.get(key) + "\n\n";
                     }
                 }
 
@@ -486,6 +480,21 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage(bl_list)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setNegativeButton("Stop BLE Listening", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                BluetoothAdapter bluetoothAdapter;
+                                final BluetoothManager bluetoothManager =
+                                        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                                bluetoothAdapter = bluetoothManager.getAdapter();
+
+                                bluetoothAdapter.stopLeScan(leScanCallback);
+                                bluetoothAdapter.cancelDiscovery();
+                                if (bluetoothAdapter.isEnabled()) {
+                                    bluetoothAdapter.disable();
+                                }
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
@@ -631,7 +640,13 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Log.d("BLE_DEVICE_FOUND_", device.getName() + " _ " + device.getAddress() + " _ " + device.getBondState() + " _ " + device.getUuids());
-                            BLEdevices.put(device.getName(), device.getAddress());
+                            BLEdevices.put(device.getName(), device.getAddress() + " UUID: " + device.getUuids());
+                            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+                            superToast.setText("BLE Device found: Name: " + device.getName() + " Address: " + device.getAddress() + " UUID: " + device.getUuids());
+                            superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                            superToast.setDuration(Style.DURATION_VERY_LONG);
+                            superToast.setTouchToDismiss(true);
+                            superToast.show();
                         }
                     });
                 }
@@ -754,7 +769,7 @@ public class MainActivity extends AppCompatActivity {
                         Settings.Secure.ANDROID_ID);
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
-                String url = "https://sont.sytes.net/mcuinsert2.php";
+                String url = INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
                 if (!Global.queue.contains(url + reqBody)) {
                     Global.queue.add(url + reqBody);
