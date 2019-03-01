@@ -245,7 +245,7 @@ public class BackgroundService extends Service {
                         Settings.Secure.ANDROID_ID);
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
-                String url = "https://sont.sytes.net/mcuinsert2.php";
+                String url = MainActivity.INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
                 Global.queue.add(url + reqBody);
                 saveRecordHttp(url + reqBody);

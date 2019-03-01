@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
     public NavigationView nv;
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
-    String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
+    public static String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
     String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d"};
     Map<String, String> BLEdevices = new HashMap<String, String>();
 
