@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="todo: proper queue system to release, self maintaining&#10;&#10;+chart colors added">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="todo: proper queue system to release, self maintaining&#10;&#10;+uncaught exception handler (autorestart app on crash)">
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -34,6 +34,7 @@
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterDir="false" />
@@ -45,6 +46,14 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Global.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$8.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" afterDir="false" />
@@ -57,8 +66,8 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,17 +114,17 @@
         <counts>
           <entry key="dummy" value="8" />
           <entry key="gradle" value="358" />
-          <entry key="java" value="38837" />
-          <entry key="txt" value="1877" />
-          <entry key="xml" value="1876" />
+          <entry key="java" value="38926" />
+          <entry key="txt" value="1933" />
+          <entry key="xml" value="1887" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="358" />
-          <entry key="JAVA" value="38837" />
-          <entry key="PLAIN_TEXT" value="1885" />
-          <entry key="XML" value="1876" />
+          <entry key="JAVA" value="38926" />
+          <entry key="PLAIN_TEXT" value="1941" />
+          <entry key="XML" value="1887" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -124,7 +133,7 @@
           <entry key="gradle" value="19" />
           <entry key="java" value="88" />
           <entry key="png" value="1" />
-          <entry key="xml" value="77" />
+          <entry key="xml" value="80" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -133,23 +142,25 @@
           <entry key="Groovy" value="19" />
           <entry key="Image" value="1" />
           <entry key="JAVA" value="88" />
-          <entry key="XML" value="77" />
+          <entry key="XML" value="80" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="286" column="8" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
+            <state relative-caret-position="113">
+              <caret line="291" column="49" selection-start-line="291" selection-start-column="49" selection-end-line="291" selection-end-column="49" />
               <folding>
                 <element signature="e#5227#5254#0" />
                 <element signature="class#6228:7891" />
                 <element signature="method#run#0;class#6228:7891" />
                 <element signature="e#7898#10772#0" />
+                <element signature="class#11820:12041" />
+                <element signature="method#uncaughtException#0;class#11820:12041" />
                 <element signature="e#11498#11513#0" />
                 <element signature="class#11854:13083" />
                 <element signature="method#onNavigationItemSelected#0;class#11854:13083" />
@@ -157,6 +168,7 @@
                 <element signature="method#onAdLoaded#0;class#13318:13993" />
                 <element signature="method#onAdFailedToLoad#0;class#13318:13993" />
                 <element signature="e#14024#14044#0" />
+                <element signature="e#15928#15957#0" />
                 <element signature="class#15996:16254" />
                 <element signature="e#16033#16074#0" />
                 <element signature="method#onClick#0;class#15996:16254" />
@@ -168,8 +180,14 @@
                 <element signature="class#17771:18111" />
                 <element signature="method#onClick#0;class#17771:18111" />
                 <element signature="class#18157:18301" />
+                <element signature="class#18343:19091" />
+                <element signature="method#onClick#0;class#18343:19091" />
+                <element signature="class#19133:20690" />
+                <element signature="method#onClick#0;class#19133:20690" />
                 <element signature="class#20387:20563" />
                 <element signature="method#onClick#0;class#20387:20563" />
+                <element signature="class#20633:20880" />
+                <element signature="method#onClick#0;class#20218:20905" />
                 <element signature="e#21910#22412#0" />
                 <element signature="class#22454:23095" />
                 <element signature="method#onServiceDisconnected#0;class#22454:23095" />
@@ -187,6 +205,7 @@
                 <element signature="e#27249#27630#0" />
                 <element signature="e#27710#27901#0" />
                 <element signature="e#27981#31334#0" />
+                <element signature="e#31340#33516#0" />
                 <element signature="e#33522#33705#0" />
                 <element signature="e#33711#34822#0" />
                 <element signature="e#34828#35460#0" />
@@ -209,6 +228,29 @@
                 <element signature="e#41636#41856#0" />
                 <element signature="e#41866#41927#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -240,15 +282,6 @@
                 <element signature="method#html2text#0;class#ListActivity#0" />
                 <element signature="method#onOptionsItemSelected#0;class#ListActivity#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -292,37 +325,10 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="2380">
-              <caret line="140" column="52" selection-start-line="140" selection-start-column="52" selection-end-line="140" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3417">
-              <caret line="401" column="34" selection-start-line="401" selection-start-column="34" selection-end-line="401" selection-end-column="34" />
-              <folding>
-                <element signature="method#resize#0;class#NearbyActivity#0" />
-                <element signature="method#drawCircle#0;class#NearbyActivity#0" />
-                <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
-                <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-                <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-                <element signature="method#html2text#0;class#NearbyActivity#0" />
-                <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-                <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
-                <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-                <element signature="class#PopUpWin#0" />
-                <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-                <element signature="method#onOpen#0;class#PopUpWin#0" />
-                <element signature="method#onClose#0;class#PopUpWin#0" />
-                <element signature="method#CustomCluster#0;class#CustomCluster#0" />
-                <element signature="method#round#0;class#CustomCluster#0" />
-                <element signature="method#getDistance#0;class#CustomCluster#0" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -378,7 +384,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onclick</find>
       <find>Global.queue</find>
       <find>webv</find>
       <find>ConvertDBM</find>
@@ -406,8 +411,9 @@
       <find>background</find>
       <find>UID</find>
       <find>sont</find>
-      <find>http</find>
       <find>htt</find>
+      <find>http</find>
+      <find>statusbar</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -2720,7 +2726,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/popup_shape.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradient.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
@@ -2728,7 +2733,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/anim/rotatezoom.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/popup.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/web_shape.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" />
@@ -2740,7 +2744,9 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
       </list>
     </option>
   </component>
@@ -2787,6 +2793,23 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
@@ -3054,7 +3077,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551433912551</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="todo: proper queue system to release, self maintaining&#10;&#10;+uncaught exception handler (autorestart app on crash)">
+      <created>1551436897705</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1551436897705</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3070,7 +3100,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -3080,12 +3110,12 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49959514" visible="true" weight="0.2508897" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959514" weight="0.2508897" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291815" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.1975089" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" visible="true" weight="0.1975089" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50040483" side_tool="true" weight="0.3469751" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.3291815" />
@@ -3126,17 +3156,11 @@
     <MESSAGE value="todo: proper queue system to release&#10;&#10;self updating/maintenance mode started to be implemented" />
     <MESSAGE value="todo: proper queue system to release, self maintaining" />
     <MESSAGE value="todo: proper queue system to release, self maintaining&#10;&#10;+chart colors added" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo: proper queue system to release, self maintaining&#10;&#10;+chart colors added" />
+    <MESSAGE value="todo: proper queue system to release, self maintaining&#10;&#10;+uncaught exception handler (autorestart app on crash)" />
+    <option name="LAST_COMMIT_MESSAGE" value="todo: proper queue system to release, self maintaining&#10;&#10;+uncaught exception handler (autorestart app on crash)" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/c71307176556b20239e2d8908d91e47b/jars/classes.jar!/android/support/v4/app/FragmentActivity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4199">
-          <caret line="291" column="19" selection-start-line="291" selection-start-column="19" selection-end-line="291" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -3245,13 +3269,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -3390,13 +3407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.lecho/hellocharts-library/1.5.8/51798d4793c333553a68292ee3a47b4758c2ec47/hellocharts-library-1.5.8-sources.jar!/lecho/lib/hellocharts/listener/LineChartOnValueSelectListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -3514,14 +3524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
           <caret line="30" column="35" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="140" column="52" selection-start-line="140" selection-start-column="52" selection-end-line="140" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -3694,15 +3696,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="286" column="8" selection-start-line="286" selection-start-column="8" selection-end-line="286" selection-end-column="8" />
+        <state relative-caret-position="113">
+          <caret line="291" column="49" selection-start-line="291" selection-start-column="49" selection-end-line="291" selection-end-column="49" />
           <folding>
             <element signature="e#5227#5254#0" />
             <element signature="class#6228:7891" />
             <element signature="method#run#0;class#6228:7891" />
             <element signature="e#7898#10772#0" />
+            <element signature="class#11820:12041" />
+            <element signature="method#uncaughtException#0;class#11820:12041" />
             <element signature="e#11498#11513#0" />
             <element signature="class#11854:13083" />
             <element signature="method#onNavigationItemSelected#0;class#11854:13083" />
@@ -3710,6 +3717,7 @@
             <element signature="method#onAdLoaded#0;class#13318:13993" />
             <element signature="method#onAdFailedToLoad#0;class#13318:13993" />
             <element signature="e#14024#14044#0" />
+            <element signature="e#15928#15957#0" />
             <element signature="class#15996:16254" />
             <element signature="e#16033#16074#0" />
             <element signature="method#onClick#0;class#15996:16254" />
@@ -3721,8 +3729,14 @@
             <element signature="class#17771:18111" />
             <element signature="method#onClick#0;class#17771:18111" />
             <element signature="class#18157:18301" />
+            <element signature="class#18343:19091" />
+            <element signature="method#onClick#0;class#18343:19091" />
+            <element signature="class#19133:20690" />
+            <element signature="method#onClick#0;class#19133:20690" />
             <element signature="class#20387:20563" />
             <element signature="method#onClick#0;class#20387:20563" />
+            <element signature="class#20633:20880" />
+            <element signature="method#onClick#0;class#20218:20905" />
             <element signature="e#21910#22412#0" />
             <element signature="class#22454:23095" />
             <element signature="method#onServiceDisconnected#0;class#22454:23095" />
@@ -3740,6 +3754,7 @@
             <element signature="e#27249#27630#0" />
             <element signature="e#27710#27901#0" />
             <element signature="e#27981#31334#0" />
+            <element signature="e#31340#33516#0" />
             <element signature="e#33522#33705#0" />
             <element signature="e#33711#34822#0" />
             <element signature="e#34828#35460#0" />
@@ -3762,6 +3777,28 @@
             <element signature="e#41636#41856#0" />
             <element signature="e#41866#41927#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
         </state>
       </provider>
     </entry>

@@ -52,6 +52,8 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -282,6 +284,12 @@ public class MainActivity extends AppCompatActivity {
         logUser();
         adminPermission();
 
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        Collections.shuffle(Arrays.asList(myColors));
+        window.setStatusBarColor(Color.parseColor(myColors[0]));
+        window.setNavigationBarColor(Color.parseColor(myColors[1]));
+        setTitleColor(Color.parseColor(myColors[2]));
 
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override

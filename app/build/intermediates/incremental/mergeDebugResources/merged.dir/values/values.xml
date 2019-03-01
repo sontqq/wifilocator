@@ -2126,7 +2126,7 @@
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">e1c2c3aa-0dd6-429f-8f41-e99131e3f979</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">c4ff91f0-45ba-4f16-80fa-9dc0dca91f88</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>
@@ -2238,6 +2238,8 @@
         <item name="colorPrimaryDark">#00cec9</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:navigationBarColor">@color/nicered1</item>
+
+
 
 
     </style>
