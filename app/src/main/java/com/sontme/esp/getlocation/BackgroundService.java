@@ -456,6 +456,7 @@ public class BackgroundService extends Service {
             }
         });
         server.listen(8888);
+
         return START_STICKY;
     }
 
