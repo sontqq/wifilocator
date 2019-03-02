@@ -116,7 +116,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Last week records"
+                    android:text="Today Records 0-24h"
                     android:textAlignment="center" />
 
                 <lecho.lib.hellocharts.view.LineChartView
@@ -138,7 +138,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Records per Device"
+                    android:text="Today Records Per Device"
                     android:textAlignment="center" />
 
 

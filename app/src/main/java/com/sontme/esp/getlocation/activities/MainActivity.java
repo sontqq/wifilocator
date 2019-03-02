@@ -535,7 +535,7 @@ public class MainActivity extends AppCompatActivity {
         android_id = Settings.Secure.getString(context.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         if (android_id == "4d32dfcf42ebf336") {
-            android_id = "Sont";
+            android_id = "Anya";
         }
         Log.d("ANDROIDID:", android_id);
         if (android_id.equals("73bedfbd149e01de")) {
@@ -762,8 +762,6 @@ public class MainActivity extends AppCompatActivity {
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + Global.convertDBM(result.level) + "%";
-                Global.lastNearby = String.valueOf(scanResults.size());
-                Global.nearbyCount = scanResults.size();
                 //map.put(result.SSID, Global.convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
@@ -787,6 +785,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 saveRecordHttp(url + reqBody);
             }
+            Global.lastNearby = String.valueOf(scanResults.size());
+            Global.nearbyCount = scanResults.size();
 
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
