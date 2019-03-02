@@ -539,9 +539,12 @@ public class MainActivity extends AppCompatActivity {
 
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-
-        String android_id = Settings.Secure.getString(context.getContentResolver(),
+        String android_id;
+        android_id = Settings.Secure.getString(context.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
+        if (android_id == "4d32dfcf42ebf336") {
+            android_id = "Sont";
+        }
         Log.d("ANDROIDID:", android_id);
         if (android_id.equals("73bedfbd149e01de")) {
             Log.d("PHONE:", "SAJAT");

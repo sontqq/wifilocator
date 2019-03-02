@@ -62,15 +62,6 @@ public class Global extends Application{
     public static DevicePolicyManager mDPM;
     public static ComponentName mAdminName;
 
-    public static void superToast(Context c, String text) {
-        SuperActivityToast superToast = new SuperActivityToast(c);
-        superToast.setText(text);
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_LONG);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
-    }
-
     public static String getCompleteAddressString(Context c, double LATITUDE, double LONGITUDE) {
         String strAdd = "";
         Geocoder geocoder = new Geocoder(c, Locale.getDefault());
