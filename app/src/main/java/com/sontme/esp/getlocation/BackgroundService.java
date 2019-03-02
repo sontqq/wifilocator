@@ -69,7 +69,7 @@ public class BackgroundService extends Service {
 
     public Location mlocation;
     public LocationRequest mPlayLocationRequest;
-
+    List<String> urlList = new ArrayList<String>();
     IBinder mBinder = new LocalBinder();
 
     @Override
@@ -221,8 +221,6 @@ public class BackgroundService extends Service {
     }
 
     public void aplist(final Context context, double lati, double longi) {
-        HashMap<String, Integer> bssid_rssi;
-        bssid_rssi = new HashMap<String, Integer>();
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
@@ -231,7 +229,7 @@ public class BackgroundService extends Service {
                 Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
                 Global.nearbyCount = scanResults.size();
-                bssid_rssi.put(result.BSSID, convertDBM(result.level));
+                //bssid_rssi.put(result.BSSID, convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -251,11 +249,8 @@ public class BackgroundService extends Service {
                 }
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
-                /*if((bssid_rssi.get(result.BSSID) == null) || bssid_rssi.get(result.BSSID) < convertDBM(result.level)){
-                    bssid_rssi.put(result.BSSID, convertDBM(result.level));
-                }*/
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                Global.queue.add(url + reqBody);
+                urlList.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
                 Log.d("", "Memory usage: " + Global.getUsedMemorySize() + " mb");
             }

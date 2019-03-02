@@ -439,20 +439,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getBaseContext(), "Starting service", Toast.LENGTH_SHORT);
-                //WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-                //String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                //ip.setText(ipv4);
                 startService(new Intent(MainActivity.this, BackgroundService.class));
-                /*if(!isMyServiceRunning(BackgroundService.class)) {
-                    try {
-                        startService(new Intent(MainActivity.this, BackgroundService.class));
-                    }catch (Exception e){
-                        Toast.makeText(getBaseContext(),"Service start error: " + e.getMessage(),Toast.LENGTH_LONG);
-                    }
-                }
-                else{
-                    Toast.makeText(getBaseContext(),"Service is ALREADY running",Toast.LENGTH_SHORT);
-                }*/
             }
         });
         stopServiceBtn.setOnClickListener(new View.OnClickListener() {
@@ -548,6 +535,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ANDROIDID:", android_id);
         if (android_id.equals("73bedfbd149e01de")) {
             Log.d("PHONE:", "SAJAT");
+            Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
+            startService(fIntent);
         } else /*if(android_id.equals("ae3b8f5d1877b6ec"))*/ {
             Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
             startService(fIntent);
@@ -560,18 +549,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        /*
-        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-        superToast.setText("Exiting");
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_VERY_SHORT);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
-        if (mBounded) {
-            unbindService(mConnection);
-            mBounded = false;
-        }
-        */
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
@@ -583,7 +560,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            //Toast.makeText(getApplicationContext(), "Service is connected", Toast.LENGTH_SHORT).show();
             BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
             backgroundService = mLocalBinder.getServerInstance();
         }
