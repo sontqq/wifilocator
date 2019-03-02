@@ -161,7 +161,11 @@ public class MainActivity extends AppCompatActivity {
     public static Button startServiceBtn;
     public static Button stopServiceBtn;
     public static Button release_btn;
+    public static TextView txt_stat1;
 
+    public static int retry_counter_1 = 0;
+    public static int retry_counter_2 = 0;
+    public static int retry_counter_3 = 0;
     //endregion
 
     public DevicePolicyManager mDPM;
@@ -393,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
         release_btn = findViewById(R.id.release_btn);
         Button blebtn1 = findViewById(R.id.blebtn1);
         Button blebtn2 = findViewById(R.id.blebtn2);
+        txt_stat1 = findViewById(R.id.txt_stat1);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -544,6 +549,7 @@ public class MainActivity extends AppCompatActivity {
         }
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
+        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
     }
 
     @Override
@@ -879,7 +885,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                getChartHttp("https://sont.sytes.net/wifis_chart.php");
+                if (retry_counter_1 < 20) {
+                    getChartHttp("https://sont.sytes.net/wifis_chart.php");
+                    retry_counter_1++;
+                }
             }
         });
     }
@@ -930,7 +939,43 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+                if (retry_counter_3 < 20) {
+                    getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+                    retry_counter_3++;
+                }
+            }
+        });
+    }
+
+    public void getStatHttp(String path) {
+        // TODO: Implement retry counter with a low value
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(path, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String str = null;
+                try {
+                    str = new String(responseBody, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                TextView stat = findViewById(R.id.txt_stat1);
+                stat.setText(str);
+            }
+
+            @Override
+            public boolean getUseSynchronousMode() {
+                return false;
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                if (retry_counter_2 < 20) {
+                    TextView stat = findViewById(R.id.txt_stat1);
+                    stat.setText("HTTP Error");
+                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+                    retry_counter_2++;
+                }
             }
         });
     }

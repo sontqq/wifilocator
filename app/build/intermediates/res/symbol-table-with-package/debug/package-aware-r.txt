@@ -1392,6 +1392,7 @@ id ssid
 id standard
 id start
 id startService
+id stat_lay
 id statfelirat
 id statfelirat_belso1
 id statfelirat_belso2
@@ -1442,6 +1443,7 @@ id txt_longi
 id txt_prov
 id txt_service
 id txt_spd
+id txt_stat1
 id txt_uniq
 id uniform
 id uniq

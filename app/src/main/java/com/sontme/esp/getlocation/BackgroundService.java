@@ -252,7 +252,7 @@ public class BackgroundService extends Service {
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 urlList.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
-                Log.d("", "Memory usage: " + Global.getUsedMemorySize() + " mb");
+                Log.d("RAM", "Memory usage: " + Global.getUsedMemorySize() + " mb");
             }
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
