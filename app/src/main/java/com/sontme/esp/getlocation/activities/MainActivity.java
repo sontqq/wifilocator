@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
@@ -295,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
         window.setNavigationBarColor(Color.parseColor(myColors[1]));
         setTitleColor(Color.parseColor(myColors[2]));
 
+        Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
@@ -306,8 +308,6 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         };
-        Thread.UncaughtExceptionHandler defaultUEH;
-        defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
 
 
@@ -786,7 +786,6 @@ public class MainActivity extends AppCompatActivity {
                 saveRecordHttp(url + reqBody);
             }
             Global.lastNearby = String.valueOf(scanResults.size());
-            Global.nearbyCount = scanResults.size();
 
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());

@@ -2,6 +2,7 @@ package com.sontme.esp.getlocation;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -35,6 +36,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -61,6 +63,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.WebSocket;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
@@ -79,8 +82,23 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
+        Fabric.with(this, new Crashlytics());
+        logUser();
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
-        //startUpdatesGPS();
+
+        Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+                Intent mStartActivity = new Intent(getBaseContext(), BackgroundService.class);
+                int mPendingIntentId = 123456;
+                PendingIntent mPendingIntent = PendingIntent.getActivity(getBaseContext(), mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                System.exit(0);
+            }
+        };
+        Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
 
     }
 
@@ -152,6 +170,12 @@ public class BackgroundService extends Service {
                 Looper.myLooper());
     }
 
+    public void logUser() {
+        Crashlytics.setUserIdentifier("12345");
+        Crashlytics.setUserEmail("sont16@gmail.com");
+        Crashlytics.setUserName("wifilocatoruser");
+    }
+
     public void queryLocation(Location LocRes) {
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
@@ -167,7 +191,6 @@ public class BackgroundService extends Service {
                 Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
             } catch (Exception e) {
             }
-            Log.d("GOOGLEAPIPLAY ", LocRes.toString());
         }
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
@@ -178,7 +201,6 @@ public class BackgroundService extends Service {
                     Global.initLong = Global.longitude;
                 }
             }
-            Log.d("INITIAL", String.valueOf(Global.initLat) + String.valueOf(Global.initLong));
         } catch (Exception e) {
         }
 
@@ -228,8 +250,6 @@ public class BackgroundService extends Service {
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 Global.lastNearby = String.valueOf(scanResults.size());
-                Global.nearbyCount = scanResults.size();
-                //bssid_rssi.put(result.BSSID, convertDBM(result.level));
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
