@@ -1297,8 +1297,6 @@ id center
 id center_horizontal
 id center_vertical
 id chains
-id chart
-id chart2
 id checkbox
 id chronometer
 id clip_horizontal
@@ -1436,6 +1434,7 @@ id parent_matrix
 id pbtn
 id pdesc
 id percent
+id piechart
 id pimg
 id pin
 id placeholder

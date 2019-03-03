@@ -72,9 +72,14 @@ import com.ederdoski.simpleble.utils.BluetoothLEHelper;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -857,12 +862,8 @@ public class MainActivity extends AppCompatActivity {
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-
                 LineChart newchart = (LineChart) findViewById(R.id.newchart);
                 List<Entry> entries = new ArrayList<Entry>();
-
-                LineChartView chart = findViewById(R.id.chart);
-                List<PointValue> values = new ArrayList<PointValue>();
 
                 String str = null;
                 try {
@@ -875,23 +876,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     for (String line : lines) {
                         String[] words = line.trim().split("\\s+");
-                        values.add(new PointValue(i, Integer.valueOf(words[1])).setLabel(String.valueOf(i)));
                         entries.add(new Entry(i, Integer.valueOf(words[1])));
-                        Log.d("CHARTENTRY_:", "i:" + i + " 0: " + words[0] + " 1: " + words[1]);
                         i++;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Collections.shuffle(Arrays.asList(myColors));
-                Line line = new Line(values).setColor(Color.parseColor(myColors[0]));
-                line.setStrokeWidth(5);
-                List<Line> liness = new ArrayList<Line>();
-                liness.add(line);
-                LineChartData data = new LineChartData();
-                data.setLines(liness);
-                chart.setOnValueTouchListener(new ValueTouchListener());
-                chart.setLineChartData(data);
 
                 LineDataSet dataSet = new LineDataSet(entries, "Stats");
                 dataSet.setLineWidth(7);
@@ -901,13 +891,11 @@ public class MainActivity extends AppCompatActivity {
                 dataSet.setDrawHighlightIndicators(true);
                 Collections.shuffle(Arrays.asList(myColors));
                 dataSet.setHighLightColor(Color.parseColor(myColors[1]));
-
                 dataSet.setHighlightLineWidth(5);
                 dataSet.setValueTextSize(13);
                 dataSet.setValueFormatter(new DefaultValueFormatter(0));
                 dataSet.setHighlightEnabled(true);
                 dataSet.setDrawHighlightIndicators(true);
-                Collections.shuffle(Arrays.asList(myColors));
                 dataSet.setColors(Color.parseColor(myColors[0]));
                 LineData lineData = new LineData(dataSet);
                 newchart.setData(lineData);
@@ -920,7 +908,6 @@ public class MainActivity extends AppCompatActivity {
                 newchart.invalidate();
 
                 newchart.animateXY(2000, 2000);
-
                 newchart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                     @Override
                     public void onValueSelected(Entry e, Highlight h) {
@@ -961,8 +948,8 @@ public class MainActivity extends AppCompatActivity {
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                PieChartView pieChartView = findViewById(R.id.chart2);
-                List<SliceValue> values = new ArrayList<SliceValue>();
+                PieChart piechart = findViewById(R.id.piechart);
+                List<PieEntry> entries = new ArrayList<>();
 
                 String str = null;
                 try {
@@ -976,22 +963,55 @@ public class MainActivity extends AppCompatActivity {
                     Collections.shuffle(Arrays.asList(myColors));
                     for (String line : lines) {
                         String[] words = line.trim().split("\\s+");
-                        values.add(new SliceValue(Float.valueOf(words[1])).setLabel(words[0]).setColor(Color.parseColor(myColors[i])));
+                        if ((words[0] == "73bedfbd149e01de") || (words[0].equals("73bedfbd149e01de"))) {
+                            words[0] = "Sajat";
+                        } else if ((words[0] == "4d32dfcf42ebf336") || (words[0].equals("4d32dfcf42ebf336"))) {
+                            words[0] = "Anya";
+                        } else if ((words[0] == "4dddd08a27a4e4cd") || (words[0].equals("4dddd08a27a4e4cd"))) {
+                            words[0] = "Fater";
+                        }
+                        entries.add(new PieEntry(Integer.valueOf(words[1]), words[0]));
+                        Log.d("CHARTENTRY_:", "i:" + i + " 0: " + String.valueOf(words[0]) + " 1: " + String.valueOf(words[1]));
                         i++;
                     }
+
+                    PieDataSet set = new PieDataSet(entries, "Today Shares");
+                    set.setColors(new int[]{Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5])});
+                    set.setValueTextColor(Color.BLACK);
+                    set.setValueTextSize(7);
+                    PieData data = new PieData(set);
+                    piechart.setData(data);
+                    Description d = new Description();
+                    d.setText("");
+                    piechart.setDescription(d);
+                    piechart.setCenterText("Today Shares");
+                    piechart.getLegend().setEnabled(true);
+
+                    piechart.animateXY(2000, 2000);
+                    piechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                        @Override
+                        public void onValueSelected(Entry e, Highlight h) {
+                            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+                            String txt = "X: " + e.getX() + " Y: " + e.getY();
+                            superToast.setText(txt);
+                            superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                            superToast.setDuration(Style.DURATION_SHORT);
+                            superToast.setTouchToDismiss(true);
+                            superToast.show();
+                        }
+
+                        @Override
+                        public void onNothingSelected() {
+
+                        }
+                    });
+
+                    piechart.invalidate();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                PieChartData pieChartData = new PieChartData(values);
-                pieChartView.setPieChartData(pieChartData);
-                pieChartData.setCenterText1("Recorded data per Device");
-                pieChartData.setHasCenterCircle(true);
-                pieChartData.setHasLabels(true);
-                pieChartData.setHasLabelsOnlyForSelected(true);
-                pieChartData.setHasLabelsOutside(true);
-                pieChartView.setValueSelectionEnabled(true);
 
-                pieChartData.setValues(values);
 
             }
 

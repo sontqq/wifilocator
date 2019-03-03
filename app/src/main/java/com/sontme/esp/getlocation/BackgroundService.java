@@ -424,6 +424,7 @@ public class BackgroundService extends Service {
         Account[] list = manager.getAccounts();
         for (Account s : list) {
             Log.d("GOOGLE_ACCOUNT_: ", s.name);
+            Global.googleAccount = s.name;
         }
 
         FacebookSdk.sdkInitialize(this.getApplicationContext());

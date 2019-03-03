@@ -59,6 +59,8 @@ public class Global extends Application{
     public static List<String> uniqueAPS = new ArrayList<>();
     public static Queue<String> queue = new LinkedList<String>();
 
+    public static String googleAccount;
+
     public static DevicePolicyManager mDPM;
     public static ComponentName mAdminName;
 
