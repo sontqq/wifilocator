@@ -3,6 +3,7 @@ package com.sontme.esp.getlocation.activities;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -50,6 +51,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
@@ -68,9 +70,6 @@ import android.widget.Toast;
 
 
 import com.crashlytics.android.Crashlytics;
-import com.ederdoski.simpleble.interfaces.BleCallback;
-import com.ederdoski.simpleble.models.BluetoothLE;
-import com.ederdoski.simpleble.utils.BluetoothLEHelper;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.mikephil.charting.charts.LineChart;
@@ -91,6 +90,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
+import com.google.android.gms.common.AccountPicker;
+import com.google.android.gms.common.api.Response;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -134,27 +135,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
-import lecho.lib.hellocharts.formatter.SimpleLineChartValueFormatter;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
-import lecho.lib.hellocharts.model.AxisValue;
-import lecho.lib.hellocharts.model.ChartData;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PieChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.SliceValue;
-import lecho.lib.hellocharts.view.Chart;
-import lecho.lib.hellocharts.view.LineChartView;
-import lecho.lib.hellocharts.view.PieChartView;
-import okhttp3.WebSocket;
 
 import android.support.design.widget.NavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import static com.github.mikephil.charting.animation.Easing.EaseInOutBounce;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
-
 
 public class MainActivity extends AppCompatActivity {
     //region DEFINING VARIABLES
@@ -295,8 +284,8 @@ public class MainActivity extends AppCompatActivity {
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
     public static String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
-    String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
-    Map<String, String> BLEdevices = new HashMap<String, String>();
+    public static String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
+    public static Map<String, String> BLEdevices = new HashMap<String, String>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -309,11 +298,11 @@ public class MainActivity extends AppCompatActivity {
         logUser();
         adminPermission();
 
-        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
-        Account[] list = manager.getAccounts();
-        for (Account s : list) {
-            Global.googleAccount = s.name;
-        }
+        Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
+        Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+        startService(fIntent);
+        handler.postDelayed(runnable, 1000);
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -336,6 +325,18 @@ public class MainActivity extends AppCompatActivity {
         };
         Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
 
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        String acc = "no";
+        for (Account s : list) {
+            acc = String.valueOf(s.name);
+        }
+        if (acc.length() > 3) {
+            Global.googleAccount = acc;
+        } else {
+            Global.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+        }
 
         String ipv4 = Global.getLocalIpAddress();
         Global.ipaddress = ipv4;
@@ -553,34 +554,36 @@ public class MainActivity extends AppCompatActivity {
         tex.setText(version);
 
         turnGPSOn();
-        handler.postDelayed(runnable, 1000);
 
-        Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
-        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-        String android_id;
-        android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        if (android_id == "4d32dfcf42ebf336") {
-            android_id = "Anya";
-        }
-        Log.d("ANDROIDID:", android_id);
-        if (android_id.equals("73bedfbd149e01de")) {
-            Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
-            startService(fIntent);
-        } else /*if(android_id.equals("ae3b8f5d1877b6ec"))*/ {
-            Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
-            startService(fIntent);
-            Toast.makeText(getBaseContext(), "Started Service Autimatically", Toast.LENGTH_SHORT).show();
-        }
+        Toast.makeText(getBaseContext(), "Started Service Autimatically", Toast.LENGTH_SHORT).show();
+
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
-        android_id = Global.googleAccount;
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        boolean result = false;
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            result = true;
+        switch (requestCode) {
+            case 101:
+                if (result) Log.d("GOOGLE_X", "Permission GET_ACCOUNTS granted");
+                break;
+        }
+    }
+
+    private void requestPermissions(Activity activity) {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.GET_ACCOUNTS}, 101);
+        }
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
@@ -800,12 +803,11 @@ public class MainActivity extends AppCompatActivity {
                 } else if (result.capabilities.contains("WPA")) {
                     enc = "WPA";
                 }
-                String android_id = Settings.Secure.getString(context.getContentResolver(),
-                        Settings.Secure.ANDROID_ID);
+
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
                 String url = INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 if (!Global.queue.contains(url + reqBody)) {
                     Global.queue.add(url + reqBody);
                 }
@@ -946,7 +948,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_1 < 20) {
-                    getChartHttp("https://sont.sytes.net/wifis_chart.php");
+                    //getChartHttp("https://sont.sytes.net/wifis_chart.php");
                     retry_counter_1++;
                 }
             }
@@ -1020,6 +1022,10 @@ public class MainActivity extends AppCompatActivity {
                     set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
                     set.setSliceSpace(5);
 
+                    piechart.setExtraBottomOffset(20f);
+                    piechart.setExtraLeftOffset(20f);
+                    piechart.setExtraRightOffset(20f);
+
                     set.setValueLinePart1OffsetPercentage(10.f);
                     set.setValueLinePart1Length(0.43f);
                     set.setValueLinePart2Length(.1f);
@@ -1047,7 +1053,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_3 < 20) {
-                    getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+                    //getChartHttp2("https://sont.sytes.net/wifis_chart.php");
                     retry_counter_3++;
                 }
             }
@@ -1080,7 +1086,7 @@ public class MainActivity extends AppCompatActivity {
                 if (retry_counter_2 < 20) {
                     TextView stat = findViewById(R.id.txt_stat1);
                     stat.setText("HTTP Error");
-                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+                    //getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
                     retry_counter_2++;
                 }
             }
@@ -1137,30 +1143,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static int getContrastColor(String hexa) {
-        int color = (int) Long.parseLong(hexa, 16);
-        int r = (color >> 16) & 0xFF;
-        int g = (color >> 8) & 0xFF;
-        int b = (color >> 0) & 0xFF;
-        int invertedRed = 255 - r;
-        int invertedGreen = 255 - g;
-        int invertedBlue = 255 - b;
-        int invertedColor = Color.rgb(invertedRed, invertedGreen, invertedBlue);
-        return Integer.valueOf(invertedColor);
-    }
-
     int invertColor(int color) {
         return color ^ 0x00ffffff;
     }
 
-    private class ValueTouchListener implements LineChartOnValueSelectListener {
-        @Override
-        public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            Toast.makeText(getApplicationContext(), String.valueOf(value.getLabel()), Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onValueDeselected() {
-        }
-    }
 }

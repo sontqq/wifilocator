@@ -1,16 +1,12 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\59297302f4333dea95bab6909d932b8f\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:17:1-30:12
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:2:1-26:12
-MERGED from [com.facebook.android:facebook-android-sdk:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.40.0.aar\54f99177d9f9763ce5648dc2ac79cf6f\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-login:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-login-4.40.0.aar\a6b6090d612978f77a4764af62891687\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-share:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-share-4.40.0.aar\dc3c15b134ef886b84ef1b3021c0fced\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:21:1-37:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\d65e2372a778ae35f517c64e36ea8042\AndroidManifest.xml:17:1-32:12
@@ -22,16 +18,13 @@ MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\cach
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:2:1-29:12
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:2:1-9:12
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:2:1-16:12
-MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\130660bffc63015ad389bf6951d8fe30\AndroidManifest.xml:2:1-11:12
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:2:1-20:12
 MERGED from [com.google.android.exoplayer:exoplayer-dash:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-dash-r2.4.2.aar\11e291932cfbfd63758e0addf441f8a9\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.exoplayer:exoplayer-core:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-core-r2.4.2.aar\051f85a5f266040e2545ed4dedfd1c3c\AndroidManifest.xml:17:1-25:12
 MERGED from [com.android.support:transition:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\388e9b08be1cbc13c62f25b7eb95426b\AndroidManifest.xml:17:1-22:12
-MERGED from [com.facebook.android:facebook-places:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-places-4.40.0.aar\f97b95b419328b52aa3e08c21133171e\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-applinks:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.40.0.aar\502d7b8dce78fc32558699454edaa64a\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-messenger:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.40.0.aar\82703f0e5254f973453d7d45be72ff7c\AndroidManifest.xml:21:1-31:12
-MERGED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:21:1-35:12
-MERGED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:21:1-53:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\9d924c957ecd1d5b29dafcbc22ae9db8\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:17:1-34:12
 MERGED from [com.google.firebase:firebase-analytics:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.0.6.aar\87c932f2d6d61492721d6324ec6fbd99\AndroidManifest.xml:17:1-55:12
@@ -40,7 +33,6 @@ MERGED from [com.google.firebase:firebase-analytics-impl:16.2.4] C:\Users\sont1\
 MERGED from [com.google.firebase:firebase-iid:17.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.0.3.aar\32aa57132453f44b09f87649b85da5da\AndroidManifest.xml:17:1-59:12
 MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\c333d537402743e562d93eec37652eab\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\b72c69f54a23ca8817717c45dbcc5f51\AndroidManifest.xml:2:1-9:12
@@ -52,15 +44,14 @@ MERGED from [com.google.android.gms:play-services-measurement-base:16.0.5] C:\Us
 MERGED from [com.google.android.gms:play-services-stats:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-stats-16.0.1.aar\f688d77ccfe784e2c68c2d8b894b9009\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\403cc6146732fc0247681bd065fe328a\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\d4463e9c5382b86ff87c47dcac8032b2\AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\1649124fe9f0235cc1b4c3308f1c3a10\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\36305cb51fe5989c5837100156e4b557\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\ec76a8863279c6c1e2deac6a47ed7fea\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\c71307176556b20239e2d8908d91e47b\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\18b6dad0f970ce52b524c8953ce55486\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\679ad857f160862d7ef8dc75e0ee11d1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:loader:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\310d17347a4f02e3f17e06b14579a468\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customtabs:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\a71b6611ca48e8fce39d0c95288c9501\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:viewpager:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\922fd19d1bb1d30ac7dcdd7c89a4ea8d\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\dfc4424e14ceb0f5723213ee08b111ef\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\4a7e75d29d65bf0ec7da1ab85960d49d\AndroidManifest.xml:17:1-22:12
@@ -79,29 +70,28 @@ MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\sont1\.gradle\cache
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\a373b5958b64ce3ba35e253b976f8577\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\0f1123da5b4a2aaba09de48ba9d8c4e5\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\59074c97738ad7528bdf6a23b19669c1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:interpolator:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\f6514dfd11a7ff15c2cc9afbd9cb179a\AndroidManifest.xml:17:1-22:12
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\beta-1.2.10.aar\94a477e066f86a9324fbc4798e12e862\AndroidManifest.xml:2:1-13:12
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.6.7.aar\8bb5c910278508288ad53052c06eb9cc\AndroidManifest.xml:45:1-56:12
 MERGED from [com.crashlytics.sdk.android:answers:1.4.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\answers-1.4.6.aar\3ef9d545f8af5005fdb149da338f2f38\AndroidManifest.xml:2:1-13:12
 MERGED from [io.fabric.sdk.android:fabric:1.4.7] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\fabric-1.4.7.aar\c841c77f0ca145c1673f6457b5fcbfa9\AndroidManifest.xml:22:1-33:12
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-17.1.2.aar\cb5f411aca6de45abc8698f18d63b714\AndroidManifest.xml:2:1-9:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
 	package
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:4:5-41
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-105:12
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-110:12
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:11-69
@@ -249,36 +239,40 @@ uses-permission#android.permission.AUTHENTICATE_ACCOUNTS
 ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:30:5-96
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:30:22-77
+uses-permission#android.permission.READ_CONTACTS
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:31:5-72
+	android:name
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:31:22-69
+uses-permission#android.permission.READ_PROFILE
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:5-71
+	android:name
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:22-68
+uses-permission#android.permission.USE_CREDENTIALS
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:5-74
+	android:name
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:22-71
 uses-feature#android.hardware.bluetooth_le
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:5-34:36
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:5-39:36
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:18:5-20:36
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:18:5-20:36
 	android:required
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:34:9-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:39:9-33
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:9-53
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:38:9-53
 uses-permission#android.permission.BLUETOOTH_PRIVILEGED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:35:5-37:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:40:5-42:47
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:22:5-24:47
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:22:5-24:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:42:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:36:9-63
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:41:9-63
 application
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:39:5-103:19
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:44:5-108:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\59297302f4333dea95bab6909d932b8f\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\59297302f4333dea95bab6909d932b8f\AndroidManifest.xml:22:5-20
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:26:5-28:38
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:26:5-28:38
-MERGED from [com.facebook.android:facebook-android-sdk:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.40.0.aar\54f99177d9f9763ce5648dc2ac79cf6f\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-android-sdk:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.40.0.aar\54f99177d9f9763ce5648dc2ac79cf6f\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-login:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-login-4.40.0.aar\a6b6090d612978f77a4764af62891687\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-login:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-login-4.40.0.aar\a6b6090d612978f77a4764af62891687\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-share:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-share-4.40.0.aar\dc3c15b134ef886b84ef1b3021c0fced\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-share:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-share-4.40.0.aar\dc3c15b134ef886b84ef1b3021c0fced\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:28:5-35:19
-MERGED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:28:5-35:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\d65e2372a778ae35f517c64e36ea8042\AndroidManifest.xml:30:5-20
@@ -297,16 +291,8 @@ MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:7:5-20
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:13:5-14:19
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:13:5-14:19
-MERGED from [com.facebook.android:facebook-places:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-places-4.40.0.aar\f97b95b419328b52aa3e08c21133171e\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-places:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-places-4.40.0.aar\f97b95b419328b52aa3e08c21133171e\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-applinks:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.40.0.aar\502d7b8dce78fc32558699454edaa64a\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-applinks:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.40.0.aar\502d7b8dce78fc32558699454edaa64a\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-messenger:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.40.0.aar\82703f0e5254f973453d7d45be72ff7c\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-messenger:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.40.0.aar\82703f0e5254f973453d7d45be72ff7c\AndroidManifest.xml:28:5-29:19
-MERGED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:28:5-33:19
-MERGED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:28:5-33:19
-MERGED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:28:5-51:19
-MERGED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:28:5-51:19
+MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:26:5-32:19
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:26:5-32:19
 MERGED from [com.google.firebase:firebase-analytics:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-analytics-16.0.6.aar\87c932f2d6d61492721d6324ec6fbd99\AndroidManifest.xml:28:5-53:19
@@ -343,6 +329,10 @@ MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users
 MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\403cc6146732fc0247681bd065fe328a\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\d4463e9c5382b86ff87c47dcac8032b2\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\d4463e9c5382b86ff87c47dcac8032b2\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\a829a46256d0ef4720ecba49ba6b5aad\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\a829a46256d0ef4720ecba49ba6b5aad\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\2dd379efd5cb4d38c78ce920ceacdfd9\AndroidManifest.xml:22:5-23:19
@@ -360,125 +350,125 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\a829a46256d0ef4720ecba49ba6b5aad\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:45:9-35
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:50:9-35
 	android:label
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:43:9-41
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:48:9-41
 	android:hardwareAccelerated
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:47:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:52:9-44
 	android:roundIcon
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:44:9-47
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:49:9-47
 	android:largeHeap
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:46:9-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:51:9-33
 	android:icon
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:42:9-42
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:47:9-42
 	android:allowBackup
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:41:9-35
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:46:9-35
 	android:theme
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:48:9-40
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:53:9-40
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:40:9-31
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:45:9-31
 activity#com.sontme.esp.getlocation.activities.NearbyActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:49:9-51:51
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:54:9-56:51
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:51:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:56:13-49
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:50:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:55:13-48
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:49:19-60
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:54:19-60
 activity#com.sontme.esp.getlocation.activities.ListActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:52:9-54:51
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:57:9-59:51
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:54:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:59:13-49
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:53:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:58:13-48
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:52:19-58
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:57:19-58
 activity#com.sontme.esp.getlocation.activities.MapActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:55:9-57:52
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:60:9-62:52
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:57:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:62:13-49
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:56:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:61:13-48
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:55:19-57
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:60:19-57
 receiver#com.sontme.esp.getlocation.Receiver
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:59:9-63:20
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:64:9-68:20
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:59:19-43
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:64:19-43
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:60:13-62:29
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:65:13-67:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:61:17-79
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:17-79
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:61:25-76
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:25-76
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:65:9-67:55
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:70:9-72:55
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:67:13-52
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:72:13-52
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:13-58
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:71:13-58
 meta-data#com.google.android.gms.ads.AD_MANAGER_APP
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:69:9-71:36
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:74:9-76:36
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:71:13-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:76:13-33
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:70:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:75:13-69
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:72:9-74:70
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:77:9-79:70
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:74:13-67
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:79:13-67
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:73:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:78:13-69
 activity#com.sontme.esp.getlocation.activities.MainActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:76:9-93:20
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:81:9-98:20
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:80:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:85:13-49
 	android:launchMode
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:78:13-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:83:13-44
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:79:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:84:13-48
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:77:13-52
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:82:13-52
 intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED+action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MAIN+action:name:android.intent.action.REBOOT+action:name:android.intent.action.RECEIVE_BOOT_COMPLETED+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:82:13-92:29
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:87:13-97:29
 action#android.intent.action.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:84:17-87
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:89:17-87
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:84:25-84
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:89:25-84
 action#android.intent.action.MAIN
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:85:17-69
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:90:17-69
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:85:25-66
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:90:25-66
 action#android.intent.action.REBOOT
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:86:17-71
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:17-71
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:86:25-68
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:25-68
 action#android.intent.action.ACTION_POWER_CONNECTED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:87:17-87
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:92:17-87
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:87:25-84
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:92:25-84
 action#android.intent.action.ACTION_POWER_DISCONNECTED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:88:17-90
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:93:17-90
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:88:25-87
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:93:25-87
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:17-77
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:17-77
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:27-74
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:27-74
 meta-data#io.fabric.ApiKey
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:95:9-97:72
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:100:9-102:72
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:97:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:102:13-69
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:13-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:101:13-44
 service#com.sontme.esp.getlocation.BackgroundService
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:99:9-102:38
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:104:9-107:38
 	android:enabled
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:102:13-35
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:107:13-35
 	android:permission
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:101:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:106:13-69
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:100:13-46
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:105:13-46
 uses-sdk
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
@@ -489,14 +479,6 @@ MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\cach
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:22:5-24:41
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:8:5-10:41
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:8:5-10:41
-MERGED from [com.facebook.android:facebook-android-sdk:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.40.0.aar\54f99177d9f9763ce5648dc2ac79cf6f\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-android-sdk:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-android-sdk-4.40.0.aar\54f99177d9f9763ce5648dc2ac79cf6f\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-login:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-login-4.40.0.aar\a6b6090d612978f77a4764af62891687\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-login:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-login-4.40.0.aar\a6b6090d612978f77a4764af62891687\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-share:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-share-4.40.0.aar\dc3c15b134ef886b84ef1b3021c0fced\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-share:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-share-4.40.0.aar\dc3c15b134ef886b84ef1b3021c0fced\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:24:5-26:41
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:5:5-7:41
@@ -519,8 +501,6 @@ MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:5:5-44
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:7:5-9:41
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\130660bffc63015ad389bf6951d8fe30\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\130660bffc63015ad389bf6951d8fe30\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:16:5-18:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:16:5-18:41
 MERGED from [com.google.android.exoplayer:exoplayer-dash:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-dash-r2.4.2.aar\11e291932cfbfd63758e0addf441f8a9\AndroidManifest.xml:21:5-23:41
@@ -529,16 +509,12 @@ MERGED from [com.google.android.exoplayer:exoplayer-core:r2.4.2] C:\Users\sont1\
 MERGED from [com.google.android.exoplayer:exoplayer-core:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-core-r2.4.2.aar\051f85a5f266040e2545ed4dedfd1c3c\AndroidManifest.xml:21:5-23:41
 MERGED from [com.android.support:transition:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\388e9b08be1cbc13c62f25b7eb95426b\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:transition:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\388e9b08be1cbc13c62f25b7eb95426b\AndroidManifest.xml:20:5-44
-MERGED from [com.facebook.android:facebook-places:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-places-4.40.0.aar\f97b95b419328b52aa3e08c21133171e\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-places:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-places-4.40.0.aar\f97b95b419328b52aa3e08c21133171e\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-applinks:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.40.0.aar\502d7b8dce78fc32558699454edaa64a\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-applinks:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-applinks-4.40.0.aar\502d7b8dce78fc32558699454edaa64a\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-messenger:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.40.0.aar\82703f0e5254f973453d7d45be72ff7c\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-messenger:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-messenger-4.40.0.aar\82703f0e5254f973453d7d45be72ff7c\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:24:5-26:41
-MERGED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:21:5-23:62
+MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\9d924c957ecd1d5b29dafcbc22ae9db8\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\9d924c957ecd1d5b29dafcbc22ae9db8\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:20:5-44
@@ -555,8 +531,6 @@ MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gr
 MERGED from [com.google.firebase:firebase-iid-interop:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-interop-16.0.1.aar\c333d537402743e562d93eec37652eab\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\d6435c7be38caa123d8ec57c1faf7e66\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:21:5-23:62
-MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:21:5-23:62
 MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\ae2185b49586dea57f2f0e0f60a11300\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-common-16.0.3.aar\f3da18d7e04fff79ff88ceee4fd952ac\AndroidManifest.xml:5:5-7:41
@@ -579,10 +553,10 @@ MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users
 MERGED from [com.google.firebase:firebase-measurement-connector:17.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-17.0.1.aar\403cc6146732fc0247681bd065fe328a\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\d4463e9c5382b86ff87c47dcac8032b2\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\d4463e9c5382b86ff87c47dcac8032b2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\1649124fe9f0235cc1b4c3308f1c3a10\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\1649124fe9f0235cc1b4c3308f1c3a10\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\36305cb51fe5989c5837100156e4b557\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\36305cb51fe5989c5837100156e4b557\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\a07997775b848b69818835cd34ae0586\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\ec76a8863279c6c1e2deac6a47ed7fea\AndroidManifest.xml:20:5-44
@@ -595,8 +569,6 @@ MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\sont1\.grad
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\679ad857f160862d7ef8dc75e0ee11d1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:loader:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\310d17347a4f02e3f17e06b14579a468\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:loader:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\310d17347a4f02e3f17e06b14579a468\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customtabs:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\a71b6611ca48e8fce39d0c95288c9501\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customtabs:27.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-27.0.2.aar\a71b6611ca48e8fce39d0c95288c9501\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:viewpager:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\922fd19d1bb1d30ac7dcdd7c89a4ea8d\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:viewpager:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\922fd19d1bb1d30ac7dcdd7c89a4ea8d\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\dfc4424e14ceb0f5723213ee08b111ef\AndroidManifest.xml:20:5-44
@@ -633,8 +605,6 @@ MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\tran
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\0f1123da5b4a2aaba09de48ba9d8c4e5\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\59074c97738ad7528bdf6a23b19669c1\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\59074c97738ad7528bdf6a23b19669c1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\795fb16c42cd24fe16992d4c214286fd\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:interpolator:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\f6514dfd11a7ff15c2cc9afbd9cb179a\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:interpolator:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\f6514dfd11a7ff15c2cc9afbd9cb179a\AndroidManifest.xml:20:5-44
 MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\beta-1.2.10.aar\94a477e066f86a9324fbc4798e12e862\AndroidManifest.xml:7:5-43
@@ -659,22 +629,6 @@ INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-m
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
-activity#com.facebook.FacebookActivity
-ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:29:9-32:66
-	android:configChanges
-		ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:31:13-96
-	android:theme
-		ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:32:13-63
-	android:name
-		ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:30:13-57
-activity#com.facebook.CustomTabMainActivity
-ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:33:9-71
-	android:name
-		ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:33:19-68
-activity#com.facebook.CustomTabActivity
-ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:34:9-67
-	android:name
-		ADDED from [com.facebook.android:facebook-common:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-common-4.40.0.aar\d1704f2f7cbd665b319c634f3008fd43\AndroidManifest.xml:34:19-64
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\d65e2372a778ae35f517c64e36ea8042\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
@@ -755,34 +709,16 @@ ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\t
 		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:27:9-33
 	android:name
 		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\d68c24a56c62090ee8c9f99a03e40287\AndroidManifest.xml:26:9-45
-provider#com.facebook.marketing.internal.MarketingInitProvider
-ADDED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:29:9-32:40
-	android:authorities
-		ADDED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:31:13-73
-	android:exported
-		ADDED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:32:13-37
+meta-data#android.support.VERSION
+ADDED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\dcada4e5d3d647cfd8be50285a3b9c39\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\253712df3c6539d5bd0d035d1b79c408\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:25:13-35
 	android:name
-		ADDED from [com.facebook.android:facebook-marketing:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-marketing-4.40.0.aar\1172706f52de43e52af7a5b6e47cfb73\AndroidManifest.xml:30:13-81
-provider#com.facebook.internal.FacebookInitProvider
-ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:39:9-42:40
-	android:authorities
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:41:13-72
-	android:exported
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:42:13-37
-	android:name
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:40:13-70
-receiver#com.facebook.CurrentAccessTokenExpirationBroadcastReceiver
-ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:44:9-50:20
-	android:exported
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:46:13-37
-	android:name
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:45:13-86
-intent-filter#action:name:com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
-ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:47:13-49:29
-action#com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
-ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:48:17-95
-	android:name
-		ADDED from [com.facebook.android:facebook-core:4.40.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\facebook-core-4.40.0.aar\56b8641d24e1deece457c8d90b41b5a1\AndroidManifest.xml:48:25-92
+		ADDED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\20a7c0ad52a319d607d100a4b5533603\AndroidManifest.xml:24:13-51
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-17.0.4.aar\2e37e9e8202cd1507825283e6271d083\AndroidManifest.xml:27:9-31:19
 MERGED from [com.google.firebase:firebase-iid:17.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-iid-17.0.3.aar\32aa57132453f44b09f87649b85da5da\AndroidManifest.xml:29:9-35:19

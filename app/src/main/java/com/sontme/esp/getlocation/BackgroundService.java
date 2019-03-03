@@ -40,10 +40,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.FileDataSource;
+
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -75,9 +72,7 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 
 public class BackgroundService extends Service {
 
-    public Location mlocation;
-    public LocationRequest mPlayLocationRequest;
-    List<String> urlList = new ArrayList<String>();
+    public static Location mlocation;
     IBinder mBinder = new LocalBinder();
 
     @Override
@@ -93,10 +88,16 @@ public class BackgroundService extends Service {
 
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
+        String acc = "no";
         for (Account s : list) {
-            Global.googleAccount = s.name;
+            acc = String.valueOf(s.name);
         }
-
+        if (acc.length() > 3) {
+            Global.googleAccount = acc;
+        } else {
+            Global.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+        }
         Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
@@ -110,7 +111,6 @@ public class BackgroundService extends Service {
             }
         };
         Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
-
     }
 
     public void startUpdatesGPS() {
@@ -156,31 +156,6 @@ public class BackgroundService extends Service {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
-    public void startUpdatesPlay() {
-        mPlayLocationRequest = new LocationRequest();
-        mPlayLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mPlayLocationRequest.setInterval(1000);
-        mPlayLocationRequest.setFastestInterval(500);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(mPlayLocationRequest);
-        LocationSettingsRequest locationSettingsRequest = builder.build();
-
-        SettingsClient settingsClient = LocationServices.getSettingsClient(getApplicationContext());
-        settingsClient.checkLocationSettings(locationSettingsRequest);
-
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        getFusedLocationProviderClient(getApplicationContext()).requestLocationUpdates(mPlayLocationRequest, new LocationCallback() {
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        queryLocation(locationResult.getLastLocation());
-                    }
-                },
-                Looper.myLooper());
-    }
-
     public void logUser() {
         Crashlytics.setUserIdentifier("12345");
         Crashlytics.setUserEmail("sont16@gmail.com");
@@ -201,6 +176,7 @@ public class BackgroundService extends Service {
                 Global.provider = LocRes.getProvider();
                 Global.distance = String.valueOf(getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
             } catch (Exception e) {
+                Log.d("queryLocation()_", e.toString());
             }
         }
         try {
@@ -213,6 +189,7 @@ public class BackgroundService extends Service {
                 }
             }
         } catch (Exception e) {
+            Log.d("queryLocation()_2_", e.toString());
         }
 
         if (Global.latitude != null) {
@@ -248,7 +225,7 @@ public class BackgroundService extends Service {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 saveRecordHttp(path);
-                Log.d("HTTP", "Error code: " + statusCode);
+                Log.d("HTTP_RETRY", "Error code: " + statusCode);
             }
         });
     }
@@ -272,19 +249,13 @@ public class BackgroundService extends Service {
                 } else if (result.capabilities.contains("WPA")) {
                     enc = "WPA";
                 }
-                String android_id;
-                android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                        Settings.Secure.ANDROID_ID);
-                if (android_id == "4d32dfcf42ebf336") {
-                    android_id = "Sont";
-                }
-                android_id = Global.googleAccount;
+
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                urlList.add(url + reqBody);
+                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                Log.d("GOOGLE_5", url + reqBody);
+                //urlList.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
-                Log.d("RAM", "Memory usage: " + Global.getUsedMemorySize() + " mb");
             }
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
@@ -424,21 +395,7 @@ public class BackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast x = Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT);
-        x.show();
-
-        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
-        Account[] list = manager.getAccounts();
-        for (Account s : list) {
-            Global.googleAccount = s.name;
-        }
-
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        CallbackManager callbackManager = CallbackManager.Factory.create();
-
-
-
-        startUpdatesGPS();
+        Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Notification.Builder builder = new Notification.Builder(this, "wifilocatorservice")
@@ -456,7 +413,7 @@ public class BackgroundService extends Service {
             Notification notification = builder.build();
             startForeground(1, notification);
         }
-
+        startUpdatesGPS();
         AsyncHttpServer server = new AsyncHttpServer();
         List<WebSocket> _sockets = new ArrayList<WebSocket>();
         server.get("/", new HttpServerRequestCallback() {
@@ -504,7 +461,6 @@ public class BackgroundService extends Service {
             }
         });
         server.listen(8888);
-
         return START_STICKY;
     }
 
@@ -529,8 +485,5 @@ public class BackgroundService extends Service {
         }
     }
 
-    public void sendMail(String address, String subject, String body) {
-
-    }
 
 }
