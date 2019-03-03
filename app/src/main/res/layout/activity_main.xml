@@ -119,11 +119,18 @@
                     android:text="Today Records 0-24h"
                     android:textAlignment="center" />
 
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/newchart"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1" />
+
                 <lecho.lib.hellocharts.view.LineChartView
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

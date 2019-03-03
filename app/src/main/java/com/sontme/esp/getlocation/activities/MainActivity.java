@@ -71,6 +71,13 @@ import com.ederdoski.simpleble.models.BluetoothLE;
 import com.ederdoski.simpleble.utils.BluetoothLEHelper;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
@@ -135,6 +142,7 @@ import android.support.design.widget.NavigationView;
 
 import org.w3c.dom.Text;
 
+import static com.github.mikephil.charting.animation.Easing.EaseInOutBounce;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 
@@ -272,6 +280,8 @@ public class MainActivity extends AppCompatActivity {
     public DrawerLayout dl;
     public ActionBarDrawerToggle t;
     public NavigationView nv;
+
+    public static LineChart newchart;
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
     public static String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
@@ -550,6 +560,7 @@ public class MainActivity extends AppCompatActivity {
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+
     }
 
     @Override
@@ -846,6 +857,10 @@ public class MainActivity extends AppCompatActivity {
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                LineChart newchart = (LineChart) findViewById(R.id.newchart);
+                List<Entry> entries = new ArrayList<Entry>();
+
                 LineChartView chart = findViewById(R.id.chart);
                 List<PointValue> values = new ArrayList<PointValue>();
 
@@ -861,6 +876,8 @@ public class MainActivity extends AppCompatActivity {
                     for (String line : lines) {
                         String[] words = line.trim().split("\\s+");
                         values.add(new PointValue(i, Integer.valueOf(words[1])).setLabel(String.valueOf(i)));
+                        entries.add(new Entry(i, Integer.valueOf(words[1])));
+                        Log.d("CHARTENTRY_:", "i:" + i + " 0: " + words[0] + " 1: " + words[1]);
                         i++;
                     }
                 } catch (Exception e) {
@@ -875,6 +892,53 @@ public class MainActivity extends AppCompatActivity {
                 data.setLines(liness);
                 chart.setOnValueTouchListener(new ValueTouchListener());
                 chart.setLineChartData(data);
+
+                LineDataSet dataSet = new LineDataSet(entries, "Stats");
+                dataSet.setLineWidth(7);
+                dataSet.setDrawFilled(true);
+                Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
+                dataSet.setFillDrawable(drawable);
+                dataSet.setDrawHighlightIndicators(true);
+                Collections.shuffle(Arrays.asList(myColors));
+                dataSet.setHighLightColor(Color.parseColor(myColors[1]));
+
+                dataSet.setHighlightLineWidth(5);
+                dataSet.setValueTextSize(13);
+                dataSet.setValueFormatter(new DefaultValueFormatter(0));
+                dataSet.setHighlightEnabled(true);
+                dataSet.setDrawHighlightIndicators(true);
+                Collections.shuffle(Arrays.asList(myColors));
+                dataSet.setColors(Color.parseColor(myColors[0]));
+                LineData lineData = new LineData(dataSet);
+                newchart.setData(lineData);
+                newchart.getAxisRight().setDrawGridLines(false);
+                newchart.getAxisLeft().setDrawGridLines(false);
+                newchart.getXAxis().setDrawGridLines(false);
+                newchart.getXAxis().setDrawLabels(false);
+                newchart.getDescription().setEnabled(false);
+                newchart.getLegend().setEnabled(false);
+                newchart.invalidate();
+
+                newchart.animateXY(2000, 2000);
+
+                newchart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                    @Override
+                    public void onValueSelected(Entry e, Highlight h) {
+                        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
+                        String txt = "X: " + e.getX() + " Y: " + e.getY();
+                        superToast.setText(txt);
+                        superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                        superToast.setDuration(Style.DURATION_SHORT);
+                        superToast.setTouchToDismiss(true);
+                        superToast.show();
+                    }
+
+                    @Override
+                    public void onNothingSelected() {
+
+                    }
+                });
+
             }
 
             @Override

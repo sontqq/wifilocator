@@ -5,4 +5,7 @@
     <string name="adunit_firebase">ca-app-pub-4051604993335718/2751904272</string>
     <string name="Open">Open</string>
     <string name="Close">Close</string>
+
+    <string name="facebook_app_id">2183815621892163</string>
+
 </resources>

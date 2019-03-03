@@ -1,6 +1,8 @@
 package com.sontme.esp.getlocation;
 
 import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -28,6 +30,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
 import android.provider.Settings;
+import android.service.textservice.SpellCheckerService;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
@@ -37,6 +40,10 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -51,7 +58,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
-import org.w3c.dom.Text;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -60,7 +66,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
@@ -412,7 +417,20 @@ public class BackgroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
+        Toast x = Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT);
+        x.show();
+
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        for (Account s : list) {
+            Log.d("GOOGLE_ACCOUNT_: ", s.name);
+        }
+
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+
+
+
         startUpdatesGPS();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -502,6 +520,10 @@ public class BackgroundService extends Service {
         public BackgroundService getServerInstance() {
             return BackgroundService.this;
         }
+    }
+
+    public void sendMail(String address, String subject, String body) {
+
     }
 
 }
