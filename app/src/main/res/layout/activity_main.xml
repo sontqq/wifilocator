@@ -116,7 +116,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Today Records 0-24h"
+                    android:text="Today Shares Timeline"
                     android:textAlignment="center" />
 
                 <com.github.mikephil.charting.charts.LineChart
@@ -137,9 +137,11 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Today Records Per Device"
+                    android:layout_marginBottom="10dp"
+                    android:text="Today Shares Ratio"
                     android:textAlignment="center" />
 
 
@@ -157,7 +159,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/web_shape"
-
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
@@ -239,8 +240,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="numberDecimal"
-                        android:text="Address"
-                        android:textStyle="bold" />
+                        android:text="Address" />
 
                     <TextView
                         android:id="@+id/txt_uniq"

@@ -91,6 +91,12 @@ public class BackgroundService extends Service {
         logUser();
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
 
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        for (Account s : list) {
+            Global.googleAccount = s.name;
+        }
+
         Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
@@ -267,14 +273,15 @@ public class BackgroundService extends Service {
                     enc = "WPA";
                 }
                 String android_id;
-                android_id = Settings.Secure.getString(context.getContentResolver(),
+                android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
                 if (android_id == "4d32dfcf42ebf336") {
                     android_id = "Sont";
                 }
+                android_id = Global.googleAccount;
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 urlList.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
                 Log.d("RAM", "Memory usage: " + Global.getUsedMemorySize() + " mb");
@@ -423,7 +430,6 @@ public class BackgroundService extends Service {
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
         for (Account s : list) {
-            Log.d("GOOGLE_ACCOUNT_: ", s.name);
             Global.googleAccount = s.name;
         }
 

@@ -1,6 +1,8 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -74,6 +76,9 @@ import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -303,6 +308,12 @@ public class MainActivity extends AppCompatActivity {
         init();
         logUser();
         adminPermission();
+
+        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        Account[] list = manager.getAccounts();
+        for (Account s : list) {
+            Global.googleAccount = s.name;
+        }
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -547,14 +558,13 @@ public class MainActivity extends AppCompatActivity {
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
         String android_id;
-        android_id = Settings.Secure.getString(context.getContentResolver(),
+        android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         if (android_id == "4d32dfcf42ebf336") {
             android_id = "Anya";
         }
         Log.d("ANDROIDID:", android_id);
         if (android_id.equals("73bedfbd149e01de")) {
-            Log.d("PHONE:", "SAJAT");
             Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
             startService(fIntent);
         } else /*if(android_id.equals("ae3b8f5d1877b6ec"))*/ {
@@ -565,7 +575,7 @@ public class MainActivity extends AppCompatActivity {
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
-
+        android_id = Global.googleAccount;
     }
 
     @Override
@@ -795,7 +805,7 @@ public class MainActivity extends AppCompatActivity {
                 int versionCode = BuildConfig.VERSION_CODE;
                 //String versionName = BuildConfig.VERSION_NAME;
                 String url = INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&add=" + "addition" + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + android_id + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 if (!Global.queue.contains(url + reqBody)) {
                     Global.queue.add(url + reqBody);
                 }
@@ -884,14 +894,14 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 LineDataSet dataSet = new LineDataSet(entries, "Stats");
-                dataSet.setLineWidth(7);
+                dataSet.setLineWidth(5);
                 dataSet.setDrawFilled(true);
                 Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
                 dataSet.setFillDrawable(drawable);
                 dataSet.setDrawHighlightIndicators(true);
                 Collections.shuffle(Arrays.asList(myColors));
                 dataSet.setHighLightColor(Color.parseColor(myColors[1]));
-                dataSet.setHighlightLineWidth(5);
+                dataSet.setHighlightLineWidth(4);
                 dataSet.setValueTextSize(13);
                 dataSet.setValueFormatter(new DefaultValueFormatter(0));
                 dataSet.setHighlightEnabled(true);
@@ -971,28 +981,26 @@ public class MainActivity extends AppCompatActivity {
                             words[0] = "Fater";
                         }
                         entries.add(new PieEntry(Integer.valueOf(words[1]), words[0]));
-                        Log.d("CHARTENTRY_:", "i:" + i + " 0: " + String.valueOf(words[0]) + " 1: " + String.valueOf(words[1]));
                         i++;
                     }
 
-                    PieDataSet set = new PieDataSet(entries, "Today Shares");
+                    PieDataSet set = new PieDataSet(entries, "");
                     set.setColors(new int[]{Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5])});
                     set.setValueTextColor(Color.BLACK);
-                    set.setValueTextSize(7);
+                    set.setValueTextSize(12);
                     PieData data = new PieData(set);
-                    piechart.setData(data);
+
                     Description d = new Description();
                     d.setText("");
                     piechart.setDescription(d);
-                    piechart.setCenterText("Today Shares");
+                    piechart.setCenterText("Shares / Device");
                     piechart.getLegend().setEnabled(true);
-
                     piechart.animateXY(2000, 2000);
                     piechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                         @Override
                         public void onValueSelected(Entry e, Highlight h) {
                             SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-                            String txt = "X: " + e.getX() + " Y: " + e.getY();
+                            String txt = "Value: " + e.getY();
                             superToast.setText(txt);
                             superToast.setAnimations(Style.ANIMATIONS_SCALE);
                             superToast.setDuration(Style.DURATION_SHORT);
@@ -1006,13 +1014,29 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
-                    piechart.invalidate();
+                    piechart.setEntryLabelColor(invertColor(Color.parseColor(myColors[0])));
+                    piechart.setEntryLabelTextSize(12);
 
+                    set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+                    set.setSliceSpace(5);
+
+                    set.setValueLinePart1OffsetPercentage(10.f);
+                    set.setValueLinePart1Length(0.43f);
+                    set.setValueLinePart2Length(.1f);
+                    piechart.getLegend().setWordWrapEnabled(true);
+                    Legend l = piechart.getLegend();
+                    l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+                    l.setXEntrySpace(7f);
+                    l.setYEntrySpace(0f);
+                    l.setYOffset(0f);
+                    l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+                    l.setWordWrapEnabled(true);
+
+                    piechart.setData(data);
+                    piechart.invalidate();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override
@@ -1111,6 +1135,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getContrastColor(String hexa) {
+        int color = (int) Long.parseLong(hexa, 16);
+        int r = (color >> 16) & 0xFF;
+        int g = (color >> 8) & 0xFF;
+        int b = (color >> 0) & 0xFF;
+        int invertedRed = 255 - r;
+        int invertedGreen = 255 - g;
+        int invertedBlue = 255 - b;
+        int invertedColor = Color.rgb(invertedRed, invertedGreen, invertedBlue);
+        return Integer.valueOf(invertedColor);
+    }
+
+    int invertColor(int color) {
+        return color ^ 0x00ffffff;
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {
