@@ -10,9 +10,9 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="already co" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="SAT_" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="CMakeSettings">
@@ -21,7 +21,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="TODO: &#10;&#10;unique url requests are implemented. should save bandwidth and probably extends battery's life">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="TODO: &#10;&#10;+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)">
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -30,13 +30,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterDir="false" />
@@ -57,81 +55,13 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/16.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/17.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/17.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/18.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/18.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/19.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/19.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/20.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/20.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/21.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/21.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/22.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/22.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/23.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/23.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/24.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/24.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/25.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/25.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/26.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/26.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/27.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/27.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/28.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/28.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/29.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/29.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/30.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/30.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/31.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/31.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/32.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/32.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/33.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/33.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/34.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/34.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/35.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/35.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/36.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/36.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/37.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/37.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/38.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/38.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/39.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/39.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/40.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/40.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/41.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/41.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/42.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/42.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/43.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/43.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/44.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/44.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/45.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/45.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/47.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/47.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/48.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/48.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/49.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/49.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/52.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/52.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/53.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/53.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/54.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/54.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/56.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/56.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/57.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/57.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/58.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/58.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/59.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/59.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/61.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/61.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/62.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/62.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/63.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/63.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/64.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/64.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/65.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/65.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/66.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/66.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/67.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/67.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/68.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/68.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/69.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/69.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/7.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/70.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/70.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/71.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/71.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/73.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/73.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/74.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/74.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/75.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/75.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/77.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/77.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/78.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/78.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/9.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/9.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/1/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/1/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/1/classes2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/1/classes2.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/externalLibsDexMerger/debug/0/classes2.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -180,16 +110,16 @@
         <counts>
           <entry key="dummy" value="8" />
           <entry key="gradle" value="417" />
-          <entry key="java" value="43662" />
-          <entry key="txt" value="2915" />
+          <entry key="java" value="43865" />
+          <entry key="txt" value="2955" />
           <entry key="xml" value="2131" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="417" />
-          <entry key="JAVA" value="43662" />
-          <entry key="PLAIN_TEXT" value="2923" />
+          <entry key="JAVA" value="43865" />
+          <entry key="PLAIN_TEXT" value="2963" />
           <entry key="XML" value="2131" />
         </counts>
       </usages-collector>
@@ -231,11 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="313" column="23" selection-start-line="313" selection-start-column="23" selection-end-line="313" selection-end-column="23" />
+            <state relative-caret-position="262">
+              <caret line="391" column="85" selection-start-line="391" selection-start-column="85" selection-end-line="391" selection-end-column="85" />
               <folding>
                 <element signature="method#onCreate#0;class#BackgroundService#0" />
                 <element signature="class#3667:4357" />
@@ -245,7 +175,6 @@
                 <element signature="method#onRequest#0;class#5487:8326" />
                 <element signature="method#startUpdatesGPS#0;class#BackgroundService#0" />
                 <element signature="class#4534:5318" />
-                <element signature="method#onLocationChanged#0;class#4534:5318" />
                 <element signature="method#onStatusChanged#0;class#4534:5318" />
                 <element signature="method#onProviderEnabled#0;class#4534:5318" />
                 <element signature="method#onProviderDisabled#0;class#4534:5318" />
@@ -258,7 +187,6 @@
                 <element signature="method#aplist#0;class#BackgroundService#0" />
                 <element signature="method#convertDBM#0;class#BackgroundService#0" />
                 <element signature="method#round#0;class#BackgroundService#0" />
-                <element signature="method#showNotif#0;class#BackgroundService#0" />
                 <element signature="method#convertTime#0;class#BackgroundService#0" />
                 <element signature="method#getDistance#0;class#BackgroundService#0" />
                 <element signature="method#getCompleteAddressString#0;class#BackgroundService#0" />
@@ -266,7 +194,6 @@
                 <element signature="method#onDestroy#0;class#BackgroundService#0" />
                 <element signature="method#onStart#0;class#BackgroundService#0" />
                 <element signature="method#onTaskRemoved#0;class#BackgroundService#0" />
-                <element signature="method#onGpsStatusChanged#0;class#BackgroundService#0" />
                 <element signature="class#LocalBinder#0;class#BackgroundService#0" />
               </folding>
             </state>
@@ -305,7 +232,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="2040">
-              <caret line="120" selection-start-line="120" selection-end-line="120" />
+              <caret line="129" selection-start-line="129" selection-end-line="129" />
             </state>
           </provider>
           <provider selected="true" editor-type-id="android-designer2" />
@@ -314,8 +241,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+            <state relative-caret-position="123">
+              <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
               <folding>
                 <element signature="method#getCompleteAddressString#0;class#Global#0" />
                 <element signature="method#convertTime#0;class#Global#0" />
@@ -339,16 +266,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1473">
-              <caret line="1055" column="104" selection-start-line="1055" selection-start-column="104" selection-end-line="1055" selection-end-column="104" />
+            <state relative-caret-position="224">
+              <caret line="1113" selection-start-line="1113" selection-end-line="1113" />
               <folding>
                 <element signature="e#5800#5827#0" />
                 <element signature="class#6968:8631" />
                 <element signature="method#run#0;class#6968:8631" />
                 <element signature="e#8638#11512#0" />
+                <element signature="e#12120#24288#0" />
                 <element signature="class#13223:13881" />
                 <element signature="method#uncaughtException#0;class#13223:13881" />
                 <element signature="e#14639#14654#0" />
@@ -380,9 +308,6 @@
                 <element signature="e#24366#24823#0" />
                 <element signature="method#onServiceDisconnected#0;class#25180:25715" />
                 <element signature="method#onServiceConnected#0;class#25180:25715" />
-                <element signature="e#25722#27726#0" />
-                <element signature="class#25808:26682" />
-                <element signature="method#onLocationChanged#0;class#25808:26682" />
                 <element signature="method#onStatusChanged#0;class#25808:26682" />
                 <element signature="method#onProviderDisabled#0;class#25808:26682" />
                 <element signature="e#27732#29129#0" />
@@ -437,9 +362,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>empty</find>
-      <find>androidid</find>
-      <find>shuffle</find>
       <find>today</find>
       <find>address</find>
       <find>add</find>
@@ -467,6 +389,9 @@
       <find>android_</find>
       <find>stats</find>
       <find>http</find>
+      <find>onloca</find>
+      <find>GPS SAT</find>
+      <find>onlocationc</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -2801,12 +2726,12 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
       </list>
     </option>
   </component>
@@ -2880,7 +2805,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="device.picker.selection" value="330027a99055731d" />
+    <property name="device.picker.selection" value="52007fcbfcff652d" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="E:/wifilocator" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -3208,7 +3133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551783795683</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="TODO: &#10;&#10;+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)">
+      <created>1551788236782</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1551788236782</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3234,7 +3166,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49959514" visible="true" weight="0.2508897" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959514" weight="0.2508897" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -3242,7 +3174,7 @@
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.3291815" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50040483" side_tool="true" weight="0.3469751" />
-      <window_info anchor="bottom" id="Logcat" order="10" weight="0.3291815" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="10" visible="true" weight="0.3291815" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3291815" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3291815" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -3262,7 +3194,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="now supports clustering with markers&#10;(lot of marker on the same place)" />
     <MESSAGE value="rewritten to support android 8.0" />
     <MESSAGE value="notification now works on 8.0 but not tested on 7 or below.&#10;likely doesnt works" />
     <MESSAGE value="revmaped notifications, design and performance fix" />
@@ -3287,7 +3218,8 @@
     <MESSAGE value="TODO: proper queue system to release, self maintaining&#10;+ queue system is reverted. caused app crash -&gt; need rework&#10;+ need to refresh automatically&#10;+ seems like everything is ok&#10;&#10;+ service fixes&#10;+ service starts after first chart is loaded" />
     <MESSAGE value="TODO: proper queue system to release, self maintaining&#10;+ queue system is reverted. caused app crash -&gt; need rework&#10;+ need to refresh automatically&#10;+ seems like everything is ok&#10;+ service fixes&#10;+ service starts after first chart is loaded&#10;&#10;+ everything is ok. milestone" />
     <MESSAGE value="TODO: &#10;&#10;unique url requests are implemented. should save bandwidth and probably extends battery's life" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO: &#10;&#10;unique url requests are implemented. should save bandwidth and probably extends battery's life" />
+    <MESSAGE value="TODO: &#10;&#10;+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)" />
+    <option name="LAST_COMMIT_MESSAGE" value="TODO: &#10;&#10;+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -3655,14 +3587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="6817">
@@ -3670,32 +3594,6 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-          <folding>
-            <element signature="method#getCompleteAddressString#0;class#Global#0" />
-            <element signature="method#convertTime#0;class#Global#0" />
-            <element signature="method#getLocalIpAddress#0;class#Global#0" />
-            <element signature="method#round#0;class#Global#0" />
-            <element signature="method#convertDBM#0;class#Global#0" />
-            <element signature="method#getUsedMemorySize#0;class#Global#0" />
-            <element signature="method#getDistance#0;class#Global#0" />
-            <element signature="method#checkPermissionLocation#0;class#Global#0" />
-            <element signature="method#getVersionInfo#0;class#Global#0" />
-            <element signature="method#getInitLat#0;class#Global#0" />
-            <element signature="method#getInitLong#0;class#Global#0" />
-            <element signature="method#getLat#0;class#Global#0" />
-            <element signature="method#getLong#0;class#Global#0" />
-            <element signature="method#getInitLat_#0;class#Global#0" />
-            <element signature="method#getInitLong_#0;class#Global#0" />
-            <element signature="method#getLat_#0;class#Global#0" />
-            <element signature="method#getLong_#0;class#Global#0" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
@@ -3712,55 +3610,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="313" column="23" selection-start-line="313" selection-start-column="23" selection-end-line="313" selection-end-column="23" />
-          <folding>
-            <element signature="method#onCreate#0;class#BackgroundService#0" />
-            <element signature="class#3667:4357" />
-            <element signature="method#uncaughtException#0;class#3667:4357" />
-            <element signature="e#5348#5361#0" />
-            <element signature="class#5487:8326" />
-            <element signature="method#onRequest#0;class#5487:8326" />
-            <element signature="method#startUpdatesGPS#0;class#BackgroundService#0" />
-            <element signature="class#4534:5318" />
-            <element signature="method#onLocationChanged#0;class#4534:5318" />
-            <element signature="method#onStatusChanged#0;class#4534:5318" />
-            <element signature="method#onProviderEnabled#0;class#4534:5318" />
-            <element signature="method#onProviderDisabled#0;class#4534:5318" />
-            <element signature="method#logUser#0;class#BackgroundService#0" />
-            <element signature="method#queryLocation#0;class#BackgroundService#0" />
-            <element signature="method#saveRecordHttp#0;class#BackgroundService#0" />
-            <element signature="class#9235:9769" />
-            <element signature="method#onSuccess#0;class#9235:9769" />
-            <element signature="method#onFailure#0;class#9235:9769" />
-            <element signature="method#aplist#0;class#BackgroundService#0" />
-            <element signature="method#convertDBM#0;class#BackgroundService#0" />
-            <element signature="method#round#0;class#BackgroundService#0" />
-            <element signature="method#showNotif#0;class#BackgroundService#0" />
-            <element signature="method#convertTime#0;class#BackgroundService#0" />
-            <element signature="method#getDistance#0;class#BackgroundService#0" />
-            <element signature="method#getCompleteAddressString#0;class#BackgroundService#0" />
-            <element signature="method#onStartCommand#0;class#BackgroundService#0" />
-            <element signature="method#onDestroy#0;class#BackgroundService#0" />
-            <element signature="method#onStart#0;class#BackgroundService#0" />
-            <element signature="method#onTaskRemoved#0;class#BackgroundService#0" />
-            <element signature="method#onGpsStatusChanged#0;class#BackgroundService#0" />
-            <element signature="class#LocalBinder#0;class#BackgroundService#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1473">
-          <caret line="1055" column="104" selection-start-line="1055" selection-start-column="104" selection-end-line="1055" selection-end-column="104" />
+        <state relative-caret-position="224">
+          <caret line="1113" selection-start-line="1113" selection-end-line="1113" />
           <folding>
             <element signature="e#5800#5827#0" />
             <element signature="class#6968:8631" />
             <element signature="method#run#0;class#6968:8631" />
             <element signature="e#8638#11512#0" />
+            <element signature="e#12120#24288#0" />
             <element signature="class#13223:13881" />
             <element signature="method#uncaughtException#0;class#13223:13881" />
             <element signature="e#14639#14654#0" />
@@ -3792,9 +3651,6 @@
             <element signature="e#24366#24823#0" />
             <element signature="method#onServiceDisconnected#0;class#25180:25715" />
             <element signature="method#onServiceConnected#0;class#25180:25715" />
-            <element signature="e#25722#27726#0" />
-            <element signature="class#25808:26682" />
-            <element signature="method#onLocationChanged#0;class#25808:26682" />
             <element signature="method#onStatusChanged#0;class#25808:26682" />
             <element signature="method#onProviderDisabled#0;class#25808:26682" />
             <element signature="e#27732#29129#0" />
@@ -3830,6 +3686,77 @@
             <element signature="e#49678#50320#0" />
             <element signature="e#49458#49459#0" expanded="true" />
             <element signature="e#49499#49500#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="50" column="36" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding>
+            <element signature="method#getCompleteAddressString#0;class#Global#0" />
+            <element signature="method#convertTime#0;class#Global#0" />
+            <element signature="method#getLocalIpAddress#0;class#Global#0" />
+            <element signature="method#round#0;class#Global#0" />
+            <element signature="method#convertDBM#0;class#Global#0" />
+            <element signature="method#getUsedMemorySize#0;class#Global#0" />
+            <element signature="method#getDistance#0;class#Global#0" />
+            <element signature="method#checkPermissionLocation#0;class#Global#0" />
+            <element signature="method#getVersionInfo#0;class#Global#0" />
+            <element signature="method#getInitLat#0;class#Global#0" />
+            <element signature="method#getInitLong#0;class#Global#0" />
+            <element signature="method#getLat#0;class#Global#0" />
+            <element signature="method#getLong#0;class#Global#0" />
+            <element signature="method#getInitLat_#0;class#Global#0" />
+            <element signature="method#getInitLong_#0;class#Global#0" />
+            <element signature="method#getLat_#0;class#Global#0" />
+            <element signature="method#getLong_#0;class#Global#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="391" column="85" selection-start-line="391" selection-start-column="85" selection-end-line="391" selection-end-column="85" />
+          <folding>
+            <element signature="method#onCreate#0;class#BackgroundService#0" />
+            <element signature="class#3667:4357" />
+            <element signature="method#uncaughtException#0;class#3667:4357" />
+            <element signature="e#5348#5361#0" />
+            <element signature="class#5487:8326" />
+            <element signature="method#onRequest#0;class#5487:8326" />
+            <element signature="method#startUpdatesGPS#0;class#BackgroundService#0" />
+            <element signature="class#4534:5318" />
+            <element signature="method#onStatusChanged#0;class#4534:5318" />
+            <element signature="method#onProviderEnabled#0;class#4534:5318" />
+            <element signature="method#onProviderDisabled#0;class#4534:5318" />
+            <element signature="method#logUser#0;class#BackgroundService#0" />
+            <element signature="method#queryLocation#0;class#BackgroundService#0" />
+            <element signature="method#saveRecordHttp#0;class#BackgroundService#0" />
+            <element signature="class#9235:9769" />
+            <element signature="method#onSuccess#0;class#9235:9769" />
+            <element signature="method#onFailure#0;class#9235:9769" />
+            <element signature="method#aplist#0;class#BackgroundService#0" />
+            <element signature="method#convertDBM#0;class#BackgroundService#0" />
+            <element signature="method#round#0;class#BackgroundService#0" />
+            <element signature="method#convertTime#0;class#BackgroundService#0" />
+            <element signature="method#getDistance#0;class#BackgroundService#0" />
+            <element signature="method#getCompleteAddressString#0;class#BackgroundService#0" />
+            <element signature="method#onStartCommand#0;class#BackgroundService#0" />
+            <element signature="method#onDestroy#0;class#BackgroundService#0" />
+            <element signature="method#onStart#0;class#BackgroundService#0" />
+            <element signature="method#onTaskRemoved#0;class#BackgroundService#0" />
+            <element signature="class#LocalBinder#0;class#BackgroundService#0" />
           </folding>
         </state>
       </provider>

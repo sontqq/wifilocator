@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
+import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -199,6 +200,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             public void onLocationChanged(Location location) {
                 mlocation = location;
                 Log.d("(service) Location Changes", location.toString());
+                Global.GpsInView = location.getExtras().getInt("satellites");
+                Log.d("GPS SAT_", String.valueOf(location.getExtras().getInt("satellites")));
                 queryLocation(location);
             }
 
@@ -386,6 +389,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
         contentView.setTextViewText(R.id.notif_add, "Address: " + Global.address);
         contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(Global.uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(Global.GpsInView));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -507,6 +511,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         mStatus = mService.getGpsStatus(mStatus);
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:

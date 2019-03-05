@@ -118,6 +118,15 @@
             android:textAlignment="textStart"
             android:textColor="@color/notifText" />
 
+        <TextView
+            android:id="@+id/notif_gps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Unique"
+            android:textAlignment="textStart"
+            android:textColor="@color/notifText" />
+
 
     </LinearLayout>
 

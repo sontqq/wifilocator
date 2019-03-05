@@ -787,12 +787,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 int versionCode = BuildConfig.VERSION_CODE;
-                //String versionName = BuildConfig.VERSION_NAME;
                 String url = INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                /*if (!Global.queue.contains(url + reqBody)) {
-                    Global.queue.add(url + reqBody);
-                }*/
                 saveRecordHttp(url + reqBody);
             }
             Global.nearbyCount = String.valueOf(scanResults.size());

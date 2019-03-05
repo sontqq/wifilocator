@@ -48,6 +48,7 @@ public class Global extends Application{
     public static String accuracy = "0";
     public static String lastSSID;
     public static String nearbyCount;
+    public static int GpsInView = 0;
     public static int count = 0;
     public static String provider = "Not available";
     public static String maptype;
