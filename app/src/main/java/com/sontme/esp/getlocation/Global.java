@@ -47,7 +47,7 @@ public class Global extends Application{
     public static String speed = "0.00";
     public static String accuracy = "0";
     public static String lastSSID;
-    public static String lastNearby;
+    public static String nearbyCount;
     public static int count = 0;
     public static String provider = "Not available";
     public static String maptype;
@@ -55,7 +55,7 @@ public class Global extends Application{
     public static boolean wanarun = true;
     public static String initLat = "0";
     public static String initLong = "0";
-    public static int nearbyCount;
+
     public static List<String> uniqueAPS = new ArrayList<>();
     public static Queue<String> queue = new LinkedList<String>();
 

@@ -299,10 +299,7 @@ public class MainActivity extends AppCompatActivity {
         adminPermission();
 
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
-        Intent fIntent = new Intent(getBaseContext(), BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-        startService(fIntent);
-        handler.postDelayed(runnable, 1000);
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -555,12 +552,11 @@ public class MainActivity extends AppCompatActivity {
 
         turnGPSOn();
 
-        Toast.makeText(getBaseContext(), "Started Service Autimatically", Toast.LENGTH_SHORT).show();
-
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
 
+        handler.postDelayed(runnable, 1000);
     }
 
     @Override
@@ -577,12 +573,6 @@ public class MainActivity extends AppCompatActivity {
             case 101:
                 if (result) Log.d("GOOGLE_X", "Permission GET_ACCOUNTS granted");
                 break;
-        }
-    }
-
-    private void requestPermissions(Activity activity) {
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.GET_ACCOUNTS}, 101);
         }
     }
 
@@ -695,12 +685,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-        superToast.setText("Resuming");
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_VERY_SHORT);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
     }
 
     @Override
@@ -724,7 +708,7 @@ public class MainActivity extends AppCompatActivity {
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = Text.split("\\s+");
         contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
-        contentView.setTextViewText(R.id.notif_time, "Time #" + Global.lastNearby);
+        contentView.setTextViewText(R.id.notif_time, "Time #" + Global.nearbyCount);
         contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
         contentView.setTextViewText(R.id.notif_text3, Global.lastSSID);
         contentView.setTextViewText(R.id.notif_lat, Global.latitude);
@@ -783,15 +767,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aplist(final Context context, double lati, double longi) {
-        //Map<String, Integer> map = new HashMap<String, Integer>();
-
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + Global.convertDBM(result.level) + "%";
-                //map.put(result.SSID, Global.convertDBM(result.level));
+
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -808,12 +790,12 @@ public class MainActivity extends AppCompatActivity {
                 //String versionName = BuildConfig.VERSION_NAME;
                 String url = INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                if (!Global.queue.contains(url + reqBody)) {
+                /*if (!Global.queue.contains(url + reqBody)) {
                     Global.queue.add(url + reqBody);
-                }
+                }*/
                 saveRecordHttp(url + reqBody);
             }
-            Global.lastNearby = String.valueOf(scanResults.size());
+            Global.nearbyCount = String.valueOf(scanResults.size());
 
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
@@ -938,6 +920,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                startService(new Intent(getBaseContext(), BackgroundService.class));
             }
 
             @Override
@@ -948,7 +931,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_1 < 20) {
-                    //getChartHttp("https://sont.sytes.net/wifis_chart.php");
+                    getChartHttp("https://sont.sytes.net/wifis_chart.php");
                     retry_counter_1++;
                 }
             }
@@ -973,6 +956,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int i = 0;
                     Collections.shuffle(Arrays.asList(myColors));
+                    int ossz = 0;
                     for (String line : lines) {
                         String[] words = line.trim().split("\\s+");
                         if ((words[0] == "73bedfbd149e01de") || (words[0].equals("73bedfbd149e01de"))) {
@@ -983,6 +967,7 @@ public class MainActivity extends AppCompatActivity {
                             words[0] = "Fater";
                         }
                         entries.add(new PieEntry(Integer.valueOf(words[1]), words[0]));
+                        ossz = ossz + Integer.valueOf(words[1]);
                         i++;
                     }
 
@@ -995,27 +980,9 @@ public class MainActivity extends AppCompatActivity {
                     Description d = new Description();
                     d.setText("");
                     piechart.setDescription(d);
-                    piechart.setCenterText("Shares / Device");
+                    piechart.setCenterText("Shares" + "\n(" + ossz + ")");
                     piechart.getLegend().setEnabled(true);
                     piechart.animateXY(2000, 2000);
-                    piechart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-                        @Override
-                        public void onValueSelected(Entry e, Highlight h) {
-                            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-                            String txt = "Value: " + e.getY();
-                            superToast.setText(txt);
-                            superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                            superToast.setDuration(Style.DURATION_SHORT);
-                            superToast.setTouchToDismiss(true);
-                            superToast.show();
-                        }
-
-                        @Override
-                        public void onNothingSelected() {
-
-                        }
-                    });
-
                     piechart.setEntryLabelColor(invertColor(Color.parseColor(myColors[0])));
                     piechart.setEntryLabelTextSize(12);
 
@@ -1053,7 +1020,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_3 < 20) {
-                    //getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+                    getChartHttp2("https://sont.sytes.net/wifis_chart.php");
                     retry_counter_3++;
                 }
             }
@@ -1086,7 +1053,7 @@ public class MainActivity extends AppCompatActivity {
                 if (retry_counter_2 < 20) {
                     TextView stat = findViewById(R.id.txt_stat1);
                     stat.setText("HTTP Error");
-                    //getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
                     retry_counter_2++;
                 }
             }

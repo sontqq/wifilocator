@@ -111,6 +111,74 @@ public class BackgroundService extends Service {
             }
         };
         Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Notification.Builder builder = new Notification.Builder(this, "wifilocatorservice")
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("WiFi Locator Service started")
+                    .setAutoCancel(true);
+            Notification notification = builder.build();
+            startForeground(1, notification);
+        } else {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("WiFi Locator Service started")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+            Notification notification = builder.build();
+            startForeground(1, notification);
+        }
+        //region HTTP
+        AsyncHttpServer server = new AsyncHttpServer();
+        List<WebSocket> _sockets = new ArrayList<WebSocket>();
+        server.get("/", new HttpServerRequestCallback() {
+            @Override
+            public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
+                String tosend = null;
+                String os = System.getProperty("os.version");
+                String sdk = android.os.Build.VERSION.SDK;
+                String device = android.os.Build.DEVICE;
+                String model = android.os.Build.MODEL;
+                String prod = android.os.Build.PRODUCT;
+                String serviceName = Context.TELEPHONY_SERVICE;
+                TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
+                String IMEI, IMSI;
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                IMEI = m_telephonyManager.getDeviceId();
+                IMSI = m_telephonyManager.getSubscriberId();
+                String osf = android.os.Build.VERSION.RELEASE;
+                long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
+                long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
+
+                ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
+                String stat = null;
+                for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
+                    long received = TrafficStats.getUidRxBytes(runningApp.uid);
+                    long sent = TrafficStats.getUidTxBytes(runningApp.uid);
+                    stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
+                    Log.d("NETSTAT", stat);
+                }
+                tosend = request.toString();
+                tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
+                tosend = tosend + "<br>ID: " + Build.ID;
+                tosend = tosend + "<br>User: " + Build.USER;
+                tosend = tosend + "<br>Host: " + Build.HOST;
+                tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
+                tosend = tosend + "<br>Board: " + Build.BOARD;
+                tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
+                tosend = tosend + "<br>" + stat;
+                response.send(tosend);
+                Toast.makeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
+            }
+        });
+        server.listen(8888);
+        //endregion
+        startUpdatesGPS();
+
     }
 
     public void startUpdatesGPS() {
@@ -224,7 +292,7 @@ public class BackgroundService extends Service {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                saveRecordHttp(path);
+                //saveRecordHttp(path);
                 Log.d("HTTP_RETRY", "Error code: " + statusCode);
             }
         });
@@ -237,7 +305,6 @@ public class BackgroundService extends Service {
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
-                Global.lastNearby = String.valueOf(scanResults.size());
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
@@ -253,10 +320,11 @@ public class BackgroundService extends Service {
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                Log.d("GOOGLE_5", url + reqBody);
+                //Log.d("GOOGLE_5", url + reqBody);
                 //urlList.add(url + reqBody);
                 saveRecordHttp(url + reqBody);
             }
+            Global.nearbyCount = String.valueOf(scanResults.size());
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
@@ -290,15 +358,15 @@ public class BackgroundService extends Service {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = Text.split("\\s+");
-        contentView.setTextViewText(R.id.notif_ssid, "SSID #" + Global.count);
-        contentView.setTextViewText(R.id.notif_time, "Time #" + Global.lastNearby);
-        contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
+        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + Global.count);
+        contentView.setTextViewText(R.id.notif_time, "Time / Nearby #" + Global.nearbyCount);
+        contentView.setTextViewText(R.id.notif_text2, det[6]);
         contentView.setTextViewText(R.id.notif_text3, Global.lastSSID);
         contentView.setTextViewText(R.id.notif_lat, Global.latitude);
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
-        contentView.setTextViewText(R.id.notif_add, Global.address);
+        contentView.setTextViewText(R.id.notif_add, "Address: " + Global.address);
         //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(Global.nearbyCount));
-        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(Global.uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(Global.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -396,77 +464,13 @@ public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Notification.Builder builder = new Notification.Builder(this, "wifilocatorservice")
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("WiFi Locator Service started")
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(1, notification);
-        } else {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("WiFi Locator Service started")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(1, notification);
-        }
-        startUpdatesGPS();
-        AsyncHttpServer server = new AsyncHttpServer();
-        List<WebSocket> _sockets = new ArrayList<WebSocket>();
-        server.get("/", new HttpServerRequestCallback() {
-            @Override
-            public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
-                String tosend = null;
-                String os = System.getProperty("os.version");
-                String sdk = android.os.Build.VERSION.SDK;
-                String device = android.os.Build.DEVICE;
-                String model = android.os.Build.MODEL;
-                String prod = android.os.Build.PRODUCT;
-                String serviceName = Context.TELEPHONY_SERVICE;
-                TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
-                String IMEI, IMSI;
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                IMEI = m_telephonyManager.getDeviceId();
-                IMSI = m_telephonyManager.getSubscriberId();
-                String osf = android.os.Build.VERSION.RELEASE;
-                long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
-                long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
-
-                ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
-                String stat = null;
-                for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
-                    long received = TrafficStats.getUidRxBytes(runningApp.uid);
-                    long sent = TrafficStats.getUidTxBytes(runningApp.uid);
-                    stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
-                    Log.d("NETSTAT", stat);
-                }
-
-                tosend = request.toString();
-                tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
-                tosend = tosend + "<br>ID: " + Build.ID;
-                tosend = tosend + "<br>User: " + Build.USER;
-                tosend = tosend + "<br>Host: " + Build.HOST;
-                tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
-                tosend = tosend + "<br>Board: " + Build.BOARD;
-                tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
-                tosend = tosend + "<br>" + stat;
-                response.send(tosend);
-                Toast.makeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
-            }
-        });
-        server.listen(8888);
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
         Toast.makeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
+        stopForeground(true);
     }
 
     @Override
