@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="1871"
+    android:versionCode="1883"
     android:versionName="3.0" >
 
     <uses-sdk
-        android:minSdkVersion="26"
+        android:minSdkVersion="24"
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

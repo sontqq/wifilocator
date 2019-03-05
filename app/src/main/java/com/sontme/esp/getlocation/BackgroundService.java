@@ -341,6 +341,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 } else {
                     Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
                 }
+                if (urlList_uniq.size() >= 5000) {
+                    urlList_uniq.clear();
+                }
             }
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());

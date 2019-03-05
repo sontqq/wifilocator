@@ -2076,6 +2076,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8c51ce9822629d50b670fefbb92aca04\\res\\drawable-xhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_toolbar.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8c51ce9822629d50b670fefbb92aca04\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-16.0.1.aar\\d6435c7be38caa123d8ec57c1faf7e66\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
     },

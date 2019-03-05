@@ -334,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             Global.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
         }
-
+        Log.d("ANDROID_ID_", "Android_id:_" + Global.googleAccount);
         String ipv4 = Global.getLocalIpAddress();
         Global.ipaddress = ipv4;
         TextView ip = findViewById(R.id.ip);
@@ -554,7 +554,7 @@ public class MainActivity extends AppCompatActivity {
 
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
-        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + Global.googleAccount);
 
         handler.postDelayed(runnable, 1000);
     }
@@ -1053,7 +1053,7 @@ public class MainActivity extends AppCompatActivity {
                 if (retry_counter_2 < 20) {
                     TextView stat = findViewById(R.id.txt_stat1);
                     stat.setText("HTTP Error");
-                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=");
+                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + Global.googleAccount);
                     retry_counter_2++;
                 }
             }
