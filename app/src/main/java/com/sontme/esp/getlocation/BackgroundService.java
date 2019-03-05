@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -29,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.service.textservice.SpellCheckerService;
 import android.support.v4.app.ActivityCompat;
@@ -70,10 +72,14 @@ import okhttp3.WebSocket;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-public class BackgroundService extends Service {
-
+public class BackgroundService extends Service implements GpsStatus.Listener {
+    private LocationManager mService;
+    private GpsStatus mStatus;
+    private List<String> urlList = new ArrayList<String>();
+    private List<String> urlList_uniq = new ArrayList<String>();
     public static Location mlocation;
     IBinder mBinder = new LocalBinder();
+    int req_count;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -85,6 +91,12 @@ public class BackgroundService extends Service {
         Fabric.with(this, new Crashlytics());
         logUser();
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
+
+        mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mService.addGpsStatusListener(this);
 
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
@@ -193,6 +205,7 @@ public class BackgroundService extends Service {
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 Log.d("Status Changed", String.valueOf(status));
+//                Toast.makeText(getBaseContext(), "GPS Status Changed: " + status, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -303,6 +316,7 @@ public class BackgroundService extends Service {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
+            Global.nearbyCount = String.valueOf(scanResults.size());
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
@@ -320,11 +334,14 @@ public class BackgroundService extends Service {
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                //Log.d("GOOGLE_5", url + reqBody);
-                //urlList.add(url + reqBody);
-                saveRecordHttp(url + reqBody);
+                if (!urlList_uniq.contains(url + reqBody)) {
+                    urlList_uniq.add(url + reqBody);
+                    saveRecordHttp(url + reqBody);
+                    req_count++;
+                } else {
+                    Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
+                }
             }
-            Global.nearbyCount = String.valueOf(scanResults.size());
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
@@ -359,13 +376,12 @@ public class BackgroundService extends Service {
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = Text.split("\\s+");
         contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + Global.count);
-        contentView.setTextViewText(R.id.notif_time, "Time / Nearby #" + Global.nearbyCount);
+        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
         contentView.setTextViewText(R.id.notif_text2, det[6]);
         contentView.setTextViewText(R.id.notif_text3, Global.lastSSID);
         contentView.setTextViewText(R.id.notif_lat, Global.latitude);
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
         contentView.setTextViewText(R.id.notif_add, "Address: " + Global.address);
-        //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(Global.nearbyCount));
         contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(Global.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
@@ -481,6 +497,31 @@ public class BackgroundService extends Service {
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onGpsStatusChanged(int event) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mStatus = mService.getGpsStatus(mStatus);
+        switch (event) {
+            case GpsStatus.GPS_EVENT_STARTED:
+                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_STOPPED:
+                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_FIRST_FIX:
+                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     public class LocalBinder extends Binder {
