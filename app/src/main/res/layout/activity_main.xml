@@ -56,16 +56,18 @@
                 <Button
                     android:id="@+id/startService"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="START SERVICE" />
+                    android:text="START SERVICE"
+                    android:textAlignment="textStart" />
 
                 <Button
                     android:id="@+id/stopService"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="STOP SERVICE" />
+                    android:text="STOP SERVICE"
+                    android:textAlignment="textStart" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,10 +79,20 @@
 
                 <Button
                     android:id="@+id/release_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Release Queue" />
+                    android:text="Upload FTP"
+                    android:textAlignment="textStart" />
+
+                <Button
+                    android:id="@+id/btn_up_http"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Upload HTTP"
+                    android:textAlignment="textStart" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -92,17 +104,19 @@
 
                 <Button
                     android:id="@+id/blebtn1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BLE Start" />
+                    android:text="BLE Start"
+                    android:textAlignment="textStart" />
 
                 <Button
                     android:id="@+id/blebtn2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BLE Stop" />
+                    android:text="BLE Stop"
+                    android:textAlignment="textStart" />
             </LinearLayout>
 
             <LinearLayout

@@ -12,6 +12,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -36,9 +37,11 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -108,14 +111,29 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
+import com.sontme.esp.getlocation.ConnectionManager;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
 
+import com.sontme.esp.getlocation.UploadFileFTP;
+import com.sontme.esp.getlocation.UploadFileHTTP;
+import com.sontme.esp.getlocation.cscs;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -174,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
     public static int retry_counter_2 = 0;
     public static int retry_counter_3 = 0;
     //endregion
+
+    private Button btn_upload_http;
 
     public DevicePolicyManager mDPM;
     public ComponentName mAdminName;
@@ -297,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         logUser();
         adminPermission();
+        requestAppPermissions();
 
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
@@ -422,6 +443,7 @@ public class MainActivity extends AppCompatActivity {
         Button blebtn1 = findViewById(R.id.blebtn1);
         Button blebtn2 = findViewById(R.id.blebtn2);
         txt_stat1 = findViewById(R.id.txt_stat1);
+        btn_upload_http = findViewById(R.id.btn_up_http);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -485,6 +507,16 @@ public class MainActivity extends AppCompatActivity {
                 releaseQueue();
             }
         });
+        btn_upload_http.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //new UploadFileHTTP(getBaseContext()).execute("192.168.0.43");
+                new UploadFileHTTP(getBaseContext()).execute("192.168.0.43/upload.php?");
+                Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
+                Log.d("HTTP_UPLOAD_", "started_main");
+            }
+        });
+
         blebtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -543,6 +575,7 @@ public class MainActivity extends AppCompatActivity {
                         .show();
             }
         });
+
         //endregion
 
         View hView = nv.getHeaderView(0);
@@ -896,26 +929,7 @@ public class MainActivity extends AppCompatActivity {
                 newchart.getDescription().setEnabled(false);
                 newchart.getLegend().setEnabled(false);
                 newchart.invalidate();
-
                 newchart.animateXY(2000, 2000);
-                newchart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-                    @Override
-                    public void onValueSelected(Entry e, Highlight h) {
-                        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-                        String txt = "X: " + e.getX() + " Y: " + e.getY();
-                        superToast.setText(txt);
-                        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                        superToast.setDuration(Style.DURATION_SHORT);
-                        superToast.setTouchToDismiss(true);
-                        superToast.show();
-                    }
-
-                    @Override
-                    public void onNothingSelected() {
-
-                    }
-                });
-
                 startService(new Intent(getBaseContext(), BackgroundService.class));
             }
 
@@ -1024,7 +1038,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getStatHttp(String path) {
-        // TODO: Implement retry counter with a low value
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
@@ -1056,21 +1069,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void releaseQueue() {
-        Iterator it = Global.queue.iterator();
-        int i = 0;
-        while (it.hasNext()) {
-            String iteratorValue = (String) it.next();
-            saveRecordHttp(iteratorValue);
-            i++;
+    private void requestAppPermissions() {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
         }
-        SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-        String txt = "Queue Released (" + i + ")";
-        superToast.setText(txt);
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_LONG);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
+        if (hasReadPermissions() && hasWritePermissions()) {
+            return;
+        }
+        ActivityCompat.requestPermissions(this,
+                new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, 1); // your request code
+    }
+
+    private boolean hasReadPermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private boolean hasWritePermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    public void releaseQueue() {
+
+        //ConnectionManager connectionManager = new ConnectionManager(context);
+        //connectionManager.requestWIFIConnection("VENDEG","");
+        //connectionManager.requestWIFIConnection("UPC Wi-Free","");
+
+        //Toast.makeText(getBaseContext(),"Connecting to: VENDEG",Toast.LENGTH_SHORT).show();
+
+        new UploadFileFTP(getBaseContext()).execute("192.168.0.43");
     }
 
     public void requestPermissionLocation() {
@@ -1108,6 +1137,99 @@ public class MainActivity extends AppCompatActivity {
 
     int invertColor(int color) {
         return color ^ 0x00ffffff;
+    }
+
+}
+
+class Helpher extends AsyncTask<String, Void, String> {
+    Context context;
+    JSONObject json;
+    ProgressDialog dialog;
+    int serverResponseCode = 0;
+    DataOutputStream dos = null;
+    FileInputStream fis = null;
+    BufferedReader br = null;
+
+
+    public Helpher(Context context) {
+        this.context = context;
+    }
+
+    protected void onPreExecute() {
+
+    }
+
+    @Override
+    protected String doInBackground(String... arg0) {
+
+        try {
+            File f = new File(arg0[0]);
+            URL url = new URL("http://localhost:8888/imageupload.php");
+            int bytesRead;
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + "");
+
+            String contentDisposition = "Content-Disposition: form-data; name=\"name\"; tmp_name=\""
+                    + f.getName() + "\"";
+            String contentType = "Content-Type: application/octet-stream";
+
+
+            dos = new DataOutputStream(conn.getOutputStream());
+            fis = new FileInputStream(f);
+
+
+            dos.writeBytes("\\s+\r\n");
+            dos.writeBytes(contentDisposition + "\n");
+            dos.writeBytes(contentType + "\n");
+            dos.writeBytes("\n");
+            byte[] buffer = new byte[99999999];
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                dos.write(buffer, 0, bytesRead);
+            }
+            dos.writeBytes("\n");
+            dos.writeBytes("\\s+\r\n");
+            dos.flush();
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode != 200) {
+                Log.w("HTTP_",
+                        responseCode + " Error: " + conn.getResponseMessage());
+                return null;
+            }
+
+            br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            Log.d("HTTP", "Sucessfully uploaded " + f.getName());
+
+        } catch (MalformedURLException e) {
+        } catch (IOException e) {
+        } finally {
+            try {
+                dos.close();
+                if (fis != null)
+                    fis.close();
+                if (br != null)
+                    br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return String.valueOf(serverResponseCode);
+    }
+
+
+    @Override
+    protected void onPostExecute(String result) {
+        dialog.dismiss();
+
     }
 
 }

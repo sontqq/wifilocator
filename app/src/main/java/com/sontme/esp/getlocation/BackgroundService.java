@@ -25,10 +25,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.TrafficStats;
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -44,6 +46,7 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
+import com.github.mikephil.charting.utils.FileUtils;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -59,11 +62,19 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 
+import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -82,6 +93,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     IBinder mBinder = new LocalBinder();
     int req_count;
 
+    cscs cs = new cscs("wifilocator_database.csv");
+
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
@@ -92,7 +105,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         Fabric.with(this, new Crashlytics());
         logUser();
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
-
         mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -201,7 +213,19 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 mlocation = location;
                 Log.d("(service) Location Changes", location.toString());
                 Global.GpsInView = location.getExtras().getInt("satellites");
-                Log.d("GPS SAT_", String.valueOf(location.getExtras().getInt("satellites")));
+                LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                Iterable<GpsSatellite> satellites = locationManager.getGpsStatus(null).getSatellites();
+                Iterator<GpsSatellite> satI = satellites.iterator();
+                int i = 0;
+                while (satI.hasNext()) {
+                    GpsSatellite satellite = satI.next();
+                    i++;
+                }
+                Global.GpsInUse = i;
+
                 queryLocation(location);
             }
 
@@ -320,11 +344,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             Global.nearbyCount = String.valueOf(scanResults.size());
+            //WifiConfiguration wc = new WifiConfiguration();
+            //wc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+
+            int versionCode = BuildConfig.VERSION_CODE;
             for (ScanResult result : scanResults) {
                 Global.lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
+                Log.d("WIFI_CAP_", result.capabilities);
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -334,21 +363,23 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                     enc = "WPA";
                 }
 
-                int versionCode = BuildConfig.VERSION_CODE;
                 String url = MainActivity.INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+
                 if (!urlList_uniq.contains(url + reqBody)) {
                     urlList_uniq.add(url + reqBody);
                     saveRecordHttp(url + reqBody);
                     req_count++;
                 } else {
-                    Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
+                    //Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
                 }
                 if (urlList_uniq.size() >= 5000) {
                     urlList_uniq.clear();
                 }
+                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + Global.googleAccount + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency);
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
         }
     }
@@ -389,7 +420,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         contentView.setTextViewText(R.id.notif_long, Global.longitude);
         contentView.setTextViewText(R.id.notif_add, "Address: " + Global.address);
         contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(Global.uniqueAPS.size()));
-        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(Global.GpsInView));
+        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(Global.GpsInView) + "_" + String.valueOf(Global.GpsInUse));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -508,11 +539,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public void onGpsStatusChanged(int event) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        mStatus = mService.getGpsStatus(mStatus);
+        //mStatus = mService.getGpsStatus(mStatus);
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
                 Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();

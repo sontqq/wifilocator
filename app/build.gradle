@@ -87,17 +87,14 @@ dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.ederdoski.ble:simpleble:1.0"
 
-    //implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
-
-    //implementation 'com.jjoe64:graphview:4.2.2'
-
-    //implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
-    //implementation 'com.sun.mail:android-mail:1.5.5'
-    //implementation 'com.sun.mail:android-activation:1.5.5'
-    //implementation 'org.simplejavamail:simple-java-mail:5.1.3'
+    implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.1'
 
-    //implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.0-alpha3'
+
+    implementation 'commons-net:commons-net:3.6'
+    //implementation 'org.apache.httpcomponents:httpclient:4.5.5'
+
+
 }

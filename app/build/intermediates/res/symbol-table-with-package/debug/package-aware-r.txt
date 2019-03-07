@@ -1194,6 +1194,7 @@ id border
 id bottom
 id btn_export
 id btn_export2
+id btn_up_http
 id bubble_description
 id bubble_image
 id bubble_moreinfo
