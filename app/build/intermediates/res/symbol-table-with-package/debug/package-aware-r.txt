@@ -1438,6 +1438,7 @@ id txtLongi
 id txt_add
 id txt_alti
 id txt_c
+id txt_csv
 id txt_dst
 id txt_ip
 id txt_lati
@@ -1447,11 +1448,14 @@ id txt_service
 id txt_spd
 id txt_stat1
 id txt_uniq
+id txt_zip
 id uniform
 id uniq
 id unlabeled
 id up
 id useLogo
+id val_csv
+id val_zip
 id view_offset_helper
 id visible
 id webview

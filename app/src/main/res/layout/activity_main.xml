@@ -284,6 +284,24 @@
                         android:text="IP"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/txt_csv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="Size of CSV"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_zip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="Size of ZIP"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -381,6 +399,22 @@
 
                     <TextView
                         android:id="@+id/ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="Not available" />
+
+                    <TextView
+                        android:id="@+id/val_csv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="Not available" />
+
+                    <TextView
+                        android:id="@+id/val_zip"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

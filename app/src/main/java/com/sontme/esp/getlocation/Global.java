@@ -60,7 +60,8 @@ public class Global extends Application{
     public static boolean isUploading = false;
     public static List<String> uniqueAPS = new ArrayList<>();
     public static Queue<String> queue = new LinkedList<String>();
-
+    public static String csvSize = "0";
+    public static String zipSize = "0";
     public static String googleAccount;
 
     public static DevicePolicyManager mDPM;

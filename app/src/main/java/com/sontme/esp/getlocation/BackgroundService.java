@@ -64,8 +64,12 @@ import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -77,6 +81,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
@@ -333,7 +339,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 //saveRecordHttp(path);
-                Log.d("HTTP_RETRY", "Error code: " + statusCode);
+                //Log.d("HTTP_RETRY", "Error code: " + statusCode);
             }
         });
     }
@@ -353,7 +359,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 if (!Global.uniqueAPS.contains(result.BSSID)) {
                     Global.uniqueAPS.add(result.BSSID);
                 }
-                Log.d("WIFI_CAP_", result.capabilities);
+                //Log.d("WIFI_CAP_", result.capabilities);
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -361,6 +367,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                     enc = "WEP";
                 } else if (result.capabilities.contains("WPA")) {
                     enc = "WPA";
+                } else if (result.capabilities.contains("WPA2")) {
+                    enc = "WPA2";
                 }
 
                 String url = MainActivity.INSERT_URL;

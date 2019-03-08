@@ -1,5 +1,6 @@
 package com.sontme.esp.getlocation.activities;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -22,11 +24,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +51,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
+import org.osmdroid.bonuspack.clustering.StaticCluster;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -51,9 +59,11 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.Projection;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
 import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlay;
@@ -72,6 +82,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -109,7 +121,7 @@ public class NearbyActivity extends AppCompatActivity {
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         map = (MapView) findViewById(R.id.osmmap2);
-        btn = (Button)findViewById(R.id.button6);
+        btn = (Button) findViewById(R.id.button6);
         Button btn2 = findViewById(R.id.btn_export2);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,37 +161,36 @@ public class NearbyActivity extends AppCompatActivity {
             startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
         } else if (Global.initLat != "0") {
             startPoint = new GeoPoint(Double.valueOf(Global.initLat), Double.valueOf(Global.initLong));
-        } else{
+        } else {
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
 
         mapController.setCenter(startPoint);
 
-        dl = (DrawerLayout)findViewById(R.id.drawler4);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        dl = (DrawerLayout) findViewById(R.id.drawler4);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv = (NavigationView)findViewById(R.id.nv4);
+        nv = (NavigationView) findViewById(R.id.nv4);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch(id)
-                {
+                switch (id) {
                     case R.id.main:
                         dl.closeDrawers();
-                        Intent i0 = new Intent(NearbyActivity.this,MainActivity.class);
+                        Intent i0 = new Intent(NearbyActivity.this, MainActivity.class);
                         startActivity(i0);
                         return true;
                     case R.id.map:
                         dl.closeDrawers();
-                        Intent i = new Intent(NearbyActivity.this,MapActivity.class);
+                        Intent i = new Intent(NearbyActivity.this, MapActivity.class);
                         startActivity(i);
                         return true;
                     case R.id.list:
                         dl.closeDrawers();
-                        Intent i2 = new Intent(NearbyActivity.this,ListActivity.class);
+                        Intent i2 = new Intent(NearbyActivity.this, ListActivity.class);
                         startActivity(i2);
                         return true;
                     case R.id.nearby:
@@ -192,20 +203,20 @@ public class NearbyActivity extends AppCompatActivity {
             }
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nv4);
-        View hView =  navigationView.getHeaderView(0);
-        TextView tex = (TextView)hView.findViewById(R.id.header_verinfo);
+        View hView = navigationView.getHeaderView(0);
+        TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
         getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
     }
 
     private Drawable resize(Drawable image, Integer size) {
-        Bitmap b = ((BitmapDrawable)image).getBitmap();
+        Bitmap b = ((BitmapDrawable) image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, size, size, false);
         return new BitmapDrawable(getResources(), bitmapResized);
     }
 
-    protected void drawCircle(MapView map){
+    protected void drawCircle(MapView map) {
         Polygon oPolygon = new Circlee(map);
         final double radius = 150;
         Double lat = null;
@@ -213,14 +224,14 @@ public class NearbyActivity extends AppCompatActivity {
         try {
             lat = Double.valueOf(Global.latitude);
             lon = Double.valueOf(Global.longitude);
-        }catch (Exception e){
+        } catch (Exception e) {
             lat = 47.935902;
             lon = 20.367769;
         }
         ArrayList<GeoPoint> circlePoints = new ArrayList<GeoPoint>();
-        GeoPoint p = new GeoPoint(lat,lon);
+        GeoPoint p = new GeoPoint(lat, lon);
         circlePoints.add(p);
-        for (float f = 0; f < 360; f++){
+        for (float f = 0; f < 360; f++) {
             circlePoints.add(new GeoPoint(lat, lon).destinationPoint(radius, f));
         }
         oPolygon.setPoints(circlePoints);
@@ -229,8 +240,8 @@ public class NearbyActivity extends AppCompatActivity {
         oPolygon.setTitle("karika title");
         oPolygon.setSubDescription("karika subdest");
         oPolygon.setInfoWindow(pop);
-        oPolygon.setFillColor(Color.argb(60,233,150,122));
-        oPolygon.setStrokeColor(Color.argb(85,255,0,255));
+        oPolygon.setFillColor(Color.argb(60, 233, 150, 122));
+        oPolygon.setStrokeColor(Color.argb(85, 255, 0, 255));
         oPolygon.setOnClickListener(new Polygon.OnClickListener() {
             @Override
             public boolean onClick(Polygon polygon, MapView mapView, GeoPoint eventPos) {
@@ -247,6 +258,7 @@ public class NearbyActivity extends AppCompatActivity {
         view.draw(canvas);
         return bitmap;
     }
+
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
@@ -270,7 +282,7 @@ public class NearbyActivity extends AppCompatActivity {
         clusterer.mTextAnchorU = 0.70f;
         clusterer.mTextAnchorV = 0.27f;
         clusterer.getTextPaint().setTextSize(20.0f);
-        
+
 
         map.getOverlays().clear();
         map.invalidate();
@@ -283,20 +295,46 @@ public class NearbyActivity extends AppCompatActivity {
             String time = entry.getValue().getTime();
             String ssid = entry.getValue().getSsid();
             String bssid = entry.getValue().getMac();
-            String source = entry.getValue().getSource();;
+            String source = entry.getValue().getSource();
+            ;
 
             String description = "Time: " + time + "\n" + "MAC: " + bssid;
             String snippet = "Source: " + source;
 
             GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
-            Marker m = new Marker(map);
+            CustomMarker m = new CustomMarker(map);
+            // marker timer setalpha
+            m.animate();
             m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker, MapView mapView) {
-                    if(marker.isInfoWindowShown()){
+
+
+                    final int[] counter_ = {0};
+                    Timer t = new Timer();
+
+                    t.scheduleAtFixedRate(new TimerTask() {
+                                              @Override
+                                              public void run() {
+                                                  Log.d("ALPHA", String.valueOf(marker.getAlpha()));
+                                                  if (marker.getAlpha() >= 255) {
+                                                      marker.setAlpha(marker.getAlpha() - 0.005f);
+                                                  } else if (marker.getAlpha() <= 1) {
+                                                      marker.setAlpha(marker.getAlpha() + 0.005f);
+                                                  }
+                                                  map.invalidate();
+                                                  counter_[0]++;
+                                              }
+                                          },
+                            //Set how long before to start calling the TimerTask (in milliseconds)
+                            100,
+                            //Set the amount of time between each execution (in milliseconds)
+                            100);
+
+                    if (marker.isInfoWindowShown()) {
                         marker.closeInfoWindow();
-                    }
-                    else{
+
+                    } else {
                         marker.showInfoWindow();
                     }
                     return true;
@@ -308,18 +346,18 @@ public class NearbyActivity extends AppCompatActivity {
             m.setInfoWindow(pop);
             m.setIcon(pin);
             m.setPosition(geo);
-            m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+            ((CustomCluster) clusterer).animateMarkerDropping(m);
             clusterer.add(m);
             counter++;
         }
         overlays.add(clusterer);
 
-        if(map.getMaxZoomLevel() <= 17){
+        if (map.getMaxZoomLevel() <= 17) {
             mapController.setZoom(18);
         }
-        //mapController.setZoom(map.getZoomLevel()-0.01);
-
         map.invalidate();
+
         NearbyActivity.loc_ssid2.clear();
 
         SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
@@ -328,11 +366,12 @@ public class NearbyActivity extends AppCompatActivity {
         superToast.setDuration(Style.DURATION_VERY_LONG);
         superToast.setTouchToDismiss(true);
         superToast.show();
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(t.onOptionsItemSelected(item))
+        if (t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
     }
@@ -360,10 +399,9 @@ public class NearbyActivity extends AppCompatActivity {
                     String bssid = splittedStr[3];
                     String str = splittedStr[4];
                     String source;
-                    try{
-                         source = splittedStr[8];
-                    }
-                    catch(Exception e){
+                    try {
+                        source = splittedStr[8];
+                    } catch (Exception e) {
                         source = "No data";
                     }
                     try {
@@ -374,10 +412,10 @@ public class NearbyActivity extends AppCompatActivity {
                         x.setLongitude(longi);
                         ApStrings desc = new ApStrings(recordTime, ssid, bssid, str, source);
                         loc_ssid2.put(x, desc);
+                    } catch (Exception e) {
                     }
-                    catch (Exception e){}
                 }
-                drawMarkers(map,loc_ssid2);
+                drawMarkers(map, loc_ssid2);
                 drawCircle(map);
             }
 
@@ -412,11 +450,10 @@ public class NearbyActivity extends AppCompatActivity {
         if (strNumber != null && strNumber.length() > 0) {
             try {
                 return Double.parseDouble(strNumber);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 return -1;
             }
-        }
-        else return 0;
+        } else return 0;
     }
 
     public Context getContext() {
@@ -439,12 +476,13 @@ public class NearbyActivity extends AppCompatActivity {
         bm.recycle();
         return resizedBitmap;
     }
+
 }
 
 class Circlee extends Polygon {
     private MapView map;
 
-    public Circlee(MapView map){
+    public Circlee(MapView map) {
         this.map = map;
     }
 
@@ -458,17 +496,15 @@ class Circlee extends Polygon {
     }
 
     @Override
-    public boolean onLongPress(MotionEvent e, MapView mapView){
-        Log.d("TAPI","LONGTAPTAPTAPTAPTAP_" + e.toString());
+    public boolean onLongPress(MotionEvent e, MapView mapView) {
+        Log.d("TAPI", "LONGTAPTAPTAPTAPTAP_" + e.toString());
         return super.onLongPress(e, mapView);
     }
 }
 
 class PopUpWin extends InfoWindow {
-
     private int layoutID;
     private MapView map;
-
 
     public PopUpWin(int layoutResId, MapView map) {
         super(layoutResId, map);
@@ -492,8 +528,8 @@ class PopUpWin extends InfoWindow {
         ImageView img = (ImageView) mView.findViewById(R.id.pimg);
         TextView pstat = (TextView) mView.findViewById(R.id.pstat);
 
-        if(item instanceof Marker) {
-            final Marker marker = (Marker)item;
+        if (item instanceof Marker) {
+            final Marker marker = (Marker) item;
 
             title = marker.getTitle();
             desc = marker.getSubDescription();
@@ -502,12 +538,11 @@ class PopUpWin extends InfoWindow {
             String android_id = Settings.Secure.getString(map.getContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
             String source_;
-            if(snip.contains(android_id)){
+            if (snip.contains(android_id)) {
                 String[] a = snip.split("_");
-                source_ =  "Source: YOU_" + a[1];
+                source_ = "Source: YOU_" + a[1];
                 psnip.setText(source_);
-            }
-            else{
+            } else {
                 psnip.setText(snip);
             }
             ssid.setText("SSID: " + title);
@@ -544,13 +579,55 @@ class CustomCluster extends RadiusMarkerClusterer {
         counter++;
     }
 
+    public void setMarkerBounce(Marker m) {
+        final Handler handler = new Handler();
+        final long startTime = SystemClock.uptimeMillis();
+        final long duration = 2000;
+        final Interpolator interpolator = new BounceInterpolator();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - startTime;
+                float t = Math.max(1 - interpolator.getInterpolation((float) elapsed / duration), 0);
+                m.setAnchor(0.5f, 1.0f + t);
+                if (t > 0.0) {
+                    handler.postDelayed(this, 16);
+                }
+            }
+        });
+        return;
+    }
+
+    public void animateMarkerDropping(final Marker marker) {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        final long duration = 500;
+
+        final Interpolator interpolator = new AccelerateInterpolator();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                final long elapsed = SystemClock.uptimeMillis() - start;
+                final float t = Math.max(1 -
+                        interpolator.getInterpolation((float) elapsed / duration), 0);
+
+                marker.setAnchor(0.5f, 1f + 14 * t);
+
+                if (t > 0f) {
+                    handler.postDelayed(this, 15);
+                }
+            }
+        });
+    }
+
     @Override
     public boolean onSingleTapUp(MotionEvent e, MapView mapView) {
 
         Projection proj = mapView.getProjection();
-        GeoPoint loc = (GeoPoint) proj.fromPixels((int)e.getX(), (int)e.getY());
-        String longitude = Double.toString(((double)loc.getLongitudeE6())/1000000);
-        String latitude = Double.toString(((double)loc.getLatitudeE6())/1000000);
+        GeoPoint loc = (GeoPoint) proj.fromPixels((int) e.getX(), (int) e.getY());
+        String longitude = Double.toString(((double) loc.getLongitudeE6()) / 1000000);
+        String latitude = Double.toString(((double) loc.getLatitudeE6()) / 1000000);
         String asd = "0";
         if (Double.valueOf(Global.latitude) != 0) {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())), 1));
@@ -601,5 +678,76 @@ class CustomCluster extends RadiusMarkerClusterer {
         double height = el1 - el2;
         distance = Math.pow(distance, 2) + Math.pow(height, 2);
         return Math.sqrt(distance);
+    }
+
+    @Override
+    public Marker buildClusterMarker(StaticCluster cluster, MapView mapView) {
+        Marker m = new Marker(mapView);
+        m.setPosition(cluster.getPosition());
+        m.setInfoWindow(null);
+        m.setAnchor(mAnchorU, mAnchorV);
+
+        Bitmap finalIcon = Bitmap.createBitmap(mClusterIcon.getWidth(), mClusterIcon.getHeight(), mClusterIcon.getConfig());
+        Canvas iconCanvas = new Canvas(finalIcon);
+        iconCanvas.drawBitmap(mClusterIcon, 0, 0, null);
+        String text = "" + cluster.getSize();
+        int textHeight = (int) (mTextPaint.descent() + mTextPaint.ascent());
+        iconCanvas.drawText(text,
+                mTextAnchorU * finalIcon.getWidth(),
+                mTextAnchorV * finalIcon.getHeight() - textHeight / 2,
+                mTextPaint);
+        m.setIcon(new BitmapDrawable(mapView.getContext().getResources(), finalIcon));
+        //beggining of modification
+        List<Marker> markersInCluster = new ArrayList<Marker>();
+        for (int i = 0; i < cluster.getSize(); i++) {
+            markersInCluster.add(cluster.getItem(i));
+        }
+        m.setRelatedObject(markersInCluster);
+        //end of modification
+
+        return m;
+    }
+}
+
+class CustomMarker extends Marker {
+
+    public CustomMarker(MapView mapView) {
+        super(mapView);
+    }
+
+    public CustomMarker(MapView mapView, Context resourceProxy) {
+        super(mapView, resourceProxy);
+    }
+
+    public void animate() {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        final long duration = 500;
+
+        final Interpolator interpolator = new AccelerateInterpolator();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                final long elapsed = SystemClock.uptimeMillis() - start;
+                final float t = Math.max(1 -
+                        interpolator.getInterpolation((float) elapsed / duration), 0);
+
+                setAnchor(0.5f, 1f + 14 * t);
+
+                if (t > 0f) {
+                    handler.postDelayed(this, 15);
+                }
+            }
+        });
+    }
+
+    public static void pulseForeground(CardView view, long duration) {
+        ObjectAnimator animator = ObjectAnimator.ofInt(view.getForeground(), "alpha", 0, 255);
+        animator.setDuration(duration);
+        animator.setStartDelay(20);
+        animator.setRepeatMode(Animation.RESTART);
+        animator.setRepeatCount(Animation.INFINITE);
+        animator.start();
     }
 }

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.common.util.IOUtils;
 
@@ -55,8 +56,8 @@ public class cscs {
         this.fileName = fileName;
     }
 
-    public void writeCsv(String text) {
-        if (Global.isUploading == false) {
+    public void writeCsv(String text) throws IOException {
+        //if (Global.isUploading == false) {
             File file = null;
             try {
                 file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
@@ -70,9 +71,13 @@ public class cscs {
             } catch (Exception e) {
                 Log.d("CSV_writer_error_:", e.toString());
             } finally {
-                //Log.d("CSV_SIZE_", String.valueOf(file.length() / 1024) + " kb");
+                Log.d("CSV_SIZE_", String.valueOf(file.length() / 1024) + " kb");
+                Log.d("CSV_getpath_", String.valueOf(file.getPath().toString()));
+                Log.d("CSV_canonpath_", String.valueOf(file.getCanonicalPath().toString()));
+                Log.d("CSV_abspath_", String.valueOf(file.getAbsolutePath().toString()));
+
             }
-        }
+        //}
     }
 }
 

@@ -5,11 +5,17 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class UploadFileHTTP extends AsyncTask<String, Void, String> {
 
@@ -21,7 +27,15 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
 
     public void uploadNow(String... strings) {
         try {
-            String sourceFileUri = "/storage/emulated/0/Documents/wifilocator_database.csv";
+            File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+            File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+            String sourceFileUri;
+            if (f2.exists()) {
+                sourceFileUri = "/storage/emulated/0/Documents/wifilocator_database.zip";
+            } else {
+                sourceFileUri = "/storage/emulated/0/Documents/wifilocator_database.csv";
+            }
+
             HttpURLConnection conn = null;
             DataOutputStream dos = null;
             String lineEnd = "\r\n";
@@ -31,9 +45,7 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
             byte[] buffer;
             int maxBufferSize = 1 * 1024 * 1024;
             File sourceFile = new File(sourceFileUri);
-
             if (sourceFile.isFile()) {
-
                 try {
                     String upLoadServerUri = strings[0];
                     // open a URL connection to the Servlet
@@ -42,9 +54,7 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
                     URL url = new URL(upLoadServerUri);
                     // Open a HTTP connection to the URL
                     conn = (HttpURLConnection) url.openConnection();
-
                     conn.setConnectTimeout(5000);
-
                     conn.setDoInput(true); // Allow Inputs
                     conn.setDoOutput(true); // Allow Outputs
                     conn.setUseCaches(false); // Don't use a Cached Copy
@@ -56,7 +66,7 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
                             "multipart/form-data;boundary=" + boundary);
                     //conn.setRequestProperty("bill", sourceFileUri);
                     conn.setRequestProperty("uploaded_file", sourceFileUri);
-                    conn.setRequestProperty("source", Global.googleAccount);
+                    //conn.setRequestProperty("source", Global.googleAccount);
                     //conn.setRequestProperty("bill", "/asd.txt");
                     dos = new DataOutputStream(conn.getOutputStream());
                     dos.writeBytes(twoHyphens + boundary + lineEnd);
@@ -80,8 +90,7 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
                                 bufferSize);
 
                     }
-                    // send multipart form data necesssary after file
-                    // data...
+                    // send multipart form data necesssary after file data
                     dos.writeBytes(lineEnd);
                     dos.writeBytes(twoHyphens + boundary + twoHyphens
                             + lineEnd);
@@ -99,8 +108,11 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
                         }
                         if (f.exists()) {
                             c.deleteFile(f.getName());
+                        }
+                        if (f.exists()) {
+                            f.getAbsoluteFile().delete();
                         } else {
-                            Log.d("DELETE_", "File is removed");
+                            Log.d("DELETE_", "File is removed or couldnt remove");
                         }
                     }
                     Log.d("HTTP_complete_", "HTTP Response: " + serverResponseMessage);
@@ -113,7 +125,7 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
                     Log.d("HTTP_UPLOAD_", e.toString());
                 }
                 // dialog.dismiss();
-            } // End else block
+            }
         } catch (Exception ex) {
             // dialog.dismiss();
             Log.d("HTTP_UPLOAD_2_", ex.toString());
@@ -131,11 +143,13 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
         Toast.makeText(c, "HTTP Upload done: " + result, Toast.LENGTH_LONG).show();
         Global.isUploading = false;
+        Log.d("HTTP_UPLOAD_", "done");
     }
 
     @Override
     protected void onPreExecute() {
         Global.isUploading = true;
+        zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
         Log.d("HTTP_UPLOAD_", "started");
     }
 
@@ -143,5 +157,75 @@ public class UploadFileHTTP extends AsyncTask<String, Void, String> {
     protected void onProgressUpdate(Void... values) {
         //Toast.makeText(c,"Progress: "+values.toString(),Toast.LENGTH_SHORT).show();
         //Log.d("HTTP_UPLOAD_progress_",values.toString());
+    }
+
+    public boolean zipFileAtPath(String sourcePath, String toLocation) {
+        final int BUFFER = 2048;
+
+        File sourceFile = new File(sourcePath);
+        try {
+            BufferedInputStream origin = null;
+            FileOutputStream dest = new FileOutputStream(toLocation);
+            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
+                    dest));
+            if (sourceFile.isDirectory()) {
+                zipSubFolder(out, sourceFile, sourceFile.getParent().length());
+            } else {
+                byte data[] = new byte[BUFFER];
+                FileInputStream fi = new FileInputStream(sourcePath);
+                origin = new BufferedInputStream(fi, BUFFER);
+                ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
+                entry.setTime(sourceFile.lastModified()); // to keep modification time after unzipping
+                out.putNextEntry(entry);
+                int count;
+                while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                    out.write(data, 0, count);
+                }
+            }
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("ZIP_", "DONE_error");
+            return false;
+        }
+        Log.d("ZIP_", "DONE");
+        return true;
+    }
+
+    private void zipSubFolder(ZipOutputStream out, File folder,
+                              int basePathLength) throws IOException {
+
+        final int BUFFER = 2048;
+
+        File[] fileList = folder.listFiles();
+        BufferedInputStream origin = null;
+        for (File file : fileList) {
+            if (file.isDirectory()) {
+                zipSubFolder(out, file, basePathLength);
+            } else {
+                byte data[] = new byte[BUFFER];
+                String unmodifiedFilePath = file.getPath();
+                String relativePath = unmodifiedFilePath
+                        .substring(basePathLength);
+                FileInputStream fi = new FileInputStream(unmodifiedFilePath);
+                origin = new BufferedInputStream(fi, BUFFER);
+                ZipEntry entry = new ZipEntry(relativePath);
+                entry.setTime(file.lastModified()); // to keep modification time after unzipping
+                out.putNextEntry(entry);
+                int count;
+                while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                    out.write(data, 0, count);
+                }
+                origin.close();
+            }
+        }
+    }
+
+    public String getLastPathComponent(String filePath) {
+        String[] segments = filePath.split("/");
+        if (segments.length == 0)
+            return "";
+        String lastPathComponent = segments[segments.length - 1];
+        return lastPathComponent;
     }
 }

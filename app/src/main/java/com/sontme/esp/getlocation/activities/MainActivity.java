@@ -188,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
     public static Button release_btn;
     public static TextView txt_stat1;
 
+    public static TextView csv;
+    public static TextView zip;
+
     public static int retry_counter_1 = 0;
     public static int retry_counter_2 = 0;
     public static int retry_counter_3 = 0;
@@ -260,6 +263,15 @@ public class MainActivity extends AppCompatActivity {
                 Global.provider = LocRes.getProvider();
                 Global.distance = String.valueOf(Global.getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
                 Global.ipaddress = ipv4;
+
+                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+
+                TextView csv1 = findViewById(R.id.val_csv);
+                TextView zip1 = findViewById(R.id.val_zip);
+
+                csv1.setText(String.valueOf(f1.length()));
+                zip1.setText(String.valueOf(f2.length()));
             } catch (Exception e) {
             }
             Log.d("GOOGLEAPIPLAY ", LocRes.toString());
@@ -318,6 +330,15 @@ public class MainActivity extends AppCompatActivity {
         logUser();
         adminPermission();
         requestAppPermissions();
+
+        File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+        File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+
+        TextView csv1 = findViewById(R.id.val_csv);
+        TextView zip1 = findViewById(R.id.val_zip);
+
+        csv1.setText(String.valueOf(f1.length() / 1024) + " kb");
+        zip1.setText(String.valueOf(f2.length() / 1024) + " kb");
 
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
@@ -445,6 +466,9 @@ public class MainActivity extends AppCompatActivity {
         txt_stat1 = findViewById(R.id.txt_stat1);
         btn_upload_http = findViewById(R.id.btn_up_http);
 
+        csv = findViewById(R.id.val_csv);
+        zip = findViewById(R.id.val_zip);
+
         webview.clearCache(true);
         webview.clearHistory();
         webview.getSettings().setJavaScriptEnabled(true);
@@ -510,8 +534,7 @@ public class MainActivity extends AppCompatActivity {
         btn_upload_http.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new UploadFileHTTP(getBaseContext()).execute("192.168.0.43");
-                new UploadFileHTTP(getBaseContext()).execute("192.168.0.43/upload.php?");
+                new UploadFileHTTP(getBaseContext()).execute("http://192.168.0.43/upload.php?");
                 Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                 Log.d("HTTP_UPLOAD_", "started_main");
             }
