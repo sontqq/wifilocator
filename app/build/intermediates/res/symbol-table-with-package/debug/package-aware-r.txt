@@ -437,6 +437,29 @@ attr radioButtonStyle
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
+attr rcBackgroundColor
+attr rcBackgroundPadding
+attr rcIconBackgroundColor
+attr rcIconHeight
+attr rcIconPadding
+attr rcIconPaddingBottom
+attr rcIconPaddingLeft
+attr rcIconPaddingRight
+attr rcIconPaddingTop
+attr rcIconSize
+attr rcIconSrc
+attr rcIconWidth
+attr rcMax
+attr rcProgress
+attr rcProgressColor
+attr rcRadius
+attr rcReverse
+attr rcSecondaryProgress
+attr rcSecondaryProgressColor
+attr rcTextProgress
+attr rcTextProgressColor
+attr rcTextProgressMargin
+attr rcTextProgressSize
 attr reverseLayout
 attr rippleColor
 attr scopeUris
@@ -732,6 +755,9 @@ color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
 color ripple_material_dark
 color ripple_material_light
+color round_corner_progress_bar_background_default
+color round_corner_progress_bar_progress_default
+color round_corner_progress_bar_secondary_progress_default
 color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
@@ -1219,6 +1245,8 @@ id container
 id content
 id contentPanel
 id coordinator
+id currentstatus
+id currentstatus_left
 id custom
 id customPanel
 id dark
@@ -1270,13 +1298,19 @@ id ifRoom
 id image
 id imageView
 id info
+id interrupt
 id invisible
 id ip
 id italic
 id item_touch_helper_previous_elevation
+id iv_progress_icon
 id labeled
 id largeLabel
 id lati
+id layout_background
+id layout_progress
+id layout_progress_holder
+id layout_secondary_progress
 id left
 id light
 id line1
@@ -1301,6 +1335,7 @@ id navigation_header_container
 id nearby
 id never
 id newchart
+id newprogressbar
 id none
 id normal
 id notif_add
@@ -1434,6 +1469,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id tv_progress
 id txtLati
 id txtLongi
 id txt_add
@@ -1454,7 +1490,6 @@ id uniform
 id uniq
 id unlabeled
 id up
-id upload_progressbar
 id useLogo
 id val_csv
 id val_zip
@@ -1533,6 +1568,9 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout layout_icon_round_corner_progress_bar
+layout layout_round_corner_progress_bar
+layout layout_text_round_corner_progress_bar
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header
@@ -1565,6 +1603,7 @@ layout support_simple_spinner_dropdown_item
 menu navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap round_corner_progress_icon
 string Close
 string Open
 string abc_action_bar_home_description
@@ -2264,6 +2303,7 @@ styleable FontFamilyFont android_font android_fontWeight android_fontStyle andro
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
+styleable IconRoundCornerProgress rcIconBackgroundColor rcIconHeight rcIconPadding rcIconPaddingBottom rcIconPaddingLeft rcIconPaddingRight rcIconPaddingTop rcIconSize rcIconSrc rcIconWidth
 styleable LinearConstraintLayout android_orientation
 styleable LinearLayoutCompat android_gravity android_orientation android_baselineAligned android_baselineAlignedChildIndex android_weightSum divider dividerPadding measureWithLargestChild showDividers
 styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_width android_layout_height android_layout_weight
@@ -2281,6 +2321,7 @@ styleable PopupWindow android_popupBackground android_popupAnimationStyle overla
 styleable PopupWindowBackgroundState state_above_anchor
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_orientation android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
+styleable RoundCornerProgress rcBackgroundColor rcBackgroundPadding rcMax rcProgress rcProgressColor rcRadius rcReverse rcSecondaryProgress rcSecondaryProgressColor
 styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_maxWidth android_inputType android_imeOptions closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
@@ -2295,6 +2336,7 @@ styleable TabItem android_icon android_layout android_text
 styleable TabLayout tabBackground tabContentStart tabGravity tabIconTint tabIconTintMode tabIndicator tabIndicatorAnimationDuration tabIndicatorColor tabIndicatorFullWidth tabIndicatorGravity tabIndicatorHeight tabInlineLabel tabMaxWidth tabMinWidth tabMode tabPadding tabPaddingBottom tabPaddingEnd tabPaddingStart tabPaddingTop tabRippleColor tabSelectedTextColor tabTextAppearance tabTextColor tabUnboundedRipple
 styleable TextAppearance android_textSize android_typeface android_textStyle android_textColor android_textColorHint android_textColorLink android_shadowColor android_shadowDx android_shadowDy android_shadowRadius android_fontFamily fontFamily textAllCaps
 styleable TextInputLayout android_textColorHint android_hint boxBackgroundColor boxBackgroundMode boxCollapsedPaddingTop boxCornerRadiusBottomEnd boxCornerRadiusBottomStart boxCornerRadiusTopEnd boxCornerRadiusTopStart boxStrokeColor boxStrokeWidth counterEnabled counterMaxLength counterOverflowTextAppearance counterTextAppearance errorEnabled errorTextAppearance helperText helperTextEnabled helperTextTextAppearance hintAnimationEnabled hintEnabled hintTextAppearance passwordToggleContentDescription passwordToggleDrawable passwordToggleEnabled passwordToggleTint passwordToggleTintMode
+styleable TextRoundCornerProgress rcTextProgress rcTextProgressColor rcTextProgressMargin rcTextProgressSize
 styleable ThemeEnforcement android_textAppearance enforceMaterialTheme enforceTextAppearance
 styleable Toolbar android_gravity android_minHeight buttonGravity collapseContentDescription collapseIcon contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation logo logoDescription maxButtonHeight navigationContentDescription navigationIcon popupTheme subtitle subtitleTextAppearance subtitleTextColor title titleMargin titleMarginBottom titleMarginEnd titleMarginStart titleMarginTop titleMargins titleTextAppearance titleTextColor
 styleable View android_theme android_focusable paddingEnd paddingStart theme

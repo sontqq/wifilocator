@@ -261,6 +261,9 @@
     <color name="primary_text_disabled_material_light">#39000000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
+    <color name="round_corner_progress_bar_background_default">#5f5f5f</color>
+    <color name="round_corner_progress_bar_progress_default">#7f7f7f</color>
+    <color name="round_corner_progress_bar_secondary_progress_default">@android:color/transparent</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
@@ -1204,6 +1207,7 @@
         
         <attr name="android:color"/>
     </declare-styleable>
+    <declare-styleable name="IconRoundCornerProgress"><attr format="integer" name="rcIconSrc"/><attr format="dimension" name="rcIconSize"/><attr format="dimension" name="rcIconWidth"/><attr format="dimension" name="rcIconHeight"/><attr format="dimension" name="rcIconPadding"/><attr format="dimension" name="rcIconPaddingLeft"/><attr format="dimension" name="rcIconPaddingRight"/><attr format="dimension" name="rcIconPaddingTop"/><attr format="dimension" name="rcIconPaddingBottom"/><attr format="color" name="rcIconBackgroundColor"/></declare-styleable>
     <declare-styleable name="LinearConstraintLayout"><attr name="android:orientation"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat">
         
@@ -1507,6 +1511,7 @@
         <attr format="reference" name="fastScrollHorizontalThumbDrawable"/>
         <attr format="reference" name="fastScrollHorizontalTrackDrawable"/>
     </declare-styleable>
+    <declare-styleable name="RoundCornerProgress"><attr format="boolean" name="rcReverse"/><attr format="float" name="rcProgress"/><attr format="float" name="rcMax"/><attr format="float" name="rcSecondaryProgress"/><attr format="dimension" name="rcBackgroundPadding"/><attr format="dimension" name="rcRadius"/><attr format="color" name="rcProgressColor"/><attr format="color" name="rcSecondaryProgressColor"/><attr format="color" name="rcBackgroundColor"/></declare-styleable>
     <declare-styleable name="ScrimInsetsFrameLayout"><attr format="color|reference" name="insetForeground"/></declare-styleable>
     <declare-styleable name="ScrollingViewBehavior_Layout"><attr format="dimension" name="behavior_overlapTop"/></declare-styleable>
     <declare-styleable name="SearchView">
@@ -1711,6 +1716,7 @@
       
       <enum name="outline" value="2"/>
     </attr><attr format="dimension" name="boxCollapsedPaddingTop"/><attr format="dimension" name="boxCornerRadiusTopStart"/><attr format="dimension" name="boxCornerRadiusTopEnd"/><attr format="dimension" name="boxCornerRadiusBottomStart"/><attr format="dimension" name="boxCornerRadiusBottomEnd"/><attr format="color" name="boxStrokeColor"/><attr format="color" name="boxBackgroundColor"/><attr format="dimension" name="boxStrokeWidth"/></declare-styleable>
+    <declare-styleable name="TextRoundCornerProgress"><attr format="color" name="rcTextProgressColor"/><attr format="dimension" name="rcTextProgressSize"/><attr format="dimension" name="rcTextProgressMargin"/><attr format="string" name="rcTextProgress"/></declare-styleable>
     <declare-styleable name="ThemeEnforcement"><attr format="boolean" name="enforceMaterialTheme"/><attr format="boolean" name="enforceTextAppearance"/><attr name="android:textAppearance"/></declare-styleable>
     <declare-styleable name="Toolbar">
         <attr format="reference" name="titleTextAppearance"/>
@@ -2126,7 +2132,7 @@
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">ce241edc-46a9-43d0-a71b-8861573d3b77</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">04725030-f97a-40c2-bf84-9a5c7be33a22</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>

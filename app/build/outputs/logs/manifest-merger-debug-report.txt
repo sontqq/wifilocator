@@ -19,6 +19,7 @@ MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\f9949da242ff3e69f68206cfe3c25948\AndroidManifest.xml:2:1-9:12
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:2:1-16:12
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:2:1-20:12
+MERGED from [com.akexorcist:RoundCornerProgressBar:2.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\RoundCornerProgressBar-2.0.3.aar\445e6c2fc2d10ef7dc4a32e3a67aa654\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.android.exoplayer:exoplayer-dash:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-dash-r2.4.2.aar\11e291932cfbfd63758e0addf441f8a9\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.exoplayer:exoplayer-core:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-core-r2.4.2.aar\051f85a5f266040e2545ed4dedfd1c3c\AndroidManifest.xml:17:1-25:12
 MERGED from [com.android.support:transition:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\388e9b08be1cbc13c62f25b7eb95426b\AndroidManifest.xml:17:1-22:12
@@ -503,6 +504,8 @@ MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\c
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\b1e21e3dbdbde5689374cd69167670ea\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:16:5-18:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\d7301e4c770998ca6ab5b98ecde24a1d\AndroidManifest.xml:16:5-18:41
+MERGED from [com.akexorcist:RoundCornerProgressBar:2.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\RoundCornerProgressBar-2.0.3.aar\445e6c2fc2d10ef7dc4a32e3a67aa654\AndroidManifest.xml:8:5-10:41
+MERGED from [com.akexorcist:RoundCornerProgressBar:2.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\RoundCornerProgressBar-2.0.3.aar\445e6c2fc2d10ef7dc4a32e3a67aa654\AndroidManifest.xml:8:5-10:41
 MERGED from [com.google.android.exoplayer:exoplayer-dash:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-dash-r2.4.2.aar\11e291932cfbfd63758e0addf441f8a9\AndroidManifest.xml:21:5-23:41
 MERGED from [com.google.android.exoplayer:exoplayer-dash:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-dash-r2.4.2.aar\11e291932cfbfd63758e0addf441f8a9\AndroidManifest.xml:21:5-23:41
 MERGED from [com.google.android.exoplayer:exoplayer-core:r2.4.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\exoplayer-core-r2.4.2.aar\051f85a5f266040e2545ed4dedfd1c3c\AndroidManifest.xml:21:5-23:41

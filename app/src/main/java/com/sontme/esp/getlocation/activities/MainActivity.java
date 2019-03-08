@@ -21,11 +21,14 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -172,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
                 spd.setText(Global.speed + " km/h");
                 dst.setText(String.valueOf(Global.round(Double.valueOf(Global.distance), 2) + " meters"));
                 add.setText(Global.address);
-                c.setText(Global.count);
+//                c.setText(Global.count);
                 provider.setText(Global.provider);
-                uniq.setText(Global.uniqueAPS.size());
+//                uniq.setText(Global.uniqueAPS.size());
                 WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
                 Global.ipaddress = ipv4;
@@ -182,8 +185,13 @@ public class MainActivity extends AppCompatActivity {
                 ip.setText(Global.ipaddress);
                 servicestatus.setText("Not yet available");
 
+                csv.setText(Global.csvSize);
+                zip.setText(Global.zipSize);
+
                 queryLocation(null);
             } catch (Exception e) {
+                Log.d("FONTOS", e.toString());
+                e.printStackTrace();
             }
             if (Global.longitude == null) {
                 alti.setText("0");
@@ -204,6 +212,14 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void queryLocation(Location LocRes) {
+
+        File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+        File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+        TextView csv1 = findViewById(R.id.val_csv);
+        TextView zip1 = findViewById(R.id.val_zip);
+        csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+        zip1.setText(String.valueOf((int) (f2.length()) / 1024) + " kb");
+
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
                 WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
@@ -220,14 +236,6 @@ public class MainActivity extends AppCompatActivity {
                 Global.distance = String.valueOf(Global.getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
                 Global.ipaddress = ipv4;
 
-                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
-
-                TextView csv1 = findViewById(R.id.val_csv);
-                TextView zip1 = findViewById(R.id.val_zip);
-
-                csv1.setText(String.valueOf(f1.length()));
-                zip1.setText(String.valueOf(f2.length()));
             } catch (Exception e) {
                 Log.d("SIZE TIMER CSV ZIP _ ", e.toString());
             }
@@ -285,15 +293,6 @@ public class MainActivity extends AppCompatActivity {
         logUser();
         adminPermission();
         requestAppPermissions();
-
-        File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-        File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
-
-        TextView csv1 = findViewById(R.id.val_csv);
-        TextView zip1 = findViewById(R.id.val_zip);
-
-        csv1.setText(String.valueOf(f1.length() / 1024) + " kb");
-        zip1.setText(String.valueOf(f2.length() / 1024) + " kb");
 
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
@@ -608,8 +607,9 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 mlocation = location;
                 Log.d("Location Changes", location.toString());
-
-                queryLocation(location);
+                if (Global.isUploading == false) {
+                    queryLocation(location);
+                }
                 Global.provider = location.getProvider();
                 provider.setText(Global.provider);
             }
@@ -645,7 +645,7 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
     }
 
     public void startUpdatesPlay() {
@@ -1116,99 +1116,6 @@ public class MainActivity extends AppCompatActivity {
 
     int invertColor(int color) {
         return color ^ 0x00ffffff;
-    }
-
-}
-
-class Helpher extends AsyncTask<String, Void, String> {
-    Context context;
-    JSONObject json;
-    ProgressDialog dialog;
-    int serverResponseCode = 0;
-    DataOutputStream dos = null;
-    FileInputStream fis = null;
-    BufferedReader br = null;
-
-
-    public Helpher(Context context) {
-        this.context = context;
-    }
-
-    protected void onPreExecute() {
-
-    }
-
-    @Override
-    protected String doInBackground(String... arg0) {
-
-        try {
-            File f = new File(arg0[0]);
-            URL url = new URL("http://localhost:8888/imageupload.php");
-            int bytesRead;
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            conn.setUseCaches(false);
-            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + "");
-
-            String contentDisposition = "Content-Disposition: form-data; name=\"name\"; tmp_name=\""
-                    + f.getName() + "\"";
-            String contentType = "Content-Type: application/octet-stream";
-
-
-            dos = new DataOutputStream(conn.getOutputStream());
-            fis = new FileInputStream(f);
-
-
-            dos.writeBytes("\\s+\r\n");
-            dos.writeBytes(contentDisposition + "\n");
-            dos.writeBytes(contentType + "\n");
-            dos.writeBytes("\n");
-            byte[] buffer = new byte[99999999];
-            while ((bytesRead = fis.read(buffer)) != -1) {
-                dos.write(buffer, 0, bytesRead);
-            }
-            dos.writeBytes("\n");
-            dos.writeBytes("\\s+\r\n");
-            dos.flush();
-
-            int responseCode = conn.getResponseCode();
-            if (responseCode != 200) {
-                Log.w("HTTP_",
-                        responseCode + " Error: " + conn.getResponseMessage());
-                return null;
-            }
-
-            br = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            Log.d("HTTP", "Sucessfully uploaded " + f.getName());
-
-        } catch (MalformedURLException e) {
-        } catch (IOException e) {
-        } finally {
-            try {
-                dos.close();
-                if (fis != null)
-                    fis.close();
-                if (br != null)
-                    br.close();
-            } catch (IOException e) {
-                Log.d("Error_", e.getMessage());
-            }
-        }
-        return String.valueOf(serverResponseCode);
-    }
-
-
-    @Override
-    protected void onPostExecute(String result) {
-        dialog.dismiss();
-
     }
 
 }

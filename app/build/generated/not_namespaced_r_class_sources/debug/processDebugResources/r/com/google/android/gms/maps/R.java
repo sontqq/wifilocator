@@ -26,29 +26,29 @@ public final class R {
         public static final int latLngBoundsSouthWestLongitude = 0x7f030123;
         public static final int liteMode = 0x7f030170;
         public static final int mapType = 0x7f030173;
-        public static final int uiCompass = 0x7f030220;
-        public static final int uiMapToolbar = 0x7f030221;
-        public static final int uiRotateGestures = 0x7f030222;
-        public static final int uiScrollGestures = 0x7f030223;
-        public static final int uiTiltGestures = 0x7f030224;
-        public static final int uiZoomControls = 0x7f030225;
-        public static final int uiZoomGestures = 0x7f030226;
-        public static final int useViewLifecycle = 0x7f030228;
-        public static final int zOrderOnTop = 0x7f030235;
+        public static final int uiCompass = 0x7f030237;
+        public static final int uiMapToolbar = 0x7f030238;
+        public static final int uiRotateGestures = 0x7f030239;
+        public static final int uiScrollGestures = 0x7f03023a;
+        public static final int uiTiltGestures = 0x7f03023b;
+        public static final int uiZoomControls = 0x7f03023c;
+        public static final int uiZoomGestures = 0x7f03023d;
+        public static final int useViewLifecycle = 0x7f03023f;
+        public static final int zOrderOnTop = 0x7f03024c;
     }
     public static final class id {
         private id() {}
 
-        public static final int hybrid = 0x7f08006f;
-        public static final int none = 0x7f080096;
-        public static final int normal = 0x7f080097;
-        public static final int satellite = 0x7f0800c6;
-        public static final int terrain = 0x7f080102;
+        public static final int hybrid = 0x7f080071;
+        public static final int none = 0x7f08009f;
+        public static final int normal = 0x7f0800a0;
+        public static final int satellite = 0x7f0800cf;
+        public static final int terrain = 0x7f08010b;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] MapAttrs = { 0x7f03002c, 0x7f03005f, 0x7f030060, 0x7f030061, 0x7f030062, 0x7f030063, 0x7f030064, 0x7f030065, 0x7f030120, 0x7f030121, 0x7f030122, 0x7f030123, 0x7f030170, 0x7f030173, 0x7f030220, 0x7f030221, 0x7f030222, 0x7f030223, 0x7f030224, 0x7f030225, 0x7f030226, 0x7f030228, 0x7f030235 };
+        public static final int[] MapAttrs = { 0x7f03002c, 0x7f03005f, 0x7f030060, 0x7f030061, 0x7f030062, 0x7f030063, 0x7f030064, 0x7f030065, 0x7f030120, 0x7f030121, 0x7f030122, 0x7f030123, 0x7f030170, 0x7f030173, 0x7f030237, 0x7f030238, 0x7f030239, 0x7f03023a, 0x7f03023b, 0x7f03023c, 0x7f03023d, 0x7f03023f, 0x7f03024c };
         public static final int MapAttrs_ambientEnabled = 0;
         public static final int MapAttrs_cameraBearing = 1;
         public static final int MapAttrs_cameraMaxZoomPreference = 2;

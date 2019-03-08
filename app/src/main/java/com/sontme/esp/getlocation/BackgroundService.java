@@ -491,7 +491,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             } else {
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("Error_", e.toString());
         }
         return strAdd;
     }
