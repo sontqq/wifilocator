@@ -1130,6 +1130,7 @@ drawable pin1
 drawable pin2
 drawable popup_shape
 drawable previous
+drawable rounded_corner
 drawable route
 drawable selector_button_kitkat
 drawable selector_button_lollipop
@@ -1453,6 +1454,7 @@ id uniform
 id uniq
 id unlabeled
 id up
+id upload_progressbar
 id useLogo
 id val_csv
 id val_zip
@@ -1516,6 +1518,7 @@ layout activity_main
 layout activity_map
 layout activity_nearby
 layout bonuspack_bubble
+layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

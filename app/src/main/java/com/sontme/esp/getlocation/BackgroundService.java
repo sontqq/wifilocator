@@ -10,10 +10,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -25,34 +23,21 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.TrafficStats;
 import android.net.wifi.ScanResult;
-import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.SystemClock;
 import android.provider.Settings;
-import android.service.textservice.SpellCheckerService;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
-import com.github.mikephil.charting.utils.FileUtils;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.SettingsClient;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
@@ -62,27 +47,13 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
@@ -99,7 +70,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     IBinder mBinder = new LocalBinder();
     int req_count;
 
-    cscs cs = new cscs("wifilocator_database.csv");
+    exporter cs = new exporter("wifilocator_database.csv");
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -384,7 +355,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 if (urlList_uniq.size() >= 5000) {
                     urlList_uniq.clear();
                 }
-                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + Global.googleAccount + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String time = sdf.format(new Date());
+                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + Global.googleAccount + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
             }
         } catch (
                 Exception e) {

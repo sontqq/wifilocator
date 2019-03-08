@@ -29,14 +29,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="START FUSED" />
+                android:text="START FUSED"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/stop_srv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="START GPS" />
+                android:text="START GPS"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/exitb"
@@ -44,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="0"
-                android:text="EXIT" />
+                android:text="EXIT"
+                android:visibility="visible" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="START SERVICE"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/stopService"
@@ -67,7 +71,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="STOP SERVICE"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="textStart"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

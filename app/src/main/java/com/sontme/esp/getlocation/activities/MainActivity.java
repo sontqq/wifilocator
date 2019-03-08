@@ -3,11 +3,8 @@ package com.sontme.esp.getlocation.activities;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -16,9 +13,7 @@ import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothManager;
-import android.bluetooth.BluetoothProfile;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,11 +21,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -38,10 +30,8 @@ import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -54,18 +44,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.TextView;
@@ -79,8 +65,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -88,13 +72,9 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
-import com.google.android.gms.common.AccountPicker;
-import com.google.android.gms.common.api.Response;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -102,23 +82,16 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 
-import com.koushikdutta.async.http.AsyncHttpResponse;
-import com.koushikdutta.async.http.server.AsyncHttpServer;
-import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
-import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
-import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
-import com.sontme.esp.getlocation.ConnectionManager;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
 
 import com.sontme.esp.getlocation.UploadFileFTP;
 import com.sontme.esp.getlocation.UploadFileHTTP;
-import com.sontme.esp.getlocation.cscs;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -128,39 +101,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
 
 import android.support.design.widget.NavigationView;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import static com.github.mikephil.charting.animation.Easing.EaseInOutBounce;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 public class MainActivity extends AppCompatActivity {
@@ -273,8 +229,9 @@ public class MainActivity extends AppCompatActivity {
                 csv1.setText(String.valueOf(f1.length()));
                 zip1.setText(String.valueOf(f2.length()));
             } catch (Exception e) {
+                Log.d("SIZE TIMER CSV ZIP _ ", e.toString());
             }
-            Log.d("GOOGLEAPIPLAY ", LocRes.toString());
+
         }
         try {
             if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
@@ -311,8 +268,6 @@ public class MainActivity extends AppCompatActivity {
     public DrawerLayout dl;
     public ActionBarDrawerToggle t;
     public NavigationView nv;
-
-    public static LineChart newchart;
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
     public static String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
@@ -479,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
         webview.getSettings().setAppCacheEnabled(true);
         webview.getSettings().setLoadsImagesAutomatically(true);
         webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        webview.getSettings().setLoadWithOverviewMode(true);
+        //webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);
         webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
@@ -534,7 +489,8 @@ public class MainActivity extends AppCompatActivity {
         btn_upload_http.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new UploadFileHTTP(getBaseContext()).execute("http://192.168.0.43/upload.php?");
+                UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
+                http.execute("http://192.168.0.43/upload.php?");
                 Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                 Log.d("HTTP_UPLOAD_", "started_main");
             }
@@ -915,7 +871,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
                 String lines[] = str.trim().split("\\r?\\n");
                 int i = 0;
@@ -926,7 +882,7 @@ public class MainActivity extends AppCompatActivity {
                         i++;
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
 
                 LineDataSet dataSet = new LineDataSet(entries, "Stats");
@@ -983,7 +939,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
                 String lines[] = str.trim().split("xxx");
                 try {
@@ -1041,7 +997,7 @@ public class MainActivity extends AppCompatActivity {
                     piechart.setData(data);
                     piechart.invalidate();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
             }
 
@@ -1069,7 +1025,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
                 TextView stat = findViewById(R.id.txt_stat1);
                 stat.setText(str);
@@ -1150,11 +1106,11 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "extrainfo");
                     startActivityForResult(intent, 0);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.d("Error_", e.getMessage());
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("Error_", e.getMessage());
         }
     }
 
@@ -1242,7 +1198,7 @@ class Helpher extends AsyncTask<String, Void, String> {
                 if (br != null)
                     br.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.d("Error_", e.getMessage());
             }
         }
         return String.valueOf(serverResponseCode);
