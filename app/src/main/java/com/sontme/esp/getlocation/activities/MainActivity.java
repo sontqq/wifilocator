@@ -188,10 +188,9 @@ public class MainActivity extends AppCompatActivity {
                 csv.setText(Global.csvSize);
                 zip.setText(Global.zipSize);
 
-                queryLocation(null);
+                //queryLocation(null);
             } catch (Exception e) {
                 Log.d("FONTOS", e.toString());
-                e.printStackTrace();
             }
             if (Global.longitude == null) {
                 alti.setText("0");
@@ -515,12 +514,12 @@ public class MainActivity extends AppCompatActivity {
         blebtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String bl_list = null;
+                String bl_list = "";
 
                 for (String key : BLEdevices.keySet()) {
                     System.out.println("key : " + key);
                     System.out.println("value : " + BLEdevices.get(key));
-                    if (bl_list == null) {
+                    if (bl_list == "") {
                         bl_list = "Name: " + key + " Address: " + BLEdevices.get(key) + "\n\n";
                     } else {
                         bl_list = bl_list + "Name: " + key + " Address: " + BLEdevices.get(key) + "\n\n";
@@ -591,7 +590,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
-            backgroundService = null;
+            // backgroundService = null;
         }
 
         @Override
@@ -867,7 +866,7 @@ public class MainActivity extends AppCompatActivity {
                 LineChart newchart = (LineChart) findViewById(R.id.newchart);
                 List<Entry> entries = new ArrayList<Entry>();
 
-                String str = null;
+                String str = "";
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
@@ -935,7 +934,7 @@ public class MainActivity extends AppCompatActivity {
                 PieChart piechart = findViewById(R.id.piechart);
                 List<PieEntry> entries = new ArrayList<>();
 
-                String str = null;
+                String str = "";
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {
@@ -1021,7 +1020,7 @@ public class MainActivity extends AppCompatActivity {
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String str = null;
+                String str = "";
                 try {
                     str = new String(responseBody, "UTF-8");
                 } catch (UnsupportedEncodingException e) {

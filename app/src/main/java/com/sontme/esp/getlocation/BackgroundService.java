@@ -137,7 +137,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         server.get("/", new HttpServerRequestCallback() {
             @Override
             public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
-                String tosend = null;
+                String tosend = "";
                 String os = System.getProperty("os.version");
                 String sdk = android.os.Build.VERSION.SDK;
                 String device = android.os.Build.DEVICE;
@@ -157,7 +157,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
                 ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
-                String stat = null;
+                String stat = "";
                 for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
                     long received = TrafficStats.getUidRxBytes(runningApp.uid);
                     long sent = TrafficStats.getUidTxBytes(runningApp.uid);
