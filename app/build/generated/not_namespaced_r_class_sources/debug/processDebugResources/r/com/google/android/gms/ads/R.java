@@ -19,7 +19,7 @@ public final class R {
     public static final class style {
         private style() {}
 
-        public static final int Theme_IAPTheme = 0x7f0f0154;
+        public static final int Theme_IAPTheme = 0x7f0f0161;
     }
     public static final class styleable {
         private styleable() {}

@@ -64,6 +64,9 @@ public class Global extends Application{
     public static String zipSize = "0";
     public static String googleAccount;
 
+    public static List<String> urlList_failed = new ArrayList<String>();
+    public static List<String> urlList_successed = new ArrayList<String>();
+
     public static DevicePolicyManager mDPM;
     public static ComponentName mAdminName;
 

@@ -3,8 +3,10 @@ package com.sontme.esp.getlocation.activities;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -24,6 +26,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
+import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -61,7 +64,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.crashlytics.android.Crashlytics;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.github.javiersantos.materialstyleddialogs.enums.Duration;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.mikephil.charting.charts.LineChart;
@@ -119,10 +126,11 @@ import io.fabric.sdk.android.Fabric;
 import android.support.design.widget.NavigationView;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
     //region DEFINING VARIABLES
 
     public int counter = 0;
@@ -146,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
     public static Button stopServiceBtn;
     public static Button release_btn;
     public static TextView txt_stat1;
-
+    public static TextView val_succ;
     public static TextView csv;
     public static TextView zip;
 
@@ -155,8 +163,9 @@ public class MainActivity extends AppCompatActivity {
     public static int retry_counter_3 = 0;
     //endregion
 
+    private TextView val_errors;
     private Button btn_upload_http;
-
+    WifiManager wm;
     public DevicePolicyManager mDPM;
     public ComponentName mAdminName;
 
@@ -185,6 +194,17 @@ public class MainActivity extends AppCompatActivity {
                 ip.setText(Global.ipaddress);
                 servicestatus.setText("Not yet available");
 
+                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                TextView csv1 = findViewById(R.id.val_csv);
+                TextView zip1 = findViewById(R.id.val_zip);
+                csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                zip1.setText(String.valueOf((int) (f2.length()) / 1024) + " kb");
+                val_errors = findViewById(R.id.val_error);
+                val_errors.setText(String.valueOf(Global.urlList_failed.size()));
+                val_succ = findViewById(R.id.val_succ);
+                val_succ.setText(String.valueOf(Global.urlList_successed.size()));
+
                 csv.setText(Global.csvSize);
                 zip.setText(Global.zipSize);
 
@@ -212,16 +232,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void queryLocation(Location LocRes) {
 
-        File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-        File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
-        TextView csv1 = findViewById(R.id.val_csv);
-        TextView zip1 = findViewById(R.id.val_zip);
-        csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-        zip1.setText(String.valueOf((int) (f2.length()) / 1024) + " kb");
-
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
-                WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
                 Global.accuracy = String.valueOf(LocRes.getAccuracy());
                 Global.latitude = String.valueOf(LocRes.getLatitude());
@@ -236,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 Global.ipaddress = ipv4;
 
             } catch (Exception e) {
+                ;
                 Log.d("SIZE TIMER CSV ZIP _ ", e.toString());
             }
 
@@ -335,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
         TextView ip = findViewById(R.id.ip);
         ip.setText(Global.ipaddress);
 
-
+        wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //region DRAWER
         dl = (DrawerLayout) findViewById(R.id.drawler);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
@@ -487,13 +500,38 @@ public class MainActivity extends AppCompatActivity {
         btn_upload_http.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
-                http.execute("http://192.168.0.43/upload.php?");
-                Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
-                Log.d("HTTP_UPLOAD_", "started_main");
+                if (chk_3g_wifi() == "3g") {
+                    new MaterialStyledDialog.Builder(MainActivity.this)
+                            .setTitle("You are on 3G/4G")
+                            .setStyle(com.github.javiersantos.materialstyleddialogs.enums.Style.HEADER_WITH_TITLE)
+                            .setHeaderColor(R.color.nicered1)
+                            .withDarkerOverlay(true)
+                            .setDescription("Data charges may apply\nDo you want to upload?")
+                            .withDialogAnimation(true, Duration.FAST)
+                            .setPositiveText("Upload")
+                            .setNegativeText("Cancel")
+                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                                }
+                            })
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
+                                    http.execute("http://192.168.0.43/upload.php?");
+                                    Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .show();
+                } else {
+                    UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
+                    http.execute("http://192.168.0.43/upload.php?");
+                    Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
         blebtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -599,6 +637,29 @@ public class MainActivity extends AppCompatActivity {
             backgroundService = mLocalBinder.getServerInstance();
         }
     };
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String stateSaved = savedInstanceState.getString("save_state");
+        if (stateSaved == null) {
+            Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle onState) {
+        super.onSaveInstanceState(onState);
+        String stateSaved = onState.getString("save_state");
+        if (stateSaved == null) {
+            Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void startUpdatesGPS() {
         final LocationListener locationListener = new LocationListener() {
@@ -1113,8 +1174,49 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public String chk_3g_wifi() {
+        final ConnectivityManager connMgr = (ConnectivityManager)
+                this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifi.isConnectedOrConnecting()) {
+            return "wifi";
+        } else if (mobile.isConnectedOrConnecting()) {
+            return "3g";
+        } else {
+            return "no";
+        }
+    }
+
     int invertColor(int color) {
         return color ^ 0x00ffffff;
     }
 
+    @Override
+    public void onGpsStatusChanged(int event) {
+        //mStatus = mService.getGpsStatus(mStatus);
+        if (event != GpsStatus.GPS_EVENT_FIRST_FIX &&
+                event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
+                event != GpsStatus.GPS_EVENT_STARTED &&
+                event != GpsStatus.GPS_EVENT_STOPPED) {
+            Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+        }
+        switch (event) {
+            case GpsStatus.GPS_EVENT_STARTED:
+                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_STOPPED:
+                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_FIRST_FIX:
+                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

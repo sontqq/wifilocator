@@ -36,10 +36,13 @@ public class Receiver extends BroadcastReceiver {
             System.exit(2);
         }
         if (intent.getAction() == "pause") {
+            Global.isUploading = true;
             Global.wanarun = false;
             Toast.makeText(context, "Pausing", Toast.LENGTH_SHORT).show();
+
         }
         if (intent.getAction() == "resume") {
+            Global.isUploading = false;
             Toast.makeText(context, "Resuming", Toast.LENGTH_SHORT).show();
             Global.wanarun = true;
         }

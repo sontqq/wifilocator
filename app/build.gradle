@@ -98,6 +98,11 @@ dependencies {   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.akexorcist:RoundCornerProgressBar:2.0.3'
 
+    implementation 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
+
 
 
 }

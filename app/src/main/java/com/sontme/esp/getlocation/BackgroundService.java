@@ -21,6 +21,7 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.net.TrafficStats;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -34,8 +35,15 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 import com.crashlytics.android.Crashlytics;
 
 import com.koushikdutta.async.http.server.AsyncHttpServer;
@@ -47,6 +55,15 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,22 +71,27 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
+import okhttp3.OkHttpClient;
 import okhttp3.WebSocket;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 public class BackgroundService extends Service implements GpsStatus.Listener {
     private LocationManager mService;
-    private GpsStatus mStatus;
-    private List<String> urlList = new ArrayList<String>();
+    public String DEVICE_ACCOUNT;
+    public boolean isuploading = false;
     private List<String> urlList_uniq = new ArrayList<String>();
     public static Location mlocation;
+    public LocationListener locationListener;
     IBinder mBinder = new LocalBinder();
     int req_count;
-
+    public LocationManager locationManager;
     exporter cs = new exporter("wifilocator_database.csv");
 
     @Override
@@ -81,6 +103,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public void onCreate() {
         Fabric.with(this, new Crashlytics());
         logUser();
+        AndroidNetworking.initialize(getApplicationContext());
+
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
         mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -95,9 +119,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             acc = String.valueOf(s.name);
         }
         if (acc.length() > 3) {
-            Global.googleAccount = acc;
+            DEVICE_ACCOUNT = acc;
         } else {
-            Global.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+            DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
         }
         Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
@@ -179,12 +203,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         });
         server.listen(8888);
         //endregion
-        startUpdatesGPS();
 
+        startUpdatesGPS();
     }
 
     public void startUpdatesGPS() {
-        final LocationListener locationListener = new LocationListener() {
+        locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 mlocation = location;
@@ -234,7 +258,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
 
         // Now create a location manager
-        final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -247,7 +271,131 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         Crashlytics.setUserName("wifilocatoruser");
     }
 
+    public boolean zipFileAtPath(String sourcePath, String toLocation) {
+        final int BUFFER = 2048;
+
+        File sourceFile = new File(sourcePath);
+        try {
+            BufferedInputStream origin = null;
+            FileOutputStream dest = new FileOutputStream(toLocation);
+            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
+                    dest));
+            if (sourceFile.isDirectory()) {
+                zipSubFolder(out, sourceFile, sourceFile.getParent().length());
+            } else {
+                byte data[] = new byte[BUFFER];
+                FileInputStream fi = new FileInputStream(sourcePath);
+                origin = new BufferedInputStream(fi, BUFFER);
+                ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
+                entry.setTime(sourceFile.lastModified()); // to keep modification time after unzipping
+                out.putNextEntry(entry);
+                int count;
+                while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                    out.write(data, 0, count);
+                }
+            }
+            out.close();
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.d("ZIP_", "DONE_error" + e.getMessage());
+            return false;
+        }
+        Log.d("ZIP_", "DONE");
+        return true;
+    }
+
+    private void zipSubFolder(ZipOutputStream out, File folder,
+                              int basePathLength) throws IOException {
+
+        final int BUFFER = 2048;
+
+        File[] fileList = folder.listFiles();
+        BufferedInputStream origin = null;
+        for (File file : fileList) {
+            if (file.isDirectory()) {
+                zipSubFolder(out, file, basePathLength);
+            } else {
+                byte data[] = new byte[BUFFER];
+                String unmodifiedFilePath = file.getPath();
+                String relativePath = unmodifiedFilePath
+                        .substring(basePathLength);
+                FileInputStream fi = new FileInputStream(unmodifiedFilePath);
+                origin = new BufferedInputStream(fi, BUFFER);
+                ZipEntry entry = new ZipEntry(relativePath);
+                entry.setTime(file.lastModified()); // to keep modification time after unzipping
+                out.putNextEntry(entry);
+                int count;
+                while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                    out.write(data, 0, count);
+                }
+                origin.close();
+            }
+        }
+    }
+
+    public String getLastPathComponent(String filePath) {
+        String[] segments = filePath.split("/");
+        if (segments.length == 0)
+            return "";
+        String lastPathComponent = segments[segments.length - 1];
+        return lastPathComponent;
+    }
+
     public void queryLocation(Location LocRes) {
+        // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
+        File f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+        if (f.length() / 1024 >= 100) {
+            if (isuploading == false) {
+                Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
+                isuploading = true;
+                zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
+                File zip = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                AndroidNetworking.upload("http://sont.sytes.net/upload.php")
+                        .addMultipartFile("uploaded_file", zip)
+                        .addMultipartParameter("source", DEVICE_ACCOUNT)
+                        .setTag("background_auto_upload")
+                        .setPriority(Priority.HIGH)
+                        .setExecutor(Executors.newSingleThreadExecutor())
+                        .build()
+                        .getAsString(new StringRequestListener() {
+                            @Override
+                            public void onResponse(String response) {
+                                isuploading = false;
+                                Log.d("FELTOLTES_", String.valueOf(response));
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                isuploading = false;
+                                Log.d("FELTOLTES_", String.valueOf(anError.toString()));
+                            }
+                        });
+                isuploading = false;
+                try {
+                    File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                    f2.delete();
+                    deleteFile("/storage/emulated/0/Documents/wifilocator_database.csv");
+                    if (f2.exists()) {
+                        f2.getCanonicalFile().delete();
+                    }
+                    if (f2.exists()) {
+                        getBaseContext().deleteFile(f2.getName());
+                        getApplicationContext().deleteFile(f2.getName());
+                    }
+                    if (f2.exists()) {
+                        f2.getAbsoluteFile().delete();
+                    }
+                    if (f2.exists()) {
+                        Log.d("DELETE_", "Could not delete file");
+                    } else {
+                        Log.d("DELETE_", "File is removed or couldnt remove");
+                    }
+                } catch (Exception e) {
+                }
+            }
+        } else {
+        }
+
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
                 Global.accuracy = String.valueOf(LocRes.getAccuracy());
@@ -297,9 +445,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     public void saveRecordHttp(String path) {
         AsyncHttpClient client = new AsyncHttpClient();
+        //client.setMaxRetriesAndTimeout(9999,5);
+        client.setMaxRetriesAndTimeout(5, 5);
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Global.urlList_successed.add(path);
             }
 
             @Override
@@ -311,6 +462,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 //saveRecordHttp(path);
                 //Log.d("HTTP_RETRY", "Error code: " + statusCode);
+                Global.urlList_failed.add(path);
             }
         });
     }
@@ -343,7 +495,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 }
 
                 String url = MainActivity.INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
 
                 if (!urlList_uniq.contains(url + reqBody)) {
                     urlList_uniq.add(url + reqBody);
@@ -357,7 +509,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String time = sdf.format(new Date());
-                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + Global.googleAccount + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
             }
         } catch (
                 Exception e) {
@@ -521,6 +673,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     @Override
     public void onGpsStatusChanged(int event) {
         //mStatus = mService.getGpsStatus(mStatus);
+        if (event != GpsStatus.GPS_EVENT_FIRST_FIX &&
+                event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
+                event != GpsStatus.GPS_EVENT_STARTED &&
+                event != GpsStatus.GPS_EVENT_STOPPED) {
+            Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+        }
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
                 Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
@@ -546,5 +704,18 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         }
     }
 
+    public String chk_3g_wifi() {
+        final ConnectivityManager connMgr = (ConnectivityManager)
+                this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifi.isConnectedOrConnecting()) {
+            return "wifi";
+        } else if (mobile.isConnectedOrConnecting()) {
+            return "3g";
+        } else {
+            return "no";
+        }
+    }
 
 }

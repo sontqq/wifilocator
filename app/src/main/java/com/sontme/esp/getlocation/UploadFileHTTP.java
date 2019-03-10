@@ -1,5 +1,7 @@
 package com.sontme.esp.getlocation;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
 import com.sontme.esp.getlocation.activities.MainActivity;
+import com.sontme.esp.getlocation.activities.MapActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -43,14 +47,29 @@ import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
+import static android.content.Context.ACCOUNT_SERVICE;
 
+public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
+    public String DEVICE_ACCOUNT;
     private Context c;
     private Activity a;
     CustomDialog di;
 
     public UploadFileHTTP(Activity a) {
         this.a = a;
+    }
+
+    public UploadFileHTTP(Context c) {
+        this.c = c;
+    }
+
+    public UploadFileHTTP(Activity a, Context c) {
+        this.a = a;
+        this.c = c;
+    }
+
+    public UploadFileHTTP() {
+
     }
 
     public void uploadNow(String... strings) {
@@ -78,7 +97,7 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
                 int bytesRead, bytesAvailable, bufferSize;
                 byte[] buffer;
                 //int maxBufferSize = 10 * 1024 * 1024;
-                int maxBufferSize = 2;
+                int maxBufferSize = 1024;
                 File sourceFile = new File(sourceFileUri);
                 if (sourceFile.isFile()) {
                     try {
@@ -151,6 +170,7 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
                         int serverResponseCode = conn.getResponseCode();
                         String serverResponseMessage = conn
                                 .getResponseMessage();
+                        di.setLeft("");
                         if (serverResponseCode == 200) {
                             // DELETE file on complete
                             File f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
@@ -192,10 +212,8 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
                     }
                 }
             } catch (Exception ex) {
-                // dialog.dismiss();
+                ;
                 Log.d("HTTP_UPLOAD_2_FAIL_", ex.toString());
-                //new UploadFileHTTP(c).execute("https://sont.sytes.net/upload.php?");
-//            Toast.makeText(c,"Upload failed: " + ex.getMessage(),Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -216,8 +234,8 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPostExecute(String result) {
         //Toast.makeText(a, "HTTP Upload complete", Toast.LENGTH_LONG).show();
-        di.setProgressVal(100);
         try {
+            di.setProgressVal(100);
             TextView t = a.findViewById(R.id.currentstatus);
             t.setText("Done");
         } catch (Exception e) {
@@ -230,9 +248,11 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        di = new CustomDialog(a);
-        di.show();
 
+        if (a != null) {
+            di = new CustomDialog(a);
+            di.show();
+        }
         Global.isUploading = true;
         zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
         Log.d("HTTP_UPLOAD_", "started");
@@ -337,6 +357,30 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
                     haveConnectedMobile = true;
         }
         return haveConnectedWifi || haveConnectedMobile;
+    }
+
+    public String chk_3g_wifi() {
+        ConnectivityManager connMgr = null;
+        try {
+            connMgr = (ConnectivityManager)
+                    c.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connMgr == null) {
+                connMgr = (ConnectivityManager)
+                        a.getSystemService(Context.CONNECTIVITY_SERVICE);
+            }
+
+            final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (wifi.isConnectedOrConnecting()) {
+                return "wifi";
+            } else if (mobile.isConnectedOrConnecting()) {
+                return "3g";
+            } else {
+                return "no";
+            }
+        } catch (Exception e) {
+            return "error";
+        }
     }
 }
 

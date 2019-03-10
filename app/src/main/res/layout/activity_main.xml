@@ -260,7 +260,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="numberDecimal"
-                        android:text="Address" />
+                        android:text="Address"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txt_uniq"
@@ -305,6 +306,24 @@
                         android:layout_weight="0"
                         android:inputType="numberDecimal"
                         android:text="Size of ZIP"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="HTTP Error"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_succ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:inputType="numberDecimal"
+                        android:text="HTTP Success"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -425,6 +444,22 @@
                         android:layout_weight="1"
                         android:inputType="numberDecimal"
                         android:text="Not available" />
+
+                    <TextView
+                        android:id="@+id/val_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/val_succ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="numberDecimal"
+                        android:text="0" />
 
                 </LinearLayout>
 

@@ -7,6 +7,10 @@ INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-m
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\59297302f4333dea95bab6909d932b8f\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:17:1-30:12
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:2:1-26:12
+MERGED from [com.github.javiersantos:MaterialStyledDialogs:2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MaterialStyledDialogs-2.1.aar\a6e2dd5f442926e0de63b4aa9dfe200f\AndroidManifest.xml:2:1-11:12
+MERGED from [com.amitshekhar.android:android-networking:1.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\android-networking-1.0.2.aar\fdbfe836c1399074e36823a81d478b6e\AndroidManifest.xml:18:1-27:12
+MERGED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:2:1-15:12
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.1.7] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\library-1.1.7.aar\506819799947737a3bbb84bb170e3b33\AndroidManifest.xml:6:1-16:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\d65e2372a778ae35f517c64e36ea8042\AndroidManifest.xml:17:1-32:12
@@ -274,6 +278,8 @@ MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\tr
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\59297302f4333dea95bab6909d932b8f\AndroidManifest.xml:22:5-20
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:26:5-28:38
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:26:5-28:38
+MERGED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:13:5-20
+MERGED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:13:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.0.0.aar\d65e2372a778ae35f517c64e36ea8042\AndroidManifest.xml:30:5-20
@@ -480,6 +486,14 @@ MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\cach
 MERGED from [com.github.johnpersano:supertoasts:2.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\supertoasts-2.0.aar\76d967ce5fb0d08220bff67b21caf157\AndroidManifest.xml:22:5-24:41
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:8:5-10:41
 MERGED from [com.ederdoski.ble:simpleble:1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\simpleble-1.0.aar\9edc705a9cd148f38840c3a88a2b841a\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.javiersantos:MaterialStyledDialogs:2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MaterialStyledDialogs-2.1.aar\a6e2dd5f442926e0de63b4aa9dfe200f\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.javiersantos:MaterialStyledDialogs:2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MaterialStyledDialogs-2.1.aar\a6e2dd5f442926e0de63b4aa9dfe200f\AndroidManifest.xml:7:5-9:41
+MERGED from [com.amitshekhar.android:android-networking:1.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\android-networking-1.0.2.aar\fdbfe836c1399074e36823a81d478b6e\AndroidManifest.xml:23:5-25:41
+MERGED from [com.amitshekhar.android:android-networking:1.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\android-networking-1.0.2.aar\fdbfe836c1399074e36823a81d478b6e\AndroidManifest.xml:23:5-25:41
+MERGED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:8:5-11:75
+MERGED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:8:5-11:75
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.1.7] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\library-1.1.7.aar\506819799947737a3bbb84bb170e3b33\AndroidManifest.xml:12:5-14:41
+MERGED from [me.zhanghai.android.materialprogressbar:library:1.1.7] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\library-1.1.7.aar\506819799947737a3bbb84bb170e3b33\AndroidManifest.xml:12:5-14:41
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\8c51ce9822629d50b670fefbb92aca04\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c9fa87b513d9ba01b8240e572b18bde\AndroidManifest.xml:5:5-7:41
@@ -623,7 +637,7 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-17.1.2.aar\4df9594da23749468e3fb8b08519b61f\AndroidManifest.xml:23:9-59
+		ADDED from [com.afollestad.material-dialogs:core:0.9.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\core-0.9.0.2.aar\fd9ba33bae004a46315acdbc8942bdb6\AndroidManifest.xml:11:9-72
 	android:targetSdkVersion
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml

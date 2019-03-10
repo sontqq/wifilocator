@@ -1,19 +1,24 @@
 package com.sontme.esp.getlocation.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.GpsStatus;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -49,21 +54,53 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity implements GpsStatus.Listener {
 
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private Button export;
+    private LocationManager mService;
 
-    static List<GeoPoint> geoPoints = new ArrayList<>();
-    static ArrayList<OverlayItem> overlayItemArray = new ArrayList<OverlayItem>();
-    static Polyline line = new Polyline();
+    public static List<GeoPoint> geoPoints;
+    public static ArrayList<OverlayItem> overlayItemArray;
+    public static Polyline line;
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String stateSaved = savedInstanceState.getString("save_state");
+        if (stateSaved == null) {
+            Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle onState) {
+        super.onSaveInstanceState(onState);
+        String stateSaved = onState.getString("save_state");
+        if (stateSaved == null) {
+            Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mService.addGpsStatusListener(this);
+        line = new Polyline();
+        geoPoints = new ArrayList<>();
+        overlayItemArray = new ArrayList<OverlayItem>();
 
         dl = (DrawerLayout)findViewById(R.id.drawler2);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
@@ -101,7 +138,7 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         });
-        Button export = findViewById(R.id.btn_export);
+        export = findViewById(R.id.btn_export);
         export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +195,12 @@ public class MapActivity extends AppCompatActivity {
         }, 1000);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public Bitmap viewToBitmap(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -171,6 +214,35 @@ public class MapActivity extends AppCompatActivity {
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }
+
+    @Override
+    public void onGpsStatusChanged(int event) {
+        //mStatus = mService.getGpsStatus(mStatus);
+        if (event != GpsStatus.GPS_EVENT_FIRST_FIX &&
+                event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
+                event != GpsStatus.GPS_EVENT_STARTED &&
+                event != GpsStatus.GPS_EVENT_STOPPED) {
+            Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+        }
+        switch (event) {
+            case GpsStatus.GPS_EVENT_STARTED:
+                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_STOPPED:
+                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_FIRST_FIX:
+                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                break;
+
+            case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
     private void updateMap(MapView map) {
         GeoPoint geo = null;
         if(Global.latitude != null) {
