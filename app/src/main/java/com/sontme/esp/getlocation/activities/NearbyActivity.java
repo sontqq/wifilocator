@@ -1,8 +1,12 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,6 +19,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -88,6 +93,7 @@ import java.util.TimerTask;
 import cz.msebera.android.httpclient.Header;
 
 import com.sontme.esp.getlocation.ApStrings;
+import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.HandleLocations;
@@ -102,8 +108,9 @@ public class NearbyActivity extends AppCompatActivity {
     private MapView map;
     private Button btn;
     String content = null;
-
     static Map<Location, ApStrings> loc_ssid2 = new HashMap<Location, ApStrings>();
+
+    public BackgroundService backgroundService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +126,9 @@ public class NearbyActivity extends AppCompatActivity {
 
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
+
+        Intent mIntent = new Intent(NearbyActivity.this, BackgroundService.class);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
         map = (MapView) findViewById(R.id.osmmap2);
         btn = (Button) findViewById(R.id.button6);
@@ -157,10 +167,10 @@ public class NearbyActivity extends AppCompatActivity {
         map.setMultiTouchControls(true);
         mapController.setZoom(17.0);
         GeoPoint startPoint = null;
-        if (Global.latitude != "0") {
-            startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
-        } else if (Global.initLat != "0") {
-            startPoint = new GeoPoint(Double.valueOf(Global.initLat), Double.valueOf(Global.initLong));
+        if (backgroundService.getLatitude() != "0") {
+            startPoint = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
+        } else if (backgroundService.getInitLat() != "0") {
+            startPoint = new GeoPoint(Double.valueOf(backgroundService.getInitLat()), Double.valueOf(backgroundService.getInitLong()));
         } else {
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
@@ -210,6 +220,20 @@ public class NearbyActivity extends AppCompatActivity {
         getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
     }
 
+    ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+            // backgroundService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
+            backgroundService = mLocalBinder.getServerInstance();
+        }
+    };
+
     private Drawable resize(Drawable image, Integer size) {
         Bitmap b = ((BitmapDrawable) image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, size, size, false);
@@ -222,8 +246,8 @@ public class NearbyActivity extends AppCompatActivity {
         Double lat = null;
         Double lon = null;
         try {
-            lat = Double.valueOf(Global.latitude);
-            lon = Double.valueOf(Global.longitude);
+            lat = Double.valueOf(backgroundService.getLatitude());
+            lon = Double.valueOf(backgroundService.getLongitude());
         } catch (Exception e) {
             lat = 47.935902;
             lon = 20.367769;
@@ -572,11 +596,25 @@ class CustomCluster extends RadiusMarkerClusterer {
 
     private Context ctx;
     private static int counter;
+    public BackgroundService backgroundService;
 
     public CustomCluster(Context ctx) {
         super(ctx);
         this.ctx = ctx;
         counter++;
+        ServiceConnection mConnection = new ServiceConnection() {
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                //Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+                // backgroundService = null;
+            }
+
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
+                backgroundService = mLocalBinder.getServerInstance();
+            }
+        };
     }
 
     public void setMarkerBounce(Marker m) {
@@ -629,17 +667,17 @@ class CustomCluster extends RadiusMarkerClusterer {
         String longitude = Double.toString(((double) loc.getLongitudeE6()) / 1000000);
         String latitude = Double.toString(((double) loc.getLatitudeE6()) / 1000000);
         String asd = "0";
-        if (Double.valueOf(Global.latitude) != 0) {
+        if (Double.valueOf(backgroundService.getLatitude()) != 0) {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())), 1));
             Log.d("TAPI1: ", asd);
-        } else if (Double.valueOf(Global.initLat) != 0) {
+        } else if (Double.valueOf(backgroundService.getInitLat()) != 0) {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getInitLat_()), Double.valueOf(longitude), Double.valueOf(Global.getInitLong_())), 1));
             Log.d("TAPI2: ", asd);
         } else {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(47.935900), Double.valueOf(longitude), Double.valueOf(20.367770)), 1));
             Log.d("TAPI3: ", asd);
         }
-        Log.d("TAPI4: ", String.valueOf(Double.valueOf(Global.latitude)));
+        Log.d("TAPI4: ", String.valueOf(Double.valueOf(backgroundService.getLatitude())));
 
         SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
         superToast.setText(asd + " meters away from you");
@@ -746,7 +784,7 @@ class CustomMarker extends Marker {
         ObjectAnimator animator = ObjectAnimator.ofInt(view.getForeground(), "alpha", 0, 255);
         animator.setDuration(duration);
         animator.setStartDelay(20);
-        animator.setRepeatMode(Animation.RESTART);
+        animator.setRepeatMode(ValueAnimator.RESTART);
         animator.setRepeatCount(Animation.INFINITE);
         animator.start();
     }

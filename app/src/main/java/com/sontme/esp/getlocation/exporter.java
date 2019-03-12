@@ -43,14 +43,13 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class exporter {
 
     private String fileName;
-
-    public void uploadFile(String path, Context ctx) {
-        //new UploadFileFTP().execute("sont.sytes.net");
-    }
+    public List<String> csv_list_uniq = new ArrayList<String>();
 
     public exporter(String fileName) {
         this.fileName = fileName;
@@ -60,25 +59,23 @@ public class exporter {
         //if (Global.isUploading == false) {
             File file = null;
             try {
-                file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
-                PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-                StringBuilder sb = new StringBuilder();
-                sb.append(text);
-                sb.append('\n');
-                writer.append(sb.toString());
-                writer.flush();
-                writer.close();
+                if (csv_list_uniq.contains(text) == false) {
+                    file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
+                    PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(text);
+                    sb.append('\n');
+                    writer.append(sb.toString());
+                    writer.flush();
+                    writer.close();
+                } else {
+                    Log.d("CSV_WRITER_", "Already contains");
+                }
             } catch (Exception e) {
                 Log.d("CSV_writer_error_:", e.toString());
             } finally {
-                /*
-                Log.d("CSV_SIZE_", String.valueOf(file.length() / 1024) + " kb");
-                Log.d("CSV_getpath_", String.valueOf(file.getPath().toString()));
-                Log.d("CSV_canonpath_", String.valueOf(file.getCanonicalPath().toString()));
-                Log.d("CSV_abspath_", String.valueOf(file.getAbsolutePath().toString()));
-                */
+
             }
-        //}
     }
 }
 

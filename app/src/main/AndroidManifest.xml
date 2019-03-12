@@ -32,6 +32,16 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions"></uses-permission>
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions"></uses-permission>
+
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -52,12 +62,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.NearbyActivity"
             android:configChanges="orientation"
+            android:alwaysRetainTaskState="true"
+            android:exported="true"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.ListActivity"
             android:configChanges="orientation"
+            android:alwaysRetainTaskState="true"
+            android:exported="true"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.MapActivity"
             android:configChanges="orientation"
+            android:alwaysRetainTaskState="true"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".Receiver">
@@ -81,6 +97,8 @@
             android:name=".activities.MainActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation"
+            android:alwaysRetainTaskState="true"
+            android:exported="true"
             android:screenOrientation="portrait" >
             // vagy singleTask
             <intent-filter>

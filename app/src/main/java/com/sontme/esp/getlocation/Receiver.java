@@ -1,6 +1,8 @@
 package com.sontme.esp.getlocation;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +12,29 @@ import android.widget.Toast;
 
 import com.sontme.esp.getlocation.activities.MainActivity;
 
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Set;
+
 
 public class Receiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         // start SERVICE on Boot
+        if (intent.getStringExtra("alarm") == "run") {
+            Intent i = new Intent();
+            i.putExtra("alarm", "run");
+            context.sendBroadcast(i);
+            Log.d("ALARM_RECEIVER_", "ON");
+
+        } else if (intent.getStringExtra("alarm") == "run") {
+            Intent i = new Intent();
+            i.putExtra("alarm", "off");
+            context.sendBroadcast(i);
+            Log.d("ALARM_RECEIVER_", "OFF");
+        }
+
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             Intent serviceIntent = new Intent(context, BackgroundService.class);
             if (Build.VERSION.SDK_INT >= 26) {

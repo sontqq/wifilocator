@@ -644,9 +644,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         String stateSaved = savedInstanceState.getString("save_state");
         if (stateSaved == null) {
-            Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -655,9 +655,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         super.onSaveInstanceState(onState);
         String stateSaved = onState.getString("save_state");
         if (stateSaved == null) {
-            Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 

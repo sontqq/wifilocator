@@ -1,8 +1,10 @@
 package com.sontme.esp.getlocation.activities;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,6 +17,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -32,6 +35,7 @@ import android.widget.Toast;
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.google.android.gms.maps.model.Cap;
+import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
@@ -65,6 +69,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
     public static List<GeoPoint> geoPoints;
     public static ArrayList<OverlayItem> overlayItemArray;
     public static Polyline line;
+    public BackgroundService backgroundService;
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -89,6 +94,20 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         }
     }
 
+    ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+            // backgroundService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
+            backgroundService = mLocalBinder.getServerInstance();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +117,10 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
             return;
         }
         mService.addGpsStatusListener(this);
+
+        Intent mIntent = new Intent(MapActivity.this, BackgroundService.class);
+        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+
         line = new Polyline();
         geoPoints = new ArrayList<>();
         overlayItemArray = new ArrayList<OverlayItem>();
@@ -176,8 +199,8 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
         GeoPoint startPoint = null;
-        if(Global.latitude != null) {
-            startPoint = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        if (backgroundService.getLatitude() != null) {
+            startPoint = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
         }
         else{
             startPoint = new GeoPoint(47.935900, 20.367770);
@@ -245,8 +268,8 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
 
     private void updateMap(MapView map) {
         GeoPoint geo = null;
-        if(Global.latitude != null) {
-            geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        if (backgroundService.getLatitude() != null) {
+            geo = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
         }
         else{
             geo = new GeoPoint(47.935900, 20.367770);
@@ -291,8 +314,8 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.invalidate();
         Drawable pin = getResources().getDrawable(R.drawable.wifi5);
         GeoPoint geo = null;
-        if(Global.latitude != null) {
-            geo = new GeoPoint(Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        if (backgroundService.getLatitude() != null) {
+            geo = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
         }
         else{
             geo = new GeoPoint(47.935900, 20.367770);
