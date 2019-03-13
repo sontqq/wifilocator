@@ -213,8 +213,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                 //queryLocation(null);
             } catch (Exception e) {
-                Log.d("FONTOS", e.toString());
-                e.printStackTrace();
+                Log.d("TIMER_MAIN_FONTOS", e.toString());
             }
             if (backgroundService.longitude == null) {
                 alti.setText("0");

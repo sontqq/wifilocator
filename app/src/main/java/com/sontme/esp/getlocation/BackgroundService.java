@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -184,10 +185,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public void onCreate() {
         Fabric.with(this, new Crashlytics());
         logUser();
-        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+        /*OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .addInterceptor(new GzipRequestInterceptor())
-                .build();
-        AndroidNetworking.initialize(getApplicationContext(), okHttpClient);
+                .build();*/
+        AndroidNetworking.initialize(getApplicationContext());
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
 
         registerReceiver(broadcastReceiver, new IntentFilter());
@@ -329,12 +330,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     }
 
-    public void uploadProgress(int prog) {
+    public void uploadProgress(int prog, long uploaded, long total) {
+
         Context context = getApplicationContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int notificationId = 1;
-        String channelId = "0";
+        int notificationId = 100;
+        String channelId = "100";
         String channelName = "Uploadingdatabase";
         int importance = NotificationManager.IMPORTANCE_HIGH;
 
@@ -344,14 +346,53 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             notificationManager.createNotificationChannel(mChannel);
         }
         String detail = String.valueOf(prog);
-        if (prog == 100) {
-            detail = "Done";
+        if (prog >= 100 || prog < 0) {
+            detail = "Complete";
+            prog = 100;
+        } else {
+            detail = "Progress: " + String.valueOf((int) (uploaded)) + " / " + String.valueOf((int) (total));
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.cloudupload)
+                .setContentTitle("Uploading database")
+                .setProgress(100, prog, false)
+                .setOngoing(false)
+                .setAutoCancel(true)
+                .setVibrate(new long[]{0L})
+                .setSound(null)
+                .setLights(0xFFff0000, 600, 500)
+                .setDefaults(Notification.FLAG_SHOW_LIGHTS)
+                .setContentText(detail);
+
+        notificationManager.notify(notificationId, mBuilder.build());
+
+    }
+
+    public void uploadProgress(int prog) {
+
+        Context context = getApplicationContext();
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        int notificationId = 100;
+        String channelId = "100";
+        String channelName = "Uploadingdatabase";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+        String detail = String.valueOf(prog);
+        if (prog >= 100 || prog < 0) {
+            detail = "Complete";
+            prog = 100;
         } else {
             detail = "Progress: " + String.valueOf(prog);
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.upload_icon)
-                .setContentTitle("Uploading")
+                .setSmallIcon(R.drawable.cloudupload)
+                .setContentTitle("Uploading database")
                 .setProgress(100, prog, false)
                 .setOngoing(false)
                 .setAutoCancel(true)
@@ -501,73 +542,78 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void queryLocation(Location LocRes) {
-        if (night_mode == false && chk_3g_wifi() == "wifi") {
+        if (night_mode == false) {
             // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
             File f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
             if (f.length() / 1024 >= 1024) {
                 if (isuploading == false) {
-                    Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
-                    isuploading = true;
-                    zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
-                    File zip = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
-                    AndroidNetworking.upload("https://sont.sytes.net/upload.php")
-                            .addMultipartFile("uploaded_file", zip)
-                            .addMultipartParameter("source", DEVICE_ACCOUNT)
-                            .setTag("background_auto_upload")
-                            .setPriority(Priority.HIGH)
-                            .setExecutor(Executors.newSingleThreadExecutor())
-                            .build()
-                            .setUploadProgressListener(new UploadProgressListener() {
-                                @Override
-                                public void onProgress(long bytesUploaded, long totalBytes) {
-                                    int prog = (int) ((bytesUploaded / totalBytes) * 100);
-                                    Log.d("NOTIF_UPLOAD_PROGRESS_", String.valueOf(prog));
-                                    uploadProgress(prog);
-                                }
-                            })
-                            .setAnalyticsListener(new AnalyticsListener() {
-                                @Override
-                                public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                                    Log.d("FILE_UPLOAD_BANDWIDTH_", String.valueOf(bytesSent) + "_" + String.valueOf(bytesReceived));
-                                }
-                            })
-                            .getAsString(new StringRequestListener() {
-                                @Override
-                                public void onResponse(String response) {
-                                    isuploading = false;
-                                    Log.d("FELTOLTES_", String.valueOf(response));
-                                }
+                    if (chk_3g_wifi() == "wifi") {
+                        Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
+                        uploadProgress(0, 0, 0);
+                        isuploading = true;
+                        zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
+                        File zip = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                        AndroidNetworking.upload("http://sont.sytes.net/upload.php")
+                                .addMultipartFile("uploaded_file", zip)
+                                .addMultipartParameter("source", DEVICE_ACCOUNT) // DEVICE_ACCOUNT
+                                .setTag("background_auto_upload")
+                                .setPriority(Priority.IMMEDIATE)
+                                .setExecutor(Executors.newSingleThreadExecutor())
+                                .build()
+                                .setUploadProgressListener(new UploadProgressListener() {
+                                    @Override
+                                    public void onProgress(long bytesUploaded, long totalBytes) {
+                                        int prog = (int) ((bytesUploaded / totalBytes) * 100);
+                                        Log.d("FELTOLTES_", "prog: " + String.valueOf(prog));
+                                        Log.d("FELTOLTES_", "progress left: " + String.valueOf(totalBytes - bytesUploaded));
+                                        uploadProgress(prog, bytesUploaded, totalBytes);
+                                    }
+                                })
 
-                                @Override
-                                public void onError(ANError anError) {
-                                    isuploading = false;
-                                    Log.d("FELTOLTES_", String.valueOf(anError.toString()));
-                                }
-                            });
-                    isuploading = false;
-                    try {
-                        File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                        f2.delete();
-                        deleteFile("/storage/emulated/0/Documents/wifilocator_database.csv");
-                        if (f2.exists()) {
-                            f2.getCanonicalFile().delete();
+                                .getAsString(new StringRequestListener() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        //isuploading = false;
+                                        Log.d("FELTOLTES_", String.valueOf(response));
+                                        uploadProgress(100);
+                                    }
+
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        //isuploading = false;
+                                        uploadProgress(0);
+                                        Log.d("FELTOLTES_", String.valueOf(anError.toString()));
+                                    }
+                                });
+                        isuploading = false;
+                        try {
+                            File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                            f2.delete();
+                            deleteFile("/storage/emulated/0/Documents/wifilocator_database.csv");
+                            if (f2.exists()) {
+                                f2.getCanonicalFile().delete();
+                            }
+                            if (f2.exists()) {
+                                getBaseContext().deleteFile(f2.getName());
+                                getApplicationContext().deleteFile(f2.getName());
+                            }
+                            if (f2.exists()) {
+                                f2.getAbsoluteFile().delete();
+                            }
+                            if (f2.exists()) {
+                                Log.d("DELETE_", "Could not delete file");
+                            } else {
+                                Log.d("DELETE_", "File is removed or couldnt remove");
+                            }
+                        } catch (Exception e) {
                         }
-                        if (f2.exists()) {
-                            getBaseContext().deleteFile(f2.getName());
-                            getApplicationContext().deleteFile(f2.getName());
-                        }
-                        if (f2.exists()) {
-                            f2.getAbsoluteFile().delete();
-                        }
-                        if (f2.exists()) {
-                            Log.d("DELETE_", "Could not delete file");
-                        } else {
-                            Log.d("DELETE_", "File is removed or couldnt remove");
-                        }
-                    } catch (Exception e) {
+                    } else {
+                        // wanna upload but no wifi
                     }
                 }
+                isuploading = false;
             } else {
+                isuploading = false;
             }
 
             if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {

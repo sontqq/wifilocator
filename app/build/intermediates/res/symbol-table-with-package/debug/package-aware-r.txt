@@ -1166,6 +1166,7 @@ drawable avd_show_password
 drawable bonuspack_bubble
 drawable btn_moreinfo
 drawable center
+drawable cloudupload
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1187,6 +1188,7 @@ drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable computer
 drawable computer_low
+drawable computer_low_gray
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
