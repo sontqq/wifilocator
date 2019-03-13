@@ -34,8 +34,8 @@ public final class R {
         public static final int previous = 0x7f0700bd;
         public static final int sharp_add_black_36 = 0x7f0700c3;
         public static final int sharp_remove_black_36 = 0x7f0700c4;
-        public static final int zoom_in = 0x7f0700d1;
-        public static final int zoom_out = 0x7f0700d2;
+        public static final int zoom_in = 0x7f0700d2;
+        public static final int zoom_out = 0x7f0700d3;
     }
     public static final class id {
         private id() {}

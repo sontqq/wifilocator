@@ -10,6 +10,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -44,6 +46,8 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interceptors.GzipRequestInterceptor;
+import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
@@ -69,10 +73,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -131,6 +138,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public static String nearbyCount;
     public static List<String> uniqueAPS = new ArrayList<>();
 
+    public static String ipaddress;
+    public static String googleAccount;
+    public static boolean isUploading;
     //endregion
     int totalBytesSent = 0;
     CountDownTimer mCountDownTimer;
@@ -174,7 +184,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public void onCreate() {
         Fabric.with(this, new Crashlytics());
         logUser();
-        AndroidNetworking.initialize(getApplicationContext());
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                .addInterceptor(new GzipRequestInterceptor())
+                .build();
+        AndroidNetworking.initialize(getApplicationContext(), okHttpClient);
         Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
 
         registerReceiver(broadcastReceiver, new IntentFilter());
@@ -317,25 +330,39 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void uploadProgress(int prog) {
-        Log.d("NOTIF_UPLOAD_PROGRESS_", "lol_" + String.valueOf(prog));
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getApplicationContext(), "100");
-        mBuilder.setOngoing(true);
-        mBuilder.setProgress(100, prog, false);
-        mBuilder.setAutoCancel(true);
-        Intent ii = new Intent(getBaseContext().getApplicationContext(), BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 100, ii, 0);
+        Context context = getApplicationContext();
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        NotificationManager mNotificationManager =
-                (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        int notificationId = 1;
+        String channelId = "0";
+        String channelName = "Uploadingdatabase";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("100",
-                    "Downloading",
-                    NotificationManager.IMPORTANCE_NONE);
-            mNotificationManager.createNotificationChannel(channel);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
         }
-        mNotificationManager.notify(100, mBuilder.build());
+        String detail = String.valueOf(prog);
+        if (prog == 100) {
+            detail = "Done";
+        } else {
+            detail = "Progress: " + String.valueOf(prog);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.upload_icon)
+                .setContentTitle("Uploading")
+                .setProgress(100, prog, false)
+                .setOngoing(false)
+                .setAutoCancel(true)
+                .setVibrate(new long[]{0L})
+                .setSound(null)
+                .setLights(0xFFff0000, 600, 500)
+                .setDefaults(Notification.FLAG_SHOW_LIGHTS)
+                .setContentText(detail);
+
+        notificationManager.notify(notificationId, mBuilder.build());
+
     }
 
     public void startUpdatesGPS() {
@@ -477,7 +504,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         if (night_mode == false && chk_3g_wifi() == "wifi") {
             // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
             File f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-            if (f.length() / 1024 >= 100) {
+            if (f.length() / 1024 >= 1024) {
                 if (isuploading == false) {
                     Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                     isuploading = true;
@@ -490,14 +517,18 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                             .setPriority(Priority.HIGH)
                             .setExecutor(Executors.newSingleThreadExecutor())
                             .build()
-
                             .setUploadProgressListener(new UploadProgressListener() {
                                 @Override
                                 public void onProgress(long bytesUploaded, long totalBytes) {
-                                    Log.d("NOTIF_UPLOAD_PROGRESS_", String.valueOf("asd"));
                                     int prog = (int) ((bytesUploaded / totalBytes) * 100);
                                     Log.d("NOTIF_UPLOAD_PROGRESS_", String.valueOf(prog));
                                     uploadProgress(prog);
+                                }
+                            })
+                            .setAnalyticsListener(new AnalyticsListener() {
+                                @Override
+                                public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                                    Log.d("FILE_UPLOAD_BANDWIDTH_", String.valueOf(bytesSent) + "_" + String.valueOf(bytesReceived));
                                 }
                             })
                             .getAsString(new StringRequestListener() {
@@ -862,4 +893,30 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         }
     }
 
+    public static String getLocalIpAddress() {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress()) {
+                        String sAddr = addr.getHostAddress();
+                        boolean isIPv4 = sAddr.indexOf(':') < 0;
+                        if (isIPv4)
+                            return sAddr;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+        } // for now eat exceptions
+        return "";
+    }
+
+    public static boolean checkPermissionLocation(Context c) {
+        if (ContextCompat.checkSelfPermission(c, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

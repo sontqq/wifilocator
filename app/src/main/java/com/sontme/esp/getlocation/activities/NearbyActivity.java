@@ -668,10 +668,10 @@ class CustomCluster extends RadiusMarkerClusterer {
         String latitude = Double.toString(((double) loc.getLatitudeE6()) / 1000000);
         String asd = "0";
         if (Double.valueOf(backgroundService.getLatitude()) != 0) {
-            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getLat_()), Double.valueOf(longitude), Double.valueOf(Global.getLong_())), 1));
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(backgroundService.getLatitude()), Double.valueOf(longitude), Double.valueOf(backgroundService.getLongitude())), 1));
             Log.d("TAPI1: ", asd);
         } else if (Double.valueOf(backgroundService.getInitLat()) != 0) {
-            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(Global.getInitLat_()), Double.valueOf(longitude), Double.valueOf(Global.getInitLong_())), 1));
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(backgroundService.getInitLat()), Double.valueOf(longitude), Double.valueOf(backgroundService.getInitLong())), 1));
             Log.d("TAPI2: ", asd);
         } else {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(47.935900), Double.valueOf(longitude), Double.valueOf(20.367770)), 1));

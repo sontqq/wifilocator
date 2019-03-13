@@ -36,6 +36,7 @@ import java.util.Queue;
 
 public class Global extends Application{
     // actual global variables
+    /*
     public static String longitude = "0";
     public static String latitude = "0";
     public static String altitude = "0";
@@ -66,7 +67,7 @@ public class Global extends Application{
 
     public static List<String> urlList_failed = new ArrayList<String>();
     public static List<String> urlList_successed = new ArrayList<String>();
-
+    */
     public static DevicePolicyManager mDPM;
     public static ComponentName mAdminName;
 
@@ -176,7 +177,7 @@ public class Global extends Application{
             return true;
         }
     }
-
+    /*
     public void setCount(){
         this.count++;
     }
@@ -255,5 +256,5 @@ public class Global extends Application{
             return "20.367531";
         }
     }
-
+    */
 }

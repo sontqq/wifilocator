@@ -5424,18 +5424,19 @@ public final class R {
     public static final int sharp_remove_black_36=0x7f0700c4;
     public static final int tooltip_frame_dark=0x7f0700c5;
     public static final int tooltip_frame_light=0x7f0700c6;
-    public static final int web_shape=0x7f0700c7;
-    public static final int wifi1=0x7f0700c8;
-    public static final int wifi2=0x7f0700c9;
-    public static final int wifi3=0x7f0700ca;
-    public static final int wifi4=0x7f0700cb;
-    public static final int wifi4_25=0x7f0700cc;
-    public static final int wifi4_cluster=0x7f0700cd;
-    public static final int wifi4_cluster_25=0x7f0700ce;
-    public static final int wifi5=0x7f0700cf;
-    public static final int wifi6=0x7f0700d0;
-    public static final int zoom_in=0x7f0700d1;
-    public static final int zoom_out=0x7f0700d2;
+    public static final int upload_icon=0x7f0700c7;
+    public static final int web_shape=0x7f0700c8;
+    public static final int wifi1=0x7f0700c9;
+    public static final int wifi2=0x7f0700ca;
+    public static final int wifi3=0x7f0700cb;
+    public static final int wifi4=0x7f0700cc;
+    public static final int wifi4_25=0x7f0700cd;
+    public static final int wifi4_cluster=0x7f0700ce;
+    public static final int wifi4_cluster_25=0x7f0700cf;
+    public static final int wifi5=0x7f0700d0;
+    public static final int wifi6=0x7f0700d1;
+    public static final int zoom_in=0x7f0700d2;
+    public static final int zoom_out=0x7f0700d3;
   }
   public static final class id {
     public static final int ALT=0x7f080000;

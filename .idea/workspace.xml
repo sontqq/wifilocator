@@ -22,126 +22,76 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;&#10;+ auto csv upload at 100 kilobytes">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;+ auto csv upload at 100 kilobytes&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;">
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/com/sontme/esp/getlocation/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/com/sontme/esp/getlocation/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/org/osmdroid/bonuspack/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/org/osmdroid/bonuspack/R.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/org/osmdroid/library/R.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/not_namespaced_r_class_sources/debug/processDebugResources/r/org/osmdroid/library/R.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/0sQoPdn+Nt5yj+PxA4hsI17jDFs=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/0sQoPdn+Nt5yj+PxA4hsI17jDFs=" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_run_merged_manifests/debug/processDebugManifest/instant-run/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_run_merged_manifests/debug/processDebugManifest/instant-run/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Global.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Global.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$drawable.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$drawable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$id.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$id.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$integer.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$integer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$interpolator.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$interpolator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$layout.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$layout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$mipmap.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$mipmap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$string.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$string.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$style.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$style.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$styleable.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/R$styleable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Receiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/Receiver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity$8.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MainActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/MapActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/org/osmdroid/bonuspack/R$drawable.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/org/osmdroid/bonuspack/R$drawable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/org/osmdroid/library/R$drawable.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/org/osmdroid/library/R$drawable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out/crashlytics-build.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out/crashlytics-build.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/processDebugManifest/merged/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/16.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/17.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/17.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/18.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/18.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/19.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/19.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/20.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/20.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/21.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/21.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/22.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/22.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/23.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/23.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/24.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/24.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/25.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/25.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/26.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/26.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/27.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/27.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/28.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/28.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/29.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/29.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/30.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/30.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/31.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/31.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/32.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/32.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/33.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/33.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/34.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/34.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/35.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/35.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/36.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/36.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/37.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/37.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/38.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/38.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/39.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/39.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/4.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/40.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/40.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/41.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/41.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/42.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/42.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/43.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/43.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/44.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/44.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/45.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/45.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/47.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/47.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/48.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/48.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/49.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/49.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/5.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/52.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/52.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/53.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/53.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/54.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/54.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/56.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/56.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/57.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/57.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/58.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/58.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/59.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/59.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/6.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/61.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/61.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/62.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/62.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/63.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/63.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/64.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/64.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/65.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/65.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/66.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/66.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/67.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/67.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/68.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/68.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/69.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/69.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/7.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/70.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/70.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/71.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/71.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/73.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/73.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/74.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/74.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/75.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/75.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/77.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/77.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/78.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/78.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/8.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/9.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/9.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/mergeJavaRes/debug/0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/exporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/exporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -168,7 +118,7 @@
         <counts>
           <entry key="project.closed" value="22" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="2" />
           <entry key="project.open.time.17" value="4" />
@@ -184,42 +134,42 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="27" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
           <entry key="gradle" value="554" />
-          <entry key="java" value="60317" />
-          <entry key="txt" value="3668" />
+          <entry key="java" value="61046" />
+          <entry key="txt" value="3696" />
           <entry key="xml" value="2403" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="554" />
-          <entry key="JAVA" value="60317" />
-          <entry key="PLAIN_TEXT" value="3676" />
+          <entry key="JAVA" value="61046" />
+          <entry key="PLAIN_TEXT" value="3704" />
           <entry key="XML" value="2403" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="4" />
+          <entry key="class" value="5" />
           <entry key="gradle" value="25" />
-          <entry key="java" value="160" />
+          <entry key="java" value="165" />
           <entry key="png" value="1" />
-          <entry key="xml" value="99" />
+          <entry key="xml" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="4" />
+          <entry key="CLASS" value="5" />
           <entry key="Groovy" value="25" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="160" />
-          <entry key="XML" value="99" />
+          <entry key="JAVA" value="165" />
+          <entry key="XML" value="100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -232,96 +182,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="37" />
+            <state relative-caret-position="62">
+              <caret line="338" column="60" selection-start-line="338" selection-start-column="60" selection-end-line="338" selection-end-column="60" />
               <folding>
-                <element signature="e#3446#3447#0" expanded="true" />
-                <element signature="e#3477#3478#0" expanded="true" />
-                <element signature="e#3520#3521#0" expanded="true" />
-                <element signature="e#3552#3553#0" expanded="true" />
-                <element signature="e#3901#3902#0" expanded="true" />
-                <element signature="e#3931#3932#0" expanded="true" />
-                <element signature="e#3973#3974#0" expanded="true" />
-                <element signature="e#4004#4005#0" expanded="true" />
-                <element signature="method#onCreate#0;class#BackgroundService#0" />
-                <element signature="class#4663:5353" />
-                <element signature="method#uncaughtException#0;class#4663:5353" />
-                <element signature="e#6344#6357#0" />
-                <element signature="class#6505:9339" />
-                <element signature="method#onRequest#0;class#6505:9339" />
-                <element signature="class#9937:10671" />
-                <element signature="method#onTick#0;class#9937:10671" />
-                <element signature="method#onFinish#0;class#9937:10671" />
-                <element signature="method#uploadProgress#0;class#BackgroundService#0" />
-                <element signature="e#14160#16906#0" />
-                <element signature="class#14311:15971" />
-                <element signature="method#onLocationChanged#0;class#14311:15971" />
-                <element signature="method#onStatusChanged#0;class#14311:15971" />
-                <element signature="method#onProviderEnabled#0;class#14311:15971" />
-                <element signature="method#onProviderDisabled#0;class#14311:15971" />
-                <element signature="e#16912#17095#0" />
-                <element signature="e#17101#18461#0" />
-                <element signature="e#18467#19655#0" />
-                <element signature="e#19661#19926#0" />
-                <element signature="e#19932#26070#0" />
-                <element signature="class#21227:21778" />
-                <element signature="method#onProgress#0;class#21227:21778" />
-                <element signature="class#21825:22468" />
-                <element signature="method#onResponse#0;class#21825:22468" />
-                <element signature="method#onError#0;class#21825:22468" />
-                <element signature="e#26076#26857#0" />
-                <element signature="class#26350:26847" />
-                <element signature="method#onResponse#0;class#26350:26847" />
-                <element signature="method#onError#0;class#26350:26847" />
-                <element signature="e#27240#27289#0" />
-                <element signature="e#29550#29791#0" />
-                <element signature="e#29797#30072#0" />
-                <element signature="method#convertTime#0;class#BackgroundService#0" />
-                <element signature="method#getDistance#0;class#BackgroundService#0" />
-                <element signature="method#getCompleteAddressString#0;class#BackgroundService#0" />
-                <element signature="method#onStartCommand#0;class#BackgroundService#0" />
-                <element signature="method#onDestroy#0;class#BackgroundService#0" />
-                <element signature="method#onStart#0;class#BackgroundService#0" />
-                <element signature="method#onTaskRemoved#0;class#BackgroundService#0" />
-                <element signature="method#onGpsStatusChanged#0;class#BackgroundService#0" />
-                <element signature="class#LocalBinder#0;class#BackgroundService#0" />
-                <element signature="method#chk_3g_wifi#0;class#BackgroundService#0" />
+                <element signature="e#35319#35505#0" />
+                <element signature="e#35511#36303#0" />
+                <element signature="e#36309#37157#0" />
+                <element signature="e#37163#37368#0" />
+                <element signature="e#37374#37539#0" />
+                <element signature="e#37545#37704#0" />
+                <element signature="e#37710#37866#0" />
+                <element signature="e#37872#39050#0" />
+                <element signature="e#39056#39211#0" />
+                <element signature="e#39217#39796#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+            <state relative-caret-position="2669">
+              <caret line="268" column="32" selection-start-line="268" selection-start-column="32" selection-end-line="268" selection-end-column="32" />
               <folding>
                 <element signature="method#onRestoreInstanceState#0;class#MapActivity#0" />
                 <element signature="method#onSaveInstanceState#0;class#MapActivity#0" />
-                <element signature="class#3404:3942" />
-                <element signature="method#onServiceDisconnected#0;class#3404:3942" />
-                <element signature="method#onServiceConnected#0;class#3404:3942" />
-                <element signature="method#onCreate#0;class#MapActivity#0" />
-                <element signature="class#4244:5485" />
-                <element signature="method#onNavigationItemSelected#0;class#4244:5485" />
-                <element signature="class#5574:6676" />
-                <element signature="method#onClick#0;class#5574:6676" />
-                <element signature="class#7906:8077" />
-                <element signature="method#run#0;class#7906:8077" />
                 <element signature="method#viewToBitmap#0;class#MapActivity#0" />
                 <element signature="method#galleryAddPic#0;class#MapActivity#0" />
                 <element signature="method#onGpsStatusChanged#0;class#MapActivity#0" />
-                <element signature="method#updateMap#0;class#MapActivity#0" />
-                <element signature="class#10518:11102" />
-                <element signature="method#onClick#0;class#10518:11102" />
                 <element signature="method#onOptionsItemSelected#0;class#MapActivity#0" />
                 <element signature="method#drawPoint#0;class#MapActivity#0" />
-                <element signature="class#12497:13191" />
-                <element signature="method#onMarkerClick#0;class#12497:13191" />
                 <element signature="method#resize#0;class#MapActivity#0" />
               </folding>
             </state>
@@ -329,59 +223,45 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/ListActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+              <folding>
+                <element signature="class#4621:6633" />
+                <element signature="method#onStart#0;class#4621:6633" />
+                <element signature="method#onSuccess#0;class#4621:6633" />
+                <element signature="method#onFailure#0;class#4621:6633" />
+                <element signature="method#onRetry#0;class#4621:6633" />
+                <element signature="method#html2text#0;class#ListActivity#0" />
+                <element signature="method#onOptionsItemSelected#0;class#ListActivity#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="8330">
+              <caret line="490" column="38" selection-start-line="490" selection-start-column="38" selection-end-line="490" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="607" column="18" selection-start-line="607" selection-start-column="18" selection-end-line="607" selection-end-column="18" />
+            <state relative-caret-position="9724">
+              <caret line="673" column="196" selection-start-line="673" selection-start-column="196" selection-end-line="673" selection-end-column="196" />
               <folding>
-                <element signature="class#4821:5026" />
-                <element signature="method#onClick#0;class#4821:5026" />
-                <element signature="class#5065:6171" />
-                <element signature="method#onClick#0;class#5065:6171" />
-                <element signature="class#8229:9462" />
-                <element signature="method#onNavigationItemSelected#0;class#8229:9462" />
-                <element signature="class#9458:9996" />
-                <element signature="method#onServiceDisconnected#0;class#9458:9996" />
-                <element signature="method#resize#0;class#NearbyActivity#0" />
-                <element signature="class#11356:11549" />
-                <element signature="method#onClick#0;class#11356:11549" />
-                <element signature="method#viewToBitmap#0;class#NearbyActivity#0" />
-                <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
-                <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-                <element signature="class#13821:15511" />
-                <element signature="method#onMarkerClick#0;class#13821:15511" />
-                <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-                <element signature="method#getList#0;class#NearbyActivity#0" />
-                <element signature="class#16799:19536" />
-                <element signature="method#onStart#0;class#16799:19536" />
-                <element signature="method#onSuccess#0;class#16799:19536" />
-                <element signature="method#onFailure#0;class#16799:19536" />
-                <element signature="method#onRetry#0;class#16799:19536" />
-                <element signature="method#html2text#0;class#NearbyActivity#0" />
-                <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-                <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
-                <element signature="class#Circlee#0" />
-                <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-                <element signature="method#onLongPress#0;class#Circlee#0" />
-                <element signature="class#PopUpWin#0" />
-                <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-                <element signature="method#onOpen#0;class#PopUpWin#0" />
-                <element signature="class#22941:23354" />
-                <element signature="method#onClick#0;class#22941:23354" />
-                <element signature="method#onClose#0;class#PopUpWin#0" />
-                <element signature="method#setMarkerBounce#0;class#CustomCluster#0" />
-                <element signature="class#23926:24334" />
-                <element signature="method#run#0;class#23926:24334" />
-                <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-                <element signature="class#24657:25106" />
-                <element signature="method#run#0;class#24657:25106" />
+                <element signature="imports" expanded="true" />
                 <element signature="method#round#0;class#CustomCluster#0" />
                 <element signature="method#getDistance#0;class#CustomCluster#0" />
                 <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
                 <element signature="class#CustomMarker#0" />
                 <element signature="method#animate#0;class#CustomMarker#0" />
-                <element signature="class#28545:28987" />
-                <element signature="method#run#0;class#28545:28987" />
                 <element signature="method#pulseForeground#0;class#CustomMarker#0" />
               </folding>
             </state>
@@ -391,48 +271,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-              <folding>
-                <element signature="method#UploadFileHTTP#2;class#UploadFileHTTP#0" />
-                <element signature="method#UploadFileHTTP#1;class#UploadFileHTTP#0" />
-                <element signature="method#uploadNow#0;class#UploadFileHTTP#0" />
-                <element signature="e#5302#5346#0" />
-                <element signature="method#doInBackground#0;class#UploadFileHTTP#0" />
-                <element signature="method#onPostExecute#0;class#UploadFileHTTP#0" />
-                <element signature="method#onProgressUpdate#0;class#UploadFileHTTP#0" />
-                <element signature="method#zipFileAtPath#0;class#UploadFileHTTP#0" />
-                <element signature="method#zipSubFolder#0;class#UploadFileHTTP#0" />
-                <element signature="method#getLastPathComponent#0;class#UploadFileHTTP#0" />
-                <element signature="method#haveNetworkConnection#0;class#UploadFileHTTP#0" />
-                <element signature="method#chk_3g_wifi#0;class#UploadFileHTTP#0" />
-                <element signature="class#CustomDialog#0" />
-                <element signature="method#CustomDialog#0;class#CustomDialog#0" />
-                <element signature="method#setProgressVal#0;class#CustomDialog#0" />
-                <element signature="method#setLeft#0;class#CustomDialog#0" />
-                <element signature="method#onCreate#0;class#CustomDialog#0" />
-                <element signature="class#18195:18449" />
-                <element signature="method#onClick#0;class#18195:18449" />
-                <element signature="method#onClick#0;class#CustomDialog#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1249">
-              <caret line="103" selection-start-line="103" selection-end-line="103" />
+            <state relative-caret-position="850">
+              <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -440,11 +280,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="61" />
-              <folding>
-                <element signature="e#2399#2407#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="3842">
+              <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -452,111 +289,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+            <state relative-caret-position="1700">
+              <caret line="100" column="35" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
             </state>
           </provider>
           <provider editor-type-id="android-manifest" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="175" selection-start-line="175" selection-end-line="175" />
+            <state relative-caret-position="1003">
+              <caret line="187" column="63" selection-start-line="187" selection-start-column="63" selection-end-line="187" selection-end-column="63" />
               <folding>
-                <element signature="e#4763#4790#0" />
-                <element signature="class#6452:9012" />
-                <element signature="method#run#0;class#6452:9012" />
-                <element signature="class#13373:14031" />
-                <element signature="method#uncaughtException#0;class#13373:14031" />
-                <element signature="e#14584#14599#0" />
-                <element signature="class#15271:16500" />
-                <element signature="method#onNavigationItemSelected#0;class#15271:16500" />
-                <element signature="class#16404:17079" />
-                <element signature="method#onAdLoaded#0;class#16404:17079" />
-                <element signature="method#onAdFailedToLoad#0;class#16404:17079" />
-                <element signature="e#17110#17130#0" />
-                <element signature="class#19608:19866" />
-                <element signature="e#19645#19686#0" />
-                <element signature="method#onClick#0;class#19608:19866" />
-                <element signature="class#19910:20059" />
-                <element signature="e#19997#19998#0" expanded="true" />
-                <element signature="e#20047#20048#0" expanded="true" />
-                <element signature="class#20102:20249" />
-                <element signature="e#20189#20190#0" expanded="true" />
-                <element signature="e#20238#20239#0" expanded="true" />
-                <element signature="class#20299:20587" />
-                <element signature="method#onClick#0;class#20299:20587" />
-                <element signature="class#20636:20976" />
-                <element signature="method#onClick#0;class#20636:20976" />
-                <element signature="class#21022:21166" />
-                <element signature="e#21109#21110#0" expanded="true" />
-                <element signature="e#21155#21156#0" expanded="true" />
-                <element signature="class#21788:22065" />
-                <element signature="method#onClick#0;class#21788:22065" />
-                <element signature="class#22800:23548" />
-                <element signature="method#onClick#0;class#22800:23548" />
-                <element signature="class#23590:25656" />
-                <element signature="method#onClick#0;class#23590:25656" />
-                <element signature="class#22974:23150" />
-                <element signature="method#onClick#0;class#22974:23150" />
-                <element signature="class#24676:25529" />
-                <element signature="method#onClick#0;class#24676:25529" />
-                <element signature="e#26378#26379#0" expanded="true" />
-                <element signature="e#26408#26409#0" expanded="true" />
-                <element signature="e#25907#26364#0" />
-                <element signature="method#onServiceDisconnected#0;class#25385:25923" />
-                <element signature="e#27868#29944#0" />
-                <element signature="class#26933:27879" />
-                <element signature="method#onLocationChanged#0;class#26933:27879" />
-                <element signature="method#onStatusChanged#0;class#26933:27879" />
-                <element signature="method#onProviderDisabled#0;class#26933:27879" />
-                <element signature="e#29950#31347#0" />
-                <element signature="class#31860:33080" />
-                <element signature="e#33198#33199#0" expanded="true" />
-                <element signature="e#33230#33231#0" expanded="true" />
-                <element signature="e#33273#33274#0" expanded="true" />
-                <element signature="e#33304#33305#0" expanded="true" />
-                <element signature="e#32803#32994#0" />
-                <element signature="e#33543#33544#0" expanded="true" />
-                <element signature="e#33575#33576#0" expanded="true" />
-                <element signature="e#33074#36428#0" />
-                <element signature="e#36434#38025#0" />
-                <element signature="e#38031#38214#0" />
-                <element signature="e#38220#39331#0" />
-                <element signature="e#39337#39969#0" />
-                <element signature="class#38450:38940" />
-                <element signature="method#onSuccess#0;class#38450:38940" />
-                <element signature="method#onFailure#0;class#38450:38940" />
-                <element signature="e#39975#43057#0" />
-                <element signature="class#39079:42028" />
-                <element signature="method#onSuccess#0;class#39079:42028" />
-                <element signature="method#onFailure#0;class#39079:42028" />
-                <element signature="e#43063#47240#0" />
-                <element signature="class#42168:46211" />
-                <element signature="method#onSuccess#0;class#42168:46211" />
-                <element signature="method#onFailure#0;class#42168:46211" />
-                <element signature="e#47246#48471#0" />
-                <element signature="class#46349:47442" />
-                <element signature="method#onSuccess#0;class#46349:47442" />
-                <element signature="method#onFailure#0;class#46349:47442" />
-                <element signature="e#48477#48977#0" />
-                <element signature="e#48983#49177#0" />
-                <element signature="e#49183#49379#0" />
-                <element signature="e#49385#49798#0" />
-                <element signature="e#48402#48473#0" />
-                <element signature="e#49804#49967#0" />
-                <element signature="e#49973#50488#0" />
-                <element signature="e#50494#51160#0" />
-                <element signature="e#52288#52289#0" expanded="true" />
-                <element signature="e#52329#52330#0" expanded="true" />
-                <element signature="e#51241#52417#0" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -576,14 +322,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>not enou</find>
-      <find>not_eno</find>
-      <find>Global.isuploading</find>
-      <find>csv</find>
-      <find>onresponse</find>
-      <find>isuploading_</find>
-      <find>Global.googleaccount</find>
-      <find>googleaccount</find>
       <find>receiver</find>
       <find>broadcastre</find>
       <find>listener</find>
@@ -591,21 +329,29 @@
       <find>broadcastrece</find>
       <find>upload.php</find>
       <find>http://</find>
-      <find>googleacco</find>
       <find>https://</find>
       <find>accurac</find>
       <find>bearing</find>
       <find>lastss</find>
-      <find>uni</find>
       <find>bind</find>
       <find>Global.latitude</find>
       <find>Global.longitude</find>
-      <find>Global.</find>
-      <find>binder</find>
       <find>Global.initLong</find>
       <find>Activity.this</find>
       <find>backgroundService</find>
       <find>activity</find>
+      <find>== null</find>
+      <find>Global.</find>
+      <find>init</find>
+      <find>binder</find>
+      <find>uni</find>
+      <find>getlocal</find>
+      <find>Global</find>
+      <find>googleacco</find>
+      <find>onrecei</find>
+      <find>showno</find>
+      <find>FONTOS</find>
+      <find>backgroundService.distance</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -621,6 +367,7 @@
       <replace>backgroundService.getLatitude()</replace>
       <replace>backgroundService.getLongitude()</replace>
       <replace>backgroundService.getInitLong()</replace>
+      <replace>backgroundService</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -2942,25 +2689,25 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvWriter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ConnectionManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/cscs.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/rounded_corner.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_ask.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/AlarmReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/exporter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SimpleAlarmManager.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
       </list>
     </option>
   </component>
@@ -2983,42 +2730,15 @@
           <expand>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="activities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3407,7 +3127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552215855284</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;+ auto csv upload at 100 kilobytes&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;">
+      <created>1552388510880</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1552388510881</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3433,13 +3160,13 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959514" weight="0.2508897" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959514" visible="true" weight="0.2508897" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3291815" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" visible="true" weight="0.3291815" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50040483" side_tool="true" weight="0.3469751" />
       <window_info anchor="bottom" id="Logcat" order="10" weight="0.3291815" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3291815" />
@@ -3461,7 +3188,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="background service is now working&#10;&#10;todo: proper queue system, performance fix (service?)" />
     <MESSAGE value="todo: proper queue system to release&#10;&#10;everything is ok. milestone_1" />
     <MESSAGE value="todo: proper queue system to release&#10;&#10;self updating/maintenance mode started to be implemented" />
     <MESSAGE value="todo: proper queue system to release, self maintaining" />
@@ -3486,17 +3212,11 @@
     <MESSAGE value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql" />
     <MESSAGE value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;&#10;Custom http upload layout" />
     <MESSAGE value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;&#10;+ auto csv upload at 100 kilobytes" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;&#10;+ auto csv upload at 100 kilobytes" />
+    <MESSAGE value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;+ auto csv upload at 100 kilobytes&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;+ auto csv upload at 100 kilobytes&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.1.0-alpha/5ece946979686ffc6a183083ceed2d13967a7d11/MPAndroidChart-v3.1.0-alpha-sources.jar!/com/github/mikephil/charting/data/BaseDataSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="342" column="16" selection-start-line="342" selection-start-column="16" selection-end-line="342" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/LocationManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -3505,12 +3225,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="2040">
           <caret line="128" selection-start-line="128" selection-end-line="128" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3554,23 +3274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/ListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="117" column="59" selection-start-line="117" selection-start-column="59" selection-end-line="117" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#4621:6633" />
-            <element signature="method#onStart#0;class#4621:6633" />
-            <element signature="method#onSuccess#0;class#4621:6633" />
-            <element signature="method#onFailure#0;class#4621:6633" />
-            <element signature="method#onRetry#0;class#4621:6633" />
-            <element signature="method#html2text#0;class#ListActivity#0" />
-            <element signature="method#onOptionsItemSelected#0;class#ListActivity#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/net/wifi/WifiConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1144">
@@ -3603,17 +3306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="method#ConnectionManager#0;class#ConnectionManager#0" />
-            <element signature="method#enableWifi#0;class#ConnectionManager#0" />
-            <element signature="method#requestWIFIConnection#0;class#ConnectionManager#0" />
-            <element signature="method#WPA#0;class#ConnectionManager#0" />
-            <element signature="method#WEP#0;class#ConnectionManager#0" />
-            <element signature="method#OPEN#0;class#ConnectionManager#0" />
-            <element signature="method#scanWifi#0;class#ConnectionManager#0" />
-            <element signature="method#getCurrentSSID#0;class#ConnectionManager#0" />
-            <element signature="method#checkSecurity#0;class#ConnectionManager#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3621,17 +3313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="894" column="28" selection-start-line="894" selection-start-column="28" selection-end-line="894" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="96" />
-          <folding>
-            <element signature="method#doInBackground#0;class#UploadFileFTP#0" />
-            <element signature="method#onPostExecute#0;class#UploadFileFTP#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3654,65 +3335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
           <caret line="683" column="25" selection-start-line="683" selection-start-column="25" selection-end-line="683" selection-end-column="25" />
-          <folding>
-            <element signature="class#9303:9526" />
-            <element signature="method#newThread#0;class#9303:9526" />
-            <element signature="e#9652#9737#0" />
-            <element signature="initializer##0;class#AsyncTask#0" />
-            <element signature="e#10136#10287#0" />
-            <element signature="e#10936#11701#0" />
-            <element signature="e#11101#11509#0" />
-            <element signature="e#11519#11695#0" />
-            <element signature="e#11707#11839#0" />
-            <element signature="e#11707#12175#0" />
-            <element signature="e#11873#11950#0" />
-            <element signature="e#11976#12038#0" />
-            <element signature="e#12064#12151#0" />
-            <element signature="e#12181#12430#0" />
-            <element signature="e#12503#12515#0" />
-            <element signature="e#12619#12721#0" />
-            <element signature="e#12787#12909#0" />
-            <element signature="e#12787#13025#0" />
-            <element signature="e#13031#13153#0" />
-            <element signature="e#13031#14698#0" />
-            <element signature="class#14091:14691" />
-            <element signature="method#done#0;class#14091:14691" />
-            <element signature="e#14704#14894#0" />
-            <element signature="e#14900#15176#0" />
-            <element signature="e#15182#15283#0" />
-            <element signature="e#15357#15879#0" />
-            <element signature="e#15967#16101#0" />
-            <element signature="e#15967#16159#0" />
-            <element signature="e#16165#16587#0" />
-            <element signature="e#16592#16632#0" />
-            <element signature="e#16165#16704#0" />
-            <element signature="e#16710#16996#0" />
-            <element signature="e#17001#17041#0" />
-            <element signature="e#16710#17121#0" />
-            <element signature="e#17127#17682#0" />
-            <element signature="e#17687#17726#0" />
-            <element signature="e#17833#18270#0" />
-            <element signature="e#17833#18327#0" />
-            <element signature="e#18333#18763#0" />
-            <element signature="e#18849#20309#0" />
-            <element signature="e#18849#20464#0" />
-            <element signature="e#20470#20876#0" />
-            <element signature="e#20470#20992#0" />
-            <element signature="e#20998#21611#0" />
-            <element signature="e#20998#21797#0" />
-            <element signature="e#21803#23233#0" />
-            <element signature="e#23402#25143#0" />
-            <element signature="e#23402#25940#0" />
-            <element signature="e#25946#26257#0" />
-            <element signature="e#26381#26895#0" />
-            <element signature="e#27171#27372#0" />
-            <element signature="e#27378#28098#0" />
-            <element signature="e#27527#27588#0" />
-            <element signature="e#27527#28092#0" />
-            <element signature="e#28104#28226#0" />
-            <element signature="e#28232#28513#0" />
-            <element signature="e#28398#28507#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3731,8 +3353,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/popup.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/popup_shape.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -3751,196 +3373,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="8041">
-          <caret line="490" column="38" selection-start-line="490" selection-start-column="38" selection-end-line="490" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/5d171c3cd5343e5997f974561abed21442273fd1/android-async-http-1.4.9-sources.jar!/com/loopj/android/http/AsyncHttpClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="269" column="97" selection-start-line="269" selection-start-column="92" selection-end-line="269" selection-end-column="97" />
-          <folding>
-            <element signature="docComment;class#AsyncHttpClient#0" />
-            <element signature="e#6533#6623#0" />
-            <element signature="e#6696#6803#0" />
-            <element signature="e#6894#7055#0" />
-            <element signature="e#7167#7511#0" />
-            <element signature="e#7167#7700#0" />
-            <element signature="e#7706#7817#0" />
-            <element signature="e#12247#12587#0" />
-            <element signature="e#12247#13829#0" />
-            <element signature="e#13185#13216#0" />
-            <element signature="e#13835#13988#0" />
-            <element signature="e#13994#14147#0" />
-            <element signature="e#14153#14569#0" />
-            <element signature="e#14153#15834#0" />
-            <element signature="e#15350#15403#0" />
-            <element signature="e#15534#15587#0" />
-            <element signature="e#15840#16116#0" />
-            <element signature="e#15840#16821#0" />
-            <element signature="e#16827#16972#0" />
-            <element signature="e#16827#17232#0" />
-            <element signature="e#17238#17385#0" />
-            <element signature="e#17238#17648#0" />
-            <element signature="e#17654#17892#0" />
-            <element signature="e#17654#18751#0" />
-            <element signature="e#18757#19031#0" />
-            <element signature="e#19115#19372#0" />
-            <element signature="e#19459#19673#0" />
-            <element signature="e#19764#19973#0" />
-            <element signature="e#20092#20278#0" />
-            <element signature="e#20363#20607#0" />
-            <element signature="e#20706#20868#0" />
-            <element signature="e#20944#21174#0" />
-            <element signature="e#20944#21343#0" />
-            <element signature="e#21349#21575#0" />
-            <element signature="e#21349#21714#0" />
-            <element signature="e#21720#21893#0" />
-            <element signature="e#21977#22264#0" />
-            <element signature="e#22374#22516#0" />
-            <element signature="e#22631#22968#0" />
-            <element signature="e#22631#23173#0" />
-            <element signature="e#23179#23572#0" />
-            <element signature="e#23179#24036#0" />
-            <element signature="e#24042#24260#0" />
-            <element signature="e#24042#24449#0" />
-            <element signature="e#24455#24563#0" />
-            <element signature="e#24455#24716#0" />
-            <element signature="e#24722#24973#0" />
-            <element signature="e#24722#25123#0" />
-            <element signature="e#25129#25390#0" />
-            <element signature="e#25129#25526#0" />
-            <element signature="e#25532#25671#0" />
-            <element signature="e#25751#25897#0" />
-            <element signature="e#25751#26266#0" />
-            <element signature="e#26272#26544#0" />
-            <element signature="e#26272#26722#0" />
-            <element signature="e#26728#26912#0" />
-            <element signature="e#26992#27198#0" />
-            <element signature="e#26992#27530#0" />
-            <element signature="e#27536#27716#0" />
-            <element signature="e#27798#28000#0" />
-            <element signature="e#27798#28261#0" />
-            <element signature="e#28267#28464#0" />
-            <element signature="e#28267#28723#0" />
-            <element signature="e#28729#29016#0" />
-            <element signature="e#28729#29486#0" />
-            <element signature="e#29492#29710#0" />
-            <element signature="e#29492#29910#0" />
-            <element signature="e#29916#30134#0" />
-            <element signature="e#29916#30296#0" />
-            <element signature="e#30302#30463#0" />
-            <element signature="e#30545#30746#0" />
-            <element signature="e#30859#30996#0" />
-            <element signature="e#31094#31345#0" />
-            <element signature="e#31094#31465#0" />
-            <element signature="e#31471#31791#0" />
-            <element signature="e#31471#31942#0" />
-            <element signature="e#31948#32309#0" />
-            <element signature="e#31948#32453#0" />
-            <element signature="e#32459#32889#0" />
-            <element signature="e#32459#33193#0" />
-            <element signature="e#33199#33543#0" />
-            <element signature="e#33549#33854#0" />
-            <element signature="e#33549#34194#0" />
-            <element signature="e#34222#34280#0" />
-            <element signature="e#34395#35022#0" />
-            <element signature="e#34395#35769#0" />
-            <element signature="e#35775#36068#0" />
-            <element signature="e#36074#36574#0" />
-            <element signature="e#36074#36957#0" />
-            <element signature="e#36963#37432#0" />
-            <element signature="e#36963#38009#0" />
-            <element signature="e#38015#38031#0" />
-            <element signature="e#38057#38345#0" />
-            <element signature="e#38057#38492#0" />
-            <element signature="e#38498#38861#0" />
-            <element signature="e#38498#39032#0" />
-            <element signature="e#39038#39469#0" />
-            <element signature="e#39038#39636#0" />
-            <element signature="e#39642#40126#0" />
-            <element signature="e#39642#40414#0" />
-            <element signature="e#40420#40984#0" />
-            <element signature="e#40420#41406#0" />
-            <element signature="e#41412#41699#0" />
-            <element signature="e#41412#41844#0" />
-            <element signature="e#41850#41865#0" />
-            <element signature="e#41892#42253#0" />
-            <element signature="e#41892#42422#0" />
-            <element signature="e#42428#42858#0" />
-            <element signature="e#42428#43023#0" />
-            <element signature="e#43029#43511#0" />
-            <element signature="e#43029#43797#0" />
-            <element signature="e#43803#44365#0" />
-            <element signature="e#43803#44785#0" />
-            <element signature="e#44791#45669#0" />
-            <element signature="e#44791#45982#0" />
-            <element signature="e#45988#46276#0" />
-            <element signature="e#45988#46423#0" />
-            <element signature="e#46429#46445#0" />
-            <element signature="e#46471#46843#0" />
-            <element signature="e#46471#47014#0" />
-            <element signature="e#47020#47513#0" />
-            <element signature="e#47020#47743#0" />
-            <element signature="e#47749#48628#0" />
-            <element signature="e#47749#48927#0" />
-            <element signature="e#48933#49687#0" />
-            <element signature="e#48933#50225#0" />
-            <element signature="e#50231#51182#0" />
-            <element signature="e#50231#51645#0" />
-            <element signature="e#51651#51938#0" />
-            <element signature="e#51651#52083#0" />
-            <element signature="e#52089#52459#0" />
-            <element signature="e#52089#52628#0" />
-            <element signature="e#52634#53125#0" />
-            <element signature="e#52634#53353#0" />
-            <element signature="e#53359#54252#0" />
-            <element signature="e#53359#54549#0" />
-            <element signature="e#54555#55516#0" />
-            <element signature="e#54555#55947#0" />
-            <element signature="e#55953#55968#0" />
-            <element signature="e#55997#56287#0" />
-            <element signature="e#55997#56436#0" />
-            <element signature="e#56442#56814#0" />
-            <element signature="e#56442#56987#0" />
-            <element signature="e#56993#57486#0" />
-            <element signature="e#56993#57718#0" />
-            <element signature="e#57724#58572#0" />
-            <element signature="e#57724#58873#0" />
-            <element signature="e#58879#59842#0" />
-            <element signature="e#58879#60277#0" />
-            <element signature="e#60283#60549#0" />
-            <element signature="e#60283#60694#0" />
-            <element signature="e#60724#61069#0" />
-            <element signature="e#60724#61336#0" />
-            <element signature="e#61342#61755#0" />
-            <element signature="e#61342#62097#0" />
-            <element signature="e#62103#62408#0" />
-            <element signature="e#62103#62706#0" />
-            <element signature="e#62712#63220#0" />
-            <element signature="e#62712#63635#0" />
-            <element signature="e#63641#64522#0" />
-            <element signature="e#63641#64841#0" />
-            <element signature="e#64847#65599#0" />
-            <element signature="e#64847#65902#0" />
-            <element signature="e#65908#66656#0" />
-            <element signature="e#65908#69015#0" />
-            <element signature="e#69021#69236#0" />
-            <element signature="e#69331#69537#0" />
-            <element signature="e#69651#69996#0" />
-            <element signature="e#69651#70516#0" />
-            <element signature="e#70610#70887#0" />
-            <element signature="e#70610#71136#0" />
-            <element signature="e#71142#71247#0" />
-            <element signature="e#71142#72471#0" />
-            <element signature="e#71537#71989#0" />
-            <element signature="e#71999#72140#0" />
-            <element signature="e#72150#72465#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3948,30 +3384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-252">
           <caret line="114" column="21" selection-start-line="114" selection-start-column="21" selection-end-line="114" selection-end-column="21" />
-          <folding>
-            <element signature="docComment;class#GpsStatus#0" />
-            <element signature="class#SatelliteIterator#0;class#GpsStatus#0" />
-            <element signature="method#hasNext#0;class#SatelliteIterator#0;class#GpsStatus#0" />
-            <element signature="method#next#0;class#SatelliteIterator#0;class#GpsStatus#0" />
-            <element signature="class#2544:2699" />
-            <element signature="docComment;field#GPS_EVENT_STARTED#0;class#GpsStatus#0" />
-            <element signature="docComment;field#GPS_EVENT_STOPPED#0;class#GpsStatus#0" />
-            <element signature="docComment;field#GPS_EVENT_FIRST_FIX#0;class#GpsStatus#0" />
-            <element signature="docComment;field#GPS_EVENT_SATELLITE_STATUS#0;class#GpsStatus#0" />
-            <element signature="docComment;class#Listener#0;class#GpsStatus#0" />
-            <element signature="class#Listener#0;class#GpsStatus#0" />
-            <element signature="docComment;method#onGpsStatusChanged#0;class#Listener#0;class#GpsStatus#0" />
-            <element signature="docComment;class#NmeaListener#0;class#GpsStatus#0" />
-            <element signature="class#NmeaListener#0;class#GpsStatus#0" />
-            <element signature="method#setStatus#0;class#GpsStatus#0" />
-            <element signature="e#5439#5518#0" />
-            <element signature="docComment;method#setStatus#1;class#GpsStatus#0" />
-            <element signature="method#setStatus#1;class#GpsStatus#0" />
-            <element signature="docComment;method#getTimeToFirstFix#0;class#GpsStatus#0" />
-            <element signature="docComment;method#getSatellites#0;class#GpsStatus#0" />
-            <element signature="docComment;method#getMaxSatellites#0;class#GpsStatus#0" />
-            <element signature="method#clearSatellites#0;class#GpsStatus#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3983,80 +3395,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_ask.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amitshekhar.android/android-networking/1.0.2/45745c4b3c155243f77a7431f200ca60106a27e4/android-networking-1.0.2-sources.jar!/com/androidnetworking/AndroidNetworking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1144">
-          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#AndroidNetworking#0" />
-            <element signature="docComment;method#AndroidNetworking#0;class#AndroidNetworking#0" />
-            <element signature="method#AndroidNetworking#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#initialize#0;class#AndroidNetworking#0" />
-            <element signature="method#initialize#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#initialize#1;class#AndroidNetworking#0" />
-            <element signature="method#initialize#1;class#AndroidNetworking#0" />
-            <element signature="docComment;method#setBitmapDecodeOptions#0;class#AndroidNetworking#0" />
-            <element signature="method#setBitmapDecodeOptions#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#setConnectionQualityChangeListener#0;class#AndroidNetworking#0" />
-            <element signature="method#setConnectionQualityChangeListener#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#removeConnectionQualityChangeListener#0;class#AndroidNetworking#0" />
-            <element signature="method#removeConnectionQualityChangeListener#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#get#0;class#AndroidNetworking#0" />
-            <element signature="method#get#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#head#0;class#AndroidNetworking#0" />
-            <element signature="method#head#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#options#0;class#AndroidNetworking#0" />
-            <element signature="method#options#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#post#0;class#AndroidNetworking#0" />
-            <element signature="method#post#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#put#0;class#AndroidNetworking#0" />
-            <element signature="method#put#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#delete#0;class#AndroidNetworking#0" />
-            <element signature="method#delete#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#patch#0;class#AndroidNetworking#0" />
-            <element signature="method#patch#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#download#0;class#AndroidNetworking#0" />
-            <element signature="method#download#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#upload#0;class#AndroidNetworking#0" />
-            <element signature="method#upload#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#request#0;class#AndroidNetworking#0" />
-            <element signature="method#request#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#cancel#0;class#AndroidNetworking#0" />
-            <element signature="method#cancel#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#forceCancel#0;class#AndroidNetworking#0" />
-            <element signature="method#forceCancel#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#cancelAll#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#forceCancelAll#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#enableLogging#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#enableLogging#1;class#AndroidNetworking#0" />
-            <element signature="docComment;method#evictBitmap#0;class#AndroidNetworking#0" />
-            <element signature="method#evictBitmap#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#evictAllBitmap#0;class#AndroidNetworking#0" />
-            <element signature="method#evictAllBitmap#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#setUserAgent#0;class#AndroidNetworking#0" />
-            <element signature="method#setUserAgent#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#getCurrentBandwidth#0;class#AndroidNetworking#0" />
-            <element signature="method#getCurrentBandwidth#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#getCurrentConnectionQuality#0;class#AndroidNetworking#0" />
-            <element signature="method#getCurrentConnectionQuality#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#setParserFactory#0;class#AndroidNetworking#0" />
-            <element signature="method#setParserFactory#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#isRequestRunning#0;class#AndroidNetworking#0" />
-            <element signature="method#isRequestRunning#0;class#AndroidNetworking#0" />
-            <element signature="docComment;method#shutDown#0;class#AndroidNetworking#0" />
-            <element signature="method#shutDown#0;class#AndroidNetworking#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4064,195 +3410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-89">
           <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#ANResponse#0" />
-            <element signature="method#ANResponse#0;class#ANResponse#0" />
-            <element signature="method#ANResponse#1;class#ANResponse#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amitshekhar.android/android-networking/1.0.2/45745c4b3c155243f77a7431f200ca60106a27e4/android-networking-1.0.2-sources.jar!/com/androidnetworking/common/ANRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="694" column="42" selection-start-line="694" selection-start-column="42" selection-end-line="694" selection-end-column="42" />
-          <folding>
-            <element signature="docComment;class#ANRequest#0" />
-            <element signature="e#6147#6950#0" />
-            <element signature="e#6956#8050#0" />
-            <element signature="e#8056#8844#0" />
-            <element signature="e#8850#9825#0" />
-            <element signature="e#9831#10078#0" />
-            <element signature="e#10084#10327#0" />
-            <element signature="e#10333#10563#0" />
-            <element signature="e#10569#10819#0" />
-            <element signature="e#10825#11055#0" />
-            <element signature="e#11061#11366#0" />
-            <element signature="e#11372#11667#0" />
-            <element signature="e#11673#12033#0" />
-            <element signature="e#12039#12337#0" />
-            <element signature="e#12343#12637#0" />
-            <element signature="e#12643#12924#0" />
-            <element signature="e#12931#13212#0" />
-            <element signature="e#13218#13574#0" />
-            <element signature="e#13580#13926#0" />
-            <element signature="e#13932#14343#0" />
-            <element signature="e#14349#14523#0" />
-            <element signature="e#14529#14666#0" />
-            <element signature="e#14672#14821#0" />
-            <element signature="e#14827#14974#0" />
-            <element signature="e#14980#15120#0" />
-            <element signature="e#15126#15284#0" />
-            <element signature="e#15290#15430#0" />
-            <element signature="e#15436#15637#0" />
-            <element signature="e#15643#15834#0" />
-            <element signature="e#15840#16096#0" />
-            <element signature="e#16200#16387#0" />
-            <element signature="e#16576#16728#0" />
-            <element signature="e#16959#17849#0" />
-            <element signature="e#18811#19241#0" />
-            <element signature="e#19247#20453#0" />
-            <element signature="e#20459#20947#0" />
-            <element signature="e#21248#21900#0" />
-            <element signature="e#22391#22773#0" />
-            <element signature="e#22779#22877#0" />
-            <element signature="e#22883#25157#0" />
-            <element signature="e#25163#25631#0" />
-            <element signature="e#25637#26072#0" />
-            <element signature="e#28892#30415#0" />
-            <element signature="e#30421#31877#0" />
-            <element signature="e#31883#33496#0" />
-            <element signature="e#33502#35370#0" />
-            <element signature="e#35376#36121#0" />
-            <element signature="e#36127#36295#0" />
-            <element signature="e#36301#36478#0" />
-            <element signature="e#36484#42862#0" />
-            <element signature="e#37349#37465#0" />
-            <element signature="e#37475#37599#0" />
-            <element signature="e#37609#37741#0" />
-            <element signature="e#37751#37861#0" />
-            <element signature="e#37871#38270#0" />
-            <element signature="e#38280#38645#0" />
-            <element signature="e#38655#38946#0" />
-            <element signature="e#38956#39113#0" />
-            <element signature="e#39123#39363#0" />
-            <element signature="e#39373#39663#0" />
-            <element signature="e#39673#40051#0" />
-            <element signature="e#40061#40388#0" />
-            <element signature="e#40398#40675#0" />
-            <element signature="e#40685#40847#0" />
-            <element signature="e#40857#41004#0" />
-            <element signature="e#41014#41166#0" />
-            <element signature="e#41176#41385#0" />
-            <element signature="e#41395#41612#0" />
-            <element signature="e#41622#41754#0" />
-            <element signature="e#41764#41916#0" />
-            <element signature="e#41926#42060#0" />
-            <element signature="e#42070#42205#0" />
-            <element signature="e#42215#42362#0" />
-            <element signature="e#42372#42491#0" />
-            <element signature="e#42501#42616#0" />
-            <element signature="e#42626#42770#0" />
-            <element signature="e#42868#43034#0" />
-            <element signature="e#43040#43215#0" />
-            <element signature="e#43221#43393#0" />
-            <element signature="e#43399#43581#0" />
-            <element signature="e#43587#52040#0" />
-            <element signature="e#44626#44744#0" />
-            <element signature="e#44754#44879#0" />
-            <element signature="e#44889#45021#0" />
-            <element signature="e#45031#45141#0" />
-            <element signature="e#45151#45550#0" />
-            <element signature="e#45560#45925#0" />
-            <element signature="e#45935#46226#0" />
-            <element signature="e#46236#46393#0" />
-            <element signature="e#46403#46643#0" />
-            <element signature="e#46653#46943#0" />
-            <element signature="e#46953#47331#0" />
-            <element signature="e#47341#47668#0" />
-            <element signature="e#47678#47955#0" />
-            <element signature="e#47965#48127#0" />
-            <element signature="e#48137#48284#0" />
-            <element signature="e#48294#48446#0" />
-            <element signature="e#48456#48665#0" />
-            <element signature="e#48675#48892#0" />
-            <element signature="e#48902#49034#0" />
-            <element signature="e#49044#49196#0" />
-            <element signature="e#49206#49340#0" />
-            <element signature="e#49350#49489#0" />
-            <element signature="e#49499#49721#0" />
-            <element signature="e#49731#50003#0" />
-            <element signature="e#50013#50179#0" />
-            <element signature="e#50189#50438#0" />
-            <element signature="e#50448#50747#0" />
-            <element signature="e#50757#51031#0" />
-            <element signature="e#51041#51247#0" />
-            <element signature="e#51257#51458#0" />
-            <element signature="e#51468#51588#0" />
-            <element signature="e#51598#51696#0" />
-            <element signature="e#51706#51808#0" />
-            <element signature="e#51818#51948#0" />
-            <element signature="e#52046#57734#0" />
-            <element signature="e#52782#52966#0" />
-            <element signature="e#52976#53108#0" />
-            <element signature="e#53118#53228#0" />
-            <element signature="e#53238#53616#0" />
-            <element signature="e#53626#53953#0" />
-            <element signature="e#53963#54240#0" />
-            <element signature="e#54250#54649#0" />
-            <element signature="e#54659#55024#0" />
-            <element signature="e#55034#55325#0" />
-            <element signature="e#55335#55492#0" />
-            <element signature="e#55502#55742#0" />
-            <element signature="e#55752#56042#0" />
-            <element signature="e#56052#56214#0" />
-            <element signature="e#56224#56371#0" />
-            <element signature="e#56381#56533#0" />
-            <element signature="e#56543#56752#0" />
-            <element signature="e#56762#56979#0" />
-            <element signature="e#56989#57121#0" />
-            <element signature="e#57131#57283#0" />
-            <element signature="e#57293#57427#0" />
-            <element signature="e#57437#57642#0" />
-            <element signature="e#57740#68260#0" />
-            <element signature="e#58729#58861#0" />
-            <element signature="e#58871#58981#0" />
-            <element signature="e#58991#59390#0" />
-            <element signature="e#59400#59765#0" />
-            <element signature="e#59775#60066#0" />
-            <element signature="e#60076#60233#0" />
-            <element signature="e#60243#60483#0" />
-            <element signature="e#60493#60783#0" />
-            <element signature="e#60793#61171#0" />
-            <element signature="e#61181#61508#0" />
-            <element signature="e#61518#61795#0" />
-            <element signature="e#61805#61967#0" />
-            <element signature="e#61977#62124#0" />
-            <element signature="e#62134#62286#0" />
-            <element signature="e#62296#62505#0" />
-            <element signature="e#62515#62732#0" />
-            <element signature="e#62742#62874#0" />
-            <element signature="e#62884#63036#0" />
-            <element signature="e#63046#63180#0" />
-            <element signature="e#63190#63318#0" />
-            <element signature="e#63328#63592#0" />
-            <element signature="e#63602#63758#0" />
-            <element signature="e#63768#64395#0" />
-            <element signature="e#64405#64518#0" />
-            <element signature="e#64528#64900#0" />
-            <element signature="e#64910#65024#0" />
-            <element signature="e#65034#65278#0" />
-            <element signature="e#65288#65422#0" />
-            <element signature="e#65432#65892#0" />
-            <element signature="e#65902#66032#0" />
-            <element signature="e#66042#66420#0" />
-            <element signature="e#66430#66578#0" />
-            <element signature="e#66588#67443#0" />
-            <element signature="e#67453#67663#0" />
-            <element signature="e#67673#67803#0" />
-            <element signature="e#67813#68168#0" />
-            <element signature="e#68266#68589#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4263,28 +3420,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/AlarmReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="28" column="89" selection-start-line="28" selection-start-column="89" selection-end-line="28" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SimpleAlarmManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="119" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4123#4124#0" expanded="true" />
-            <element signature="e#4157#4158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/AlarmReceiver.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SimpleAlarmManager.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-gcm-12.0.1.aar/59a874e843e5ab2cb61bd4958caec515/jars/classes.jar!/com/google/android/gms/gcm/GcmTaskService.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -4309,17 +3446,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/a829a46256d0ef4720ecba49ba6b5aad/jars/classes.jar!/android/support/v4/app/NotificationCompat.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="2627" column="42" selection-start-line="2627" selection-start-column="42" selection-end-line="2627" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+          <folding>
+            <element signature="method#doInBackground#0;class#UploadFileFTP#0" />
+            <element signature="method#onPostExecute#0;class#UploadFileFTP#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+        <state relative-caret-position="68">
+          <caret line="51" column="71" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
           <folding>
+            <element signature="class#UploadFileHTTP#0" />
             <element signature="method#UploadFileHTTP#2;class#UploadFileHTTP#0" />
             <element signature="method#UploadFileHTTP#1;class#UploadFileHTTP#0" />
             <element signature="method#uploadNow#0;class#UploadFileHTTP#0" />
             <element signature="e#5302#5346#0" />
             <element signature="method#doInBackground#0;class#UploadFileHTTP#0" />
             <element signature="method#onPostExecute#0;class#UploadFileHTTP#0" />
+            <element signature="method#onPreExecute#0;class#UploadFileHTTP#0" />
             <element signature="method#onProgressUpdate#0;class#UploadFileHTTP#0" />
             <element signature="method#zipFileAtPath#0;class#UploadFileHTTP#0" />
             <element signature="method#zipSubFolder#0;class#UploadFileHTTP#0" />
@@ -4338,133 +3495,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amitshekhar.android/android-networking/1.0.2/45745c4b3c155243f77a7431f200ca60106a27e4/android-networking-1.0.2-sources.jar!/com/androidnetworking/common/ANRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
-          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="61" />
-          <folding>
-            <element signature="e#2399#2407#0" expanded="true" />
-          </folding>
+          <caret line="726" column="43" selection-start-line="726" selection-start-column="43" selection-end-line="726" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amitshekhar.android/android-networking/1.0.2/45745c4b3c155243f77a7431f200ca60106a27e4/android-networking-1.0.2-sources.jar!/com/androidnetworking/AndroidNetworking.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="175" selection-start-line="175" selection-end-line="175" />
-          <folding>
-            <element signature="e#4763#4790#0" />
-            <element signature="class#6452:9012" />
-            <element signature="method#run#0;class#6452:9012" />
-            <element signature="class#13373:14031" />
-            <element signature="method#uncaughtException#0;class#13373:14031" />
-            <element signature="e#14584#14599#0" />
-            <element signature="class#15271:16500" />
-            <element signature="method#onNavigationItemSelected#0;class#15271:16500" />
-            <element signature="class#16404:17079" />
-            <element signature="method#onAdLoaded#0;class#16404:17079" />
-            <element signature="method#onAdFailedToLoad#0;class#16404:17079" />
-            <element signature="e#17110#17130#0" />
-            <element signature="class#19608:19866" />
-            <element signature="e#19645#19686#0" />
-            <element signature="method#onClick#0;class#19608:19866" />
-            <element signature="class#19910:20059" />
-            <element signature="e#19997#19998#0" expanded="true" />
-            <element signature="e#20047#20048#0" expanded="true" />
-            <element signature="class#20102:20249" />
-            <element signature="e#20189#20190#0" expanded="true" />
-            <element signature="e#20238#20239#0" expanded="true" />
-            <element signature="class#20299:20587" />
-            <element signature="method#onClick#0;class#20299:20587" />
-            <element signature="class#20636:20976" />
-            <element signature="method#onClick#0;class#20636:20976" />
-            <element signature="class#21022:21166" />
-            <element signature="e#21109#21110#0" expanded="true" />
-            <element signature="e#21155#21156#0" expanded="true" />
-            <element signature="class#21788:22065" />
-            <element signature="method#onClick#0;class#21788:22065" />
-            <element signature="class#22800:23548" />
-            <element signature="method#onClick#0;class#22800:23548" />
-            <element signature="class#23590:25656" />
-            <element signature="method#onClick#0;class#23590:25656" />
-            <element signature="class#22974:23150" />
-            <element signature="method#onClick#0;class#22974:23150" />
-            <element signature="class#24676:25529" />
-            <element signature="method#onClick#0;class#24676:25529" />
-            <element signature="e#26378#26379#0" expanded="true" />
-            <element signature="e#26408#26409#0" expanded="true" />
-            <element signature="e#25907#26364#0" />
-            <element signature="method#onServiceDisconnected#0;class#25385:25923" />
-            <element signature="e#27868#29944#0" />
-            <element signature="class#26933:27879" />
-            <element signature="method#onLocationChanged#0;class#26933:27879" />
-            <element signature="method#onStatusChanged#0;class#26933:27879" />
-            <element signature="method#onProviderDisabled#0;class#26933:27879" />
-            <element signature="e#29950#31347#0" />
-            <element signature="class#31860:33080" />
-            <element signature="e#33198#33199#0" expanded="true" />
-            <element signature="e#33230#33231#0" expanded="true" />
-            <element signature="e#33273#33274#0" expanded="true" />
-            <element signature="e#33304#33305#0" expanded="true" />
-            <element signature="e#32803#32994#0" />
-            <element signature="e#33543#33544#0" expanded="true" />
-            <element signature="e#33575#33576#0" expanded="true" />
-            <element signature="e#33074#36428#0" />
-            <element signature="e#36434#38025#0" />
-            <element signature="e#38031#38214#0" />
-            <element signature="e#38220#39331#0" />
-            <element signature="e#39337#39969#0" />
-            <element signature="class#38450:38940" />
-            <element signature="method#onSuccess#0;class#38450:38940" />
-            <element signature="method#onFailure#0;class#38450:38940" />
-            <element signature="e#39975#43057#0" />
-            <element signature="class#39079:42028" />
-            <element signature="method#onSuccess#0;class#39079:42028" />
-            <element signature="method#onFailure#0;class#39079:42028" />
-            <element signature="e#43063#47240#0" />
-            <element signature="class#42168:46211" />
-            <element signature="method#onSuccess#0;class#42168:46211" />
-            <element signature="method#onFailure#0;class#42168:46211" />
-            <element signature="e#47246#48471#0" />
-            <element signature="class#46349:47442" />
-            <element signature="method#onSuccess#0;class#46349:47442" />
-            <element signature="method#onFailure#0;class#46349:47442" />
-            <element signature="e#48477#48977#0" />
-            <element signature="e#48983#49177#0" />
-            <element signature="e#49183#49379#0" />
-            <element signature="e#49385#49798#0" />
-            <element signature="e#48402#48473#0" />
-            <element signature="e#49804#49967#0" />
-            <element signature="e#49973#50488#0" />
-            <element signature="e#50494#51160#0" />
-            <element signature="e#52288#52289#0" expanded="true" />
-            <element signature="e#52329#52330#0" expanded="true" />
-            <element signature="e#51241#52417#0" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="37" />
+        <state relative-caret-position="62">
+          <caret line="338" column="60" selection-start-line="338" selection-start-column="60" selection-end-line="338" selection-end-column="60" />
           <folding>
-            <element signature="e#3446#3447#0" expanded="true" />
-            <element signature="e#3477#3478#0" expanded="true" />
-            <element signature="e#3520#3521#0" expanded="true" />
-            <element signature="e#3552#3553#0" expanded="true" />
-            <element signature="e#3901#3902#0" expanded="true" />
-            <element signature="e#3931#3932#0" expanded="true" />
-            <element signature="e#3973#3974#0" expanded="true" />
-            <element signature="e#4004#4005#0" expanded="true" />
-            <element signature="method#onCreate#0;class#BackgroundService#0" />
             <element signature="class#4663:5353" />
             <element signature="method#uncaughtException#0;class#4663:5353" />
             <element signature="e#6344#6357#0" />
@@ -4473,7 +3522,6 @@
             <element signature="class#9937:10671" />
             <element signature="method#onTick#0;class#9937:10671" />
             <element signature="method#onFinish#0;class#9937:10671" />
-            <element signature="method#uploadProgress#0;class#BackgroundService#0" />
             <element signature="e#14160#16906#0" />
             <element signature="class#14311:15971" />
             <element signature="method#onLocationChanged#0;class#14311:15971" />
@@ -4484,7 +3532,6 @@
             <element signature="e#17101#18461#0" />
             <element signature="e#18467#19655#0" />
             <element signature="e#19661#19926#0" />
-            <element signature="e#19932#26070#0" />
             <element signature="class#21227:21778" />
             <element signature="method#onProgress#0;class#21227:21778" />
             <element signature="class#21825:22468" />
@@ -4494,9 +3541,10 @@
             <element signature="class#26350:26847" />
             <element signature="method#onResponse#0;class#26350:26847" />
             <element signature="method#onError#0;class#26350:26847" />
+            <element signature="e#26863#29544#0" />
             <element signature="e#27240#27289#0" />
             <element signature="e#29550#29791#0" />
-            <element signature="e#29797#30072#0" />
+            <element signature="e#30152#33498#0" />
             <element signature="method#convertTime#0;class#BackgroundService#0" />
             <element signature="method#getDistance#0;class#BackgroundService#0" />
             <element signature="method#getCompleteAddressString#0;class#BackgroundService#0" />
@@ -4507,104 +3555,97 @@
             <element signature="method#onGpsStatusChanged#0;class#BackgroundService#0" />
             <element signature="class#LocalBinder#0;class#BackgroundService#0" />
             <element signature="method#chk_3g_wifi#0;class#BackgroundService#0" />
+            <element signature="e#38877#39635#0" />
+            <element signature="e#39773#40048#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2669">
+          <caret line="268" column="32" selection-start-line="268" selection-start-column="32" selection-end-line="268" selection-end-column="32" />
+          <folding>
+            <element signature="method#onRestoreInstanceState#0;class#MapActivity#0" />
+            <element signature="method#onSaveInstanceState#0;class#MapActivity#0" />
+            <element signature="method#viewToBitmap#0;class#MapActivity#0" />
+            <element signature="method#galleryAddPic#0;class#MapActivity#0" />
+            <element signature="method#onGpsStatusChanged#0;class#MapActivity#0" />
+            <element signature="method#onOptionsItemSelected#0;class#MapActivity#0" />
+            <element signature="method#drawPoint#0;class#MapActivity#0" />
+            <element signature="method#resize#0;class#MapActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/ListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="50" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+          <folding>
+            <element signature="class#4621:6633" />
+            <element signature="method#onStart#0;class#4621:6633" />
+            <element signature="method#onSuccess#0;class#4621:6633" />
+            <element signature="method#onFailure#0;class#4621:6633" />
+            <element signature="method#onRetry#0;class#4621:6633" />
+            <element signature="method#html2text#0;class#ListActivity#0" />
+            <element signature="method#onOptionsItemSelected#0;class#ListActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="8330">
+          <caret line="490" column="38" selection-start-line="490" selection-start-column="38" selection-end-line="490" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="607" column="18" selection-start-line="607" selection-start-column="18" selection-end-line="607" selection-end-column="18" />
+        <state relative-caret-position="9724">
+          <caret line="673" column="196" selection-start-line="673" selection-start-column="196" selection-end-line="673" selection-end-column="196" />
           <folding>
-            <element signature="class#4821:5026" />
-            <element signature="method#onClick#0;class#4821:5026" />
-            <element signature="class#5065:6171" />
-            <element signature="method#onClick#0;class#5065:6171" />
-            <element signature="class#8229:9462" />
-            <element signature="method#onNavigationItemSelected#0;class#8229:9462" />
-            <element signature="class#9458:9996" />
-            <element signature="method#onServiceDisconnected#0;class#9458:9996" />
-            <element signature="method#resize#0;class#NearbyActivity#0" />
-            <element signature="class#11356:11549" />
-            <element signature="method#onClick#0;class#11356:11549" />
-            <element signature="method#viewToBitmap#0;class#NearbyActivity#0" />
-            <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
-            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-            <element signature="class#13821:15511" />
-            <element signature="method#onMarkerClick#0;class#13821:15511" />
-            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-            <element signature="method#getList#0;class#NearbyActivity#0" />
-            <element signature="class#16799:19536" />
-            <element signature="method#onStart#0;class#16799:19536" />
-            <element signature="method#onSuccess#0;class#16799:19536" />
-            <element signature="method#onFailure#0;class#16799:19536" />
-            <element signature="method#onRetry#0;class#16799:19536" />
-            <element signature="method#html2text#0;class#NearbyActivity#0" />
-            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-            <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
-            <element signature="class#Circlee#0" />
-            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-            <element signature="method#onLongPress#0;class#Circlee#0" />
-            <element signature="class#PopUpWin#0" />
-            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-            <element signature="method#onOpen#0;class#PopUpWin#0" />
-            <element signature="class#22941:23354" />
-            <element signature="method#onClick#0;class#22941:23354" />
-            <element signature="method#onClose#0;class#PopUpWin#0" />
-            <element signature="method#setMarkerBounce#0;class#CustomCluster#0" />
-            <element signature="class#23926:24334" />
-            <element signature="method#run#0;class#23926:24334" />
-            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-            <element signature="class#24657:25106" />
-            <element signature="method#run#0;class#24657:25106" />
+            <element signature="imports" expanded="true" />
             <element signature="method#round#0;class#CustomCluster#0" />
             <element signature="method#getDistance#0;class#CustomCluster#0" />
             <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
             <element signature="class#CustomMarker#0" />
             <element signature="method#animate#0;class#CustomMarker#0" />
-            <element signature="class#28545:28987" />
-            <element signature="method#run#0;class#28545:28987" />
             <element signature="method#pulseForeground#0;class#CustomMarker#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3842">
+          <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+        <state relative-caret-position="1700">
+          <caret line="100" column="35" selection-start-line="100" selection-start-column="35" selection-end-line="100" selection-end-column="35" />
         </state>
       </provider>
       <provider editor-type-id="android-manifest" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+        <state relative-caret-position="1003">
+          <caret line="187" column="63" selection-start-line="187" selection-start-column="63" selection-end-line="187" selection-end-column="63" />
           <folding>
-            <element signature="method#onRestoreInstanceState#0;class#MapActivity#0" />
-            <element signature="method#onSaveInstanceState#0;class#MapActivity#0" />
-            <element signature="class#3404:3942" />
-            <element signature="method#onServiceDisconnected#0;class#3404:3942" />
-            <element signature="method#onServiceConnected#0;class#3404:3942" />
-            <element signature="method#onCreate#0;class#MapActivity#0" />
-            <element signature="class#4244:5485" />
-            <element signature="method#onNavigationItemSelected#0;class#4244:5485" />
-            <element signature="class#5574:6676" />
-            <element signature="method#onClick#0;class#5574:6676" />
-            <element signature="class#7906:8077" />
-            <element signature="method#run#0;class#7906:8077" />
-            <element signature="method#viewToBitmap#0;class#MapActivity#0" />
-            <element signature="method#galleryAddPic#0;class#MapActivity#0" />
-            <element signature="method#onGpsStatusChanged#0;class#MapActivity#0" />
-            <element signature="method#updateMap#0;class#MapActivity#0" />
-            <element signature="class#10518:11102" />
-            <element signature="method#onClick#0;class#10518:11102" />
-            <element signature="method#onOptionsItemSelected#0;class#MapActivity#0" />
-            <element signature="method#drawPoint#0;class#MapActivity#0" />
-            <element signature="class#12497:13191" />
-            <element signature="method#onMarkerClick#0;class#12497:13191" />
-            <element signature="method#resize#0;class#MapActivity#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

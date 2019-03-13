@@ -120,7 +120,7 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
                                 "multipart/form-data;boundary=" + boundary);
                         //conn.setRequestProperty("bill", sourceFileUri);
                         conn.setRequestProperty("uploaded_file", sourceFileUri);
-                        conn.setRequestProperty("source", Global.googleAccount);
+                        conn.setRequestProperty("source", BackgroundService.googleAccount);
                         conn.setRequestProperty("date", currentT);
 
                         dos = new DataOutputStream(conn.getOutputStream());
@@ -240,7 +240,7 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
             t.setText("Done");
         } catch (Exception e) {
         }
-        Global.isUploading = false;
+        //Global.isUploading = false;
         Log.d("HTTP_UPLOAD_", "done");
         //dialog.dismiss();
     }
@@ -253,7 +253,7 @@ public class UploadFileHTTP extends AsyncTask<String, Integer, String> {
             di = new CustomDialog(a);
             di.show();
         }
-        Global.isUploading = true;
+        //Global.isUploading = true;
         zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
         Log.d("HTTP_UPLOAD_", "started");
     }

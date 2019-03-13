@@ -161,6 +161,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static int retry_counter_1 = 0;
     public static int retry_counter_2 = 0;
     public static int retry_counter_3 = 0;
+
+    public static int csvSize;
+    public static int zipSize;
     //endregion
 
     private TextView val_errors;
@@ -178,41 +181,42 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         @Override
         public void run() {
             try {
-                longi.setText(Global.longitude);
-                lati.setText(Global.latitude);
-                alti.setText(Global.altitude);
-                spd.setText(Global.speed + " km/h");
-                dst.setText(String.valueOf(Global.round(Double.valueOf(Global.distance), 2) + " meters"));
-                add.setText(Global.address);
-//                c.setText(Global.count);
-                provider.setText(Global.provider);
-//                uniq.setText(Global.uniqueAPS.size());
+                longi.setText(backgroundService.longitude);
+                lati.setText(backgroundService.latitude);
+                alti.setText(backgroundService.altitude);
+                spd.setText(backgroundService.speed + " km/h");
+                dst.setText(String.valueOf(backgroundService.round(Double.valueOf(backgroundService.distance), 2) + " meters"));
+                add.setText(backgroundService.address);
+//                c.setText(backgroundService.count);
+                provider.setText(backgroundService.provider);
+//                uniq.setText(backgroundService.uniqueAPS.size());
                 WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                Global.ipaddress = ipv4;
+                backgroundService.ipaddress = ipv4;
                 TextView ip = findViewById(R.id.ip);
-                ip.setText(Global.ipaddress);
-                servicestatus.setText("Not yet available");
+                ip.setText(backgroundService.ipaddress);
+                servicestatus.setText("Not available");
 
                 File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
                 File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
                 TextView csv1 = findViewById(R.id.val_csv);
                 TextView zip1 = findViewById(R.id.val_zip);
                 csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                zip1.setText(String.valueOf((int) (f2.length()) / 1024) + " kb");
+                zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
+                csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                zip.setText(String.valueOf((int) (f2.length())) + " bytes");
                 val_errors = findViewById(R.id.val_error);
-                val_errors.setText(String.valueOf(Global.urlList_failed.size()));
+                val_errors.setText(String.valueOf(backgroundService.urlList_failed.size()));
                 val_succ = findViewById(R.id.val_succ);
-                val_succ.setText(String.valueOf(Global.urlList_successed.size()));
+                val_succ.setText(String.valueOf(backgroundService.urlList_successed.size()));
 
-                csv.setText(Global.csvSize);
-                zip.setText(Global.zipSize);
 
                 //queryLocation(null);
             } catch (Exception e) {
                 Log.d("FONTOS", e.toString());
+                e.printStackTrace();
             }
-            if (Global.longitude == null) {
+            if (backgroundService.longitude == null) {
                 alti.setText("0");
                 longi.setText("0");
                 lati.setText("0");
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 uniq.setText("0");
                 servicestatus.setText("Not available");
                 TextView ip = findViewById(R.id.ip);
-                ip.setText(Global.ipaddress);
+                ip.setText(backgroundService.ipaddress);
             }
             handler.postDelayed(this, 1000);
         }
@@ -235,17 +239,17 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                Global.accuracy = String.valueOf(LocRes.getAccuracy());
-                Global.latitude = String.valueOf(LocRes.getLatitude());
-                Global.longitude = String.valueOf(LocRes.getLongitude());
-                Global.speed = String.valueOf(Global.round(mpsTokmh(LocRes.getSpeed()), 2));
-                Global.altitude = String.valueOf(LocRes.getAltitude());
-                Global.bearing = String.valueOf(LocRes.getBearing());
-                Global.time = String.valueOf(Global.convertTime(getBaseContext(), LocRes.getTime()));
-                Global.address = Global.getCompleteAddressString(getBaseContext(), LocRes.getLatitude(), LocRes.getLongitude());
-                Global.provider = LocRes.getProvider();
-                Global.distance = String.valueOf(Global.getDistance(Double.valueOf(Global.latitude), Double.valueOf(Global.initLat), Double.valueOf(Global.longitude), Double.valueOf(Global.initLong)));
-                Global.ipaddress = ipv4;
+                backgroundService.accuracy = String.valueOf(LocRes.getAccuracy());
+                backgroundService.latitude = String.valueOf(LocRes.getLatitude());
+                backgroundService.longitude = String.valueOf(LocRes.getLongitude());
+                backgroundService.speed = String.valueOf(backgroundService.round(mpsTokmh(LocRes.getSpeed()), 2));
+                backgroundService.altitude = String.valueOf(LocRes.getAltitude());
+                backgroundService.bearing = String.valueOf(LocRes.getBearing());
+                backgroundService.time = String.valueOf(backgroundService.convertTime(LocRes.getTime()));
+                backgroundService.address = backgroundService.getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                backgroundService.provider = LocRes.getProvider();
+                backgroundService.distance = String.valueOf(backgroundService.getDistance(Double.valueOf(backgroundService.latitude), Double.valueOf(backgroundService.initLat), Double.valueOf(backgroundService.longitude), Double.valueOf(backgroundService.initLong)));
+                backgroundService.ipaddress = ipv4;
 
             } catch (Exception e) {
                 ;
@@ -254,32 +258,32 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         }
         try {
-            if (Double.valueOf(Global.latitude) != 0 && Double.valueOf(Global.longitude) != 0) {
+            if (Double.valueOf(backgroundService.latitude) != 0 && Double.valueOf(backgroundService.longitude) != 0) {
                 counter++;
-                Global.count++;
+                backgroundService.count++;
                 if (counter == 1) {
                     // START POSITION (Activity/Program start)
-                    Global.initLat = Global.latitude;
-                    Global.initLong = Global.longitude;
+                    backgroundService.initLat = backgroundService.latitude;
+                    backgroundService.initLong = backgroundService.longitude;
                 }
             }
-            Log.d("INITIAL", String.valueOf(Global.initLat) + String.valueOf(Global.initLong));
+            Log.d("INITIAL", String.valueOf(backgroundService.initLat) + String.valueOf(backgroundService.initLong));
         } catch (Exception e) {
         }
 
-        if (Global.latitude != null) {
-            aplist(getBaseContext(), Double.valueOf(Global.latitude), Double.valueOf(Global.longitude));
+        if (backgroundService.latitude != null) {
+            aplist(getBaseContext(), Double.valueOf(backgroundService.latitude), Double.valueOf(backgroundService.longitude));
         }
         try {
             showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                    + "\nLast Change: " + Global.time
-                    + "\nDistance: " + Global.distance + " meters"
-                    + "\nLongitude: " + Global.longitude
-                    + "\nLatitude: " + Global.latitude
-                    + "\nAddress: " + Global.address
-                    + "\nProvider: " + Global.provider
-                    + "\nSpeed: " + String.valueOf(Global.round(mpsTokmh(Double.valueOf(Global.speed)), 2)) + " km/h"
-                    + "\nAccuracy: " + Global.accuracy + " meters");
+                    + "\nLast Change: " + backgroundService.time
+                    + "\nDistance: " + backgroundService.distance + " meters"
+                    + "\nLongitude: " + backgroundService.longitude
+                    + "\nLatitude: " + backgroundService.latitude
+                    + "\nAddress: " + backgroundService.address
+                    + "\nProvider: " + backgroundService.provider
+                    + "\nSpeed: " + String.valueOf(backgroundService.round(mpsTokmh(Double.valueOf(backgroundService.speed)), 2)) + " km/h"
+                    + "\nAccuracy: " + backgroundService.accuracy + " meters");
         } catch (Exception e) {
             Log.d("NOTIF EXCEPTION: ", e.toString());
         }
@@ -337,16 +341,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             acc = String.valueOf(s.name);
         }
         if (acc.length() > 3) {
-            Global.googleAccount = acc;
+            backgroundService.googleAccount = acc;
         } else {
-            Global.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+            backgroundService.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
         }
-        Log.d("ANDROID_ID_", "Android_id:_" + Global.googleAccount);
-        String ipv4 = Global.getLocalIpAddress();
-        Global.ipaddress = ipv4;
+        Log.d("ANDROID_ID_", "Android_id:_" + backgroundService.googleAccount);
+        String ipv4 = backgroundService.getLocalIpAddress();
+        backgroundService.ipaddress = ipv4;
         TextView ip = findViewById(R.id.ip);
-        ip.setText(Global.ipaddress);
+        ip.setText(backgroundService.ipaddress);
 
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //region DRAWER
@@ -602,7 +606,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         getChartHttp("https://sont.sytes.net/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
-        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + Global.googleAccount);
+        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + backgroundService.googleAccount);
 
         handler.postDelayed(runnable, 1000);
     }
@@ -667,11 +671,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onLocationChanged(Location location) {
                 mlocation = location;
                 Log.d("Location Changes", location.toString());
-                if (Global.isUploading == false) {
+                if (backgroundService.isUploading == false) {
                     queryLocation(location);
                 }
-                Global.provider = location.getProvider();
-                provider.setText(Global.provider);
+                backgroundService.provider = location.getProvider();
+                provider.setText(backgroundService.provider);
             }
 
             @Override
@@ -780,14 +784,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = Text.split("\\s+");
         contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
-        contentView.setTextViewText(R.id.notif_time, "Time #" + Global.nearbyCount);
+        contentView.setTextViewText(R.id.notif_time, "Time #" + backgroundService.nearbyCount);
         contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
-        contentView.setTextViewText(R.id.notif_text3, Global.lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, Global.latitude);
-        contentView.setTextViewText(R.id.notif_long, Global.longitude);
-        contentView.setTextViewText(R.id.notif_add, Global.address);
-        //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(Global.nearbyCount));
-        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(Global.uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_text3, backgroundService.lastSSID);
+        contentView.setTextViewText(R.id.notif_lat, backgroundService.latitude);
+        contentView.setTextViewText(R.id.notif_long, backgroundService.longitude);
+        contentView.setTextViewText(R.id.notif_add, backgroundService.address);
+        //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(backgroundService.nearbyCount));
+        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(backgroundService.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -844,10 +848,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                Global.lastSSID = result.SSID + " " + Global.convertDBM(result.level) + "%";
+                backgroundService.lastSSID = result.SSID + " " + backgroundService.convertDBM(result.level) + "%";
 
-                if (!Global.uniqueAPS.contains(result.BSSID)) {
-                    Global.uniqueAPS.add(result.BSSID);
+                if (!backgroundService.uniqueAPS.contains(result.BSSID)) {
+                    backgroundService.uniqueAPS.add(result.BSSID);
                 }
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
@@ -860,10 +864,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + Global.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + Global.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + backgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + backgroundService.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 saveRecordHttp(url + reqBody);
             }
-            Global.nearbyCount = String.valueOf(scanResults.size());
+            backgroundService.nearbyCount = String.valueOf(scanResults.size());
 
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
@@ -879,7 +883,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void init() {
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
-        if (Global.checkPermissionLocation(getApplicationContext()) == false) {
+        if (backgroundService.checkPermissionLocation(getApplicationContext()) == false) {
             SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
             superToast.setText("Missing LOCATION PERMISSION");
             superToast.setAnimations(Style.ANIMATIONS_SCALE);
@@ -1101,7 +1105,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 if (retry_counter_2 < 20) {
                     TextView stat = findViewById(R.id.txt_stat1);
                     stat.setText("HTTP Error");
-                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + Global.googleAccount);
+                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + backgroundService.googleAccount);
                     retry_counter_2++;
                 }
             }

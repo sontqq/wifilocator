@@ -1269,6 +1269,7 @@ drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable upload_icon
 drawable web_shape
 drawable wifi1
 drawable wifi2

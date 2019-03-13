@@ -59,7 +59,7 @@ public class UploadFileFTP extends AsyncTask<String, Void, String> {
                 String data = "/storage/emulated/0/Documents/wifilocator_database.csv";
 
                 FileInputStream in = new FileInputStream(new File(data));
-                boolean result = con.storeFile("/var/www/uploads/wifi_database_" + time + "_" + Global.googleAccount + ".csv", in);
+                boolean result = con.storeFile("/var/www/uploads/wifi_database_" + time + "_" + BackgroundService.googleAccount + ".csv", in);
                 in.close();
                 if (result) {
                     Log.d("FTP UPLOAD", "SUCCESS");
