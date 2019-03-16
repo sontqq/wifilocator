@@ -1,8 +1,6 @@
 package com.sontme.esp.getlocation;
 
-import android.app.AlarmManager;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +9,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.sontme.esp.getlocation.activities.MainActivity;
-
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Set;
 
 
 public class Receiver extends BroadcastReceiver {
@@ -28,7 +22,7 @@ public class Receiver extends BroadcastReceiver {
             context.sendBroadcast(i);
             Log.d("ALARM_RECEIVER_", "ON");
 
-        } else if (intent.getStringExtra("alarm") == "run") {
+        } else if (intent.getStringExtra("alarm") == "off") {
             Intent i = new Intent();
             i.putExtra("alarm", "off");
             context.sendBroadcast(i);

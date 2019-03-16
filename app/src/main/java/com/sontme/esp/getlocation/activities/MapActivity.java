@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
@@ -25,7 +26,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,10 +34,8 @@ import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
-import com.google.android.gms.maps.model.Cap;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
-import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 
 import org.osmdroid.api.IMapController;
@@ -49,7 +47,6 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polyline;
-import org.osmdroid.views.overlay.infowindow.InfoWindow;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -77,9 +74,9 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
 
         String stateSaved = savedInstanceState.getString("save_state");
         if (stateSaved == null) {
-            Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -88,9 +85,9 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         super.onSaveInstanceState(onState);
         String stateSaved = onState.getString("save_state");
         if (stateSaved == null) {
-            Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -125,12 +122,12 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         geoPoints = new ArrayList<>();
         overlayItemArray = new ArrayList<OverlayItem>();
 
-        dl = (DrawerLayout)findViewById(R.id.drawler2);
+        dl = findViewById(R.id.drawler2);
         t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv = (NavigationView)findViewById(R.id.nv2);
+        nv = findViewById(R.id.nv2);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -185,22 +182,22 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
                 superToast.show();
             }
         });
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nv2);
+        NavigationView navigationView = findViewById(R.id.nv2);
         View hView =  navigationView.getHeaderView(0);
-        TextView tex = (TextView)hView.findViewById(R.id.header_verinfo);
+        TextView tex = hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
 
         Context ctx = getApplicationContext();
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
-        final MapView map = (MapView) findViewById(R.id.osmmap);
+        final MapView map = findViewById(R.id.osmmap);
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
         GeoPoint startPoint = null;
-        if (backgroundService.getLatitude() != null) {
-            startPoint = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
+        if (BackgroundService.getLatitude() != null) {
+            startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{
             startPoint = new GeoPoint(47.935900, 20.367770);
@@ -268,8 +265,8 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
 
     private void updateMap(MapView map) {
         GeoPoint geo = null;
-        if (backgroundService.getLatitude() != null) {
-            geo = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
+        if (BackgroundService.getLatitude() != null) {
+            geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{
             geo = new GeoPoint(47.935900, 20.367770);
@@ -314,8 +311,8 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.invalidate();
         Drawable pin = getResources().getDrawable(R.drawable.wifi5);
         GeoPoint geo = null;
-        if (backgroundService.getLatitude() != null) {
-            geo = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
+        if (BackgroundService.getLatitude() != null) {
+            geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{
             geo = new GeoPoint(47.935900, 20.367770);

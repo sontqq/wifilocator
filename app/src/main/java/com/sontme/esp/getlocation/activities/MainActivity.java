@@ -3,15 +3,12 @@ package com.sontme.esp.getlocation.activities;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -23,7 +20,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.GpsStatus;
@@ -31,11 +27,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,6 +38,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -63,9 +58,12 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.crashlytics.android.Crashlytics;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
@@ -91,28 +89,17 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
-import com.sontme.esp.getlocation.Global;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Receiver;
-
 import com.sontme.esp.getlocation.UploadFileFTP;
 import com.sontme.esp.getlocation.UploadFileHTTP;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -122,11 +109,6 @@ import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
-
-import android.support.design.widget.NavigationView;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
@@ -175,26 +157,33 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public Location mlocation;
     public LocationRequest mPlayLocationRequest;
     public Handler handler = new Handler();
+    public Handler chart_handler = new Handler();
     public BackgroundService backgroundService;
 
     public Runnable runnable = new Runnable() {
         @Override
         public void run() {
             try {
-                longi.setText(backgroundService.longitude);
-                lati.setText(backgroundService.latitude);
-                alti.setText(backgroundService.altitude);
-                spd.setText(backgroundService.speed + " km/h");
-                dst.setText(String.valueOf(backgroundService.round(Double.valueOf(backgroundService.distance), 2) + " meters"));
-                add.setText(backgroundService.address);
-//                c.setText(backgroundService.count);
-                provider.setText(backgroundService.provider);
-//                uniq.setText(backgroundService.uniqueAPS.size());
+                longi.setText(BackgroundService.longitude);
+                lati.setText(BackgroundService.latitude);
+                alti.setText(BackgroundService.altitude);
+                spd.setText(BackgroundService.speed + " km/h");
+                if (BackgroundService.distance != null) {
+                    dst.setText(String.valueOf(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters"));
+                }
+                add.setText(BackgroundService.address);
+                if (BackgroundService.getCount() != 0) {
+                    // c.setText(backgroundService.count);
+                }
+                provider.setText(BackgroundService.provider);
+                if (BackgroundService.uniqueAPS.size() > 0) {
+                    // uniq.setText(backgroundService.uniqueAPS.size());
+                }
                 WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                backgroundService.ipaddress = ipv4;
+                BackgroundService.ipaddress = ipv4;
                 TextView ip = findViewById(R.id.ip);
-                ip.setText(backgroundService.ipaddress);
+                ip.setText(BackgroundService.ipaddress);
                 servicestatus.setText("Not available");
 
                 File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
@@ -206,16 +195,15 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
                 zip.setText(String.valueOf((int) (f2.length())) + " bytes");
                 val_errors = findViewById(R.id.val_error);
-                val_errors.setText(String.valueOf(backgroundService.urlList_failed.size()));
+                val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
                 val_succ = findViewById(R.id.val_succ);
-                val_succ.setText(String.valueOf(backgroundService.urlList_successed.size()));
+                val_succ.setText(String.valueOf(BackgroundService.urlList_successed.size()));
 
-
-                //queryLocation(null);
             } catch (Exception e) {
                 Log.d("TIMER_MAIN_FONTOS", e.toString());
+                e.printStackTrace();
             }
-            if (backgroundService.longitude == null) {
+            if (BackgroundService.longitude == null) {
                 alti.setText("0");
                 longi.setText("0");
                 lati.setText("0");
@@ -227,9 +215,37 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 uniq.setText("0");
                 servicestatus.setText("Not available");
                 TextView ip = findViewById(R.id.ip);
-                ip.setText(backgroundService.ipaddress);
+                ip.setText(BackgroundService.ipaddress);
+
+                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                TextView csv1 = findViewById(R.id.val_csv);
+                TextView zip1 = findViewById(R.id.val_zip);
+                csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
+                csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                zip.setText(String.valueOf((int) (f2.length())) + " bytes");
+                val_errors = findViewById(R.id.val_error);
+                val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
+                val_succ = findViewById(R.id.val_succ);
+                val_succ.setText(String.valueOf(BackgroundService.urlList_successed.size()));
             }
             handler.postDelayed(this, 1000);
+        }
+    };
+    public Runnable chart_runnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Log.d("TIMER_CHART_", "LEFUTOTT");
+
+                getChart_timer("https://sont.sytes.net/wifilocator/wifis_chart.php");
+                getChart_timer2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+
+            } catch (Exception e) {
+                Log.d("TIMER_CHART_", e.toString());
+            }
+            chart_handler.postDelayed(this, 5000);
         }
     };
 
@@ -238,51 +254,50 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
             try {
                 String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                backgroundService.accuracy = String.valueOf(LocRes.getAccuracy());
-                backgroundService.latitude = String.valueOf(LocRes.getLatitude());
-                backgroundService.longitude = String.valueOf(LocRes.getLongitude());
-                backgroundService.speed = String.valueOf(backgroundService.round(mpsTokmh(LocRes.getSpeed()), 2));
-                backgroundService.altitude = String.valueOf(LocRes.getAltitude());
-                backgroundService.bearing = String.valueOf(LocRes.getBearing());
-                backgroundService.time = String.valueOf(backgroundService.convertTime(LocRes.getTime()));
-                backgroundService.address = backgroundService.getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
-                backgroundService.provider = LocRes.getProvider();
-                backgroundService.distance = String.valueOf(backgroundService.getDistance(Double.valueOf(backgroundService.latitude), Double.valueOf(backgroundService.initLat), Double.valueOf(backgroundService.longitude), Double.valueOf(backgroundService.initLong)));
-                backgroundService.ipaddress = ipv4;
+                BackgroundService.accuracy = String.valueOf(LocRes.getAccuracy());
+                BackgroundService.latitude = String.valueOf(LocRes.getLatitude());
+                BackgroundService.longitude = String.valueOf(LocRes.getLongitude());
+                BackgroundService.speed = String.valueOf(backgroundService.round(mpsTokmh(LocRes.getSpeed()), 2));
+                BackgroundService.altitude = String.valueOf(LocRes.getAltitude());
+                BackgroundService.bearing = String.valueOf(LocRes.getBearing());
+                BackgroundService.time = String.valueOf(backgroundService.convertTime(LocRes.getTime()));
+                BackgroundService.address = backgroundService.getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                BackgroundService.provider = LocRes.getProvider();
+                BackgroundService.distance = String.valueOf(backgroundService.getDistance(Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.initLat), Double.valueOf(BackgroundService.longitude), Double.valueOf(BackgroundService.initLong)));
+                BackgroundService.ipaddress = ipv4;
 
             } catch (Exception e) {
-                ;
                 Log.d("SIZE TIMER CSV ZIP _ ", e.toString());
             }
 
         }
         try {
-            if (Double.valueOf(backgroundService.latitude) != 0 && Double.valueOf(backgroundService.longitude) != 0) {
+            if (Double.valueOf(BackgroundService.latitude) != 0 && Double.valueOf(BackgroundService.longitude) != 0) {
                 counter++;
-                backgroundService.count++;
+                BackgroundService.count++;
                 if (counter == 1) {
                     // START POSITION (Activity/Program start)
-                    backgroundService.initLat = backgroundService.latitude;
-                    backgroundService.initLong = backgroundService.longitude;
+                    BackgroundService.initLat = BackgroundService.latitude;
+                    BackgroundService.initLong = BackgroundService.longitude;
                 }
             }
-            Log.d("INITIAL", String.valueOf(backgroundService.initLat) + String.valueOf(backgroundService.initLong));
+            Log.d("INITIAL", String.valueOf(BackgroundService.initLat) + String.valueOf(BackgroundService.initLong));
         } catch (Exception e) {
         }
 
-        if (backgroundService.latitude != null) {
-            aplist(getBaseContext(), Double.valueOf(backgroundService.latitude), Double.valueOf(backgroundService.longitude));
+        if (BackgroundService.latitude != null) {
+            aplist(getBaseContext(), Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.longitude));
         }
         try {
             showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                    + "\nLast Change: " + backgroundService.time
-                    + "\nDistance: " + backgroundService.distance + " meters"
-                    + "\nLongitude: " + backgroundService.longitude
-                    + "\nLatitude: " + backgroundService.latitude
-                    + "\nAddress: " + backgroundService.address
-                    + "\nProvider: " + backgroundService.provider
-                    + "\nSpeed: " + String.valueOf(backgroundService.round(mpsTokmh(Double.valueOf(backgroundService.speed)), 2)) + " km/h"
-                    + "\nAccuracy: " + backgroundService.accuracy + " meters");
+                    + "\nLast Change: " + BackgroundService.time
+                    + "\nDistance: " + BackgroundService.distance + " meters"
+                    + "\nLongitude: " + BackgroundService.longitude
+                    + "\nLatitude: " + BackgroundService.latitude
+                    + "\nAddress: " + BackgroundService.address
+                    + "\nProvider: " + BackgroundService.provider
+                    + "\nSpeed: " + String.valueOf(backgroundService.round(mpsTokmh(Double.valueOf(BackgroundService.speed)), 2)) + " km/h"
+                    + "\nAccuracy: " + BackgroundService.accuracy + " meters");
         } catch (Exception e) {
             Log.d("NOTIF EXCEPTION: ", e.toString());
         }
@@ -293,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public NavigationView nv;
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
-    public static String INSERT_URL = "https://sont.sytes.net/wifi_insert.php";
+    public static String INSERT_URL = "https://sont.sytes.net/wifilocator/wifi_insert.php";
     public static String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
     public static Map<String, String> BLEdevices = new HashMap<String, String>();
 
@@ -340,20 +355,20 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             acc = String.valueOf(s.name);
         }
         if (acc.length() > 3) {
-            backgroundService.googleAccount = acc;
+            BackgroundService.googleAccount = acc;
         } else {
-            backgroundService.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+            BackgroundService.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
         }
-        Log.d("ANDROID_ID_", "Android_id:_" + backgroundService.googleAccount);
-        String ipv4 = backgroundService.getLocalIpAddress();
-        backgroundService.ipaddress = ipv4;
+        Log.d("ANDROID_ID_", "Android_id:_" + BackgroundService.googleAccount);
+        String ipv4 = BackgroundService.getLocalIpAddress();
+        BackgroundService.ipaddress = ipv4;
         TextView ip = findViewById(R.id.ip);
-        ip.setText(backgroundService.ipaddress);
+        ip.setText(BackgroundService.ipaddress);
 
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //region DRAWER
-        dl = (DrawerLayout) findViewById(R.id.drawler);
+        dl = findViewById(R.id.drawler);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
@@ -413,16 +428,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         });
         //endregion
         //region UI ELEMENTS
-        alti = (TextView) findViewById(R.id.alti);
-        add = (TextView) findViewById(R.id.add);
-        c = (TextView) findViewById(R.id.c);
-        longi = (TextView) findViewById(R.id.longi);
-        lati = (TextView) findViewById(R.id.lati);
-        spd = (TextView) findViewById(R.id.spd);
-        dst = (TextView) findViewById(R.id.dst);
-        start_srv = (Button) findViewById(R.id.srv);
-        stop_srv = (Button) findViewById(R.id.stop_srv);
-        exitb = (Button) findViewById(R.id.exitb);
+        alti = findViewById(R.id.alti);
+        add = findViewById(R.id.add);
+        c = findViewById(R.id.c);
+        longi = findViewById(R.id.longi);
+        lati = findViewById(R.id.lati);
+        spd = findViewById(R.id.spd);
+        dst = findViewById(R.id.dst);
+        start_srv = findViewById(R.id.srv);
+        stop_srv = findViewById(R.id.stop_srv);
+        exitb = findViewById(R.id.exitb);
         provider = findViewById(R.id.prov);
         uniq = findViewById(R.id.uniq);
         WebView webview = findViewById(R.id.webview);
@@ -452,7 +467,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         webview.getSettings().setUseWideViewPort(true);
         webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
-        webview.loadUrl("https://sont.sytes.net/osm.php");
+        webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -523,14 +538,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                                 @Override
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
-                                    http.execute("http://192.168.0.43/upload.php?");
+                                    http.execute("http://192.168.0.43/wifilocator/upload.php?");
                                     Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .show();
                 } else {
                     UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
-                    http.execute("http://192.168.0.43/upload.php?");
+                    http.execute("http://192.168.0.43/wifilocator/upload.php?");
                     Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -597,17 +612,18 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         //endregion
 
         View hView = nv.getHeaderView(0);
-        TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
+        TextView tex = hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
 
         turnGPSOn();
 
-        getChartHttp("https://sont.sytes.net/wifis_chart.php");
-        getChartHttp2("https://sont.sytes.net/wifis_chart_2.php");
-        getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + backgroundService.googleAccount);
+        getChartHttp("https://sont.sytes.net/wifilocator/wifis_chart.php");
+        getChartHttp2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+        getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
 
         handler.postDelayed(runnable, 1000);
+        chart_handler.postDelayed(chart_runnable, 5000);
     }
 
     @Override
@@ -670,11 +686,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onLocationChanged(Location location) {
                 mlocation = location;
                 Log.d("Location Changes", location.toString());
-                if (backgroundService.isUploading == false) {
+                if (BackgroundService.isUploading == false) {
                     queryLocation(location);
                 }
-                backgroundService.provider = location.getProvider();
-                provider.setText(backgroundService.provider);
+                BackgroundService.provider = location.getProvider();
+                provider.setText(BackgroundService.provider);
             }
 
             @Override
@@ -783,14 +799,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = Text.split("\\s+");
         contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
-        contentView.setTextViewText(R.id.notif_time, "Time #" + backgroundService.nearbyCount);
+        contentView.setTextViewText(R.id.notif_time, "Time #" + BackgroundService.nearbyCount);
         contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
-        contentView.setTextViewText(R.id.notif_text3, backgroundService.lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, backgroundService.latitude);
-        contentView.setTextViewText(R.id.notif_long, backgroundService.longitude);
-        contentView.setTextViewText(R.id.notif_add, backgroundService.address);
+        contentView.setTextViewText(R.id.notif_text3, BackgroundService.lastSSID);
+        contentView.setTextViewText(R.id.notif_lat, BackgroundService.latitude);
+        contentView.setTextViewText(R.id.notif_long, BackgroundService.longitude);
+        contentView.setTextViewText(R.id.notif_add, BackgroundService.address);
         //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(backgroundService.nearbyCount));
-        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(backgroundService.uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(BackgroundService.uniqueAPS.size()));
 
         Intent intent2 = new Intent(getBaseContext(), Receiver.class);
         Intent intent3 = new Intent(getBaseContext(), Receiver.class);
@@ -847,10 +863,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                backgroundService.lastSSID = result.SSID + " " + backgroundService.convertDBM(result.level) + "%";
+                BackgroundService.lastSSID = result.SSID + " " + backgroundService.convertDBM(result.level) + "%";
 
-                if (!backgroundService.uniqueAPS.contains(result.BSSID)) {
-                    backgroundService.uniqueAPS.add(result.BSSID);
+                if (!BackgroundService.uniqueAPS.contains(result.BSSID)) {
+                    BackgroundService.uniqueAPS.add(result.BSSID);
                 }
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
@@ -863,10 +879,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + backgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + backgroundService.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + BackgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + backgroundService.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 saveRecordHttp(url + reqBody);
             }
-            backgroundService.nearbyCount = String.valueOf(scanResults.size());
+            BackgroundService.nearbyCount = String.valueOf(scanResults.size());
 
         } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
@@ -882,7 +898,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void init() {
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
-        if (backgroundService.checkPermissionLocation(getApplicationContext()) == false) {
+        if (BackgroundService.checkPermissionLocation(getApplicationContext()) == false) {
             SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
             superToast.setText("Missing LOCATION PERMISSION");
             superToast.setAnimations(Style.ANIMATIONS_SCALE);
@@ -922,20 +938,167 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         });
     }
 
+    public void getChart_timer(String path) {
+        AndroidNetworking.get(path)
+                .setTag("chart_auto")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        LineChart newchart = findViewById(R.id.newchart);
+                        List<Entry> entries = new ArrayList<Entry>();
+
+                        Map<Integer, Integer> hours = new HashMap<Integer, Integer>();
+                        Map<Integer, Integer> values = new HashMap<Integer, Integer>();
+                        Map<Integer, Integer> ab = new HashMap<Integer, Integer>(hours);
+
+                        for (int i = 0; i < 24; i++) {
+                            hours.put(i, 0);
+                        }
+
+                        String str = response;
+                        String lines[] = str.trim().split("\\r?\\n");
+                        int i = 0;
+                        try {
+                            for (String line : lines) {
+                                String[] words = line.trim().split("\\s+");
+                                //entries.add(new Entry(i, Integer.valueOf(words[1])));
+                                values.put(Integer.valueOf(words[0]), Integer.valueOf(words[1]));
+                                //Log.d("CHART_ENTRY_", "i: " + i + "words[0]: " + words[0] + " words[1]: " + words[1]);
+                                i++;
+                            }
+                            ab.putAll(values);
+                            for (Map.Entry<Integer, Integer> entry : ab.entrySet()) {
+                                int key = entry.getKey();
+                                int value = entry.getValue();
+                                entries.add(new Entry(key, value));
+                            }
+                        } catch (Exception e) {
+                            Log.d("Error_", e.getMessage());
+                            e.printStackTrace();
+                        }
+
+                        LineDataSet dataSet = new LineDataSet(entries, "Stats");
+                        dataSet.setLineWidth(5);
+                        dataSet.setDrawFilled(true);
+                        Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
+                        dataSet.setFillDrawable(drawable);
+                        dataSet.setDrawHighlightIndicators(true);
+                        Collections.shuffle(Arrays.asList(myColors));
+                        dataSet.setHighLightColor(Color.parseColor(myColors[1]));
+                        dataSet.setHighlightLineWidth(4);
+                        dataSet.setValueTextSize(13);
+                        dataSet.setValueFormatter(new DefaultValueFormatter(0));
+                        dataSet.setHighlightEnabled(true);
+                        dataSet.setDrawHighlightIndicators(true);
+                        dataSet.setColors(Color.parseColor(myColors[0]));
+                        LineData lineData = new LineData(dataSet);
+                        newchart.setData(lineData);
+                        newchart.getAxisRight().setDrawGridLines(false);
+                        newchart.getAxisLeft().setDrawGridLines(false);
+                        newchart.getXAxis().setDrawGridLines(false);
+                        newchart.getXAxis().setDrawLabels(false);
+                        newchart.getDescription().setEnabled(false);
+                        newchart.getLegend().setEnabled(false);
+                        newchart.invalidate();
+                        //newchart.animateXY(2000, 2000);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                    }
+                });
+    }
+
+    public void getChart_timer2(String path) {
+        AndroidNetworking.get(path)
+                .setTag("chart_auto2")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        PieChart piechart = findViewById(R.id.piechart);
+                        List<PieEntry> entries = new ArrayList<>();
+
+                        String str = response;
+                        String lines[] = str.trim().split("xxx");
+
+                        int i = 0;
+                        Collections.shuffle(Arrays.asList(myColors));
+                        int ossz = 0;
+                        for (String line : lines) {
+                            String[] words = line.trim().split("\\s+");
+                            if ((words[0] == "73bedfbd149e01de") || (words[0].equals("73bedfbd149e01de"))) {
+                                words[0] = "Sajat";
+                            } else if ((words[0] == "4d32dfcf42ebf336") || (words[0].equals("4d32dfcf42ebf336"))) {
+                                words[0] = "Anya";
+                            } else if ((words[0] == "4dddd08a27a4e4cd") || (words[0].equals("4dddd08a27a4e4cd"))) {
+                                words[0] = "Fater";
+                            }
+                            try {
+                                entries.add(new PieEntry(Integer.valueOf(words[1]), words[0]));
+                                ossz = ossz + Integer.valueOf(words[1]);
+                                i++;
+                            } catch (Exception e) {
+                            }
+                        }
+
+                        PieDataSet set = new PieDataSet(entries, "");
+                        set.setColors(Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5]));
+                        set.setValueTextColor(Color.BLACK);
+                        set.setValueTextSize(12);
+                        PieData data = new PieData(set);
+
+                        Description d = new Description();
+                        d.setText("");
+                        piechart.setDescription(d);
+                        piechart.setCenterText("Shares" + "\n(" + ossz + ")");
+                        piechart.getLegend().setEnabled(true);
+                        //piechart.animateXY(2000, 2000);
+                        piechart.setEntryLabelColor(invertColor(Color.parseColor(myColors[0])));
+                        piechart.setEntryLabelTextSize(12);
+
+                        set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+                        set.setSliceSpace(5);
+
+                        piechart.setExtraBottomOffset(20f);
+                        piechart.setExtraLeftOffset(20f);
+                        piechart.setExtraRightOffset(20f);
+
+                        set.setValueLinePart1OffsetPercentage(10.f);
+                        set.setValueLinePart1Length(0.43f);
+                        set.setValueLinePart2Length(.1f);
+                        piechart.getLegend().setWordWrapEnabled(true);
+                        Legend l = piechart.getLegend();
+                        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+                        l.setXEntrySpace(7f);
+                        l.setYEntrySpace(0f);
+                        l.setYOffset(0f);
+                        l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
+                        l.setWordWrapEnabled(true);
+
+                        piechart.setData(data);
+                        piechart.invalidate();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                    }
+                });
+    }
+
     public void getChartHttp(String path) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                LineChart newchart = (LineChart) findViewById(R.id.newchart);
+                LineChart newchart = findViewById(R.id.newchart);
                 List<Entry> entries = new ArrayList<Entry>();
 
                 String str = "";
-                try {
-                    str = new String(responseBody, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d("Error_", e.getMessage());
-                }
+                str = new String(responseBody, StandardCharsets.UTF_8);
                 String lines[] = str.trim().split("\\r?\\n");
                 int i = 0;
                 try {
@@ -983,7 +1146,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_1 < 20) {
-                    getChartHttp("https://sont.sytes.net/wifis_chart.php");
+                    getChartHttp("https://sont.sytes.net/wifilocator/wifis_chart.php");
                     retry_counter_1++;
                 }
             }
@@ -999,11 +1162,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 List<PieEntry> entries = new ArrayList<>();
 
                 String str = "";
-                try {
-                    str = new String(responseBody, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d("Error_", e.getMessage());
-                }
+                str = new String(responseBody, StandardCharsets.UTF_8);
                 String lines[] = str.trim().split("xxx");
                 try {
                     int i = 0;
@@ -1024,7 +1183,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
 
                     PieDataSet set = new PieDataSet(entries, "");
-                    set.setColors(new int[]{Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5])});
+                    set.setColors(Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5]));
                     set.setValueTextColor(Color.BLACK);
                     set.setValueTextSize(12);
                     PieData data = new PieData(set);
@@ -1072,7 +1231,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_3 < 20) {
-                    getChartHttp2("https://sont.sytes.net/wifis_chart.php");
+                    getChartHttp2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
                     retry_counter_3++;
                 }
             }
@@ -1085,11 +1244,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String str = "";
-                try {
-                    str = new String(responseBody, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d("Error_", e.getMessage());
-                }
+                str = new String(responseBody, StandardCharsets.UTF_8);
                 TextView stat = findViewById(R.id.txt_stat1);
                 stat.setText(str);
             }
@@ -1104,7 +1259,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 if (retry_counter_2 < 20) {
                     TextView stat = findViewById(R.id.txt_stat1);
                     stat.setText("HTTP Error");
-                    getStatHttp("https://sont.sytes.net/wifi_stats.php?source=" + backgroundService.googleAccount);
+                    getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
                     retry_counter_2++;
                 }
             }

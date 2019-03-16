@@ -1,54 +1,19 @@
 package com.sontme.esp.getlocation;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.google.android.gms.common.util.IOUtils;
-
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.ContentBody;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class exporter {
 
-    private String fileName;
+    public String fileName;
     public List<String> csv_list_uniq = new ArrayList<String>();
 
     public exporter(String fileName) {
@@ -56,7 +21,7 @@ public class exporter {
     }
 
     public void writeCsv(String text) throws IOException {
-        //if (Global.isUploading == false) {
+        if (BackgroundService.isUploading == false) {
             File file = null;
             try {
                 if (csv_list_uniq.contains(text) == false) {
@@ -74,8 +39,38 @@ public class exporter {
             } catch (Exception e) {
                 Log.d("CSV_writer_error_:", e.toString());
             } finally {
+                Log.d("csv_", "LEFUTOTT");
+            }
+        }
+    }
+
+    /*
+    public void writeCsv_huawei(Context context, String text) throws IOException {
+        if (BackgroundService.isUploading == false) {
+            try {
+                if (csv_list_uniq.contains(text) == false) {
+                    ContextWrapper cw = new ContextWrapper(context);
+                    // path to /data/data/yourapp/app_data/PrivateFiles
+                    File directory = cw.getDir("database", Context.MODE_PRIVATE);
+                    File file = new File(directory, fileName);
+                    try {
+                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                        fileOutputStream.write(text.getBytes());
+                        fileOutputStream.close();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Log.d("CSV_WRITER_", "Already contains");
+                }
+            } catch (Exception e) {
+                Log.d("CSV_writer_error_:", e.toString());
+            } finally {
 
             }
+        }
     }
+    */
 }
 

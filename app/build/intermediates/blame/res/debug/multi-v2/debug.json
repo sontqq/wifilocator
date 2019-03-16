@@ -1196,40 +1196,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\values-land_values-land.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8c51ce9822629d50b670fefbb92aca04\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,125,196",
-                        "endColumns": "69,70,67",
-                        "endOffsets": "120,191,259"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\59297302f4333dea95bab6909d932b8f\\res\\values-land\\values-land.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "10",
-                        "endOffsets": "222"
-                    },
-                    "to": {
-                        "startLines": "5",
-                        "startColumns": "4",
-                        "startOffsets": "264",
-                        "endLines": "8",
-                        "endColumns": "10",
-                        "endOffsets": "431"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\values-in_values-in.arsc.flat",
             "map": [
                 {
@@ -1315,6 +1281,40 @@
                         "startOffsets": "2803,2912,3108,3236,3344,3558,3687,3832,4158,4383,4490,4685,4813,5027,5201,5295,5385",
                         "endColumns": "108,195,127,107,213,128,144,134,224,106,194,127,213,173,93,89,107",
                         "endOffsets": "2907,3103,3231,3339,3553,3682,3827,3962,4378,4485,4680,4808,5022,5196,5290,5380,5488"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\values-land_values-land.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8c51ce9822629d50b670fefbb92aca04\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\59297302f4333dea95bab6909d932b8f\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "10",
+                        "endOffsets": "222"
+                    },
+                    "to": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "264",
+                        "endLines": "8",
+                        "endColumns": "10",
+                        "endOffsets": "431"
                     }
                 }
             ]
