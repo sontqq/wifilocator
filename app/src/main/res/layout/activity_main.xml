@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Today Shares Timeline"
+                    android:text="Today UPDATED Timeline"
                     android:textAlignment="center" />
 
                 <com.github.mikephil.charting.charts.LineChart
@@ -148,8 +148,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Today NEW Timeline"
+                    android:textAlignment="center" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/newchart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -403,7 +423,7 @@
                         android:layout_weight="1"
                         android:maxLines="3"
                         android:singleLine="false"
-                        android:autoSizeTextType="uniform"
+
                         android:inputType="textMultiLine"
                         android:scrollHorizontally="false"
                         android:text="Not available" />

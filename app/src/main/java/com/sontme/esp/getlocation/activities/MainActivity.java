@@ -242,8 +242,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             try {
                 Log.d("TIMER_CHART_", "LEFUTOTT");
 
-                getChart_timer("https://sont.sytes.net/wifilocator/wifis_chart.php");
-                getChart_timer2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
 
             } catch (Exception e) {
                 Log.d("TIMER_CHART_", e.toString());
@@ -621,8 +622,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         turnGPSOn();
 
-        getChart_timer("https://sont.sytes.net/wifilocator/wifis_chart.php");
-        getChartHttp2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+        getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+        getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+        getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
 
         handler.postDelayed(runnable, 1000);
@@ -941,7 +943,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         });
     }
 
-    public void getChart_timer(String path) {
+    public void getChart_timer_updated(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto")
                 .setPriority(Priority.LOW)
@@ -1015,7 +1017,89 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 });
     }
 
-    public void getChart_timer2(String path) {
+    public void getChart_timer_new(String path) {
+        AndroidNetworking.get(path)
+                .setTag("chart_auto")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        LineChart newchart = findViewById(R.id.newchart2);
+                        List<Entry> entries = new ArrayList<Entry>();
+
+                        Map<Integer, Integer> hours = new HashMap<Integer, Integer>();
+                        for (int i = 0; i < 24; i++) {
+                            hours.put(i, 0);
+                        }
+                        Map<Integer, Integer> values = new HashMap<Integer, Integer>();
+                        Map<Integer, Integer> combined = new HashMap<Integer, Integer>(hours);
+
+
+                        String str = response;
+
+                        Log.d("STR_", "'" + str + "'" + "_" + str.length());
+                        /*if(str.trim().length() <= 1 || str.trim() == null || str.trim() == ""){
+                            //str = "0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n";
+                            for (int i = 0; i < 24; i++) {
+                                str.concat("0 " + i + " \n");
+                            }
+                        }*/
+                        String lines[] = str.trim().split("\\r?\\n");
+                        try {
+                            for (String line : lines) {
+                                String[] words = line.trim().split("\\s+");
+                                values.put(Integer.valueOf(words[0]), Integer.valueOf(words[1]));
+                            }
+                            combined.putAll(values);
+                            for (Map.Entry<Integer, Integer> entry : combined.entrySet()) {
+                                int key = entry.getKey();
+                                int value = entry.getValue();
+                                entries.add(new Entry(key, value));
+                            }
+                        } catch (Exception e) {
+                            Log.d("Error_", e.getMessage());
+                            e.printStackTrace();
+                        }
+
+                        LineDataSet dataSet = new LineDataSet(entries, "Stats");
+                        dataSet.setLineWidth(4f);
+                        dataSet.setDrawFilled(true);
+                        Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
+                        dataSet.setFillDrawable(drawable);
+                        dataSet.setDrawHighlightIndicators(true);
+                        Collections.shuffle(Arrays.asList(myColors));
+                        dataSet.setHighLightColor(Color.parseColor(myColors[1]));
+                        dataSet.setHighlightLineWidth(3f);
+                        dataSet.setDrawValues(true);
+                        dataSet.setValueTextSize(13);
+                        dataSet.setValueFormatter(new DefaultValueFormatter(0));
+                        dataSet.setHighlightEnabled(true);
+                        dataSet.setDrawHighlightIndicators(true);
+                        dataSet.setColors(Color.parseColor(myColors[0]));
+                        dataSet.setValueFormatter(new CustomFormatter());
+                        LineData lineData = new LineData(dataSet);
+                        newchart.setData(lineData);
+                        newchart.setDrawBorders(false);
+                        newchart.getAxisRight().setDrawGridLines(false);
+                        newchart.getAxisLeft().setDrawGridLines(false);
+                        newchart.getXAxis().setDrawGridLines(false);
+                        newchart.getXAxis().setDrawLabels(false);
+                        newchart.getDescription().setEnabled(false);
+                        newchart.getLegend().setEnabled(false);
+                        newchart.setScaleEnabled(false);
+                        newchart.setPinchZoom(false);
+                        newchart.invalidate();
+                        newchart.animateX(500);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                    }
+                });
+    }
+
+    public void getChart_timer_pie(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto2")
                 .setPriority(Priority.LOW)
@@ -1091,70 +1175,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     public void onError(ANError anError) {
                     }
                 });
-    }
-
-    public void getChartHttp(String path) {
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(path, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                LineChart newchart = findViewById(R.id.newchart);
-                List<Entry> entries = new ArrayList<Entry>();
-
-                String str = "";
-                str = new String(responseBody, StandardCharsets.UTF_8);
-                String lines[] = str.trim().split("\\r?\\n");
-                int i = 0;
-                try {
-                    for (String line : lines) {
-                        String[] words = line.trim().split("\\s+");
-                        entries.add(new Entry(i, Integer.valueOf(words[1])));
-                        i++;
-                    }
-                } catch (Exception e) {
-                    Log.d("Error_", e.getMessage());
-                }
-
-                LineDataSet dataSet = new LineDataSet(entries, "Stats");
-                dataSet.setLineWidth(5);
-                dataSet.setDrawFilled(true);
-                Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
-                dataSet.setFillDrawable(drawable);
-                dataSet.setDrawHighlightIndicators(true);
-                Collections.shuffle(Arrays.asList(myColors));
-                dataSet.setHighLightColor(Color.parseColor(myColors[1]));
-                dataSet.setHighlightLineWidth(4);
-                dataSet.setValueTextSize(13);
-                dataSet.setValueFormatter(new DefaultValueFormatter(0));
-                dataSet.setHighlightEnabled(true);
-                dataSet.setDrawHighlightIndicators(true);
-                dataSet.setColors(Color.parseColor(myColors[0]));
-                LineData lineData = new LineData(dataSet);
-                newchart.setData(lineData);
-                newchart.getAxisRight().setDrawGridLines(false);
-                newchart.getAxisLeft().setDrawGridLines(false);
-                newchart.getXAxis().setDrawGridLines(false);
-                newchart.getXAxis().setDrawLabels(false);
-                newchart.getDescription().setEnabled(false);
-                newchart.getLegend().setEnabled(false);
-                newchart.invalidate();
-                newchart.animateXY(2000, 2000);
-                startService(new Intent(getBaseContext(), BackgroundService.class));
-            }
-
-            @Override
-            public boolean getUseSynchronousMode() {
-                return false;
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                if (retry_counter_1 < 20) {
-                    getChartHttp("https://sont.sytes.net/wifilocator/wifis_chart.php");
-                    retry_counter_1++;
-                }
-            }
-        });
     }
 
     public void getChartHttp2(String path) {

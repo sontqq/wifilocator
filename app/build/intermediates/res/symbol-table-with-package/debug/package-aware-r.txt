@@ -1469,6 +1469,7 @@ id navigation_header_container
 id nearby
 id never
 id newchart
+id newchart2
 id newprogressbar
 id none
 id normal
