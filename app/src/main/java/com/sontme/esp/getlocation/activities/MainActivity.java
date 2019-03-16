@@ -80,6 +80,8 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
@@ -100,6 +102,7 @@ import com.sontme.esp.getlocation.UploadFileHTTP;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -618,7 +621,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         turnGPSOn();
 
-        getChartHttp("https://sont.sytes.net/wifilocator/wifis_chart.php");
+        getChart_timer("https://sont.sytes.net/wifilocator/wifis_chart.php");
         getChartHttp2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
         getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
 
@@ -950,26 +953,22 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         List<Entry> entries = new ArrayList<Entry>();
 
                         Map<Integer, Integer> hours = new HashMap<Integer, Integer>();
-                        Map<Integer, Integer> values = new HashMap<Integer, Integer>();
-                        Map<Integer, Integer> ab = new HashMap<Integer, Integer>(hours);
-
                         for (int i = 0; i < 24; i++) {
                             hours.put(i, 0);
                         }
+                        Map<Integer, Integer> values = new HashMap<Integer, Integer>();
+                        Map<Integer, Integer> combined = new HashMap<Integer, Integer>(hours);
+
 
                         String str = response;
                         String lines[] = str.trim().split("\\r?\\n");
-                        int i = 0;
                         try {
                             for (String line : lines) {
                                 String[] words = line.trim().split("\\s+");
-                                //entries.add(new Entry(i, Integer.valueOf(words[1])));
                                 values.put(Integer.valueOf(words[0]), Integer.valueOf(words[1]));
-                                //Log.d("CHART_ENTRY_", "i: " + i + "words[0]: " + words[0] + " words[1]: " + words[1]);
-                                i++;
                             }
-                            ab.putAll(values);
-                            for (Map.Entry<Integer, Integer> entry : ab.entrySet()) {
+                            combined.putAll(values);
+                            for (Map.Entry<Integer, Integer> entry : combined.entrySet()) {
                                 int key = entry.getKey();
                                 int value = entry.getValue();
                                 entries.add(new Entry(key, value));
@@ -980,29 +979,34 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         }
 
                         LineDataSet dataSet = new LineDataSet(entries, "Stats");
-                        dataSet.setLineWidth(5);
+                        dataSet.setLineWidth(4f);
                         dataSet.setDrawFilled(true);
                         Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
                         dataSet.setFillDrawable(drawable);
                         dataSet.setDrawHighlightIndicators(true);
                         Collections.shuffle(Arrays.asList(myColors));
                         dataSet.setHighLightColor(Color.parseColor(myColors[1]));
-                        dataSet.setHighlightLineWidth(4);
+                        dataSet.setHighlightLineWidth(3f);
+                        dataSet.setDrawValues(true);
                         dataSet.setValueTextSize(13);
                         dataSet.setValueFormatter(new DefaultValueFormatter(0));
                         dataSet.setHighlightEnabled(true);
                         dataSet.setDrawHighlightIndicators(true);
                         dataSet.setColors(Color.parseColor(myColors[0]));
+                        dataSet.setValueFormatter(new CustomFormatter());
                         LineData lineData = new LineData(dataSet);
                         newchart.setData(lineData);
+                        newchart.setDrawBorders(false);
                         newchart.getAxisRight().setDrawGridLines(false);
                         newchart.getAxisLeft().setDrawGridLines(false);
                         newchart.getXAxis().setDrawGridLines(false);
                         newchart.getXAxis().setDrawLabels(false);
                         newchart.getDescription().setEnabled(false);
                         newchart.getLegend().setEnabled(false);
+                        newchart.setScaleEnabled(false);
+                        newchart.setPinchZoom(false);
                         newchart.invalidate();
-                        //newchart.animateXY(2000, 2000);
+                        newchart.animateX(500);
                     }
 
                     @Override
@@ -1375,6 +1379,25 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
                 //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+}
+
+class CustomFormatter implements IValueFormatter {
+
+    private DecimalFormat mFormat;
+
+    public CustomFormatter() {
+        mFormat = new DecimalFormat("###,###,##0");
+    }
+
+    @Override
+    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+
+        if (value > 0) {
+            return mFormat.format(value);
+        } else {
+            return "";
         }
     }
 }
