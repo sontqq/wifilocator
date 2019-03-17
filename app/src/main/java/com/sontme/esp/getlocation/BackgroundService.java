@@ -12,7 +12,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -129,6 +128,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public static boolean isUploading;
     //endregion
     int totalBytesSent = 0;
+    public static String HUAWEI_PATH = "/data/user/0/com.sontme.esp.getlocation/files/";
     CountDownTimer mCountDownTimer;
     int UPLOAD_SIZE_LIMIT = 10240;
     boolean night_mode = false;
@@ -185,6 +185,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             return;
         }
         mService.addGpsStatusListener(this);
+
+        File directoryy = new File(getFilesDir() + File.pathSeparator);
+        Log.d("FILES_", String.valueOf(directoryy.getAbsolutePath()));
 
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
@@ -548,34 +551,23 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public void queryLocation(Location LocRes) {
         if (night_mode == false) {
             // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
+            File f;
             String deviceMan = android.os.Build.MANUFACTURER;
-            if (deviceMan.contains("huawei")) {
-                ContextWrapper cw = new ContextWrapper(getApplicationContext());
-                File directory = cw.getDir("database", Context.MODE_PRIVATE);
-                File file = new File(directory, cs.fileName);
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (file.exists())
-                    Log.d("HUAWEI_", "FILE_EXISTS");
-                if (file.isFile())
-                    Log.d("HUAWEI_", "FILE_ISFILE");
-                if (file.canRead())
-                    Log.d("HUAWEI_", "FILE_CANREAD");
-                Log.d("HUAWEI_", deviceMan);
+            if (deviceMan.equalsIgnoreCase("huawei")) {
+                f = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
+            } else {
+                f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
             }
-            File f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+            Log.d("csv_", String.valueOf(f.getParent()));
             if (f.length() / 1024 >= UPLOAD_SIZE_LIMIT) {
                 if (isuploading == false) {
                     if (chk_3g_wifi() == "wifi") {
                         Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                         uploadProgress(0, 0, 0);
                         isuploading = true;
-                        zipFileAtPath("/storage/emulated/0/Documents/wifilocator_database.csv", "/storage/emulated/0/Documents/wifilocator_database.zip");
-                        File zip = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
-                        AndroidNetworking.upload("http://sont.sytes.net/wifilocator/upload.php")
+                        zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
+                        File zip = new File(f.getParent() + "/wifilocator_database.zip");
+                        AndroidNetworking.upload("https://sont.sytes.net/wifilocator/upload.php")
                                 .addMultipartFile("uploaded_file", zip)
                                 .addMultipartParameter("source", DEVICE_ACCOUNT) // DEVICE_ACCOUNT
                                 .setTag("background_auto_upload")
@@ -760,12 +752,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String time = sdf.format(new Date());
-                //String deviceMan = android.os.Build.MANUFACTURER;
-                //if(deviceMan.contains("huawei")){
-                //  cs.writeCsv_huawei(getApplicationContext(),"0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
-                //}else {
-                cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
-                //}
+                String deviceMan = android.os.Build.MANUFACTURER;
+                if (deviceMan.equalsIgnoreCase("huawei")) {
+                    cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                } else {
+                    cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                }
             }
         } catch (
                 Exception e) {

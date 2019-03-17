@@ -38,6 +38,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static TextView dst;
     public static Button start_srv;
     public static Button stop_srv;
-    public static Button exitb;
+    public static FloatingActionButton exitb;
     public static TextView add;
     public static TextView provider;
     public static TextView uniq;
@@ -189,8 +190,17 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 ip.setText(BackgroundService.ipaddress);
                 servicestatus.setText("Not available");
 
-                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                File f1;
+                File f2;
+                String deviceMan = android.os.Build.MANUFACTURER;
+                if (deviceMan.equalsIgnoreCase("huawei")) {
+                    f1 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
+                    f2 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.zip");
+                } else {
+                    f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                    f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                }
+
                 TextView csv1 = findViewById(R.id.val_csv);
                 TextView zip1 = findViewById(R.id.val_zip);
                 csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
@@ -220,8 +230,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 TextView ip = findViewById(R.id.ip);
                 ip.setText(BackgroundService.ipaddress);
 
-                File f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                File f1;
+                File f2;
+                String deviceMan = android.os.Build.MANUFACTURER;
+                if (deviceMan.equalsIgnoreCase("huawei")) {
+                    f1 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
+                    f2 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.zip");
+                } else {
+                    f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                    f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                }
                 TextView csv1 = findViewById(R.id.val_csv);
                 TextView zip1 = findViewById(R.id.val_zip);
                 csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
@@ -456,6 +474,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         csv = findViewById(R.id.val_csv);
         zip = findViewById(R.id.val_zip);
+
+        exitb.setBackgroundColor(Color.TRANSPARENT);
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -1029,22 +1049,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         List<Entry> entries = new ArrayList<Entry>();
 
                         Map<Integer, Integer> hours = new HashMap<Integer, Integer>();
-                        for (int i = 0; i < 24; i++) {
+                        for (int i = 0; i <= 24; i++) {
                             hours.put(i, 0);
                         }
                         Map<Integer, Integer> values = new HashMap<Integer, Integer>();
                         Map<Integer, Integer> combined = new HashMap<Integer, Integer>(hours);
 
-
                         String str = response;
 
-                        Log.d("STR_", "'" + str + "'" + "_" + str.length());
-                        /*if(str.trim().length() <= 1 || str.trim() == null || str.trim() == ""){
-                            //str = "0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n 0 0 \n";
-                            for (int i = 0; i < 24; i++) {
-                                str.concat("0 " + i + " \n");
-                            }
-                        }*/
                         String lines[] = str.trim().split("\\r?\\n");
                         try {
                             for (String line : lines) {
@@ -1154,7 +1166,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         piechart.setExtraBottomOffset(20f);
                         piechart.setExtraLeftOffset(20f);
                         piechart.setExtraRightOffset(20f);
-
+                        piechart.animateY(500);
                         set.setValueLinePart1OffsetPercentage(10.f);
                         set.setValueLinePart1Length(0.43f);
                         set.setValueLinePart2Length(.1f);
@@ -1175,91 +1187,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     public void onError(ANError anError) {
                     }
                 });
-    }
-
-    public void getChartHttp2(String path) {
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.get(path, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                PieChart piechart = findViewById(R.id.piechart);
-                List<PieEntry> entries = new ArrayList<>();
-
-                String str = "";
-                str = new String(responseBody, StandardCharsets.UTF_8);
-                String lines[] = str.trim().split("xxx");
-                try {
-                    int i = 0;
-                    Collections.shuffle(Arrays.asList(myColors));
-                    int ossz = 0;
-                    for (String line : lines) {
-                        String[] words = line.trim().split("\\s+");
-                        if ((words[0] == "73bedfbd149e01de") || (words[0].equals("73bedfbd149e01de"))) {
-                            words[0] = "Sajat";
-                        } else if ((words[0] == "4d32dfcf42ebf336") || (words[0].equals("4d32dfcf42ebf336"))) {
-                            words[0] = "Anya";
-                        } else if ((words[0] == "4dddd08a27a4e4cd") || (words[0].equals("4dddd08a27a4e4cd"))) {
-                            words[0] = "Fater";
-                        }
-                        entries.add(new PieEntry(Integer.valueOf(words[1]), words[0]));
-                        ossz = ossz + Integer.valueOf(words[1]);
-                        i++;
-                    }
-
-                    PieDataSet set = new PieDataSet(entries, "");
-                    set.setColors(Color.parseColor(myColors[0]), Color.parseColor(myColors[1]), Color.parseColor(myColors[2]), Color.parseColor(myColors[3]), Color.parseColor(myColors[4]), Color.parseColor(myColors[5]));
-                    set.setValueTextColor(Color.BLACK);
-                    set.setValueTextSize(12);
-                    PieData data = new PieData(set);
-
-                    Description d = new Description();
-                    d.setText("");
-                    piechart.setDescription(d);
-                    piechart.setCenterText("Shares" + "\n(" + ossz + ")");
-                    piechart.getLegend().setEnabled(true);
-                    piechart.animateXY(2000, 2000);
-                    piechart.setEntryLabelColor(invertColor(Color.parseColor(myColors[0])));
-                    piechart.setEntryLabelTextSize(12);
-
-                    set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-                    set.setSliceSpace(5);
-
-                    piechart.setExtraBottomOffset(20f);
-                    piechart.setExtraLeftOffset(20f);
-                    piechart.setExtraRightOffset(20f);
-
-                    set.setValueLinePart1OffsetPercentage(10.f);
-                    set.setValueLinePart1Length(0.43f);
-                    set.setValueLinePart2Length(.1f);
-                    piechart.getLegend().setWordWrapEnabled(true);
-                    Legend l = piechart.getLegend();
-                    l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-                    l.setXEntrySpace(7f);
-                    l.setYEntrySpace(0f);
-                    l.setYOffset(0f);
-                    l.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);
-                    l.setWordWrapEnabled(true);
-
-                    piechart.setData(data);
-                    piechart.invalidate();
-                } catch (Exception e) {
-                    Log.d("Error_", e.getMessage());
-                }
-            }
-
-            @Override
-            public boolean getUseSynchronousMode() {
-                return false;
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                if (retry_counter_3 < 20) {
-                    getChartHttp2("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
-                    retry_counter_3++;
-                }
-            }
-        });
     }
 
     public void getStatHttp(String path) {

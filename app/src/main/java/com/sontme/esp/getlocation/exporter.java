@@ -44,6 +44,34 @@ public class exporter {
         }
     }
 
+    public void writeCsv_huawei(String text) {
+        if (BackgroundService.isUploading == false) {
+            File file = null;
+            try {
+                if (csv_list_uniq.contains(text) == false) {
+                    file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
+                    PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(text);
+                    sb.append('\n');
+                    writer.append(sb.toString());
+                    writer.flush();
+                    writer.close();
+                } else {
+                    Log.d("CSV_WRITER_", "Already contains");
+                }
+            } catch (Exception e) {
+                Log.d("CSV_writer_huawei_error_:", e.toString());
+                e.printStackTrace();
+            } finally {
+                Log.d("csv_", "LEFUTOTT");
+                file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
+                Log.d("csv_", String.valueOf(file.getAbsolutePath()));
+                Log.d("csv_", String.valueOf(file.length() / 1024));
+            }
+        }
+    }
+
     /*
     public void writeCsv_huawei(Context context, String text) throws IOException {
         if (BackgroundService.isUploading == false) {
