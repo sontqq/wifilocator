@@ -53,6 +53,8 @@ import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -67,9 +69,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -84,10 +88,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public static String accuracy;
 
     public static String getLatitude() {
+        if (latitude == null)
+            return "0";
         return latitude;
     }
 
     public static String getLongitude() {
+        if (longitude == null)
+            return "0";
         return longitude;
     }
 
@@ -102,10 +110,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public static String distance;
 
     public static String getInitLat() {
+        if (initLat == null)
+            return "0";
         return initLat;
     }
 
     public static String getInitLong() {
+        if (initLong == null)
+            return "0";
         return initLong;
     }
 
@@ -131,7 +143,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public static String HUAWEI_PATH = "/data/user/0/com.sontme.esp.getlocation/files/";
     CountDownTimer mCountDownTimer;
     int UPLOAD_SIZE_LIMIT = 10240;
-    boolean night_mode = false;
+    boolean UPLOAD_3G = false;
+    boolean UPLOAD_NIGHT = false;
     int not_recorded = 0;
     int recorded = 0;
     int uploaded = 0;
@@ -163,7 +176,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 }
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
                 Log.d("ALARM_SERVICE_", "ON");
-            } else if (intent.getStringExtra("alarm") == "run") {
+            } else if (intent.getStringExtra("alarm") == "off") {
                 locationManager.removeUpdates(locationListener);
                 Log.d("ALARM_SERVICE_", "OFF");
             }
@@ -185,9 +198,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             return;
         }
         mService.addGpsStatusListener(this);
-
-        File directoryy = new File(getFilesDir() + File.pathSeparator);
-        Log.d("FILES_", String.valueOf(directoryy.getAbsolutePath()));
 
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
@@ -288,14 +298,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         mCountDownTimer = new CountDownTimer(10000, 10000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
             }
 
             @Override
             public void onFinish() {
                 if (hour > 5 && hour < 23) {
                     Log.d("TIMER_", "registered");
-                    night_mode = false;
+                    UPLOAD_NIGHT = false;
 
                     AndroidNetworking.get("https://sont.sytes.net/wifilocator/upload_limit.php")
                             .setTag("upload_limit")
@@ -305,7 +314,38 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                             .getAsString(new StringRequestListener() {
                                 @Override
                                 public void onResponse(String response) {
-                                    UPLOAD_SIZE_LIMIT = Integer.valueOf(response.trim());
+                                    Map<String, String> config = new HashMap<String, String>();
+                                    if (NumberUtils.isNumber(response.trim())) {
+                                        //UPLOAD_SIZE_LIMIT = Integer.valueOf(response.trim());
+                                    } else {
+                                        String lines[] = response.split("\n");
+                                        for (String line : lines) {
+                                            String key = line.split("=")[0];
+                                            String value = line.split("=")[1];
+                                            config.put(key, value);
+                                        }
+                                        Iterator iterator = config.keySet().iterator();
+                                        while (iterator.hasNext()) {
+                                            String key = (String) iterator.next();
+                                            String value = config.get(key);
+
+                                            if (key.contains("upload_limit")) {
+                                                UPLOAD_SIZE_LIMIT = Integer.valueOf(value);
+                                            }
+                                            if (key == "upload_3g")
+                                                if (value == "yes")
+                                                    UPLOAD_3G = true;
+                                            if (value == "no")
+                                                UPLOAD_3G = false;
+                                            if (key == "upload_night")
+                                                if (value == "yes")
+                                                    UPLOAD_NIGHT = true;
+                                            if (value == "no")
+                                                UPLOAD_NIGHT = false;
+
+
+                                        }
+                                    }
                                 }
 
                                 @Override
@@ -315,7 +355,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                             });
                 } else {
                     Log.d("TIMER_", "removed");
-                    night_mode = true;
+                    UPLOAD_NIGHT = true;
                 }
                 mCountDownTimer.cancel();
                 mCountDownTimer.start();
@@ -549,7 +589,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void queryLocation(Location LocRes) {
-        if (night_mode == false) {
+        if (UPLOAD_NIGHT == false) {
             // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
             File f;
             String deviceMan = android.os.Build.MANUFACTURER;
@@ -559,9 +599,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
             }
             Log.d("csv_", String.valueOf(f.getParent()));
+            Log.d("UPLOAD_", "CHECK_" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT) + String.valueOf(UPLOAD_SIZE_LIMIT));
             if (f.length() / 1024 >= UPLOAD_SIZE_LIMIT) {
+                Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT));
                 if (isuploading == false) {
-                    if (chk_3g_wifi() == "wifi") {
+                    Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
+                    if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
+                        Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
                         Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                         uploadProgress(0, 0, 0);
                         isuploading = true;
@@ -580,7 +624,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                                         int prog = (int) ((bytesUploaded / totalBytes) * 100);
                                         Log.d("FELTOLTES_", "prog: " + String.valueOf(prog));
                                         Log.d("FELTOLTES_", "progress left: " + String.valueOf(totalBytes - bytesUploaded));
-                                        uploadProgress(prog, bytesUploaded, totalBytes);
+                                        if (prog == 100) {
+                                            uploadProgress(100, totalBytes, totalBytes);
+                                        } else {
+                                            uploadProgress(prog, bytesUploaded, totalBytes);
+                                        }
                                     }
                                 })
                                 .getAsString(new StringRequestListener() {

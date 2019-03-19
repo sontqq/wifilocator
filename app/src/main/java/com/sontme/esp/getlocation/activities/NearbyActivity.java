@@ -2,7 +2,6 @@ package com.sontme.esp.getlocation.activities;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +11,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
@@ -24,13 +23,12 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -47,43 +45,30 @@ import android.widget.Toast;
 
 import com.github.johnpersano.supertoasts.library.Style;
 import com.github.johnpersano.supertoasts.library.SuperActivityToast;
-import com.github.johnpersano.supertoasts.library.SuperToast;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.Circle;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.sontme.esp.getlocation.ApStrings;
+import com.sontme.esp.getlocation.BackgroundService;
+import com.sontme.esp.getlocation.BuildConfig;
+import com.sontme.esp.getlocation.R;
 
-import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.clustering.StaticCluster;
 import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.Projection;
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
-import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
-import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlay;
-import org.osmdroid.views.overlay.simplefastpoint.SimpleFastPointOverlayOptions;
-import org.osmdroid.views.overlay.simplefastpoint.SimplePointTheme;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,13 +77,6 @@ import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
 
-import com.sontme.esp.getlocation.ApStrings;
-import com.sontme.esp.getlocation.BackgroundService;
-import com.sontme.esp.getlocation.BuildConfig;
-import com.sontme.esp.getlocation.Global;
-import com.sontme.esp.getlocation.HandleLocations;
-import com.sontme.esp.getlocation.R;
-
 
 public class NearbyActivity extends AppCompatActivity {
 
@@ -106,7 +84,7 @@ public class NearbyActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
     private MapView map;
-    private Button btn;
+    private FloatingActionButton btn;
     String content = null;
     static Map<Location, ApStrings> loc_ssid2 = new HashMap<Location, ApStrings>();
 
@@ -130,59 +108,36 @@ public class NearbyActivity extends AppCompatActivity {
         Intent mIntent = new Intent(NearbyActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
-        map = (MapView) findViewById(R.id.osmmap2);
-        btn = (Button) findViewById(R.id.button6);
-        Button btn2 = findViewById(R.id.btn_export2);
+        map = findViewById(R.id.osmmap2);
+        btn = findViewById(R.id.button6);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
+                getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
             }
         });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = findViewById(R.id.osmmap2);
-                Bitmap bitmap = viewToBitmap(view);
-                try {
-                    FileOutputStream output = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
-                    output.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                galleryAddPic();
-                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-                superToast.setText("Image Saved!");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
-            }
-        });
+
         IMapController mapController = map.getController();
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(17.0);
         GeoPoint startPoint = null;
-        if (backgroundService.getLatitude() != "0") {
-            startPoint = new GeoPoint(Double.valueOf(backgroundService.getLatitude()), Double.valueOf(backgroundService.getLongitude()));
-        } else if (backgroundService.getInitLat() != "0") {
-            startPoint = new GeoPoint(Double.valueOf(backgroundService.getInitLat()), Double.valueOf(backgroundService.getInitLong()));
+        if (BackgroundService.getLatitude() != "0") {
+            startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
+        } else if (BackgroundService.getInitLat() != "0") {
+            startPoint = new GeoPoint(Double.valueOf(BackgroundService.getInitLat()), Double.valueOf(BackgroundService.getInitLong()));
         } else {
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
 
         mapController.setCenter(startPoint);
 
-        dl = (DrawerLayout) findViewById(R.id.drawler4);
+        dl = findViewById(R.id.drawler4);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv = (NavigationView) findViewById(R.id.nv4);
+        nv = findViewById(R.id.nv4);
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -212,12 +167,12 @@ public class NearbyActivity extends AppCompatActivity {
                 }
             }
         });
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nv4);
+        NavigationView navigationView = findViewById(R.id.nv4);
         View hView = navigationView.getHeaderView(0);
-        TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
+        TextView tex = hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
-        getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
+        getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
@@ -246,8 +201,8 @@ public class NearbyActivity extends AppCompatActivity {
         Double lat = null;
         Double lon = null;
         try {
-            lat = Double.valueOf(backgroundService.getLatitude());
-            lon = Double.valueOf(backgroundService.getLongitude());
+            lat = Double.valueOf(BackgroundService.getLatitude());
+            lon = Double.valueOf(BackgroundService.getLongitude());
         } catch (Exception e) {
             lat = 47.935902;
             lon = 20.367769;
@@ -320,7 +275,6 @@ public class NearbyActivity extends AppCompatActivity {
             String ssid = entry.getValue().getSsid();
             String bssid = entry.getValue().getMac();
             String source = entry.getValue().getSource();
-            ;
 
             String description = "Time: " + time + "\n" + "MAC: " + bssid;
             String snippet = "Source: " + source;
@@ -409,11 +363,7 @@ public class NearbyActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                try {
-                    content = new String(response, "UTF-8");
-                } catch (UnsupportedEncodingException e1) {
-                    e1.printStackTrace();
-                }
+                content = new String(response, StandardCharsets.UTF_8);
                 String stripped = html2text(content);
                 String lines[] = stripped.split("\\r?\\n");
                 for (String s : lines) {
@@ -445,13 +395,13 @@ public class NearbyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped_open.php");
+                getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
                 SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
                 superToast.setText("Retrying...");
                 superToast.setAnimations(Style.ANIMATIONS_SCALE);
                 superToast.setDuration(Style.DURATION_VERY_SHORT);
                 superToast.setTouchToDismiss(true);
-                superToast.show();
+                //superToast.show();
             }
 
             @Override
@@ -461,7 +411,7 @@ public class NearbyActivity extends AppCompatActivity {
                 superToast.setAnimations(Style.ANIMATIONS_SCALE);
                 superToast.setDuration(Style.DURATION_VERY_SHORT);
                 superToast.setTouchToDismiss(true);
-                superToast.show();
+                //superToast.show();
             }
         });
     }
@@ -544,13 +494,13 @@ class PopUpWin extends InfoWindow {
         String desc;
         String snip;
 
-        LinearLayout layout = (LinearLayout) mView.findViewById(R.id.plinlay);
-        Button btn = (Button) mView.findViewById(R.id.pbtn);
-        TextView ssid = (TextView) mView.findViewById(R.id.pssid);
-        TextView descr = (TextView) mView.findViewById(R.id.pdesc);
-        TextView psnip = (TextView) mView.findViewById(R.id.psnip);
-        ImageView img = (ImageView) mView.findViewById(R.id.pimg);
-        TextView pstat = (TextView) mView.findViewById(R.id.pstat);
+        LinearLayout layout = mView.findViewById(R.id.plinlay);
+        Button btn = mView.findViewById(R.id.pbtn);
+        TextView ssid = mView.findViewById(R.id.pssid);
+        TextView descr = mView.findViewById(R.id.pdesc);
+        TextView psnip = mView.findViewById(R.id.psnip);
+        ImageView img = mView.findViewById(R.id.pimg);
+        TextView pstat = mView.findViewById(R.id.pstat);
 
         if (item instanceof Marker) {
             final Marker marker = (Marker) item;
@@ -667,17 +617,17 @@ class CustomCluster extends RadiusMarkerClusterer {
         String longitude = Double.toString(((double) loc.getLongitudeE6()) / 1000000);
         String latitude = Double.toString(((double) loc.getLatitudeE6()) / 1000000);
         String asd = "0";
-        if (Double.valueOf(backgroundService.getLatitude()) != 0) {
-            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(backgroundService.getLatitude()), Double.valueOf(longitude), Double.valueOf(backgroundService.getLongitude())), 1));
+        if (Double.valueOf(BackgroundService.getLatitude()) != 0) {
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(longitude), Double.valueOf(BackgroundService.getLongitude())), 1));
             Log.d("TAPI1: ", asd);
-        } else if (Double.valueOf(backgroundService.getInitLat()) != 0) {
-            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(backgroundService.getInitLat()), Double.valueOf(longitude), Double.valueOf(backgroundService.getInitLong())), 1));
+        } else if (Double.valueOf(BackgroundService.getInitLat()) != 0) {
+            asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(BackgroundService.getInitLat()), Double.valueOf(longitude), Double.valueOf(BackgroundService.getInitLong())), 1));
             Log.d("TAPI2: ", asd);
         } else {
             asd = String.valueOf(round(getDistance(Double.valueOf(latitude), Double.valueOf(47.935900), Double.valueOf(longitude), Double.valueOf(20.367770)), 1));
             Log.d("TAPI3: ", asd);
         }
-        Log.d("TAPI4: ", String.valueOf(Double.valueOf(backgroundService.getLatitude())));
+        Log.d("TAPI4: ", String.valueOf(Double.valueOf(BackgroundService.getLatitude())));
 
         SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
         superToast.setText(asd + " meters away from you");

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawler4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,29 +11,34 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="20dp"
+            android:layout_margin="20dp"
+
+            android:foregroundGravity="bottom"
+            android:layout_gravity="bottom|right|end"
+
+
+            android:layout_weight="1"
+            android:src="@drawable/refresh_tiny"
+            android:text="Update"
+            android:visibility="visible"
+            app:backgroundTint="@color/notifText" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_export2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Export to Gallery" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Update" />
 
         </LinearLayout>
 
@@ -44,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nv4"

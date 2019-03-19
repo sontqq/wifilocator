@@ -38,7 +38,6 @@ public class Receiver extends BroadcastReceiver {
             }
         }
         // CATCH NOTIFICATION BUTTON PRESS
-        String code = intent.getStringExtra("code");
         if (intent.getAction() == "exit") {
             Toast.makeText(context, "EXIT PRESSED", Toast.LENGTH_SHORT).show();
             Log.d("RECEIVER", "NOTIFICATION BUTTON PRESSED");

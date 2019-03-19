@@ -1262,6 +1262,7 @@ drawable pin1
 drawable pin2
 drawable popup_shape
 drawable previous
+drawable refresh_tiny
 drawable rounded_corner
 drawable route
 drawable selector_button_kitkat
@@ -1327,7 +1328,6 @@ id blocking
 id border
 id bottom
 id btn_export
-id btn_export2
 id btn_up_http
 id bubble_description
 id bubble_image

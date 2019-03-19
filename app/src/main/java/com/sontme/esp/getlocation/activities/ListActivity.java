@@ -3,13 +3,13 @@ package com.sontme.esp.getlocation.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -22,11 +22,10 @@ import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.ListAdapter;
 import com.sontme.esp.getlocation.R;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        final ListView yourListView = (ListView) findViewById(R.id.mainListView);
+        final ListView yourListView = findViewById(R.id.mainListView);
 
         customAdapter = new ListAdapter(this, R.layout.row, aplist);
         yourListView.setAdapter(customAdapter);
@@ -60,12 +59,12 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        dl = (DrawerLayout) findViewById(R.id.drawler3);
+        dl = findViewById(R.id.drawler3);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
         dl.addDrawerListener(t);
         t.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        nv3 = (NavigationView) findViewById(R.id.nv3);
+        nv3 = findViewById(R.id.nv3);
         nv3.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -96,9 +95,9 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nv3);
+        NavigationView navigationView = findViewById(R.id.nv3);
         View hView = navigationView.getHeaderView(0);
-        TextView tex = (TextView) hView.findViewById(R.id.header_verinfo);
+        TextView tex = hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
         tex.setText(version);
 
@@ -107,7 +106,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Download list
-                getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped.php");
+                getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifi_list.php");
                 handler.postDelayed(this, 5000);
             }
         }, 5000);
@@ -124,11 +123,7 @@ public class ListActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                try {
-                    content = new String(response, "UTF-8");
-                } catch (UnsupportedEncodingException e1) {
-                    e1.printStackTrace();
-                }
+                content = new String(response, StandardCharsets.UTF_8);
                 String stripped = html2text(content);
                 String lines[] = stripped.split("\\r?\\n");
                 for (String s : lines) {
@@ -182,7 +177,7 @@ public class ListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        final ListView yourListView = (ListView) findViewById(R.id.mainListView);
+        final ListView yourListView = findViewById(R.id.mainListView);
         customAdapter = new ListAdapter(this, R.layout.row, aplist);
         yourListView.setAdapter(customAdapter);
         customAdapter.registerDataSetObserver(new DataSetObserver() {
@@ -194,7 +189,7 @@ public class ListActivity extends AppCompatActivity {
         });
         yourListView.setSelection(customAdapter.getCount() - 1);
         //customAdapter.clear();
-        getList(getBaseContext(), "https://sont.sytes.net/wifis_stripped.php");
+        getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifi_list.php");
     }
 
     @Override
