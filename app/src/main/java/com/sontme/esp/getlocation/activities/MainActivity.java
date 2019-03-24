@@ -488,8 +488,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         webview.getSettings().setLoadsImagesAutomatically(true);
         webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
         //webview.getSettings().setLoadWithOverviewMode(true);
-        webview.getSettings().setUseWideViewPort(true);
-        webview.setInitialScale(1);
+        //webview.getSettings().setUseWideViewPort(false);
+        //webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
         webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
 

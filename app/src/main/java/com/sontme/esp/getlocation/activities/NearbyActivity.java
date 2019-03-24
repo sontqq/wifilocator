@@ -1,7 +1,5 @@
 package com.sontme.esp.getlocation.activities;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -28,15 +27,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,6 +49,7 @@ import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.R;
 
+import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.clustering.StaticCluster;
@@ -231,6 +229,30 @@ public class NearbyActivity extends AppCompatActivity {
 
     }
 
+    public void animateMarker(final Marker marker, final GeoPoint toPosition) {
+        final Handler handler = new Handler();
+        final long start = SystemClock.uptimeMillis();
+        Projection proj = map.getProjection();
+        Point startPoint = proj.toPixels(marker.getPosition(), null);
+        final IGeoPoint startGeoPoint = proj.fromPixels(startPoint.x, startPoint.y);
+        final long duration = 500;
+        final Interpolator interpolator = new LinearInterpolator();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                long elapsed = SystemClock.uptimeMillis() - start;
+                float t = interpolator.getInterpolation((float) elapsed / duration);
+                double lng = t * toPosition.getLongitude() + (1 - t) * startGeoPoint.getLongitude();
+                double lat = t * toPosition.getLatitude() + (1 - t) * startGeoPoint.getLatitude();
+                marker.setPosition(new GeoPoint(lat, lng));
+                if (t < 1.0) {
+                    handler.postDelayed(this, 15);
+                }
+                map.postInvalidate();
+            }
+        });
+    }
+
     public Bitmap viewToBitmap(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -261,13 +283,14 @@ public class NearbyActivity extends AppCompatActivity {
         clusterer.mTextAnchorU = 0.70f;
         clusterer.mTextAnchorV = 0.27f;
         clusterer.getTextPaint().setTextSize(20.0f);
-
+        clusterer.getTextPaint().setColor(Color.LTGRAY);
 
         map.getOverlays().clear();
         map.invalidate();
         int counter = 0;
         Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
         InfoWindow pop = new PopUpWin(R.layout.popup, map);
+
         for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
             Location coords = entry.getKey();
 
@@ -282,7 +305,7 @@ public class NearbyActivity extends AppCompatActivity {
             GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
             CustomMarker m = new CustomMarker(map);
             // marker timer setalpha
-            m.animate();
+
             m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker, MapView mapView) {
@@ -325,17 +348,16 @@ public class NearbyActivity extends AppCompatActivity {
             m.setIcon(pin);
             m.setPosition(geo);
             //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            ((CustomCluster) clusterer).animateMarkerDropping(m);
+            //((CustomCluster) clusterer).animateMarkerDropping(m, map);
             clusterer.add(m);
             counter++;
         }
-        overlays.add(clusterer);
 
+        overlays.add(clusterer);
         if (map.getMaxZoomLevel() <= 17) {
             mapController.setZoom(18);
         }
         map.invalidate();
-
         NearbyActivity.loc_ssid2.clear();
 
         SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
@@ -353,6 +375,7 @@ public class NearbyActivity extends AppCompatActivity {
             return true;
         return super.onOptionsItemSelected(item);
     }
+
 
     public void getList(final Context context, String url) {
         AsyncHttpClient client = new AsyncHttpClient();
@@ -389,8 +412,8 @@ public class NearbyActivity extends AppCompatActivity {
                     } catch (Exception e) {
                     }
                 }
-                drawMarkers(map, loc_ssid2);
                 drawCircle(map);
+                drawMarkers(map, loc_ssid2);
             }
 
             @Override
@@ -567,26 +590,8 @@ class CustomCluster extends RadiusMarkerClusterer {
         };
     }
 
-    public void setMarkerBounce(Marker m) {
-        final Handler handler = new Handler();
-        final long startTime = SystemClock.uptimeMillis();
-        final long duration = 2000;
-        final Interpolator interpolator = new BounceInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - startTime;
-                float t = Math.max(1 - interpolator.getInterpolation((float) elapsed / duration), 0);
-                m.setAnchor(0.5f, 1.0f + t);
-                if (t > 0.0) {
-                    handler.postDelayed(this, 16);
-                }
-            }
-        });
-        return;
-    }
 
-    public void animateMarkerDropping(final Marker marker) {
+    public void animateMarkerDropping(final Marker marker, MapView map) {
         final Handler handler = new Handler();
         final long start = SystemClock.uptimeMillis();
         final long duration = 500;
@@ -599,11 +604,12 @@ class CustomCluster extends RadiusMarkerClusterer {
                 final long elapsed = SystemClock.uptimeMillis() - start;
                 final float t = Math.max(1 -
                         interpolator.getInterpolation((float) elapsed / duration), 0);
-
-                marker.setAnchor(0.5f, 1f + 14 * t);
+                marker.setAlpha(marker.getAlpha() - 0.5f);
+                //marker.setAnchor(0.5f, 1f + 14 * t);
+                map.invalidate();
 
                 if (t > 0f) {
-                    handler.postDelayed(this, 15);
+                    handler.postDelayed(this, 150);
                 }
             }
         });
@@ -636,10 +642,6 @@ class CustomCluster extends RadiusMarkerClusterer {
         superToast.setTouchToDismiss(true);
         superToast.show();
         return super.onSingleTapUp(e, mapView);
-    }
-
-    public static int getNumOfInstance() {
-        return counter;
     }
 
     public static double round(double value, int places) {
@@ -695,6 +697,8 @@ class CustomCluster extends RadiusMarkerClusterer {
 
         return m;
     }
+
+
 }
 
 class CustomMarker extends Marker {
@@ -707,35 +711,6 @@ class CustomMarker extends Marker {
         super(mapView, resourceProxy);
     }
 
-    public void animate() {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        final long duration = 500;
 
-        final Interpolator interpolator = new AccelerateInterpolator();
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                final long elapsed = SystemClock.uptimeMillis() - start;
-                final float t = Math.max(1 -
-                        interpolator.getInterpolation((float) elapsed / duration), 0);
-
-                setAnchor(0.5f, 1f + 14 * t);
-
-                if (t > 0f) {
-                    handler.postDelayed(this, 15);
-                }
-            }
-        });
-    }
-
-    public static void pulseForeground(CardView view, long duration) {
-        ObjectAnimator animator = ObjectAnimator.ofInt(view.getForeground(), "alpha", 0, 255);
-        animator.setDuration(duration);
-        animator.setStartDelay(20);
-        animator.setRepeatMode(ValueAnimator.RESTART);
-        animator.setRepeatCount(Animation.INFINITE);
-        animator.start();
-    }
 }
