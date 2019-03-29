@@ -521,14 +521,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         startServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Starting service", Toast.LENGTH_SHORT);
+                //Toast.makeText(getBaseContext(), "Starting service", Toast.LENGTH_SHORT);
                 startService(new Intent(MainActivity.this, BackgroundService.class));
             }
         });
         stopServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Stopping service", Toast.LENGTH_SHORT);
+                //Toast.makeText(getApplicationContext(), "Stopping service", Toast.LENGTH_SHORT);
                 Intent myService = new Intent(MainActivity.this, BackgroundService.class);
                 stopService(myService);
             }
@@ -671,7 +671,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
             // backgroundService = null;
         }
 
@@ -1308,19 +1308,19 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
                 event != GpsStatus.GPS_EVENT_STARTED &&
                 event != GpsStatus.GPS_EVENT_STOPPED) {
-            Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
         }
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
-                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_STOPPED:
-                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_FIRST_FIX:
-                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_SATELLITE_STATUS:

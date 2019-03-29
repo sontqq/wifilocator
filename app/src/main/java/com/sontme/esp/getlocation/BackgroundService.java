@@ -39,7 +39,6 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -189,7 +188,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         logUser();
 
         AndroidNetworking.initialize(getApplicationContext());
-        Toast.makeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
+        //Toast.MakeText(getBaseContext(), "Service started_1", Toast.LENGTH_SHORT).show();
 
         registerReceiver(broadcastReceiver, new IntentFilter());
 
@@ -285,7 +284,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
                 tosend = tosend + "<br>" + stat;
                 response.send(tosend);
-                Toast.makeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
+                //Toast.MakeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
             }
         });
         server.listen(8888);
@@ -480,7 +479,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 Log.d("Status Changed", String.valueOf(status));
-//                Toast.makeText(getBaseContext(), "GPS Status Changed: " + status, Toast.LENGTH_SHORT).show();
+//                //Toast.MakeText(getBaseContext(), "GPS Status Changed: " + status, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -606,7 +605,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                     Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
                     if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
                         Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
-                        Toast.makeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
+                        //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                         uploadProgress(0, 0, 0);
                         isuploading = true;
                         zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
@@ -946,24 +945,24 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
+        //Toast.MakeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
+        //Toast.MakeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
         stopForeground(true);
     }
 
     @Override
     public void onStart(Intent intent, int startid) {
-        Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
+        //Toast.MakeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
+        //Toast.MakeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -973,23 +972,23 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
                 event != GpsStatus.GPS_EVENT_STARTED &&
                 event != GpsStatus.GPS_EVENT_STOPPED) {
-            Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+            //Toast.MakeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
         }
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
-                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                //Toast.MakeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_STOPPED:
-                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                //Toast.MakeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_FIRST_FIX:
-                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                //Toast.MakeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
+                ////Toast.MakeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
