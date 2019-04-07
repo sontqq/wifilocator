@@ -976,7 +976,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //Toast.MakeText(getBaseContext(), "Service started_2", Toast.LENGTH_SHORT).show();
         isRunning = true;
         return START_STICKY;
     }

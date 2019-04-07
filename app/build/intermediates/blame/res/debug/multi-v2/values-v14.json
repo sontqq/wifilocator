@@ -1,0 +1,42 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\values-v14\\dimens.xml",
+                    "from": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "216",
+                        "endColumns": "43",
+                        "endOffsets": "255"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "43",
+                        "endOffsets": "94"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.2.aar\\2168b40c92cd903a6d6615eba4f1b47d\\res\\values-v14\\values-v14.xml",
+                    "from": {
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
+                    },
+                    "to": {
+                        "startLines": "3,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "99,472",
+                        "endLines": "9,15",
+                        "endColumns": "12,12",
+                        "endOffsets": "467,771"
+                    }
+                }
+            ]
+        }
+    ]
+}
