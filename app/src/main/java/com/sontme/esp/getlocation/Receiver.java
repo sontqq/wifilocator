@@ -63,6 +63,10 @@ public class Receiver extends BroadcastReceiver {
             Toast.makeText(context,"NotifButtonPressed",Toast.LENGTH_SHORT).show();
             Log.d("NOTIF","NOTIFPRESSED");
         }
+
+        if (intent.getAction() == "widgetButton") {
+
+        }
     }
 
     public static void cancelNotification(Context ctx, int notifyId) {

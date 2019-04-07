@@ -269,103 +269,109 @@ public class NearbyActivity extends AppCompatActivity {
     }
 
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
-        final RadiusMarkerClusterer clusterer = new CustomCluster(this);
-        final List<Overlay> overlays = map.getOverlays();
-        MapController mapController = (MapController) map.getController();
+        Thread thread = new Thread() {
+            public void run() {
+                final RadiusMarkerClusterer clusterer = new CustomCluster(getApplicationContext());
+                final List<Overlay> overlays = map.getOverlays();
+                MapController mapController = (MapController) map.getController();
 
-        overlays.clear();
+                overlays.clear();
 
-        Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.wifi4_cluster_25);
+                Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
+                        R.drawable.wifi4_cluster_25);
 
-        clusterer.setIcon(icon);
-        clusterer.setRadius(85);
-        clusterer.mTextAnchorU = 0.70f;
-        clusterer.mTextAnchorV = 0.27f;
-        clusterer.getTextPaint().setTextSize(20.0f);
-        clusterer.getTextPaint().setColor(Color.LTGRAY);
+                clusterer.setIcon(icon);
+                clusterer.setRadius(85);
+                clusterer.mTextAnchorU = 0.70f;
+                clusterer.mTextAnchorV = 0.27f;
+                clusterer.getTextPaint().setTextSize(20.0f);
+                clusterer.getTextPaint().setColor(Color.LTGRAY);
 
-        map.getOverlays().clear();
-        map.invalidate();
-        int counter = 0;
-        Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
-        InfoWindow pop = new PopUpWin(R.layout.popup, map);
+                map.getOverlays().clear();
+                map.invalidate();
+                int counter = 0;
+                Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
+                InfoWindow pop = new PopUpWin(R.layout.popup, map);
 
-        for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
-            Location coords = entry.getKey();
+                for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
+                    Location coords = entry.getKey();
 
-            String time = entry.getValue().getTime();
-            String ssid = entry.getValue().getSsid();
-            String bssid = entry.getValue().getMac();
-            String source = entry.getValue().getSource();
+                    String time = entry.getValue().getTime();
+                    String ssid = entry.getValue().getSsid();
+                    String bssid = entry.getValue().getMac();
+                    String source = entry.getValue().getSource();
 
-            String description = "Time: " + time + "\n" + "MAC: " + bssid;
-            String snippet = "Source: " + source;
+                    String description = "Time: " + time + "\n" + "MAC: " + bssid;
+                    String snippet = "Source: " + source;
 
-            GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
-            CustomMarker m = new CustomMarker(map);
-            // marker timer setalpha
+                    GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
+                    CustomMarker m = new CustomMarker(map);
+                    // marker timer setalpha
 
-            m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-                @Override
-                public boolean onMarkerClick(Marker marker, MapView mapView) {
+                    m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker, MapView mapView) {
 
 
-                    final int[] counter_ = {0};
-                    Timer t = new Timer();
+                            final int[] counter_ = {0};
+                            Timer t = new Timer();
 
-                    t.scheduleAtFixedRate(new TimerTask() {
-                                              @Override
-                                              public void run() {
-                                                  Log.d("ALPHA", String.valueOf(marker.getAlpha()));
-                                                  if (marker.getAlpha() >= 255) {
-                                                      marker.setAlpha(marker.getAlpha() - 0.005f);
-                                                  } else if (marker.getAlpha() <= 1) {
-                                                      marker.setAlpha(marker.getAlpha() + 0.005f);
-                                                  }
-                                                  map.invalidate();
-                                                  counter_[0]++;
-                                              }
-                                          },
-                            //Set how long before to start calling the TimerTask (in milliseconds)
-                            100,
-                            //Set the amount of time between each execution (in milliseconds)
-                            100);
+                            t.scheduleAtFixedRate(new TimerTask() {
+                                                      @Override
+                                                      public void run() {
+                                                          Log.d("ALPHA", String.valueOf(marker.getAlpha()));
+                                                          if (marker.getAlpha() >= 255) {
+                                                              marker.setAlpha(marker.getAlpha() - 0.005f);
+                                                          } else if (marker.getAlpha() <= 1) {
+                                                              marker.setAlpha(marker.getAlpha() + 0.005f);
+                                                          }
+                                                          map.invalidate();
+                                                          counter_[0]++;
+                                                      }
+                                                  },
+                                    //Set how long before to start calling the TimerTask (in milliseconds)
+                                    100,
+                                    //Set the amount of time between each execution (in milliseconds)
+                                    100);
 
-                    if (marker.isInfoWindowShown()) {
-                        marker.closeInfoWindow();
+                            if (marker.isInfoWindowShown()) {
+                                marker.closeInfoWindow();
 
-                    } else {
-                        marker.showInfoWindow();
-                    }
-                    return true;
+                            } else {
+                                marker.showInfoWindow();
+                            }
+                            return true;
+                        }
+                    });
+                    m.setTitle(ssid);
+                    m.setSnippet(snippet);
+                    m.setSubDescription(description);
+                    m.setInfoWindow(pop);
+                    m.setIcon(pin);
+                    m.setPosition(geo);
+                    //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+                    //((CustomCluster) clusterer).animateMarkerDropping(m, map);
+                    clusterer.add(m);
+                    counter++;
                 }
-            });
-            m.setTitle(ssid);
-            m.setSnippet(snippet);
-            m.setSubDescription(description);
-            m.setInfoWindow(pop);
-            m.setIcon(pin);
-            m.setPosition(geo);
-            //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-            //((CustomCluster) clusterer).animateMarkerDropping(m, map);
-            clusterer.add(m);
-            counter++;
-        }
 
-        overlays.add(clusterer);
-        if (map.getMaxZoomLevel() <= 17) {
-            mapController.setZoom(18);
-        }
-        map.invalidate();
-        NearbyActivity.loc_ssid2.clear();
+                overlays.add(clusterer);
+                if (map.getMaxZoomLevel() <= 17) {
+                    mapController.setZoom(18);
+                }
+                map.invalidate();
+                NearbyActivity.loc_ssid2.clear();
 
-        SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-        superToast.setText(counter + " Access Points found");
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_VERY_LONG);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
+                /*SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
+                superToast.setText(counter + " Access Points found");
+                superToast.setAnimations(Style.ANIMATIONS_SCALE);
+                superToast.setDuration(Style.DURATION_VERY_LONG);
+                superToast.setTouchToDismiss(true);
+                superToast.show();
+                */
+            }
+        };
+        thread.start();
 
     }
 
@@ -710,7 +716,6 @@ class CustomMarker extends Marker {
     public CustomMarker(MapView mapView, Context resourceProxy) {
         super(mapView, resourceProxy);
     }
-
 
 
 }

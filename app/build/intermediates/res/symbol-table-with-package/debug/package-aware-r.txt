@@ -1077,6 +1077,7 @@ dimen tooltip_precise_anchor_threshold
 dimen tooltip_vertical_padding
 dimen tooltip_y_offset_non_touch
 dimen tooltip_y_offset_touch
+dimen widget_margin
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -1196,6 +1197,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable direction_arrow
+drawable example_appwidget_preview
 drawable exiticon
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -1640,6 +1642,10 @@ id view_offset_helper
 id visible
 id webview
 id wide
+id widget_btn1
+id widget_btn2
+id widget_txt1
+id widget_txt2
 id withText
 id wrap
 id wrap_content
@@ -1765,6 +1771,7 @@ layout supertoast_button
 layout supertoast_progress_bar
 layout supertoast_progress_circle
 layout support_simple_spinner_dropdown_item
+layout wifi_widget
 menu navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -1812,11 +1819,13 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about
 string about_message
+string add_widget
 string adunit_firebase
 string adunit_real
 string adunit_sample
 string app_name
 string appbar_scrolling_view_behavior
+string appwidget_text
 string base
 string base_nl
 string bing
@@ -2539,3 +2548,4 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml wifi_widget_info

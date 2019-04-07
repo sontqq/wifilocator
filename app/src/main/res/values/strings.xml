@@ -7,5 +7,7 @@
     <string name="Close">Close</string>
 
     <string name="facebook_app_id">2183815621892163</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

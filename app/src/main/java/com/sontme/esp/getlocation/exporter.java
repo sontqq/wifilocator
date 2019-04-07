@@ -21,84 +21,67 @@ public class exporter {
     }
 
     public void writeCsv(String text) throws IOException {
-        if (BackgroundService.isUploading == false) {
-            File file = null;
-            try {
-                if (csv_list_uniq.contains(text) == false) {
-                    file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
-                    PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(text);
-                    sb.append('\n');
-                    writer.append(sb.toString());
-                    writer.flush();
-                    writer.close();
-                } else {
-                    Log.d("CSV_WRITER_", "Already contains");
+        Thread thread = new Thread() {
+            public void run() {
+                if (BackgroundService.isUploading == false) {
+                    File file = null;
+                    try {
+                        if (csv_list_uniq.contains(text) == false) {
+                            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName);
+                            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+                            StringBuilder sb = new StringBuilder();
+                            sb.append(text);
+                            sb.append('\n');
+                            writer.append(sb.toString());
+                            writer.flush();
+                            writer.close();
+                        } else {
+                            Log.d("CSV_WRITER_", "Already contains");
+                        }
+                    } catch (Exception e) {
+                        Log.d("CSV_writer_error_:", e.toString());
+                    } finally {
+                        Log.d("csv_", "LEFUTOTT");
+                    }
                 }
-            } catch (Exception e) {
-                Log.d("CSV_writer_error_:", e.toString());
-            } finally {
-                Log.d("csv_", "LEFUTOTT");
             }
-        }
+        };
+        thread.start();
     }
 
     public void writeCsv_huawei(String text) {
-        if (BackgroundService.isUploading == false) {
-            File file = null;
-            try {
-                if (csv_list_uniq.contains(text) == false) {
-                    file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
-                    PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(text);
-                    sb.append('\n');
-                    writer.append(sb.toString());
-                    writer.flush();
-                    writer.close();
-                } else {
-                    Log.d("CSV_WRITER_", "Already contains");
-                }
-            } catch (Exception e) {
-                Log.d("CSV_writer_huawei_error_:", e.toString());
-                e.printStackTrace();
-            } finally {
-                Log.d("csv_", "LEFUTOTT");
-                file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
-                Log.d("csv_", String.valueOf(file.getAbsolutePath()));
-                Log.d("csv_", String.valueOf(file.length() / 1024));
-            }
-        }
-    }
-
-    /*
-    public void writeCsv_huawei(Context context, String text) throws IOException {
-        if (BackgroundService.isUploading == false) {
-            try {
-                if (csv_list_uniq.contains(text) == false) {
-                    ContextWrapper cw = new ContextWrapper(context);
-                    // path to /data/data/yourapp/app_data/PrivateFiles
-                    File directory = cw.getDir("database", Context.MODE_PRIVATE);
-                    File file = new File(directory, fileName);
+        Thread thread = new Thread() {
+            public void run() {
+                if (BackgroundService.isUploading == false) {
+                    File file = null;
                     try {
-                        FileOutputStream fileOutputStream = new FileOutputStream(file);
-                        fileOutputStream.write(text.getBytes());
-                        fileOutputStream.close();
-
-                    } catch (IOException e) {
+                        if (csv_list_uniq.contains(text) == false) {
+                            file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
+                            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+                            StringBuilder sb = new StringBuilder();
+                            sb.append(text);
+                            sb.append('\n');
+                            writer.append(sb.toString());
+                            writer.flush();
+                            writer.close();
+                        } else {
+                            Log.d("CSV_WRITER_", "Already contains");
+                        }
+                    } catch (Exception e) {
+                        Log.d("CSV_writer_huawei_error_:", e.toString());
                         e.printStackTrace();
+                    } finally {
+                        Log.d("csv_", "LEFUTOTT");
+                        file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
+                        Log.d("csv_", String.valueOf(file.getAbsolutePath()));
+                        Log.d("csv_", String.valueOf(file.length() / 1024));
                     }
-                } else {
-                    Log.d("CSV_WRITER_", "Already contains");
                 }
-            } catch (Exception e) {
-                Log.d("CSV_writer_error_:", e.toString());
-            } finally {
-
             }
-        }
+        };
+        thread.start();
     }
-    */
+
+
 }
 

@@ -2120,6 +2120,7 @@
     <dimen name="tooltip_vertical_padding">6.5dp</dimen>
     <dimen name="tooltip_y_offset_non_touch">0dp</dimen>
     <dimen name="tooltip_y_offset_touch">16dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="action_bar_activity_content" type="id"/>
@@ -2217,18 +2218,20 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="about">About</string>
     <string name="about_message">This software uses map data provided by OpenStreetMap.org</string>
+    <string name="add_widget">Add widget</string>
     <string name="adunit_firebase">ca-app-pub-4051604993335718/2751904272</string>
     <string name="adunit_real">ca-app-pub-4051604993335718/9467563857</string>
     <string name="adunit_sample">ca-app-pub-3940256099942544/6300978111</string>
     <string name="app_name">WiFi Locator</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="appwidget_text">EXAMPLE</string>
     <string name="base">OSM base layer</string>
     <string name="base_nl">Netherlands base overlay</string>
     <string name="bing">Bing</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">e86399f7-ebc4-43be-b9e6-73bbb2c954b3</string>
+    <string name="com.crashlytics.android.build_id" ns2:ignore="UnusedResources,TypographyDashes" translatable="false">5689a975-ef35-49c4-b189-d8a0a49e6179</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t work unless you enable Google Play services.</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Enable Google Play services</string>

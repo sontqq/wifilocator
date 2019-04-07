@@ -306,6 +306,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
             return true;
         return super.onOptionsItemSelected(item);
     }
+
     public void drawPoint(MapView map){
         map.getOverlays().clear();
         map.invalidate();
@@ -339,6 +340,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.getOverlays().add(m);
         map.invalidate();
     }
+
     private Drawable resize(Drawable image, Integer size) {
         Bitmap b = ((BitmapDrawable)image).getBitmap();
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, size, size, false);

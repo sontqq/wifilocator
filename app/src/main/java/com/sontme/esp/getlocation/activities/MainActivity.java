@@ -346,8 +346,22 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         adminPermission();
         requestAppPermissions();
 
+        /*
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
+
+        Thread th = new Thread(){
+            public void run(){
+                getApplicationContext().bindService(
+                        new Intent(MainActivity.this, BackgroundService.class),
+                        mConnection,
+                        BIND_AUTO_CREATE
+                );
+            }
+        };
+        th.start();
+        */
+
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -491,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         //webview.getSettings().setUseWideViewPort(false);
         //webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
-        webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
+        //webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
 
         //endregion
         //region UI ELEMENT LISTENERS
@@ -642,13 +656,21 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         turnGPSOn();
 
-        getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
-        getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
-        getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
-        getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
+
+        Thread th2 = new Thread() {
+            public void run() {
+                getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
+            }
+        };
+        th2.start();
 
         handler.postDelayed(runnable, 1000);
         chart_handler.postDelayed(chart_runnable, 5000);
+
+        startService(new Intent(MainActivity.this, BackgroundService.class));
     }
 
     @Override
@@ -1070,8 +1092,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                                 entries.add(new Entry(key, value));
                             }
                         } catch (Exception e) {
-                            Log.d("Error_", e.getMessage());
-                            e.printStackTrace();
                         }
 
                         LineDataSet dataSet = new LineDataSet(entries, "Stats");
