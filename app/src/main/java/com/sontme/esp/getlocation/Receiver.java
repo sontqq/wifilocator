@@ -65,7 +65,7 @@ public class Receiver extends BroadcastReceiver {
         }
 
         if (intent.getAction() == "widgetButton") {
-
+            Toast.makeText(context, "WDGT", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         adminPermission();
         requestAppPermissions();
 
-        /*
+
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
@@ -360,7 +360,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         };
         th.start();
-        */
 
 
         Window window = getWindow();
@@ -670,7 +669,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         handler.postDelayed(runnable, 1000);
         chart_handler.postDelayed(chart_runnable, 5000);
 
-        startService(new Intent(MainActivity.this, BackgroundService.class));
+        Thread th3 = new Thread() {
+            public void run() {
+                startService(new Intent(MainActivity.this, BackgroundService.class));
+            }
+        };
+        th3.start();
     }
 
     @Override

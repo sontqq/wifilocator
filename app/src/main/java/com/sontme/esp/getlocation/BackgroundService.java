@@ -41,6 +41,7 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -190,6 +191,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public void onCreate() {
+        Toast.makeText(getBaseContext(), "Service started 2", Toast.LENGTH_SHORT).show();
         Fabric.with(this, new Crashlytics());
         logUser();
 
@@ -513,7 +515,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
     }
 
     public void logUser() {
@@ -593,8 +595,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void queryLocation(Location LocRes) {
-        Thread thread = new Thread() {
-            public void run() {
+        Toast.makeText(getBaseContext(), "query()", Toast.LENGTH_SHORT).show();
+        //Thread thread = new Thread() {
+        // public void run() {
                 if (UPLOAD_NIGHT == false) {
                     // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
                     File f;
@@ -736,9 +739,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                         Log.d("NOTIF EXCEPTION: ", e.toString());
                     }
                 }
-            }
-        };
-        thread.start();
+
     }
 
     public void saveRecordHttp(String path) {
@@ -784,8 +785,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void aplist(final Context context, double lati, double longi) {
-        Thread thread = new Thread() {
-            public void run() {
+//        Thread thread = new Thread() {
+        //public void run() {
                 try {
                     WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                             .getSystemService(Context.WIFI_SERVICE);
@@ -838,9 +839,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                         Exception e) {
                     Log.d("APP", "ERROR " + e.getMessage());
                 }
-            }
-        };
-        thread.start();
+        // }
+        //};
+        //thread.start();
     }
 
     public int convertDBM(int dbm) {
@@ -977,7 +978,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         isRunning = true;
+        Toast.makeText(getBaseContext(), "Service started", Toast.LENGTH_SHORT).show();
         return START_STICKY;
+        //return START_REDELIVER_INTENT;
     }
 
     @Override
