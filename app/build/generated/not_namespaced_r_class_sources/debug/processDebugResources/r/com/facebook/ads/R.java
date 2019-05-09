@@ -57,11 +57,11 @@ public final class R {
         public static final int uiMapToolbar = 0x7f03025a;
         public static final int uiRotateGestures = 0x7f03025b;
         public static final int uiScrollGestures = 0x7f03025c;
-        public static final int uiTiltGestures = 0x7f03025d;
-        public static final int uiZoomControls = 0x7f03025e;
-        public static final int uiZoomGestures = 0x7f03025f;
-        public static final int useViewLifecycle = 0x7f030261;
-        public static final int zOrderOnTop = 0x7f03026e;
+        public static final int uiTiltGestures = 0x7f03025e;
+        public static final int uiZoomControls = 0x7f03025f;
+        public static final int uiZoomGestures = 0x7f030260;
+        public static final int useViewLifecycle = 0x7f030262;
+        public static final int zOrderOnTop = 0x7f03026f;
     }
     public static final class bool {
         private bool() {}
@@ -144,18 +144,18 @@ public final class R {
         public static final int common_google_signin_btn_text_light_normal_background = 0x7f070073;
         public static final int googleg_disabled_color_18 = 0x7f070080;
         public static final int googleg_standard_color_18 = 0x7f070081;
-        public static final int notification_action_background = 0x7f0700ab;
-        public static final int notification_bg = 0x7f0700ac;
-        public static final int notification_bg_low = 0x7f0700ad;
-        public static final int notification_bg_low_normal = 0x7f0700ae;
-        public static final int notification_bg_low_pressed = 0x7f0700af;
-        public static final int notification_bg_normal = 0x7f0700b0;
-        public static final int notification_bg_normal_pressed = 0x7f0700b1;
-        public static final int notification_icon_background = 0x7f0700b2;
-        public static final int notification_template_icon_bg = 0x7f0700b3;
-        public static final int notification_template_icon_low_bg = 0x7f0700b4;
-        public static final int notification_tile_bg = 0x7f0700b5;
-        public static final int notify_panel_notification_icon_bg = 0x7f0700b6;
+        public static final int notification_action_background = 0x7f0700ac;
+        public static final int notification_bg = 0x7f0700ad;
+        public static final int notification_bg_low = 0x7f0700ae;
+        public static final int notification_bg_low_normal = 0x7f0700af;
+        public static final int notification_bg_low_pressed = 0x7f0700b0;
+        public static final int notification_bg_normal = 0x7f0700b1;
+        public static final int notification_bg_normal_pressed = 0x7f0700b2;
+        public static final int notification_icon_background = 0x7f0700b3;
+        public static final int notification_template_icon_bg = 0x7f0700b4;
+        public static final int notification_template_icon_low_bg = 0x7f0700b5;
+        public static final int notification_tile_bg = 0x7f0700b6;
+        public static final int notify_panel_notification_icon_bg = 0x7f0700b7;
     }
     public static final class id {
         private id() {}
@@ -218,21 +218,21 @@ public final class R {
     public static final class layout {
         private layout() {}
 
-        public static final int notification_action = 0x7f0b004b;
-        public static final int notification_action_tombstone = 0x7f0b004c;
-        public static final int notification_media_action = 0x7f0b004d;
-        public static final int notification_media_cancel_action = 0x7f0b004e;
-        public static final int notification_template_big_media = 0x7f0b004f;
-        public static final int notification_template_big_media_custom = 0x7f0b0050;
-        public static final int notification_template_big_media_narrow = 0x7f0b0051;
-        public static final int notification_template_big_media_narrow_custom = 0x7f0b0052;
-        public static final int notification_template_custom_big = 0x7f0b0053;
-        public static final int notification_template_icon_group = 0x7f0b0054;
-        public static final int notification_template_lines_media = 0x7f0b0055;
-        public static final int notification_template_media = 0x7f0b0056;
-        public static final int notification_template_media_custom = 0x7f0b0057;
-        public static final int notification_template_part_chronometer = 0x7f0b0058;
-        public static final int notification_template_part_time = 0x7f0b0059;
+        public static final int notification_action = 0x7f0b004c;
+        public static final int notification_action_tombstone = 0x7f0b004d;
+        public static final int notification_media_action = 0x7f0b004e;
+        public static final int notification_media_cancel_action = 0x7f0b004f;
+        public static final int notification_template_big_media = 0x7f0b0050;
+        public static final int notification_template_big_media_custom = 0x7f0b0051;
+        public static final int notification_template_big_media_narrow = 0x7f0b0052;
+        public static final int notification_template_big_media_narrow_custom = 0x7f0b0053;
+        public static final int notification_template_custom_big = 0x7f0b0054;
+        public static final int notification_template_icon_group = 0x7f0b0055;
+        public static final int notification_template_lines_media = 0x7f0b0056;
+        public static final int notification_template_media = 0x7f0b0057;
+        public static final int notification_template_media_custom = 0x7f0b0058;
+        public static final int notification_template_part_chronometer = 0x7f0b0059;
+        public static final int notification_template_part_time = 0x7f0b005a;
     }
     public static final class string {
         private string() {}
@@ -308,7 +308,7 @@ public final class R {
         public static final int LoadingImageView_circleCrop = 0;
         public static final int LoadingImageView_imageAspectRatio = 1;
         public static final int LoadingImageView_imageAspectRatioAdjust = 2;
-        public static final int[] MapAttrs = { 0x7f03002c, 0x7f03005f, 0x7f030060, 0x7f030061, 0x7f030062, 0x7f030063, 0x7f030064, 0x7f030065, 0x7f030120, 0x7f030121, 0x7f030122, 0x7f030123, 0x7f030170, 0x7f030173, 0x7f030259, 0x7f03025a, 0x7f03025b, 0x7f03025c, 0x7f03025d, 0x7f03025e, 0x7f03025f, 0x7f030261, 0x7f03026e };
+        public static final int[] MapAttrs = { 0x7f03002c, 0x7f03005f, 0x7f030060, 0x7f030061, 0x7f030062, 0x7f030063, 0x7f030064, 0x7f030065, 0x7f030120, 0x7f030121, 0x7f030122, 0x7f030123, 0x7f030170, 0x7f030173, 0x7f030259, 0x7f03025a, 0x7f03025b, 0x7f03025c, 0x7f03025d, 0x7f03025e, 0x7f03025f, 0x7f030260, 0x7f030262, 0x7f03026f };
         public static final int MapAttrs_ambientEnabled = 0;
         public static final int MapAttrs_cameraBearing = 1;
         public static final int MapAttrs_cameraMaxZoomPreference = 2;
@@ -327,11 +327,12 @@ public final class R {
         public static final int MapAttrs_uiMapToolbar = 15;
         public static final int MapAttrs_uiRotateGestures = 16;
         public static final int MapAttrs_uiScrollGestures = 17;
-        public static final int MapAttrs_uiTiltGestures = 18;
-        public static final int MapAttrs_uiZoomControls = 19;
-        public static final int MapAttrs_uiZoomGestures = 20;
-        public static final int MapAttrs_useViewLifecycle = 21;
-        public static final int MapAttrs_zOrderOnTop = 22;
+        public static final int MapAttrs_uiScrollGesturesDuringRotateOrZoom = 18;
+        public static final int MapAttrs_uiTiltGestures = 19;
+        public static final int MapAttrs_uiZoomControls = 20;
+        public static final int MapAttrs_uiZoomGestures = 21;
+        public static final int MapAttrs_useViewLifecycle = 22;
+        public static final int MapAttrs_zOrderOnTop = 23;
         public static final int[] RecyclerView = { 0x10100c4, 0x10100f1, 0x7f0300de, 0x7f0300df, 0x7f0300e0, 0x7f0300e1, 0x7f0300e2, 0x7f030125, 0x7f0301d4, 0x7f0301ea, 0x7f0301f0 };
         public static final int RecyclerView_android_orientation = 0;
         public static final int RecyclerView_android_descendantFocusability = 1;

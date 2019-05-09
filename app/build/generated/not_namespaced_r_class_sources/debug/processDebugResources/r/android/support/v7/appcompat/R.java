@@ -288,18 +288,18 @@ public final class R {
         public static final int trackTint = 0x7f030256;
         public static final int trackTintMode = 0x7f030257;
         public static final int ttcIndex = 0x7f030258;
-        public static final int viewInflaterClass = 0x7f030262;
-        public static final int voiceIcon = 0x7f030263;
-        public static final int windowActionBar = 0x7f030264;
-        public static final int windowActionBarOverlay = 0x7f030265;
-        public static final int windowActionModeOverlay = 0x7f030266;
-        public static final int windowFixedHeightMajor = 0x7f030267;
-        public static final int windowFixedHeightMinor = 0x7f030268;
-        public static final int windowFixedWidthMajor = 0x7f030269;
-        public static final int windowFixedWidthMinor = 0x7f03026a;
-        public static final int windowMinWidthMajor = 0x7f03026b;
-        public static final int windowMinWidthMinor = 0x7f03026c;
-        public static final int windowNoTitle = 0x7f03026d;
+        public static final int viewInflaterClass = 0x7f030263;
+        public static final int voiceIcon = 0x7f030264;
+        public static final int windowActionBar = 0x7f030265;
+        public static final int windowActionBarOverlay = 0x7f030266;
+        public static final int windowActionModeOverlay = 0x7f030267;
+        public static final int windowFixedHeightMajor = 0x7f030268;
+        public static final int windowFixedHeightMinor = 0x7f030269;
+        public static final int windowFixedWidthMajor = 0x7f03026a;
+        public static final int windowFixedWidthMinor = 0x7f03026b;
+        public static final int windowMinWidthMajor = 0x7f03026c;
+        public static final int windowMinWidthMinor = 0x7f03026d;
+        public static final int windowNoTitle = 0x7f03026e;
     }
     public static final class bool {
         private bool() {}
@@ -601,20 +601,20 @@ public final class R {
         public static final int abc_textfield_search_default_mtrl_alpha = 0x7f070058;
         public static final int abc_textfield_search_material = 0x7f070059;
         public static final int abc_vector_test = 0x7f07005a;
-        public static final int notification_action_background = 0x7f0700ab;
-        public static final int notification_bg = 0x7f0700ac;
-        public static final int notification_bg_low = 0x7f0700ad;
-        public static final int notification_bg_low_normal = 0x7f0700ae;
-        public static final int notification_bg_low_pressed = 0x7f0700af;
-        public static final int notification_bg_normal = 0x7f0700b0;
-        public static final int notification_bg_normal_pressed = 0x7f0700b1;
-        public static final int notification_icon_background = 0x7f0700b2;
-        public static final int notification_template_icon_bg = 0x7f0700b3;
-        public static final int notification_template_icon_low_bg = 0x7f0700b4;
-        public static final int notification_tile_bg = 0x7f0700b5;
-        public static final int notify_panel_notification_icon_bg = 0x7f0700b6;
-        public static final int tooltip_frame_dark = 0x7f0700c9;
-        public static final int tooltip_frame_light = 0x7f0700ca;
+        public static final int notification_action_background = 0x7f0700ac;
+        public static final int notification_bg = 0x7f0700ad;
+        public static final int notification_bg_low = 0x7f0700ae;
+        public static final int notification_bg_low_normal = 0x7f0700af;
+        public static final int notification_bg_low_pressed = 0x7f0700b0;
+        public static final int notification_bg_normal = 0x7f0700b1;
+        public static final int notification_bg_normal_pressed = 0x7f0700b2;
+        public static final int notification_icon_background = 0x7f0700b3;
+        public static final int notification_template_icon_bg = 0x7f0700b4;
+        public static final int notification_template_icon_low_bg = 0x7f0700b5;
+        public static final int notification_tile_bg = 0x7f0700b6;
+        public static final int notify_panel_notification_icon_bg = 0x7f0700b7;
+        public static final int tooltip_frame_dark = 0x7f0700ce;
+        public static final int tooltip_frame_light = 0x7f0700cf;
     }
     public static final class id {
         private id() {}
@@ -765,16 +765,16 @@ public final class R {
         public static final int abc_search_view = 0x7f0b0019;
         public static final int abc_select_dialog_material = 0x7f0b001a;
         public static final int abc_tooltip = 0x7f0b001b;
-        public static final int notification_action = 0x7f0b004b;
-        public static final int notification_action_tombstone = 0x7f0b004c;
-        public static final int notification_template_custom_big = 0x7f0b0053;
-        public static final int notification_template_icon_group = 0x7f0b0054;
-        public static final int notification_template_part_chronometer = 0x7f0b0058;
-        public static final int notification_template_part_time = 0x7f0b0059;
-        public static final int select_dialog_item_material = 0x7f0b005c;
-        public static final int select_dialog_multichoice_material = 0x7f0b005d;
-        public static final int select_dialog_singlechoice_material = 0x7f0b005e;
-        public static final int support_simple_spinner_dropdown_item = 0x7f0b0065;
+        public static final int notification_action = 0x7f0b004c;
+        public static final int notification_action_tombstone = 0x7f0b004d;
+        public static final int notification_template_custom_big = 0x7f0b0054;
+        public static final int notification_template_icon_group = 0x7f0b0055;
+        public static final int notification_template_part_chronometer = 0x7f0b0059;
+        public static final int notification_template_part_time = 0x7f0b005a;
+        public static final int select_dialog_item_material = 0x7f0b005d;
+        public static final int select_dialog_multichoice_material = 0x7f0b005e;
+        public static final int select_dialog_singlechoice_material = 0x7f0b005f;
+        public static final int support_simple_spinner_dropdown_item = 0x7f0b0066;
     }
     public static final class string {
         private string() {}
@@ -1273,7 +1273,7 @@ public final class R {
         public static final int AppCompatTextView_lastBaselineToBottomHeight = 8;
         public static final int AppCompatTextView_lineHeight = 9;
         public static final int AppCompatTextView_textAllCaps = 10;
-        public static final int[] AppCompatTheme = { 0x1010057, 0x10100ae, 0x7f030000, 0x7f030001, 0x7f030002, 0x7f030003, 0x7f030004, 0x7f030005, 0x7f030006, 0x7f030007, 0x7f030008, 0x7f030009, 0x7f03000a, 0x7f03000b, 0x7f03000c, 0x7f03000e, 0x7f03000f, 0x7f030010, 0x7f030011, 0x7f030012, 0x7f030013, 0x7f030014, 0x7f030015, 0x7f030016, 0x7f030017, 0x7f030018, 0x7f030019, 0x7f03001a, 0x7f03001b, 0x7f03001c, 0x7f03001d, 0x7f03001e, 0x7f030021, 0x7f030025, 0x7f030026, 0x7f030027, 0x7f030028, 0x7f03002f, 0x7f030044, 0x7f030052, 0x7f030053, 0x7f030054, 0x7f030055, 0x7f030056, 0x7f03005b, 0x7f03005c, 0x7f03006e, 0x7f030073, 0x7f030094, 0x7f030095, 0x7f030096, 0x7f030097, 0x7f030098, 0x7f030099, 0x7f03009a, 0x7f03009b, 0x7f03009c, 0x7f03009f, 0x7f0300b1, 0x7f0300ba, 0x7f0300bb, 0x7f0300bc, 0x7f0300bf, 0x7f0300c1, 0x7f0300c4, 0x7f0300c5, 0x7f0300c6, 0x7f0300c7, 0x7f0300c8, 0x7f0300fe, 0x7f03010c, 0x7f030165, 0x7f030166, 0x7f030169, 0x7f03016a, 0x7f03016b, 0x7f03016c, 0x7f03016d, 0x7f03016e, 0x7f03016f, 0x7f0301a8, 0x7f0301a9, 0x7f0301aa, 0x7f0301b0, 0x7f0301b2, 0x7f0301b9, 0x7f0301ba, 0x7f0301bb, 0x7f0301bc, 0x7f0301dc, 0x7f0301dd, 0x7f0301de, 0x7f0301df, 0x7f0301ec, 0x7f0301ed, 0x7f030203, 0x7f03022a, 0x7f03022b, 0x7f03022c, 0x7f03022d, 0x7f03022f, 0x7f030230, 0x7f030231, 0x7f030232, 0x7f030235, 0x7f030236, 0x7f030250, 0x7f030251, 0x7f030252, 0x7f030253, 0x7f030262, 0x7f030264, 0x7f030265, 0x7f030266, 0x7f030267, 0x7f030268, 0x7f030269, 0x7f03026a, 0x7f03026b, 0x7f03026c, 0x7f03026d };
+        public static final int[] AppCompatTheme = { 0x1010057, 0x10100ae, 0x7f030000, 0x7f030001, 0x7f030002, 0x7f030003, 0x7f030004, 0x7f030005, 0x7f030006, 0x7f030007, 0x7f030008, 0x7f030009, 0x7f03000a, 0x7f03000b, 0x7f03000c, 0x7f03000e, 0x7f03000f, 0x7f030010, 0x7f030011, 0x7f030012, 0x7f030013, 0x7f030014, 0x7f030015, 0x7f030016, 0x7f030017, 0x7f030018, 0x7f030019, 0x7f03001a, 0x7f03001b, 0x7f03001c, 0x7f03001d, 0x7f03001e, 0x7f030021, 0x7f030025, 0x7f030026, 0x7f030027, 0x7f030028, 0x7f03002f, 0x7f030044, 0x7f030052, 0x7f030053, 0x7f030054, 0x7f030055, 0x7f030056, 0x7f03005b, 0x7f03005c, 0x7f03006e, 0x7f030073, 0x7f030094, 0x7f030095, 0x7f030096, 0x7f030097, 0x7f030098, 0x7f030099, 0x7f03009a, 0x7f03009b, 0x7f03009c, 0x7f03009f, 0x7f0300b1, 0x7f0300ba, 0x7f0300bb, 0x7f0300bc, 0x7f0300bf, 0x7f0300c1, 0x7f0300c4, 0x7f0300c5, 0x7f0300c6, 0x7f0300c7, 0x7f0300c8, 0x7f0300fe, 0x7f03010c, 0x7f030165, 0x7f030166, 0x7f030169, 0x7f03016a, 0x7f03016b, 0x7f03016c, 0x7f03016d, 0x7f03016e, 0x7f03016f, 0x7f0301a8, 0x7f0301a9, 0x7f0301aa, 0x7f0301b0, 0x7f0301b2, 0x7f0301b9, 0x7f0301ba, 0x7f0301bb, 0x7f0301bc, 0x7f0301dc, 0x7f0301dd, 0x7f0301de, 0x7f0301df, 0x7f0301ec, 0x7f0301ed, 0x7f030203, 0x7f03022a, 0x7f03022b, 0x7f03022c, 0x7f03022d, 0x7f03022f, 0x7f030230, 0x7f030231, 0x7f030232, 0x7f030235, 0x7f030236, 0x7f030250, 0x7f030251, 0x7f030252, 0x7f030253, 0x7f030263, 0x7f030265, 0x7f030266, 0x7f030267, 0x7f030268, 0x7f030269, 0x7f03026a, 0x7f03026b, 0x7f03026c, 0x7f03026d, 0x7f03026e };
         public static final int AppCompatTheme_android_windowIsFloating = 0;
         public static final int AppCompatTheme_android_windowAnimationStyle = 1;
         public static final int AppCompatTheme_actionBarDivider = 2;
@@ -1527,7 +1527,7 @@ public final class R {
         public static final int[] RecycleListView = { 0x7f0301a4, 0x7f0301a7 };
         public static final int RecycleListView_paddingBottomNoButtons = 0;
         public static final int RecycleListView_paddingTopNoTitle = 1;
-        public static final int[] SearchView = { 0x10100da, 0x101011f, 0x1010220, 0x1010264, 0x7f030087, 0x7f0300a0, 0x7f0300b9, 0x7f0300f2, 0x7f030109, 0x7f030124, 0x7f0301b7, 0x7f0301b8, 0x7f0301da, 0x7f0301db, 0x7f0301fb, 0x7f030200, 0x7f030263 };
+        public static final int[] SearchView = { 0x10100da, 0x101011f, 0x1010220, 0x1010264, 0x7f030087, 0x7f0300a0, 0x7f0300b9, 0x7f0300f2, 0x7f030109, 0x7f030124, 0x7f0301b7, 0x7f0301b8, 0x7f0301da, 0x7f0301db, 0x7f0301fb, 0x7f030200, 0x7f030264 };
         public static final int SearchView_android_focusable = 0;
         public static final int SearchView_android_maxWidth = 1;
         public static final int SearchView_android_inputType = 2;

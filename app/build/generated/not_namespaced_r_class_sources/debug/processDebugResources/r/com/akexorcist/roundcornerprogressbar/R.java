@@ -56,9 +56,9 @@ public final class R {
     public static final class layout {
         private layout() {}
 
-        public static final int layout_icon_round_corner_progress_bar = 0x7f0b0031;
-        public static final int layout_round_corner_progress_bar = 0x7f0b0032;
-        public static final int layout_text_round_corner_progress_bar = 0x7f0b0033;
+        public static final int layout_icon_round_corner_progress_bar = 0x7f0b0032;
+        public static final int layout_round_corner_progress_bar = 0x7f0b0033;
+        public static final int layout_text_round_corner_progress_bar = 0x7f0b0034;
     }
     public static final class mipmap {
         private mipmap() {}

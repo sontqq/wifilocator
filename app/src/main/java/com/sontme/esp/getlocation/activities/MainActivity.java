@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         if (BackgroundService.latitude != null) {
             aplist(getBaseContext(), Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.longitude));
         }
-        try {
+        /*try {
             showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
                     + "\nLast Change: " + BackgroundService.time
                     + "\nDistance: " + BackgroundService.distance + " meters"
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     + "\nAccuracy: " + BackgroundService.accuracy + " meters");
         } catch (Exception e) {
             Log.d("NOTIF EXCEPTION: ", e.toString());
-        }
+        }*/
     }
 
     public DrawerLayout dl;
@@ -346,21 +346,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         adminPermission();
         requestAppPermissions();
 
-
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
-        Thread th = new Thread(){
-            public void run(){
-                getApplicationContext().bindService(
-                        new Intent(MainActivity.this, BackgroundService.class),
-                        mConnection,
-                        BIND_AUTO_CREATE
-                );
-            }
-        };
-        th.start();
-
+        getApplicationContext().bindService(
+                new Intent(MainActivity.this, BackgroundService.class),
+                mConnection,
+                BIND_AUTO_CREATE
+        );
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -671,27 +664,26 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         Thread th3 = new Thread() {
             public void run() {
-                startService(new Intent(MainActivity.this, BackgroundService.class));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForegroundService(new Intent(MainActivity.this, BackgroundService.class));
+                    getApplicationContext().bindService(
+                            new Intent(MainActivity.this, BackgroundService.class),
+                            mConnection,
+                            BIND_AUTO_CREATE
+                    );
+
+                } else {
+                    //startService(new Intent(MainActivity.this, BackgroundService.class));
+                }
             }
         };
         th3.start();
+        //startService(new Intent(MainActivity.this, BackgroundService.class));
     }
 
     @Override
     public void onStop() {
         super.onStop();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        boolean result = false;
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            result = true;
-        switch (requestCode) {
-            case 101:
-                if (result) Log.d("GOOGLE_X", "Permission GET_ACCOUNTS granted");
-                break;
-        }
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
@@ -1242,6 +1234,17 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     private void requestAppPermissions() {
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+            //return;
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
+
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }

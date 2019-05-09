@@ -3,18 +3,19 @@ package com.sontme.esp.getlocation;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -24,7 +25,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.TrafficStats;
+import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
@@ -38,7 +39,6 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -49,10 +49,6 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
 import com.crashlytics.android.Crashlytics;
-import com.koushikdutta.async.http.server.AsyncHttpServer;
-import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
-import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
-import com.koushikdutta.async.http.server.HttpServerRequestCallback;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -81,7 +77,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import io.fabric.sdk.android.Fabric;
-import okhttp3.WebSocket;
 
 public class BackgroundService extends Service implements GpsStatus.Listener {
     //region GLOBAL / LOCAL VARIABLES
@@ -183,7 +178,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
                 Log.d("ALARM_SERVICE_", "ON");
             } else if (intent.getStringExtra("alarm") == "off") {
-                locationManager.removeUpdates(locationListener);
+                //locationManager.removeUpdates(locationListener);
                 Log.d("ALARM_SERVICE_", "OFF");
             }
         }
@@ -191,195 +186,234 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public void onCreate() {
-        Toast.makeText(getBaseContext(), "Service started 2", Toast.LENGTH_SHORT).show();
-        Fabric.with(this, new Crashlytics());
-        logUser();
+        try {
+            showOngoing();
 
-        AndroidNetworking.initialize(getApplicationContext());
-
-        registerReceiver(broadcastReceiver, new IntentFilter());
-
-        mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mService.addGpsStatusListener(this);
-
-        AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
-        Account[] list = manager.getAccounts();
-        String acc = "no";
-        for (Account s : list) {
-            acc = String.valueOf(s.name);
-        }
-        if (acc.length() > 3) {
-            DEVICE_ACCOUNT = acc;
-        } else {
-            DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                    Settings.Secure.ANDROID_ID);
-        }
-        Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread thread, Throwable ex) {
-                Intent mStartActivity = new Intent(getBaseContext(), BackgroundService.class);
-                int mPendingIntentId = 123456;
-                PendingIntent mPendingIntent = PendingIntent.getActivity(getBaseContext(), mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-                System.exit(0);
+            Fabric.with(this, new Crashlytics());
+            logUser();
+            AndroidNetworking.initialize(getApplicationContext());
+            turnGPSOn();
+            registerReceiver(broadcastReceiver, new IntentFilter());
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
             }
-        };
-        Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Notification.Builder builder = new Notification.Builder(this, "wifilocatorservice")
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("WiFi Locator Service started")
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(1, notification);
-        } else {
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                    .setContentTitle(getString(R.string.app_name))
-                    .setContentText("WiFi Locator Service started")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setAutoCancel(true);
-            Notification notification = builder.build();
-            startForeground(1, notification);
-        }
-        //region HTTP
-        AsyncHttpServer server = new AsyncHttpServer();
-        List<WebSocket> _sockets = new ArrayList<WebSocket>();
-        server.get("/", new HttpServerRequestCallback() {
-            @Override
-            public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
-                String tosend = "";
-                String os = System.getProperty("os.version");
-                String sdk = android.os.Build.VERSION.SDK;
-                String device = android.os.Build.DEVICE;
-                String model = android.os.Build.MODEL;
-                String prod = android.os.Build.PRODUCT;
-                String serviceName = Context.TELEPHONY_SERVICE;
-                TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
-                String IMEI, IMSI;
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+            mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            mService.addGpsStatusListener(this);
+            AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+            Account[] list = manager.getAccounts();
+            String acc = "no";
+            for (Account s : list) {
+                acc = String.valueOf(s.name);
+            }
+            if (acc.length() > 3) {
+                DEVICE_ACCOUNT = acc;
+            } else {
+                DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                        Settings.Secure.ANDROID_ID);
+            }
+            Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
+            Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
+                @Override
+                public void uncaughtException(Thread thread, Throwable ex) {
+                    Intent mStartActivity = new Intent(getBaseContext(), BackgroundService.class);
+                    int mPendingIntentId = 123456;
+                    PendingIntent mPendingIntent = PendingIntent.getActivity(getBaseContext(), mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                    AlarmManager mgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+                    mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                    System.exit(0);
                 }
-                IMEI = m_telephonyManager.getDeviceId();
-                IMSI = m_telephonyManager.getSubscriberId();
-                String osf = android.os.Build.VERSION.RELEASE;
-                long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
-                long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
+            };
+            Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
 
-                ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
-                String stat = "";
-                for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
-                    long received = TrafficStats.getUidRxBytes(runningApp.uid);
-                    long sent = TrafficStats.getUidTxBytes(runningApp.uid);
-                    stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
-                    Log.d("NETSTAT", stat);
+
+            //region HTTP
+            /*
+            AsyncHttpServer server = new AsyncHttpServer();
+            List<WebSocket> _sockets = new ArrayList<WebSocket>();
+            server.get("/", new HttpServerRequestCallback() {
+                @Override
+                public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
+                    String tosend = "";
+                    String os = System.getProperty("os.version");
+                    String sdk = android.os.Build.VERSION.SDK;
+                    String device = android.os.Build.DEVICE;
+                    String model = android.os.Build.MODEL;
+                    String prod = android.os.Build.PRODUCT;
+                    String serviceName = Context.TELEPHONY_SERVICE;
+                    TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
+                    String IMEI, IMSI;
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    IMEI = m_telephonyManager.getDeviceId();
+                    IMSI = m_telephonyManager.getSubscriberId();
+                    String osf = android.os.Build.VERSION.RELEASE;
+                    long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
+                    long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
+
+                    ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+                    List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
+                    String stat = "";
+                    for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
+                        long received = TrafficStats.getUidRxBytes(runningApp.uid);
+                        long sent = TrafficStats.getUidTxBytes(runningApp.uid);
+                        stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
+                        Log.d("NETSTAT", stat);
+                    }
+                    tosend = request.toString();
+                    tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
+                    tosend = tosend + "<br>ID: " + Build.ID;
+                    tosend = tosend + "<br>User: " + Build.USER;
+                    tosend = tosend + "<br>Host: " + Build.HOST;
+                    tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
+                    tosend = tosend + "<br>Board: " + Build.BOARD;
+                    tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
+                    tosend = tosend + "<br>" + stat;
+                    response.send(tosend);
+                    //Toast.MakeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
                 }
-                tosend = request.toString();
-                tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
-                tosend = tosend + "<br>ID: " + Build.ID;
-                tosend = tosend + "<br>User: " + Build.USER;
-                tosend = tosend + "<br>Host: " + Build.HOST;
-                tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
-                tosend = tosend + "<br>Board: " + Build.BOARD;
-                tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
-                tosend = tosend + "<br>" + stat;
-                response.send(tosend);
-                //Toast.MakeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
-            }
-        });
-        server.listen(8888);
-        //endregion
-        Calendar rightNow = Calendar.getInstance();
-        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
-        int min = rightNow.get(Calendar.MINUTE);
+            });
+            server.listen(8888);
+            */
+            //endregion
+            Calendar rightNow = Calendar.getInstance();
+            int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+            int min = rightNow.get(Calendar.MINUTE);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        mCountDownTimer = new CountDownTimer(10000, 10000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
+            mCountDownTimer = new CountDownTimer(10000, 10000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                }
 
-            @Override
-            public void onFinish() {
-                if (hour > 5 && hour < 23) {
-                    Log.d("TIMER_", "registered");
-                    UPLOAD_NIGHT = false;
+                @Override
+                public void onFinish() {
+                    if (hour > 5 && hour < 23) {
+                        Log.d("TIMER_", "registered");
+                        UPLOAD_NIGHT = false;
 
-                    AndroidNetworking.get("https://sont.sytes.net/wifilocator/upload_limit.php")
-                            .setTag("upload_limit")
-                            .addQueryParameter("source", googleAccount)
-                            .setPriority(Priority.LOW)
-                            .build()
-                            .getAsString(new StringRequestListener() {
-                                @Override
-                                public void onResponse(String response) {
-                                    Map<String, String> config = new HashMap<String, String>();
-                                    if (NumberUtils.isNumber(response.trim())) {
-                                        //UPLOAD_SIZE_LIMIT = Integer.valueOf(response.trim());
-                                    } else {
-                                        String lines[] = response.split("\n");
-                                        for (String line : lines) {
-                                            String key = line.split("=")[0];
-                                            String value = line.split("=")[1];
-                                            config.put(key, value);
-                                        }
-                                        Iterator iterator = config.keySet().iterator();
-                                        while (iterator.hasNext()) {
-                                            String key = (String) iterator.next();
-                                            String value = config.get(key);
-
-                                            if (key.contains("upload_limit")) {
-                                                UPLOAD_SIZE_LIMIT = Integer.valueOf(value);
+                        AndroidNetworking.get("https://sont.sytes.net/wifilocator/upload_limit.php")
+                                .setTag("upload_limit")
+                                .addQueryParameter("source", googleAccount)
+                                .setPriority(Priority.LOW)
+                                .build()
+                                .getAsString(new StringRequestListener() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Map<String, String> config = new HashMap<String, String>();
+                                        if (NumberUtils.isNumber(response.trim())) {
+                                            //UPLOAD_SIZE_LIMIT = Integer.valueOf(response.trim());
+                                        } else {
+                                            String lines[] = response.split("\n");
+                                            for (String line : lines) {
+                                                String key = line.split("=")[0];
+                                                String value = line.split("=")[1];
+                                                config.put(key, value);
                                             }
-                                            if (key == "upload_3g")
-                                                if (value == "yes")
-                                                    UPLOAD_3G = true;
-                                            if (value == "no")
-                                                UPLOAD_3G = false;
-                                            if (key == "upload_night")
-                                                if (value == "yes")
-                                                    UPLOAD_NIGHT = true;
-                                            if (value == "no")
-                                                UPLOAD_NIGHT = false;
+                                            Iterator iterator = config.keySet().iterator();
+                                            while (iterator.hasNext()) {
+                                                String key = (String) iterator.next();
+                                                String value = config.get(key);
+
+                                                if (key.contains("upload_limit")) {
+                                                    UPLOAD_SIZE_LIMIT = Integer.valueOf(value);
+                                                }
+                                                if (key == "upload_3g")
+                                                    if (value == "yes")
+                                                        UPLOAD_3G = true;
+                                                if (value == "no")
+                                                    UPLOAD_3G = false;
+                                                if (key == "upload_night")
+                                                    if (value == "yes")
+                                                        UPLOAD_NIGHT = true;
+                                                if (value == "no")
+                                                    UPLOAD_NIGHT = false;
 
 
+                                            }
                                         }
                                     }
-                                }
 
-                                @Override
-                                public void onError(ANError anError) {
-                                    Log.d("UPLOAD_LIMIT_", "HTTP_ERROR");
-                                }
-                            });
-                } else {
-                    Log.d("TIMER_", "removed");
-                    UPLOAD_NIGHT = true;
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Log.d("UPLOAD_LIMIT_", "HTTP_ERROR");
+                                    }
+                                });
+                    } else {
+                        Log.d("TIMER_", "removed");
+                        UPLOAD_NIGHT = true;
+                    }
+                    mCountDownTimer.cancel();
+                    mCountDownTimer.start();
                 }
-                mCountDownTimer.cancel();
-                mCountDownTimer.start();
-            }
-        };
-        mCountDownTimer.start();
+            };
+            mCountDownTimer.start();
 
-        alarmMgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, Receiver.class);
-        intent.putExtra("alarm", "run");
-        alarmIntent = PendingIntent.getBroadcast(getBaseContext(), 0, intent, 0);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 06);
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, alarmIntent);
-        startUpdatesGPS();
+            alarmMgr = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(this, Receiver.class);
+            intent.putExtra("alarm", "run");
+            alarmIntent = PendingIntent.getBroadcast(getBaseContext(), 0, intent, 0);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 06);
+            alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, alarmIntent);
+            startUpdatesGPS();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void showNotification(Context context, String title, String body, Intent intent) {
+
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
+        String[] det = body.split("\\s+");
+        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + count);
+        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
+        contentView.setTextViewText(R.id.notif_text2, det[6]);
+        contentView.setTextViewText(R.id.notif_text3, lastSSID);
+        contentView.setTextViewText(R.id.notif_lat, latitude);
+        contentView.setTextViewText(R.id.notif_long, longitude);
+        contentView.setTextViewText(R.id.notif_add, "Address: " + address);
+        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(GpsInView) + "_" + String.valueOf(GpsInUse));
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText(body);
+        bigText.setBigContentTitle(title);
+        bigText.setSummaryText("Current Status");
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        int notificationId = 0;
+        String channelId = "0";
+        String channelName = "0";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.computer_low)
+                .setContent(contentView)
+                .setStyle(bigText)
+                .setGroup("wifi")
+                .setNumber(1)
+                .setWhen(System.currentTimeMillis());
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                0,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        notificationManager.notify(notificationId, mBuilder.build());
 
     }
 
@@ -459,13 +493,26 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     }
 
+    private void turnGPSOn() {
+        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (!provider.contains("gps")) { //if gps is disabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            sendBroadcast(poke);
+        }
+    }
+
     public void startUpdatesGPS() {
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListenerr = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                //Toast.makeText(getBaseContext(), "changed", Toast.LENGTH_SHORT).show();
                 mlocation = location;
-                Log.d("(service) Location Changes", location.toString());
+                //Log.d("(service) Location Changes", location.toString());
                 GpsInView = location.getExtras().getInt("satellites");
                 LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -485,7 +532,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-                Log.d("Status Changed", String.valueOf(status));
+                Log.d("(service) Status Changed", String.valueOf(status));
 //                //Toast.MakeText(getBaseContext(), "GPS Status Changed: " + status, Toast.LENGTH_SHORT).show();
             }
 
@@ -496,7 +543,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
             @Override
             public void onProviderDisabled(String provider) {
-                Log.d("Provider Disabled", provider);
+                Log.d("(service )Provider Disabled", provider);
             }
         };
 
@@ -513,9 +560,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         // Now create a location manager
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+            //return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListenerr);
+        //locationManager.requestLocationUpdates(locationManager.NETWORK_PROVIDER, 0, 0, locationListenerr);
+        //Log.d("(service)", "3");
     }
 
     public void logUser() {
@@ -595,150 +644,151 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public void queryLocation(Location LocRes) {
-        Toast.makeText(getBaseContext(), "query()", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(), "query()", Toast.LENGTH_SHORT).show();
         //Thread thread = new Thread() {
         // public void run() {
-                if (UPLOAD_NIGHT == false) {
-                    // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
-                    File f;
-                    String deviceMan = android.os.Build.MANUFACTURER;
-                    if (deviceMan.equalsIgnoreCase("huawei")) {
-                        f = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
-                    } else {
-                        f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                    }
-                    Log.d("csv_", String.valueOf(f.getParent()));
-                    Log.d("UPLOAD_", "CHECK_" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT) + String.valueOf(UPLOAD_SIZE_LIMIT));
-                    if (f.length() / 1024 >= UPLOAD_SIZE_LIMIT) {
-                        Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT));
-                        if (isuploading == false) {
-                            Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
-                            if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
-                                Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
-                                //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
-                                uploadProgress(0, 0, 0);
-                                isuploading = true;
-                                zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
-                                File zip = new File(f.getParent() + "/wifilocator_database.zip");
-                                AndroidNetworking.upload("https://sont.sytes.net/wifilocator/upload.php")
-                                        .addMultipartFile("uploaded_file", zip)
-                                        .addMultipartParameter("source", DEVICE_ACCOUNT) // DEVICE_ACCOUNT
-                                        .setTag("background_auto_upload")
-                                        .setPriority(Priority.IMMEDIATE)
-                                        .setExecutor(Executors.newSingleThreadExecutor())
-                                        .build()
-                                        .setUploadProgressListener(new UploadProgressListener() {
-                                            @Override
-                                            public void onProgress(long bytesUploaded, long totalBytes) {
-                                                int prog = (int) ((bytesUploaded / totalBytes) * 100);
-                                                Log.d("FELTOLTES_", "prog: " + String.valueOf(prog));
-                                                Log.d("FELTOLTES_", "progress left: " + String.valueOf(totalBytes - bytesUploaded));
-                                                if (prog == 100) {
-                                                    uploadProgress(100, totalBytes, totalBytes);
-                                                } else {
-                                                    uploadProgress(prog, bytesUploaded, totalBytes);
-                                                }
-                                            }
-                                        })
-                                        .getAsString(new StringRequestListener() {
-                                            @Override
-                                            public void onResponse(String response) {
-                                                isuploading = false;
-                                                Log.d("FELTOLTES_resp_", String.valueOf(response));
-                                                uploadProgress(100);
-                                                uploaded++;
+        if (UPLOAD_NIGHT == false) {
+            // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
+            File f;
+            String deviceMan = android.os.Build.MANUFACTURER;
+            if (deviceMan.equalsIgnoreCase("huawei")) {
+                f = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
+            } else {
+                f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+            }
+            Log.d("csv_", String.valueOf(f.getParent()));
+            Log.d("UPLOAD_", "CHECK_" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT) + String.valueOf(UPLOAD_SIZE_LIMIT));
+            if (f.length() / 1024 >= UPLOAD_SIZE_LIMIT) {
+                Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT));
+                if (isuploading == false) {
+                    Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
+                    if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
+                        Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
+                        //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
+                        uploadProgress(0, 0, 0);
+                        isuploading = true;
+                        zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
+                        File zip = new File(f.getParent() + "/wifilocator_database.zip");
+                        AndroidNetworking.upload("https://sont.sytes.net/wifilocator/upload.php")
+                                .addMultipartFile("uploaded_file", zip)
+                                .addMultipartParameter("source", DEVICE_ACCOUNT) // DEVICE_ACCOUNT
+                                .setTag("background_auto_upload")
+                                .setPriority(Priority.IMMEDIATE)
+                                .setExecutor(Executors.newSingleThreadExecutor())
+                                .build()
+                                .setUploadProgressListener(new UploadProgressListener() {
+                                    @Override
+                                    public void onProgress(long bytesUploaded, long totalBytes) {
+                                        int prog = (int) ((bytesUploaded / totalBytes) * 100);
+                                        Log.d("FELTOLTES_", "prog: " + String.valueOf(prog));
+                                        Log.d("FELTOLTES_", "progress left: " + String.valueOf(totalBytes - bytesUploaded));
+                                        if (prog == 100) {
+                                            uploadProgress(100, totalBytes, totalBytes);
+                                        } else {
+                                            uploadProgress(prog, bytesUploaded, totalBytes);
+                                        }
+                                    }
+                                })
+                                .getAsString(new StringRequestListener() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        isuploading = false;
+                                        Log.d("FELTOLTES_resp_", String.valueOf(response));
+                                        uploadProgress(100);
+                                        uploaded++;
 
-                                                try {
-                                                    File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                                                    f2.delete();
-                                                    deleteFile("/storage/emulated/0/Documents/wifilocator_database.csv");
-                                                    if (f2.exists()) {
-                                                        f2.getCanonicalFile().delete();
-                                                    }
-                                                    if (f2.exists()) {
-                                                        getBaseContext().deleteFile(f2.getName());
-                                                        getApplicationContext().deleteFile(f2.getName());
-                                                    }
-                                                    if (f2.exists()) {
-                                                        f2.getAbsoluteFile().delete();
-                                                    }
-                                                    if (f2.exists()) {
-                                                        Log.d("DELETE_", "Could not delete file");
-                                                    } else {
-                                                        Log.d("DELETE_", "File is removed or couldnt remove");
-                                                    }
-                                                } catch (Exception e) {
-                                                    Log.d("csv_", e.toString());
-                                                }
+                                        try {
+                                            File f2 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                                            f2.delete();
+                                            deleteFile("/storage/emulated/0/Documents/wifilocator_database.csv");
+                                            if (f2.exists()) {
+                                                f2.getCanonicalFile().delete();
                                             }
-
-                                            @Override
-                                            public void onError(ANError anError) {
-                                                isuploading = false;
-                                                uploadProgress(0);
-                                                Log.d("FELTOLTES_1_", String.valueOf(anError.getResponse()));
-                                                Log.d("FELTOLTES_2_", String.valueOf(anError.getErrorBody()));
-                                                Log.d("FELTOLTES_3_", String.valueOf(anError.getErrorDetail()));
-                                                Log.d("FELTOLTES_4_", String.valueOf(anError.getErrorCode()));
+                                            if (f2.exists()) {
+                                                getBaseContext().deleteFile(f2.getName());
+                                                getApplicationContext().deleteFile(f2.getName());
                                             }
-                                        });
-                                isuploading = false;
+                                            if (f2.exists()) {
+                                                f2.getAbsoluteFile().delete();
+                                            }
+                                            if (f2.exists()) {
+                                                Log.d("DELETE_", "Could not delete file");
+                                            } else {
+                                                Log.d("DELETE_", "File is removed or couldnt remove");
+                                            }
+                                        } catch (Exception e) {
+                                            Log.d("csv_", e.toString());
+                                        }
+                                    }
 
-                            } else {
-                                // wanna upload but no wifi
-                            }
-                        }
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        isuploading = false;
+                                        uploadProgress(0);
+                                        Log.d("FELTOLTES_1_", String.valueOf(anError.getResponse()));
+                                        Log.d("FELTOLTES_2_", String.valueOf(anError.getErrorBody()));
+                                        Log.d("FELTOLTES_3_", String.valueOf(anError.getErrorDetail()));
+                                        Log.d("FELTOLTES_4_", String.valueOf(anError.getErrorCode()));
+                                    }
+                                });
                         isuploading = false;
+
                     } else {
-                        isuploading = false;
-                    }
-
-                    if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
-                        try {
-                            accuracy = String.valueOf(LocRes.getAccuracy());
-                            latitude = String.valueOf(LocRes.getLatitude());
-                            longitude = String.valueOf(LocRes.getLongitude());
-                            speed = String.valueOf(round(mpsTokmh(LocRes.getSpeed()), 2));
-                            altitude = String.valueOf(LocRes.getAltitude());
-                            bearing = String.valueOf(LocRes.getBearing());
-                            time = String.valueOf(convertTime(LocRes.getTime()));
-                            address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
-                            provider = LocRes.getProvider();
-                            distance = String.valueOf(getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
-                        } catch (Exception e) {
-                            Log.d("queryLocation()_", e.toString());
-                        }
-                    }
-                    try {
-                        if (Double.valueOf(latitude) != 0 && Double.valueOf(longitude) != 0) {
-                            count++;
-                            if (count == 1) {
-                                // START POSITION (Activity/Program start)
-                                initLat = latitude;
-                                initLong = longitude;
-                            }
-                        }
-                    } catch (Exception e) {
-                        Log.d("queryLocation()_2_", e.toString());
-                    }
-
-                    if (latitude != null) {
-                        aplist(getBaseContext(), Double.valueOf(latitude), Double.valueOf(longitude));
-                    }
-                    try {
-                        showNotif("WIFI Locator", "Count: " + String.valueOf(count) + " (Service)"
-                                + "\nLast Change: " + time
-                                + "\nDistance: " + distance + " meters"
-                                + "\nLongitude: " + longitude
-                                + "\nLatitude: " + latitude
-                                + "\nAddress: " + address
-                                + "\nProvider: " + provider
-                                + "\nSpeed: " + String.valueOf(round(mpsTokmh(Double.valueOf(speed)), 2)) + " km/h"
-                                + "\nAccuracy: " + accuracy + " meters");
-                    } catch (Exception e) {
-                        Log.d("NOTIF EXCEPTION: ", e.toString());
+                        // wanna upload but no wifi
                     }
                 }
+                isuploading = false;
+            } else {
+                isuploading = false;
+            }
+
+            if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
+                try {
+                    accuracy = String.valueOf(LocRes.getAccuracy());
+                    latitude = String.valueOf(LocRes.getLatitude());
+                    longitude = String.valueOf(LocRes.getLongitude());
+                    speed = String.valueOf(round(mpsTokmh(LocRes.getSpeed()), 2));
+                    altitude = String.valueOf(LocRes.getAltitude());
+                    bearing = String.valueOf(LocRes.getBearing());
+                    time = String.valueOf(convertTime(LocRes.getTime()));
+                    address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                    provider = LocRes.getProvider();
+                    distance = String.valueOf(getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
+                } catch (Exception e) {
+                    Log.d("queryLocation()_", e.toString());
+                }
+            }
+            try {
+                if (Double.valueOf(latitude) != 0 && Double.valueOf(longitude) != 0) {
+                    count++;
+                    if (count == 1) {
+                        // START POSITION (Activity/Program start)
+                        initLat = latitude;
+                        initLong = longitude;
+                    }
+                }
+            } catch (Exception e) {
+                Log.d("queryLocation()_2_", e.toString());
+            }
+
+            if (latitude != null) {
+                aplist(getBaseContext(), Double.valueOf(latitude), Double.valueOf(longitude));
+            }
+            try {
+                Intent in = new Intent();
+                showNotification(getApplicationContext(), "DETAILS", "Count: " + String.valueOf(count) + " (Service)"
+                        + "\nLast Change: " + time
+                        + "\nDistance: " + distance + " meters"
+                        + "\nLongitude: " + longitude
+                        + "\nLatitude: " + latitude
+                        + "\nAddress: " + address
+                        + "\nProvider: " + provider
+                        + "\nSpeed: " + String.valueOf(round(mpsTokmh(Double.valueOf(speed)), 2)) + " km/h"
+                        + "\nAccuracy: " + accuracy + " meters", in);
+            } catch (Exception e) {
+                Log.d("NOTIF EXCEPTION: ", e.toString());
+            }
+        }
 
     }
 
@@ -787,58 +837,58 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     public void aplist(final Context context, double lati, double longi) {
 //        Thread thread = new Thread() {
         //public void run() {
-                try {
-                    WifiManager wifiManager = (WifiManager) context.getApplicationContext()
-                            .getSystemService(Context.WIFI_SERVICE);
-                    List<ScanResult> scanResults = wifiManager.getScanResults();
-                    nearbyCount = String.valueOf(scanResults.size());
-                    int versionCode = BuildConfig.VERSION_CODE;
-                    for (ScanResult result : scanResults) {
-                        lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
-                        if (!uniqueAPS.contains(result.BSSID)) {
-                            uniqueAPS.add(result.BSSID);
-                        }
-                        //Log.d("WIFI_CAP_", result.capabilities);
-                        String enc = "notavailable";
-                        if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
-                            enc = "NONE";
-                        } else if (result.capabilities.contains("WEP")) {
-                            enc = "WEP";
-                        } else if (result.capabilities.contains("WPA")) {
-                            enc = "WPA";
-                        } else if (result.capabilities.contains("WPA2")) {
-                            enc = "WPA2";
-                        }
-
-                        String url = MainActivity.INSERT_URL;
-                        String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                        if (!macList_uniq.contains(result.BSSID)) {
-                            macList_uniq.add(result.BSSID);
-                            vibrate();
-                        }
-                        if (!urlList_uniq.contains(url + reqBody)) {
-                            urlList_uniq.add(url + reqBody);
-                            saveRecordHttp(url + reqBody);
-                            req_count++;
-                        } else {
-                            //Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
-                        }
-                        if (urlList_uniq.size() >= 5000) {
-                            urlList_uniq.clear();
-                        }
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        String time = sdf.format(new Date());
-                        String deviceMan = android.os.Build.MANUFACTURER;
-                        if (deviceMan.equalsIgnoreCase("huawei")) {
-                            cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
-                        } else {
-                            cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
-                        }
-                    }
-                } catch (
-                        Exception e) {
-                    Log.d("APP", "ERROR " + e.getMessage());
+        try {
+            WifiManager wifiManager = (WifiManager) context.getApplicationContext()
+                    .getSystemService(Context.WIFI_SERVICE);
+            List<ScanResult> scanResults = wifiManager.getScanResults();
+            nearbyCount = String.valueOf(scanResults.size());
+            int versionCode = BuildConfig.VERSION_CODE;
+            for (ScanResult result : scanResults) {
+                lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
+                if (!uniqueAPS.contains(result.BSSID)) {
+                    uniqueAPS.add(result.BSSID);
                 }
+                //Log.d("WIFI_CAP_", result.capabilities);
+                String enc = "notavailable";
+                if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
+                    enc = "NONE";
+                } else if (result.capabilities.contains("WEP")) {
+                    enc = "WEP";
+                } else if (result.capabilities.contains("WPA")) {
+                    enc = "WPA";
+                } else if (result.capabilities.contains("WPA2")) {
+                    enc = "WPA2";
+                }
+
+                String url = MainActivity.INSERT_URL;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                if (!macList_uniq.contains(result.BSSID)) {
+                    macList_uniq.add(result.BSSID);
+                    vibrate();
+                }
+                if (!urlList_uniq.contains(url + reqBody)) {
+                    urlList_uniq.add(url + reqBody);
+                    saveRecordHttp(url + reqBody);
+                    req_count++;
+                } else {
+                    //Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
+                }
+                if (urlList_uniq.size() >= 5000) {
+                    urlList_uniq.clear();
+                }
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String time = sdf.format(new Date());
+                String deviceMan = android.os.Build.MANUFACTURER;
+                if (deviceMan.equalsIgnoreCase("huawei")) {
+                    cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                } else {
+                    cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                }
+            }
+        } catch (
+                Exception e) {
+            Log.d("APP", "ERROR " + e.getMessage());
+        }
         // }
         //};
         //thread.start();
@@ -920,7 +970,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
         NotificationManager mNotificationManager =
                 (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
+        mNotificationManager.createNotificationChannel(new NotificationChannel("0", Title, NotificationManager.IMPORTANCE_DEFAULT));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("0",
                     Title,
@@ -975,19 +1025,69 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         return strAdd;
     }
 
+    public void showOngoing() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String NOTIFICATION_CHANNEL_ID = "new";
+            String channelName = "new";
+            NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+            chan.setLightColor(Color.BLUE);
+            chan.setShowBadge(true);
+            chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            assert manager != null;
+            manager.createNotificationChannel(chan);
+
+            NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+            bigText.setBigContentTitle("UP and Running");
+            bigText.bigText("Searching for WiFi networks");
+            bigText.setSummaryText("Current Status");
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+            Notification notification = notificationBuilder
+                    .setOngoing(true)
+                    //.setStyle(bigText)
+                    .setSmallIcon(R.drawable.search4)
+                    .setGroup("wifi")
+                    .setContentTitle("Running")
+                    .setSubText("Searching")
+                    .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
+                    .setCategory(Notification.CATEGORY_SERVICE)
+                    .setNumber(1)
+                    .build();
+            manager.notify(4, notification);
+            startForeground(3, notification);
+        }
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        showOngoing();
+        Log.d("service,location", "asd");
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        }
+        Log.d("service,location", "asd2");
+        Log.d("service,location", "asd3");
         isRunning = true;
         Toast.makeText(getBaseContext(), "Service started", Toast.LENGTH_SHORT).show();
+
+        onCreate();
         return START_STICKY;
         //return START_REDELIVER_INTENT;
     }
 
     @Override
     public void onDestroy() {
-        //Toast.MakeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service stopped_1", Toast.LENGTH_SHORT).show();
         isRunning = false;
         stopForeground(true);
+        String ns = Context.NOTIFICATION_SERVICE;
+        NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
+        for (int i = 0; i <= 10; i++) {
+            nMgr.cancel(i);
+            nMgr.cancelAll();
+            stopForeground(i);
+        }
     }
 
     public static boolean isRunning() {
@@ -996,12 +1096,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
 
     @Override
     public void onStart(Intent intent, int startid) {
-        //Toast.MakeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        //Toast.MakeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -1015,15 +1115,15 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
         }
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
-                //Toast.MakeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_STOPPED:
-                //Toast.MakeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_FIRST_FIX:
-                //Toast.MakeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
@@ -1072,6 +1172,15 @@ public class BackgroundService extends Service implements GpsStatus.Listener {
     }
 
     public static boolean checkPermissionLocation(Context c) {
+
+        if (ContextCompat.checkSelfPermission(c, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(c, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+        } else {
+            Toast.makeText(c, "perm error", Toast.LENGTH_LONG).show();
+        }
+
         return ContextCompat.checkSelfPermission(c, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="2830"
+    android:versionCode="3028"
     android:versionName="3.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="26"
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -41,6 +42,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -153,6 +155,22 @@
             android:name="com.sontme.esp.getlocation.BackgroundService"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name="com.allyants.notifyme.BootNotifyMe"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name="com.allyants.notifyme.ActionReceiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name="com.allyants.notifyme.DeletePendingIntent"
+            android:enabled="true"
+            android:exported="true" /> <!-- Needs to be explicitly declared on P+ -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity
             android:name="com.facebook.ads.AudienceNetworkActivity"
