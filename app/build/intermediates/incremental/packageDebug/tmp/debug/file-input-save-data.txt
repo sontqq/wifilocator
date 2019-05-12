@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat May 04 19:25:27 CEST 2019
+#Sun May 12 07:10:43 CEST 2019
 1.base=C\:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
 2.path=classes.dex
 0.baseType=DIRECTORY

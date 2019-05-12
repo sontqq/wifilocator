@@ -32,7 +32,7 @@ public class Receiver extends BroadcastReceiver {
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
             Intent serviceIntent = new Intent(context, BackgroundService.class);
             if (Build.VERSION.SDK_INT >= 26) {
-                context.startService(serviceIntent);
+                context.startForegroundService(serviceIntent);
             } else {
                 context.startService(serviceIntent);
             }

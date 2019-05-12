@@ -32,8 +32,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.johnpersano.supertoasts.library.Style;
-import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.R;
@@ -54,6 +52,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+//import com.github.johnpersano.supertoasts.library.Style;
+//import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 
 public class MapActivity extends AppCompatActivity implements GpsStatus.Listener {
 
@@ -174,12 +175,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
                     e.printStackTrace();
                 }
                 galleryAddPic();
-                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
-                superToast.setText("Image Saved!");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
+                Toast.makeText(getApplicationContext(), "Image saved", Toast.LENGTH_SHORT).show();
             }
         });
         NavigationView navigationView = findViewById(R.id.nv2);
@@ -276,12 +272,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         line.setOnClickListener(new Polyline.OnClickListener() {
             @Override
             public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
-                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
-                superToast.setText(polyline.getPoints().size() + " points tapped");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
+
                 return false;
             }
         });
@@ -327,13 +318,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker, MapView mapView) {
-                //Toast.makeText(getBaseContext(),"Marker count: "+mapView.getOverlays().size(),Toast.LENGTH_SHORT).show();
-                SuperActivityToast superToast = new SuperActivityToast(MapActivity.this);
-                superToast.setText("Marker count: "+mapView.getOverlays().size());
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
+                Toast.makeText(getApplicationContext(), "Marker count: " + mapView.getOverlays().size(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

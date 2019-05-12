@@ -40,8 +40,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.johnpersano.supertoasts.library.Style;
-import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.ApStrings;
@@ -425,22 +423,12 @@ public class NearbyActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
-                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-                superToast.setText("Retrying...");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_SHORT);
-                superToast.setTouchToDismiss(true);
-                //superToast.show();
+                Toast.makeText(getApplicationContext(), "Retrying", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRetry(int retryNo) {
-                SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-                superToast.setText("Retrying...");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_SHORT);
-                superToast.setTouchToDismiss(true);
-                //superToast.show();
+                Toast.makeText(getApplicationContext(), "Retrying", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -641,12 +629,7 @@ class CustomCluster extends RadiusMarkerClusterer {
         }
         Log.d("TAPI4: ", String.valueOf(Double.valueOf(BackgroundService.getLatitude())));
 
-        SuperActivityToast superToast = new SuperActivityToast(mapView.getContext());
-        superToast.setText(asd + " meters away from you");
-        superToast.setAnimations(Style.ANIMATIONS_SCALE);
-        superToast.setDuration(Style.DURATION_LONG);
-        superToast.setTouchToDismiss(true);
-        superToast.show();
+        Toast.makeText(ctx, asd + " meters", Toast.LENGTH_SHORT).show();
         return super.onSingleTapUp(e, mapView);
     }
 

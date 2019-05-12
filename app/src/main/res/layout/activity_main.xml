@@ -125,28 +125,25 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/firstlin"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/web_shape"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Today UPDATED"
-                    android:textAlignment="center" />
 
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/newchart"
+                <Switch
+                    android:id="@+id/switch1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:text="Update Charts" />
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/firstlin2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -156,21 +153,22 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Today NEW"
+                    android:text="Today UPDATED"
                     android:textAlignment="center" />
 
                 <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/newchart2"
+                    android:id="@+id/newchart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/firstlin3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/web_shape"
@@ -178,7 +176,30 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Today NEW"
+                    android:textAlignment="center" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/newchart2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstlin4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:text="Today Shares Ratio"
@@ -188,7 +209,7 @@
                 <com.github.mikephil.charting.charts.PieChart
                     android:id="@+id/piechart"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:layout_weight="1" />
 
 
@@ -196,7 +217,7 @@
 
 
             <LinearLayout
-                android:id="@+id/statfelirat"
+                android:id="@+id/firstlin5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
@@ -484,23 +505,6 @@
                         android:text="0" />
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/stat_lay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/web_shape"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txt_stat1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="STATISTICS" />
 
             </LinearLayout>
 

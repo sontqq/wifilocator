@@ -55,7 +55,10 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RemoteViews;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,11 +68,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
-import com.crashlytics.android.Crashlytics;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Duration;
-import com.github.johnpersano.supertoasts.library.Style;
-import com.github.johnpersano.supertoasts.library.SuperActivityToast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -112,9 +112,13 @@ import java.util.List;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
-import io.fabric.sdk.android.Fabric;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
+//import com.crashlytics.android.Crashlytics;
+//import com.github.johnpersano.supertoasts.library.Style;
+//import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+//import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
     //region DEFINING VARIABLES
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static TextView lati;
     public static TextView spd;
     public static TextView c;
+    public static Switch sw;
     public static TextView dst;
     public static Button start_srv;
     public static Button stop_srv;
@@ -259,11 +264,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         public void run() {
             try {
                 Log.d("TIMER_CHART_", "LEFUTOTT");
-
-                getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
-                getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
-                getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
-
+                if (sw.isChecked() == true) {
+                    getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                    getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                    getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                }
             } catch (Exception e) {
                 Log.d("TIMER_CHART_", e.toString());
             }
@@ -338,22 +343,27 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
+
+        LinearLayout lin2 = findViewById(R.id.firstlin2);
+        LinearLayout lin3 = findViewById(R.id.firstlin3);
+        LinearLayout lin4 = findViewById(R.id.firstlin4);
+        LinearLayout lin5 = findViewById(R.id.firstlin5);
+
+        lin2.setVisibility(LinearLayout.GONE);
+        lin3.setVisibility(LinearLayout.GONE);
+        lin4.setVisibility(LinearLayout.GONE);
+        lin5.setVisibility(LinearLayout.GONE);
 
         init();
         logUser();
         adminPermission();
         requestAppPermissions();
-
+/*
         Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-
-        getApplicationContext().bindService(
-                new Intent(MainActivity.this, BackgroundService.class),
-                mConnection,
-                BIND_AUTO_CREATE
-        );
+        */
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -438,12 +448,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         mPublisherAdView.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-                superToast.setText("Advertisement loaded");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
+                Toast.makeText(getApplicationContext(), "AD loaded", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -463,6 +468,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         lati = findViewById(R.id.lati);
         spd = findViewById(R.id.spd);
         dst = findViewById(R.id.dst);
+        sw = findViewById(R.id.switch1);
         start_srv = findViewById(R.id.srv);
         stop_srv = findViewById(R.id.stop_srv);
         exitb = findViewById(R.id.exitb);
@@ -475,13 +481,40 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         release_btn = findViewById(R.id.release_btn);
         Button blebtn1 = findViewById(R.id.blebtn1);
         Button blebtn2 = findViewById(R.id.blebtn2);
-        txt_stat1 = findViewById(R.id.txt_stat1);
+        // txt_stat1 = findViewById(R.id.txt_stat1);
         btn_upload_http = findViewById(R.id.btn_up_http);
 
         csv = findViewById(R.id.val_csv);
         zip = findViewById(R.id.val_zip);
 
         exitb.setBackgroundColor(Color.TRANSPARENT);
+
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    LinearLayout lin2 = findViewById(R.id.firstlin2);
+                    LinearLayout lin3 = findViewById(R.id.firstlin3);
+                    LinearLayout lin4 = findViewById(R.id.firstlin4);
+                    LinearLayout lin5 = findViewById(R.id.firstlin5);
+
+                    lin2.setVisibility(LinearLayout.VISIBLE);
+                    lin3.setVisibility(LinearLayout.VISIBLE);
+                    lin4.setVisibility(LinearLayout.VISIBLE);
+                    lin5.setVisibility(LinearLayout.VISIBLE);
+                } else {
+                    LinearLayout lin2 = findViewById(R.id.firstlin2);
+                    LinearLayout lin3 = findViewById(R.id.firstlin3);
+                    LinearLayout lin4 = findViewById(R.id.firstlin4);
+                    LinearLayout lin5 = findViewById(R.id.firstlin5);
+
+                    lin2.setVisibility(LinearLayout.GONE);
+                    lin3.setVisibility(LinearLayout.GONE);
+                    lin4.setVisibility(LinearLayout.GONE);
+                    lin5.setVisibility(LinearLayout.GONE);
+                }
+            }
+        });
 
         webview.clearCache(true);
         webview.clearHistory();
@@ -651,10 +684,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         Thread th2 = new Thread() {
             public void run() {
-                getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
-                getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
-                getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
-                getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
+                if (sw.isChecked() == true) {
+                    getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                    getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                    getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                    getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
+                }
             }
         };
         th2.start();
@@ -666,12 +701,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(new Intent(MainActivity.this, BackgroundService.class));
-                    getApplicationContext().bindService(
-                            new Intent(MainActivity.this, BackgroundService.class),
-                            mConnection,
-                            BIND_AUTO_CREATE
-                    );
-
+                    //startService(new Intent(MainActivity.this, BackgroundService.class));
+                    bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
                 } else {
                     //startService(new Intent(MainActivity.this, BackgroundService.class));
                 }
@@ -805,12 +836,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         public void run() {
                             Log.d("BLE_DEVICE_FOUND_", device.getName() + " _ " + device.getAddress() + " _ " + device.getBondState() + " _ " + device.getUuids());
                             BLEdevices.put(device.getName(), device.getAddress() + " UUID: " + device.getUuids());
-                            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-                            superToast.setText("BLE Device found: Name: " + device.getName() + " Address: " + device.getAddress() + " UUID: " + device.getUuids());
-                            superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                            superToast.setDuration(Style.DURATION_VERY_LONG);
-                            superToast.setTouchToDismiss(true);
-                            superToast.show();
                         }
                     });
                 }
@@ -933,31 +958,21 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     public void logUser() {
-        Crashlytics.setUserIdentifier("12345");
-        Crashlytics.setUserEmail("sont16@gmail.com");
-        Crashlytics.setUserName("wifilocatoruser");
+        //Crashlytics.setUserIdentifier("12345");
+        //Crashlytics.setUserEmail("sont16@gmail.com");
+        //Crashlytics.setUserName("wifilocatoruser");
     }
 
     public void init() {
         WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         // LOCATION PERMISSION CHECK IF NOT ASK FOR IT
         if (BackgroundService.checkPermissionLocation(getApplicationContext()) == false) {
-            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-            superToast.setText("Missing LOCATION PERMISSION");
-            superToast.setAnimations(Style.ANIMATIONS_SCALE);
-            superToast.setDuration(Style.DURATION_LONG);
-            superToast.setTouchToDismiss(true);
-            superToast.show();
+            Toast.makeText(getApplicationContext(), "Missing location permission", Toast.LENGTH_SHORT).show();
             requestPermissionLocation();
         }
         // TURN ON WIFI
         if (!wifi.isWifiEnabled()) {
-            SuperActivityToast superToast = new SuperActivityToast(MainActivity.this);
-            superToast.setText("Turning on WiFi");
-            superToast.setAnimations(Style.ANIMATIONS_SCALE);
-            superToast.setDuration(Style.DURATION_LONG);
-            superToast.setTouchToDismiss(true);
-            superToast.show();
+            Toast.makeText(getApplicationContext(), "Turning on WiFi", Toast.LENGTH_SHORT).show();
             wifi.setWifiEnabled(true);
         }
     }
@@ -1212,8 +1227,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String str = "";
                 str = new String(responseBody, StandardCharsets.UTF_8);
-                TextView stat = findViewById(R.id.txt_stat1);
-                stat.setText(str);
+                //TextView stat = findViewById(R.id.txt_stat1);
+                //stat.setText(str);
             }
 
             @Override
@@ -1224,8 +1239,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 if (retry_counter_2 < 20) {
-                    TextView stat = findViewById(R.id.txt_stat1);
-                    stat.setText("HTTP Error");
+                    //TextView stat = findViewById(R.id.txt_stat1);
+                    //stat.setText("HTTP Error");
                     getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
                     retry_counter_2++;
                 }

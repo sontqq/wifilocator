@@ -1273,9 +1273,6 @@ drawable search1
 drawable search2
 drawable search3
 drawable search4
-drawable selector_button_kitkat
-drawable selector_button_lollipop
-drawable selector_button_standard
 drawable sharp_add_black_36
 drawable sharp_remove_black_36
 drawable tooltip_frame_dark
@@ -1333,7 +1330,6 @@ id beginning
 id blebtn1
 id blebtn2
 id blocking
-id border
 id bottom
 id btn_export
 id btn_up_http
@@ -1342,7 +1338,6 @@ id bubble_image
 id bubble_moreinfo
 id bubble_subdescription
 id bubble_title
-id button
 id button6
 id buttonPanel
 id c
@@ -1377,7 +1372,6 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
-id divider
 id drawler
 id drawler2
 id drawler3
@@ -1397,6 +1391,11 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id firstlin
+id firstlin2
+id firstlin3
+id firstlin4
+id firstlin5
 id fixed
 id forever
 id ghost_view
@@ -1514,7 +1513,6 @@ id pimg
 id pin
 id placeholder
 id plinlay
-id progress_bar
 id progress_circular
 id progress_horizontal
 id prov
@@ -1575,8 +1573,6 @@ id ssid
 id standard
 id start
 id startService
-id stat_lay
-id statfelirat
 id statfelirat_belso1
 id statfelirat_belso2
 id status_bar_latest_event_content
@@ -1585,6 +1581,7 @@ id stop_srv
 id stretch
 id submenuarrow
 id submit_area
+id switch1
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1602,6 +1599,7 @@ id text_input_password_toggle
 id textinput_counter
 id textinput_error
 id textinput_helper_text
+id texttxt
 id time
 id title
 id titleDividerNoCustom
@@ -1630,7 +1628,6 @@ id txt_message
 id txt_prov
 id txt_service
 id txt_spd
-id txt_stat1
 id txt_succ
 id txt_uniq
 id txt_zip
@@ -1751,6 +1748,7 @@ layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header
 layout notif_lay
+layout notif_lay_up
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1773,10 +1771,6 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout style_dialog_header_icon
 layout style_dialog_header_title
-layout supertoast
-layout supertoast_button
-layout supertoast_progress_bar
-layout supertoast_progress_circle
 layout support_simple_spinner_dropdown_item
 layout wifi_widget
 menu navigation_menu

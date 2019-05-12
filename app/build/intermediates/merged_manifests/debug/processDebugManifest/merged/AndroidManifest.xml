@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="3028"
+    android:versionCode="3108"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -171,30 +172,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
-        <activity
-            android:name="com.facebook.ads.AudienceNetworkActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false" />
-        <activity
-            android:name="com.facebook.ads.internal.ipc.RemoteANActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false"
-            android:process=":adnw" />
-
-        <service
-            android:name="com.facebook.ads.internal.ipc.AdsProcessPriorityService"
-            android:exported="false" />
-        <service
-            android:name="com.facebook.ads.internal.ipc.AdsMessengerService"
-            android:exported="false"
-            android:process=":adnw" />
-
-        <provider
-            android:name="com.crashlytics.android.CrashlyticsInitProvider"
-            android:authorities="com.sontme.esp.getlocation.crashlyticsinitprovider"
-            android:exported="false"
-            android:initOrder="90" />
 
         <meta-data
             android:name="android.support.VERSION"
