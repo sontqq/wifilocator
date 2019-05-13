@@ -592,20 +592,20 @@ public final class R {
         public static final int abc_textfield_search_default_mtrl_alpha = 0x7f070058;
         public static final int abc_textfield_search_material = 0x7f070059;
         public static final int abc_vector_test = 0x7f07005a;
-        public static final int md_btn_selected = 0x7f070097;
-        public static final int md_btn_selected_dark = 0x7f070098;
-        public static final int md_btn_selector = 0x7f070099;
-        public static final int md_btn_selector_dark = 0x7f07009a;
-        public static final int md_btn_selector_ripple = 0x7f07009b;
-        public static final int md_btn_selector_ripple_dark = 0x7f07009c;
-        public static final int md_btn_shape = 0x7f07009d;
-        public static final int md_item_selected = 0x7f07009e;
-        public static final int md_item_selected_dark = 0x7f07009f;
-        public static final int md_nav_back = 0x7f0700a0;
-        public static final int md_selector = 0x7f0700a1;
-        public static final int md_selector_dark = 0x7f0700a2;
-        public static final int md_transparent = 0x7f0700a3;
-        public static final int notification_template_icon_bg = 0x7f0700b4;
+        public static final int md_btn_selected = 0x7f07009a;
+        public static final int md_btn_selected_dark = 0x7f07009b;
+        public static final int md_btn_selector = 0x7f07009c;
+        public static final int md_btn_selector_dark = 0x7f07009d;
+        public static final int md_btn_selector_ripple = 0x7f07009e;
+        public static final int md_btn_selector_ripple_dark = 0x7f07009f;
+        public static final int md_btn_shape = 0x7f0700a0;
+        public static final int md_item_selected = 0x7f0700a1;
+        public static final int md_item_selected_dark = 0x7f0700a2;
+        public static final int md_nav_back = 0x7f0700a3;
+        public static final int md_selector = 0x7f0700a4;
+        public static final int md_selector_dark = 0x7f0700a5;
+        public static final int md_transparent = 0x7f0700a6;
+        public static final int notification_template_icon_bg = 0x7f0700b7;
     }
     public static final class id {
         private id() {}

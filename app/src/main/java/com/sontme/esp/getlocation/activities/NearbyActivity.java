@@ -288,7 +288,18 @@ public class NearbyActivity extends AppCompatActivity {
                 map.getOverlays().clear();
                 map.invalidate();
                 int counter = 0;
-                Drawable pin = getResources().getDrawable(R.drawable.wifi4_25);
+
+                int height = 70;
+                int width = 70;
+                BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.drawable.mappinicon_min);
+                Bitmap b = bitmapdraw.getBitmap();
+                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                Drawable d = new BitmapDrawable(getResources(), smallMarker);
+
+                //Drawable pin = getResources().getDrawable(R.drawable.mappinicon_min_25);
+
+
+
                 InfoWindow pop = new PopUpWin(R.layout.popup, map);
 
                 for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
@@ -309,11 +320,8 @@ public class NearbyActivity extends AppCompatActivity {
                     m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker, MapView mapView) {
-
-
                             final int[] counter_ = {0};
                             Timer t = new Timer();
-
                             t.scheduleAtFixedRate(new TimerTask() {
                                                       @Override
                                                       public void run() {
@@ -334,7 +342,6 @@ public class NearbyActivity extends AppCompatActivity {
 
                             if (marker.isInfoWindowShown()) {
                                 marker.closeInfoWindow();
-
                             } else {
                                 marker.showInfoWindow();
                             }
@@ -345,7 +352,7 @@ public class NearbyActivity extends AppCompatActivity {
                     m.setSnippet(snippet);
                     m.setSubDescription(description);
                     m.setInfoWindow(pop);
-                    m.setIcon(pin);
+                    m.setIcon(d); // pin
                     m.setPosition(geo);
                     //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
                     //((CustomCluster) clusterer).animateMarkerDropping(m, map);
@@ -583,7 +590,6 @@ class CustomCluster extends RadiusMarkerClusterer {
             }
         };
     }
-
 
     public void animateMarkerDropping(final Marker marker, MapView map) {
         final Handler handler = new Handler();

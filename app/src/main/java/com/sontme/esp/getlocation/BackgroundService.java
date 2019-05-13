@@ -88,10 +88,6 @@ import java.util.zip.ZipOutputStream;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-//import com.crashlytics.android.Crashlytics;
-
-//import io.fabric.sdk.android.Fabric;
-
 public class BackgroundService extends Service implements GpsStatus.Listener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
     //region GLOBAL / LOCAL VARIABLES
@@ -175,7 +171,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     private static boolean isRunning;
 
     // FUSED GOOGLE API //
-    Location location;
+    //Location location;
     static GoogleApiClient googleApiClient;
     static LocationRequest locationRequest;
 
@@ -449,11 +445,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         int notificationId = 100;
         String channelId = "100";
         String channelName = "Uploadingdatabase";
-        int importance = NotificationManager.IMPORTANCE_HIGH;
+        int importance = NotificationManager.IMPORTANCE_NONE;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel mChannel = new NotificationChannel(
                     channelId, channelName, importance);
+            mChannel.setImportance(NotificationManager.IMPORTANCE_NONE);
+            mChannel.setShowBadge(true);
+
             notificationManager.createNotificationChannel(mChannel);
         }
         String detail = String.valueOf(prog);
@@ -1069,6 +1068,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             bigText.bigText("Searching for WiFi networks");
             bigText.setSummaryText("Current Status");
             */
+
+            Intent intent = new Intent(getApplicationContext(), BackgroundService.class);
+            PendingIntent pi = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+
             RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay_up);
             contentView.setTextViewText(R.id.texttxt, "Running");
 
@@ -1081,13 +1084,15 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                     .setContentTitle("Running")
                     .setContent(contentView)
                     .setSubText("Searching")
+                    .setContentIntent(pi)
                     .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
                     .setCategory(Notification.CATEGORY_SERVICE)
                     .setNumber(1)
                     .build();
-            manager.notify(4, notification);
+
+            startForeground(3, notification);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                startForeground(3, notification);
+                manager.notify(4, notification);
             }
         }
     }

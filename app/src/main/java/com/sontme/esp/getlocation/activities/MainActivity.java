@@ -1014,7 +1014,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         Map<Integer, Integer> values = new HashMap<Integer, Integer>();
                         Map<Integer, Integer> combined = new HashMap<Integer, Integer>(hours);
 
-
                         String str = response;
                         String lines[] = str.trim().split("\\r?\\n");
                         try {
@@ -1045,8 +1044,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         dataSet.setDrawValues(true);
                         dataSet.setValueTextSize(13);
                         dataSet.setValueFormatter(new DefaultValueFormatter(0));
-                        dataSet.setHighlightEnabled(true);
-                        dataSet.setDrawHighlightIndicators(true);
+                        dataSet.setHighlightEnabled(false);
+                        dataSet.setDrawHighlightIndicators(false);
                         dataSet.setColors(Color.parseColor(myColors[0]));
                         dataSet.setValueFormatter(new CustomFormatter());
                         LineData lineData = new LineData(dataSet);
@@ -1054,8 +1053,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         newchart.setDrawBorders(false);
                         newchart.getAxisRight().setDrawGridLines(false);
                         newchart.getAxisLeft().setDrawGridLines(false);
+
                         newchart.getXAxis().setDrawGridLines(false);
-                        newchart.getXAxis().setDrawLabels(false);
+                        newchart.getXAxis().setDrawLabels(true);
+
+
                         newchart.getDescription().setEnabled(false);
                         newchart.getLegend().setEnabled(false);
                         newchart.setScaleEnabled(false);
@@ -1117,8 +1119,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         dataSet.setDrawValues(true);
                         dataSet.setValueTextSize(13);
                         dataSet.setValueFormatter(new DefaultValueFormatter(0));
-                        dataSet.setHighlightEnabled(true);
-                        dataSet.setDrawHighlightIndicators(true);
+                        dataSet.setHighlightEnabled(false);
+                        dataSet.setDrawHighlightIndicators(false);
                         dataSet.setColors(Color.parseColor(myColors[0]));
                         dataSet.setValueFormatter(new CustomFormatter());
                         LineData lineData = new LineData(dataSet);
@@ -1126,8 +1128,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         newchart.setDrawBorders(false);
                         newchart.getAxisRight().setDrawGridLines(false);
                         newchart.getAxisLeft().setDrawGridLines(false);
+
                         newchart.getXAxis().setDrawGridLines(false);
-                        newchart.getXAxis().setDrawLabels(false);
+                        newchart.getXAxis().setDrawLabels(true);
+
                         newchart.getDescription().setEnabled(false);
                         newchart.getLegend().setEnabled(false);
                         newchart.setScaleEnabled(false);

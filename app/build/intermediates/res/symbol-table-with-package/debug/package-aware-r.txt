@@ -1220,6 +1220,9 @@ drawable list
 drawable mapicon
 drawable mapmark
 drawable mappin
+drawable mappinicon
+drawable mappinicon_min
+drawable mappinicon_min_25
 drawable marker_cluster
 drawable marker_default
 drawable marker_default_focused_base
