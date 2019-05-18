@@ -199,8 +199,12 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
         mapController.setCenter(startPoint);
+
+
         updateMap(map);
         drawPoint(map);
+
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

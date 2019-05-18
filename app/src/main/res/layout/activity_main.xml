@@ -133,12 +133,62 @@
                 android:background="@drawable/web_shape"
                 android:orientation="vertical">
 
-
                 <Switch
                     android:id="@+id/switch1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show Charts" />
+                    android:text="Show Updated" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstlin_sw2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show New" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstlin_sw3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show Share Ratio" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/firstlin_sw4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Show Statistics" />
 
             </LinearLayout>
 
@@ -156,7 +206,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Today UPDATED"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/newchart"
@@ -179,7 +230,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Today NEW"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/newchart2"
@@ -203,7 +255,8 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:text="Today Shares Ratio"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
 
                 <com.github.mikephil.charting.charts.PieChart
@@ -539,13 +592,13 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom|right|end"
+                    android:layout_gravity="bottom"
                     android:layout_weight="0"
                     android:src="@drawable/exiticon"
                     android:text="EXIT"
                     android:visibility="visible"
                     app:backgroundTint="@color/notifText"
-                    app:layout_anchorGravity="bottom|right|end" />
+                    app:layout_anchorGravity="bottom" />
             </android.support.design.widget.CoordinatorLayout>
 
             <LinearLayout

@@ -46,12 +46,12 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int iv_progress_icon = 0x7f080082;
-        public static final int layout_background = 0x7f080086;
-        public static final int layout_progress = 0x7f080087;
-        public static final int layout_progress_holder = 0x7f080088;
-        public static final int layout_secondary_progress = 0x7f080089;
-        public static final int tv_progress = 0x7f080142;
+        public static final int iv_progress_icon = 0x7f080087;
+        public static final int layout_background = 0x7f08008b;
+        public static final int layout_progress = 0x7f08008c;
+        public static final int layout_progress_holder = 0x7f08008d;
+        public static final int layout_secondary_progress = 0x7f08008e;
+        public static final int tv_progress = 0x7f08014a;
     }
     public static final class layout {
         private layout() {}

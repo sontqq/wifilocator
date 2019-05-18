@@ -170,6 +170,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     private static boolean isRunning;
 
+    public Location previousLocation = new Location(LocationManager.GPS_PROVIDER);
+    public static double sumOfTravelDistance = 0;
+
     // FUSED GOOGLE API //
     //Location location;
     static GoogleApiClient googleApiClient;
@@ -668,9 +671,29 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return lastPathComponent;
     }
 
+    public static int roundFloat(float f) {
+        int c = (int) ((f) + 0.5f);
+        float n = f + 0.5f;
+        return (n - c) % 2 == 0 ? (int) f : c;
+    }
     public void queryLocation(Location LocRes) {
+        try {
+            float[] distancee = new float[1];
+
+            Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
+            distancee[0] = roundFloat(distancee[0]);
+
+            if (distancee[0] >= 1 && distancee[0] <= 560000) {
+                sumOfTravelDistance = sumOfTravelDistance + distancee[0];
+            }
+            Log.d("DISTANCE_", String.valueOf(distancee[0]) + " meters");
+            Log.d("DISTANCE_", String.valueOf(sumOfTravelDistance) + " meters");
+            previousLocation = LocRes;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Log.d("QUERY_LOCATION: ", "Source: " + LocRes.getProvider());
-        //Toast.makeText(getBaseContext(), "query()", Toast.LENGTH_SHORT).show();
+
         //Thread thread = new Thread() {
         // public void run() {
         if (UPLOAD_NIGHT == false) {

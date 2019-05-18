@@ -43,7 +43,7 @@ public class HandleLocations {
         this.lon1 = longitude;
     }
     //endregion
-
+    // UNUSED YET - need some rework
     public float getDistance(String la1, String lo1, String la2, String lo2){
         Location loc1 = null;
         Double lad1 = Double.valueOf(la1);
@@ -91,7 +91,7 @@ public class HandleLocations {
             List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
             if (addresses != null) {
                 Address returnedAddress = addresses.get(0);
-                StringBuilder strReturnedAddress = new StringBuilder("");
+                StringBuilder strReturnedAddress = new StringBuilder();
 
                 for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("");

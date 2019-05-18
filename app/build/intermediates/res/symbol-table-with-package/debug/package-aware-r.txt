@@ -1326,6 +1326,7 @@ id alertTitle
 id all
 id alti
 id always
+id asdd
 id async
 id auto
 id barrier
@@ -1399,6 +1400,9 @@ id firstlin2
 id firstlin3
 id firstlin4
 id firstlin5
+id firstlin_sw2
+id firstlin_sw3
+id firstlin_sw4
 id fixed
 id forever
 id ghost_view
@@ -1417,6 +1421,7 @@ id icon_only
 id ifRoom
 id image
 id imageView
+id imageView2
 id info
 id interrupt
 id invisible
@@ -1585,6 +1590,9 @@ id stretch
 id submenuarrow
 id submit_area
 id switch1
+id switch2
+id switch3
+id switch4
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager

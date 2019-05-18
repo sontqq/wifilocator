@@ -110,6 +110,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -133,6 +134,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static TextView spd;
     public static TextView c;
     public static Switch sw;
+    public static Switch sw2;
+    public static Switch sw3;
+    public static Switch sw4;
+
     public static TextView dst;
     public static Button start_srv;
     public static Button stop_srv;
@@ -173,50 +178,51 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         @Override
         public void run() {
             try {
-                longi.setText(BackgroundService.longitude);
-                lati.setText(BackgroundService.latitude);
-                alti.setText(BackgroundService.altitude);
-                spd.setText(BackgroundService.speed + " km/h");
-                if (BackgroundService.distance != null) {
-                    dst.setText(String.valueOf(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters"));
-                }
-                add.setText(BackgroundService.address);
-                if (BackgroundService.getCount() != 0) {
-                    // c.setText(backgroundService.count);
-                }
-                provider.setText(BackgroundService.provider);
-                if (BackgroundService.uniqueAPS.size() > 0) {
-                    // uniq.setText(backgroundService.uniqueAPS.size());
-                }
-                WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-                String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-                BackgroundService.ipaddress = ipv4;
-                TextView ip = findViewById(R.id.ip);
-                ip.setText(BackgroundService.ipaddress);
-                servicestatus.setText("Not available");
+                if (sw4.isChecked() == true) {
+                    longi.setText(BackgroundService.longitude);
+                    lati.setText(BackgroundService.latitude);
+                    alti.setText(BackgroundService.altitude);
+                    spd.setText(BackgroundService.speed + " km/h");
+                    if (BackgroundService.distance != null) {
+                        dst.setText(String.valueOf(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters"));
+                    }
+                    add.setText(BackgroundService.address);
+                    if (BackgroundService.getCount() != 0) {
+                        // c.setText(backgroundService.count);
+                    }
+                    provider.setText(BackgroundService.provider);
+                    if (BackgroundService.uniqueAPS.size() > 0) {
+                        // uniq.setText(backgroundService.uniqueAPS.size());
+                    }
+                    WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                    String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+                    BackgroundService.ipaddress = ipv4;
+                    TextView ip = findViewById(R.id.ip);
+                    ip.setText(BackgroundService.ipaddress);
+                    servicestatus.setText("Not available");
 
-                File f1;
-                File f2;
-                String deviceMan = android.os.Build.MANUFACTURER;
-                if (deviceMan.equalsIgnoreCase("huawei")) {
-                    f1 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
-                    f2 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.zip");
-                } else {
-                    f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
-                    f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                    File f1;
+                    File f2;
+                    String deviceMan = android.os.Build.MANUFACTURER;
+                    if (deviceMan.equalsIgnoreCase("huawei")) {
+                        f1 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.csv");
+                        f2 = new File("/data/user/0/com.sontme.esp.getlocation/files/wifilocator_database.zip");
+                    } else {
+                        f1 = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
+                        f2 = new File("/storage/emulated/0/Documents/wifilocator_database.zip");
+                    }
+
+                    TextView csv1 = findViewById(R.id.val_csv);
+                    TextView zip1 = findViewById(R.id.val_zip);
+                    csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                    zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
+                    csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
+                    zip.setText(String.valueOf((int) (f2.length())) + " bytes");
+                    val_errors = findViewById(R.id.val_error);
+                    val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
+                    val_succ = findViewById(R.id.val_succ);
+                    val_succ.setText(String.valueOf(BackgroundService.urlList_successed.size()));
                 }
-
-                TextView csv1 = findViewById(R.id.val_csv);
-                TextView zip1 = findViewById(R.id.val_zip);
-                csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
-                csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                zip.setText(String.valueOf((int) (f2.length())) + " bytes");
-                val_errors = findViewById(R.id.val_error);
-                val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
-                val_succ = findViewById(R.id.val_succ);
-                val_succ.setText(String.valueOf(BackgroundService.urlList_successed.size()));
-
             } catch (Exception e) {
                 Log.d("TIMER_MAIN_FONTOS", e.toString());
                 e.printStackTrace();
@@ -263,11 +269,18 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         @Override
         public void run() {
             try {
-                Log.d("TIMER_CHART_", "LEFUTOTT");
+                //Log.d("TIMER_CHART_", "LEFUTOTT");
                 if (sw.isChecked() == true) {
                     getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                }
+                if (sw2.isChecked() == true) {
                     getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                }
+                if (sw3.isChecked() == true) {
                     getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                }
+                if (sw4.isChecked() == true) {
+                    getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
                 }
             } catch (Exception e) {
                 Log.d("TIMER_CHART_", e.toString());
@@ -315,19 +328,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         if (BackgroundService.latitude != null) {
             aplist(getBaseContext(), Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.longitude));
         }
-        /*try {
-            showNotif("WIFI Locator", "Count: " + String.valueOf(counter)
-                    + "\nLast Change: " + BackgroundService.time
-                    + "\nDistance: " + BackgroundService.distance + " meters"
-                    + "\nLongitude: " + BackgroundService.longitude
-                    + "\nLatitude: " + BackgroundService.latitude
-                    + "\nAddress: " + BackgroundService.address
-                    + "\nProvider: " + BackgroundService.provider
-                    + "\nSpeed: " + String.valueOf(backgroundService.round(mpsTokmh(Double.valueOf(BackgroundService.speed)), 2)) + " km/h"
-                    + "\nAccuracy: " + BackgroundService.accuracy + " meters");
-        } catch (Exception e) {
-            Log.d("NOTIF EXCEPTION: ", e.toString());
-        }*/
     }
 
     public DrawerLayout dl;
@@ -469,6 +469,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         spd = findViewById(R.id.spd);
         dst = findViewById(R.id.dst);
         sw = findViewById(R.id.switch1);
+        sw2 = findViewById(R.id.switch2);
+        sw3 = findViewById(R.id.switch3);
+        sw4 = findViewById(R.id.switch4);
         start_srv = findViewById(R.id.srv);
         stop_srv = findViewById(R.id.stop_srv);
         exitb = findViewById(R.id.exitb);
@@ -494,23 +497,45 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked == true) {
                     LinearLayout lin2 = findViewById(R.id.firstlin2);
-                    LinearLayout lin3 = findViewById(R.id.firstlin3);
-                    LinearLayout lin4 = findViewById(R.id.firstlin4);
-                    LinearLayout lin5 = findViewById(R.id.firstlin5);
-
                     lin2.setVisibility(LinearLayout.VISIBLE);
-                    lin3.setVisibility(LinearLayout.VISIBLE);
-                    lin4.setVisibility(LinearLayout.VISIBLE);
-                    lin5.setVisibility(LinearLayout.VISIBLE);
                 } else {
                     LinearLayout lin2 = findViewById(R.id.firstlin2);
-                    LinearLayout lin3 = findViewById(R.id.firstlin3);
-                    LinearLayout lin4 = findViewById(R.id.firstlin4);
-                    LinearLayout lin5 = findViewById(R.id.firstlin5);
-
                     lin2.setVisibility(LinearLayout.GONE);
+                }
+            }
+        });
+        sw2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    LinearLayout lin3 = findViewById(R.id.firstlin3);
+                    lin3.setVisibility(LinearLayout.VISIBLE);
+                } else {
+                    LinearLayout lin3 = findViewById(R.id.firstlin3);
                     lin3.setVisibility(LinearLayout.GONE);
+                }
+            }
+        });
+        sw3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    LinearLayout lin4 = findViewById(R.id.firstlin4);
+                    lin4.setVisibility(LinearLayout.VISIBLE);
+                } else {
+                    LinearLayout lin4 = findViewById(R.id.firstlin4);
                     lin4.setVisibility(LinearLayout.GONE);
+                }
+            }
+        });
+        sw4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    LinearLayout lin5 = findViewById(R.id.firstlin5);
+                    lin5.setVisibility(LinearLayout.VISIBLE);
+                } else {
+                    LinearLayout lin2 = findViewById(R.id.firstlin5);
                     lin5.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -686,8 +711,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void run() {
                 if (sw.isChecked() == true) {
                     getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
+                }
+                if (sw2.isChecked() == true) {
                     getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
+                }
+                if (sw3.isChecked() == true) {
                     getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
+                }
+                if (sw4.isChecked() == true) {
                     getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
                 }
             }
@@ -701,15 +732,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void run() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(new Intent(MainActivity.this, BackgroundService.class));
-                    //startService(new Intent(MainActivity.this, BackgroundService.class));
                     bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
                 } else {
-                    //startService(new Intent(MainActivity.this, BackgroundService.class));
+                    startService(new Intent(MainActivity.this, BackgroundService.class));
+                    bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
                 }
             }
         };
         th3.start();
-        //startService(new Intent(MainActivity.this, BackgroundService.class));
     }
 
     @Override
@@ -1047,6 +1077,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         dataSet.setHighlightEnabled(false);
                         dataSet.setDrawHighlightIndicators(false);
                         dataSet.setColors(Color.parseColor(myColors[0]));
+                        dataSet.setLineWidth(1);
                         dataSet.setValueFormatter(new CustomFormatter());
                         LineData lineData = new LineData(dataSet);
                         newchart.setData(lineData);
@@ -1056,7 +1087,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                         newchart.getXAxis().setDrawGridLines(false);
                         newchart.getXAxis().setDrawLabels(true);
-
 
                         newchart.getDescription().setEnabled(false);
                         newchart.getLegend().setEnabled(false);
@@ -1117,6 +1147,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         dataSet.setHighLightColor(Color.parseColor(myColors[1]));
                         dataSet.setHighlightLineWidth(3f);
                         dataSet.setDrawValues(true);
+                        dataSet.setLineWidth(1);
                         dataSet.setValueTextSize(13);
                         dataSet.setValueFormatter(new DefaultValueFormatter(0));
                         dataSet.setHighlightEnabled(false);
@@ -1225,14 +1256,64 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     public void getStatHttp(String path) {
+        path = path.replaceAll(Pattern.quote("+"), "");
+        path = path.replaceAll(Pattern.quote(" "), "%20");
+        Log.d("STAT_", path);
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String str = "";
-                str = new String(responseBody, StandardCharsets.UTF_8);
-                //TextView stat = findViewById(R.id.txt_stat1);
-                //stat.setText(str);
+                try {
+                    String str = "";
+                    str = new String(responseBody, StandardCharsets.UTF_8);
+                    Log.d("STAT_", str);
+                    String vagott[] = str.split(Pattern.quote("/"));
+                    // 0 - new me
+                    // 1 - new all
+                    // 2 - up me
+                    // 3 - up all
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        String NOTIFICATION_CHANNEL_ID = "new";
+                        String channelName = "new";
+                        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+                        chan.setLightColor(Color.BLUE);
+                        chan.setShowBadge(true);
+                        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+                        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        assert manager != null;
+                        manager.createNotificationChannel(chan);
+
+                        Intent intent = new Intent(getApplicationContext(), BackgroundService.class);
+                        PendingIntent pi = PendingIntent.getService(getApplicationContext(), 0, intent, 0);
+
+                        for (int i = 0; i < vagott.length; i++) {
+                            vagott[i] = vagott[i].replace("\n", "").replace("\r", "");
+                        }
+
+                        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay_up);
+                        contentView.setTextViewText(R.id.texttxt, "Updated: " + vagott[0] + "/" + vagott[1] + " | New: " + vagott[2] + "/" + vagott[3] + " | Travelled: " + BackgroundService.sumOfTravelDistance + "m");
+
+                        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
+                        Notification notification = notificationBuilder
+                                .setOngoing(true)
+                                .setSmallIcon(R.drawable.search4)
+                                .setGroup("wifi")
+                                .setContentTitle("Running")
+                                .setContent(contentView)
+                                .setSubText("Searching")
+                                .setContentIntent(pi)
+                                .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
+                                .setCategory(Notification.CATEGORY_SERVICE)
+                                .setNumber(1)
+                                .build();
+                        //startForeground(3, notification);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                            manager.notify(4, notification);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
