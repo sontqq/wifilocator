@@ -974,7 +974,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 } else if (result.capabilities.contains("WPA")) {
                     enc = "WPA";
                 }
-
+                Log.d("WIFI_DEBUG_", result.SSID + " _ " + result.capabilities);
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = INSERT_URL;
                 String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + BackgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + backgroundService.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
@@ -1291,7 +1291,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         }
 
                         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay_up);
-                        contentView.setTextViewText(R.id.texttxt, "Updated: " + vagott[0] + "/" + vagott[1] + " | New: " + vagott[2] + "/" + vagott[3] + " | Travelled: " + BackgroundService.sumOfTravelDistance + "m");
+                        contentView.setTextViewText(R.id.texttxt, "Up: " + vagott[0] + "/" + vagott[1] + " | New: " + vagott[2] + "/" + vagott[3] + " | Travelled: " + BackgroundService.sumOfTravelDistance + "m");
 
                         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
                         Notification notification = notificationBuilder
