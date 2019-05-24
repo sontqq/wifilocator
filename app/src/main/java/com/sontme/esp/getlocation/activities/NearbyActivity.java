@@ -475,10 +475,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
                 Drawable d = new BitmapDrawable(getResources(), smallMarker);
 
-                //Drawable pin = getResources().getDrawable(R.drawable.mappinicon_min_25);
-
-
-
                 InfoWindow pop = new PopUpWin(R.layout.popup, map);
 
                 for (Map.Entry<Location, ApStrings> entry : loc_ssid.entrySet()) {
@@ -545,18 +541,9 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                 }
                 map.invalidate();
                 NearbyActivity.loc_ssid2.clear();
-
-                /*SuperActivityToast superToast = new SuperActivityToast(NearbyActivity.this);
-                superToast.setText(counter + " Access Points found");
-                superToast.setAnimations(Style.ANIMATIONS_SCALE);
-                superToast.setDuration(Style.DURATION_VERY_LONG);
-                superToast.setTouchToDismiss(true);
-                superToast.show();
-                */
             }
         };
         thread.start();
-
     }
 
     @Override

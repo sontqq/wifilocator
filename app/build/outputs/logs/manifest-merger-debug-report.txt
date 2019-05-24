@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\1ff607a75d5be6c7eb5faa3d3a282cd0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.javiersantos:MaterialStyledDialogs:2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MaterialStyledDialogs-2.1.aar\a527e92a193f843893f07c40de11056a\AndroidManifest.xml:2:1-11:12
 MERGED from [com.amitshekhar.android:android-networking:1.0.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\android-networking-1.0.2.aar\7aba42f95200174328866c748f70d4a1\AndroidManifest.xml:18:1-27:12
@@ -13,11 +13,11 @@ MERGED from [me.zhanghai.android.materialprogressbar:library:1.1.7] C:\Users\son
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\91a5a0c97f9e74c6e0a4bb4c92dcc57b\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\f38a384a27a9a8b4715864453f450084\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\1aa0f8b946d7fc0b49540745f5aa02f5\AndroidManifest.xml:17:1-38:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-ads-17.1.2.aar\b066081cfa04ebc586fd8a0ad95d6d1d\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.6.aar\40c2563a863bd4ec2699cf8eda2e4bcf\AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\900c4528f9de2e2c3176a8dbf93e094b\AndroidManifest.xml:2:1-13:12
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\694a3fbfe0d4d29b8d7d333bb64cea65\AndroidManifest.xml:2:1-29:12
-MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:2:1-9:12
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\807f4c33a9a3cccc3bb051230fa3e823\AndroidManifest.xml:2:1-16:12
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\294762283a72dbda0fc624b5aa17e455\AndroidManifest.xml:2:1-20:12
 MERGED from [com.akexorcist:RoundCornerProgressBar:2.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\RoundCornerProgressBar-2.0.3.aar\783be717d8cf6bd582c87afd251df0e2\AndroidManifest.xml:2:1-12:12
@@ -72,22 +72,22 @@ MERGED from [com.android.support:print:28.0.0] C:\Users\sont1\.gradle\caches\tra
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\34ac4d293041a83ed3d1853d87538e01\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:interpolator:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\e4298ee43608e924b8bff2351d260df3\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-17.1.2.aar\452dc399aee787fa222e3eb51db3c600\AndroidManifest.xml:2:1-9:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
-INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
+INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
 	package
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:4:5-41
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-140:12
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-145:12
 		INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:11-69
@@ -206,71 +206,75 @@ ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-mast
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:26:22-82
 uses-permission#android.permission.PACKAGE_USAGE_STATS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:28:5-30:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:29:5-31:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:30:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:31:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:29:9-62
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:30:9-62
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:31:5-68
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:5-68
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:31:22-65
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:5-74
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:5-74
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:32:22-71
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:22-71
 uses-permission#android.permission.GET_ACCOUNTS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:5-71
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:34:5-71
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:33:22-68
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:34:22-68
 uses-permission#android.permission.AUTHENTICATE_ACCOUNTS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:34:5-80
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:35:5-80
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:34:22-77
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:35:22-77
 uses-permission#android.permission.READ_CONTACTS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:35:5-72
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:36:5-72
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:35:22-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:36:22-69
 uses-permission#android.permission.READ_PROFILE
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:36:5-71
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:5-71
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:36:22-68
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:22-68
 uses-permission#android.permission.USE_CREDENTIALS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:5-74
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:38:5-74
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:37:22-71
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:38:22-71
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:40:5-78
+	android:name
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:40:22-75
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:38:5-40:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:43:5-45:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:40:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:45:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:39:9-57
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:44:9-57
 uses-permission#android.permission.CHANGE_CONFIGURATION
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:41:5-43:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:46:5-48:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:43:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:48:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:42:9-63
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:47:9-63
 uses-permission#android.permission.MANAGE_DOCUMENTS
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:44:5-46:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:49:5-51:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:46:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:51:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:45:9-59
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:50:9-59
 uses-feature#android.hardware.bluetooth_le
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:48:5-50:36
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:53:5-55:36
 	android:required
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:50:9-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:55:9-33
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:49:9-53
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:54:9-53
 uses-permission#android.permission.BLUETOOTH_PRIVILEGED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:52:5-54:47
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:57:5-59:47
 	tools:ignore
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:54:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:59:9-44
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:53:9-63
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:58:9-63
 application
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:56:5-138:19
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:61:5-143:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\1ff607a75d5be6c7eb5faa3d3a282cd0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\1ff607a75d5be6c7eb5faa3d3a282cd0\AndroidManifest.xml:22:5-20
 MERGED from [com.github.jakebonk:NotifyMe:1.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\NotifyMe-1.0.0.aar\fbf038021f00e131bc8ff1e7249698b5\AndroidManifest.xml:13:5-26:19
@@ -281,14 +285,14 @@ MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\so
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\f38a384a27a9a8b4715864453f450084\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\1aa0f8b946d7fc0b49540745f5aa02f5\AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\1aa0f8b946d7fc0b49540745f5aa02f5\AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-ads-17.1.2.aar\b066081cfa04ebc586fd8a0ad95d6d1d\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-ads-17.1.2.aar\b066081cfa04ebc586fd8a0ad95d6d1d\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.6.aar\40c2563a863bd4ec2699cf8eda2e4bcf\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.6.aar\40c2563a863bd4ec2699cf8eda2e4bcf\AndroidManifest.xml:7:5-20
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\900c4528f9de2e2c3176a8dbf93e094b\AndroidManifest.xml:11:5-20
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\900c4528f9de2e2c3176a8dbf93e094b\AndroidManifest.xml:11:5-20
-MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:7:5-20
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\807f4c33a9a3cccc3bb051230fa3e823\AndroidManifest.xml:13:5-14:19
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\807f4c33a9a3cccc3bb051230fa3e823\AndroidManifest.xml:13:5-14:19
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\129ac9316baabdd65bec5aa208b2e84a\AndroidManifest.xml:22:5-26:19
@@ -342,157 +346,157 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\bb45bc0f87a4cfacec952da882d72016\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:64:9-35
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:69:9-35
 	android:label
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:61:9-41
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:9-41
 	android:hardwareAccelerated
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:59:9-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:64:9-44
 	android:roundIcon
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:63:9-47
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:68:9-47
 	android:largeHeap
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:62:9-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:67:9-33
 	android:icon
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:60:9-42
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:65:9-42
 	android:allowBackup
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:58:9-35
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:63:9-35
 	android:theme
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:65:9-40
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:70:9-40
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:57:9-31
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:62:9-31
 receiver#com.sontme.esp.getlocation.wifi_widget
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:9-73:20
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:71:9-78:20
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:66:19-46
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:71:19-46
 intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:67:13-69:29
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:72:13-74:29
 action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:68:17-84
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:73:17-84
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:68:25-81
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:73:25-81
 meta-data#android.appwidget.provider
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:70:13-72:60
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:75:13-77:60
 	android:resource
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:72:17-57
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:77:17-57
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:71:17-58
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:76:17-58
 activity#com.sontme.esp.getlocation.activities.NearbyActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:75:9-80:52
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:80:9-85:52
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:80:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:85:13-49
 	android:exported
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:79:13-36
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:84:13-36
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:78:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:83:13-48
 	android:alwaysRetainTaskState
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:77:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:82:13-49
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:76:13-54
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:81:13-54
 activity#com.sontme.esp.getlocation.activities.ListActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:81:9-86:52
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:86:9-91:52
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:86:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:13-49
 	android:exported
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:85:13-36
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:90:13-36
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:84:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:89:13-48
 	android:alwaysRetainTaskState
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:83:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:88:13-49
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:82:13-52
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:87:13-52
 activity#com.sontme.esp.getlocation.activities.MapActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:87:9-92:52
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:92:9-97:52
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:92:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:97:13-49
 	android:exported
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:91:13-36
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:13-36
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:90:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:95:13-48
 	android:alwaysRetainTaskState
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:89:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:94:13-49
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:88:13-51
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:93:13-51
 receiver#com.sontme.esp.getlocation.Receiver
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:94:9-98:20
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:99:9-103:20
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:94:19-43
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:99:19-43
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:95:13-97:29
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:100:13-102:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:17-79
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:101:17-79
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:96:25-76
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:101:25-76
 meta-data#com.facebook.sdk.ApplicationId
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:100:9-102:55
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:105:9-107:55
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:102:13-52
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:107:13-52
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:101:13-58
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:106:13-58
 meta-data#com.google.android.gms.ads.AD_MANAGER_APP
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:103:9-105:36
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:108:9-110:36
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:105:13-33
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:110:13-33
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:104:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:109:13-69
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:106:9-108:70
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:111:9-113:70
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:108:13-67
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:113:13-67
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:107:13-69
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:112:13-69
 activity#com.sontme.esp.getlocation.activities.MainActivity
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:110:9-128:20
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:115:9-133:20
 	android:screenOrientation
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:116:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:121:13-49
 	android:launchMode
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:115:13-44
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:120:13-44
 	android:exported
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:114:13-36
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:119:13-36
 	android:configChanges
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:113:13-48
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:118:13-48
 	android:alwaysRetainTaskState
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:112:13-49
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:117:13-49
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:111:13-52
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:116:13-52
 intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED+action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MAIN+action:name:android.intent.action.REBOOT+action:name:android.intent.action.RECEIVE_BOOT_COMPLETED+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:118:13-127:29
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:123:13-132:29
 action#android.intent.action.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:120:17-87
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:125:17-87
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:120:25-84
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:125:25-84
 action#android.intent.action.MAIN
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:121:17-69
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:126:17-69
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:121:25-66
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:126:25-66
 action#android.intent.action.REBOOT
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:122:17-71
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:127:17-71
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:122:25-68
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:127:25-68
 action#android.intent.action.ACTION_POWER_CONNECTED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:123:17-87
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:128:17-87
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:123:25-84
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:128:25-84
 action#android.intent.action.ACTION_POWER_DISCONNECTED
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:124:17-90
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:129:17-90
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:124:25-87
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:129:25-87
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:126:17-77
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:131:17-77
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:126:27-74
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:131:27-74
 meta-data#io.fabric.ApiKey
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:130:9-132:72
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:135:9-137:72
 	android:value
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:132:13-69
-	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:131:13-44
-service#com.sontme.esp.getlocation.BackgroundService
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:134:9-137:72
-	android:enabled
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:136:13-35
-	android:permission
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:137:13-69
 	android:name
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:135:13-46
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:136:13-44
+service#com.sontme.esp.getlocation.BackgroundService
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:139:9-142:72
+	android:enabled
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:141:13-35
+	android:permission
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:142:13-69
+	android:name
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:140:13-46
 uses-sdk
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
@@ -515,6 +519,8 @@ MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\so
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\f38a384a27a9a8b4715864453f450084\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\1aa0f8b946d7fc0b49540745f5aa02f5\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\1aa0f8b946d7fc0b49540745f5aa02f5\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-ads-17.1.2.aar\b066081cfa04ebc586fd8a0ad95d6d1d\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-ads-17.1.2.aar\b066081cfa04ebc586fd8a0ad95d6d1d\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.6.aar\40c2563a863bd4ec2699cf8eda2e4bcf\AndroidManifest.xml:5:5-44
@@ -523,8 +529,6 @@ MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\cach
 MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmbonuspack-6.5.2.aar\900c4528f9de2e2c3176a8dbf93e094b\AndroidManifest.xml:7:5-9:41
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\694a3fbfe0d4d29b8d7d333bb64cea65\AndroidManifest.xml:7:5-9:41
 MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\osmdroid-android-6.0.3.aar\694a3fbfe0d4d29b8d7d333bb64cea65\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\a93077483ba39ff2a3ff612970223596\AndroidManifest.xml:5:5-44
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\807f4c33a9a3cccc3bb051230fa3e823\AndroidManifest.xml:7:5-9:41
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\androidasync-2.2.1.aar\807f4c33a9a3cccc3bb051230fa3e823\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-1\files-1.1\MPAndroidChart-v3.1.0-alpha.aar\294762283a72dbda0fc624b5aa17e455\AndroidManifest.xml:16:5-18:41

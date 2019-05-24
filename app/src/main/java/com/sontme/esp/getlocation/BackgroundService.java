@@ -1,3 +1,4 @@
+
 package com.sontme.esp.getlocation;
 
 import android.Manifest;
@@ -191,7 +192,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         public void onReceive(Context context, Intent intent) {
             if (intent.getStringExtra("alarm") == "run") {
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
                 }
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
                 Log.d("ALARM_SERVICE_", "ON");
@@ -205,28 +205,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     @Override
     public void onCreate() {
         try {
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            List<NotificationChannel> channels = notificationManager.getNotificationChannels();
-
-            for (NotificationChannel a : channels) {
-                if (!a.getName().toString().contains("0") && !a.getName().toString().contains("100") && !a.getName().toString().contains("new")) {
-                    notificationManager.deleteNotificationChannel(a.getId());
-                }
-            }
-
-            showOngoing();
-
-            AndroidNetworking.initialize(getApplicationContext());
-
-            registerReceiver(broadcastReceiver, new IntentFilter());
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            mService.addGpsStatusListener(this);
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
+
             String acc = "no";
             for (Account s : list) {
                 acc = String.valueOf(s.name);
@@ -238,6 +219,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
             }
+            showOngoing();
+
+            AndroidNetworking.initialize(getApplicationContext());
+
+            registerReceiver(broadcastReceiver, new IntentFilter());
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            }
+            mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            mService.addGpsStatusListener(this);
+
             Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
             Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
                 @Override
@@ -397,88 +388,20 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     }
 
-    public void showNotification(Context context, String title, String body, Intent intent) {
-
-        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
-        String[] det = body.split("\\s+");
-        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + count);
-        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
-        contentView.setTextViewText(R.id.notif_text2, det[6]);
-        contentView.setTextViewText(R.id.notif_text3, lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, latitude);
-        contentView.setTextViewText(R.id.notif_long, longitude);
-        contentView.setTextViewText(R.id.notif_add, "Address: " + address);
-        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(uniqueAPS.size()));
-        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(GpsInView) + "_" + String.valueOf(GpsInUse));
-
-        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText(body);
-        bigText.setBigContentTitle(title);
-        bigText.setSummaryText("Current Status");
-
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-        int notificationId = 0;
-        String channelId = "0";
-        String channelName = "0";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel mChannel = new NotificationChannel(
-                    channelId, channelName, importance);
-            notificationManager.createNotificationChannel(mChannel);
-        }
-
-        Intent intent2 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent3 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent4 = new Intent(getBaseContext(), Receiver.class);
-        intent2.setAction("exit");
-        intent3.setAction("resume");
-        intent4.setAction("pause");
-
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getBaseContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.computer_low)
-                .setContent(contentView)
-
-                .addAction(R.drawable.computer_low, "Pause", pendingIntent4)
-                .addAction(R.drawable.computer_low, "Resume", pendingIntent3)
-                .addAction(R.drawable.computer_low, "Exit", pendingIntent2)
-
-                .setStyle(bigText)
-                .setGroup("wifi")
-                .setNumber(1)
-                .setWhen(System.currentTimeMillis());
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_UPDATE_CURRENT
-        );
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        notificationManager.notify(notificationId, mBuilder.build());
-
-    }
-
     public void uploadProgress(int prog, long uploaded, long total) {
 
         Context context = getApplicationContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        int notificationId = 100;
+        int notificationId = 3;
         String channelId = "100";
-        String channelName = "Uploadingdatabase";
-        int importance = NotificationManager.IMPORTANCE_NONE;
+        String channelName = "upload";
+        int importance = NotificationManager.IMPORTANCE_MIN;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel mChannel = new NotificationChannel(
                     channelId, channelName, importance);
-            mChannel.setImportance(NotificationManager.IMPORTANCE_NONE);
+            mChannel.setImportance(NotificationManager.IMPORTANCE_MIN);
             mChannel.setShowBadge(true);
 
             notificationManager.createNotificationChannel(mChannel);
@@ -503,7 +426,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 .setDefaults(Notification.FLAG_SHOW_LIGHTS)
                 .setContentText(detail);
 
-        notificationManager.notify(notificationId, mBuilder.build());
+        notificationManager.notify(3, mBuilder.build());
 
     }
 
@@ -541,7 +464,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 .setDefaults(Notification.FLAG_SHOW_LIGHTS)
                 .setContentText(detail);
 
-        notificationManager.notify(notificationId, mBuilder.build());
+        notificationManager.notify(3, mBuilder.build());
 
     }
 
@@ -562,13 +485,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         LocationListener locationListenerr = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                //Toast.makeText(getBaseContext(), "changed", Toast.LENGTH_SHORT).show();
                 mlocation = location;
-                //Log.d("(service) Location Changes", location.toString());
                 GpsInView = location.getExtras().getInt("satellites");
                 LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    return;
                 }
                 Iterable<GpsSatellite> satellites = locationManager.getGpsStatus(null).getSatellites();
                 Iterator<GpsSatellite> satI = satellites.iterator();
@@ -586,7 +506,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
                 Log.d("(service) Status Changed", String.valueOf(status));
-//                //Toast.MakeText(getBaseContext(), "GPS Status Changed: " + status, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -610,14 +529,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         criteria.setHorizontalAccuracy(Criteria.ACCURACY_HIGH);
         criteria.setVerticalAccuracy(Criteria.ACCURACY_HIGH);
 
-        // Now create a location manager
-
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListenerr);
-        //locationManager.requestLocationUpdates(locationManager.NETWORK_PROVIDER, 0, 0, locationListenerr);
-        //Log.d("(service)", "3");
     }
 
     public void logUser() {
@@ -850,7 +764,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 aplist(getBaseContext(), Double.valueOf(latitude), Double.valueOf(longitude));
             }
             try {
-                Intent in = new Intent();
+                Intent in = new Intent(getApplicationContext(), BackgroundService.class);
                 showNotification(getApplicationContext(), "DETAILS", "Count: " + String.valueOf(count) + " (Service)"
                         + "\nLast Change: " + time
                         + "\nDistance: " + distance + " meters"
@@ -925,7 +839,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 if (!uniqueAPS.contains(result.BSSID)) {
                     uniqueAPS.add(result.BSSID);
                 }
-                Log.d("WIFIDEBUG", result.SSID + " _ " + result.capabilities);
+                //Log.d("WIFIDEBUG", result.SSID + " _ " + result.capabilities);
                 String enc = "notavailable";
                 if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
                     enc = "NONE";
@@ -995,71 +909,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return mps * 3.6;
     }
 
-    public void showNotif(String Title, String Text) {
-
-        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
-        String[] det = Text.split("\\s+");
-        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + count);
-        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
-        contentView.setTextViewText(R.id.notif_text2, det[6]);
-        contentView.setTextViewText(R.id.notif_text3, lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, latitude);
-        contentView.setTextViewText(R.id.notif_long, longitude);
-        contentView.setTextViewText(R.id.notif_add, "Address: " + address);
-        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(uniqueAPS.size()));
-        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(GpsInView) + "_" + String.valueOf(GpsInUse));
-
-        Intent intent2 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent3 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent4 = new Intent(getBaseContext(), Receiver.class);
-        intent2.setAction("exit");
-        intent3.setAction("resume");
-        intent4.setAction("pause");
-
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getBaseContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getBaseContext().getApplicationContext(), "0");
-
-        Intent ii = new Intent(getBaseContext().getApplicationContext(), MainActivity.class);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 0, ii, 0);
-
-        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText(Text);
-        bigText.setBigContentTitle(Title);
-        bigText.setSummaryText("Current Status");
-
-        mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setSmallIcon(R.drawable.computer_low);
-        mBuilder.setContent(contentView);
-        mBuilder.setPriority(Notification.PRIORITY_DEFAULT);
-        mBuilder.setStyle(bigText);
-        mBuilder.setVibrate(new long[]{0L});
-        mBuilder.setSound(null);
-        mBuilder.setLights(0xFFff0000, 600, 500);
-        mBuilder.setDefaults(Notification.FLAG_SHOW_LIGHTS);
-
-        mBuilder.addAction(R.drawable.computer_low, "Pause", pendingIntent4);
-        mBuilder.addAction(R.drawable.computer_low, "Resume", pendingIntent3);
-        mBuilder.addAction(R.drawable.computer_low, "Exit", pendingIntent2);
-
-
-        NotificationManager mNotificationManager =
-                (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.createNotificationChannel(new NotificationChannel("0", Title, NotificationManager.IMPORTANCE_DEFAULT));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("0",
-                    Title,
-                    NotificationManager.IMPORTANCE_NONE);
-            mNotificationManager.createNotificationChannel(channel);
-        }
-        mNotificationManager.notify(0, mBuilder.build());
-
-    }
-
     public String convertTime(long time) {
         Date date = new Date(time);
         Format format = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");
@@ -1126,7 +975,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             Notification notification = notificationBuilder
                     .setOngoing(true)
                     //.setStyle(bigText)
-                    .setSmallIcon(R.drawable.search4)
+                    .setSmallIcon(R.drawable.gps2)
                     .setGroup("wifi")
                     .setContentTitle("Running")
                     .setContent(contentView)
@@ -1142,6 +991,74 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 //manager.notify(4, notification);
             }
         }
+    }
+
+    public void showNotification(Context context, String title, String body, Intent intent) {
+
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
+        String[] det = body.split("\\s+");
+        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + count);
+        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
+        contentView.setTextViewText(R.id.notif_text2, det[6]);
+        contentView.setTextViewText(R.id.notif_text3, lastSSID);
+        contentView.setTextViewText(R.id.notif_lat, latitude);
+        contentView.setTextViewText(R.id.notif_long, longitude);
+        contentView.setTextViewText(R.id.notif_add, "Address: " + address);
+        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(uniqueAPS.size()));
+        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(GpsInView) + "_" + String.valueOf(GpsInUse));
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText(body);
+        bigText.setBigContentTitle(title);
+        bigText.setSummaryText("Current Status");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        int notificationId = 0;
+        String channelId = "0";
+        String channelName = "0";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        Intent intent2 = new Intent(getBaseContext(), Receiver.class);
+        Intent intent3 = new Intent(getBaseContext(), Receiver.class);
+        Intent intent4 = new Intent(getBaseContext(), Receiver.class);
+        intent2.setAction("exit");
+        intent3.setAction("resume");
+        intent4.setAction("pause");
+
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getBaseContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
+                .setSmallIcon(R.drawable.computer_low)
+                .setContent(contentView)
+
+                .addAction(R.drawable.computer_low, "Pause", pendingIntent4)
+                .addAction(R.drawable.computer_low, "Resume", pendingIntent3)
+                .addAction(R.drawable.computer_low, "Exit", pendingIntent2)
+
+                .setStyle(bigText)
+                .setGroup("wifi")
+                .setNumber(1)
+                .setWhen(System.currentTimeMillis());
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntent(intent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                0,
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        notificationManager.notify(notificationId, mBuilder.build());
+
     }
 
     public void prepareFusedApi() {
@@ -1187,25 +1104,23 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         if (ctx == null) {
             ctx = getApplicationContext();
         }
-        if (DEVICE_ACCOUNT.contains("302152161")) {
+        String id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        if (id == "73bedfbd149e01de") {
             Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /*if (googleApiClient != null) {
-            googleApiClient.connect();
-        }*/
-        //showOngoing();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
         isRunning = true;
         showToast(getApplicationContext(), "Service started");
 
-        onCreate();
         return START_STICKY;
-        //return START_REDELIVER_INTENT;
+
     }
 
     @Override

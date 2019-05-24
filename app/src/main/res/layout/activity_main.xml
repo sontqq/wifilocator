@@ -124,6 +124,7 @@
                     android:visibility="gone" />
             </LinearLayout>
 
+
             <LinearLayout
                 android:id="@+id/firstlin"
                 android:layout_width="match_parent"
@@ -189,6 +190,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Show Statistics" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sharelin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/sharebutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Share App" />
 
             </LinearLayout>
 

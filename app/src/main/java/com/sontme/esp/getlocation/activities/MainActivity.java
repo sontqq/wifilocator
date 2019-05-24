@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -32,9 +33,11 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -97,11 +100,16 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.R;
-import com.sontme.esp.getlocation.Receiver;
 import com.sontme.esp.getlocation.UploadFileFTP;
 import com.sontme.esp.getlocation.UploadFileHTTP;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -339,12 +347,64 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
     public static Map<String, String> BLEdevices = new HashMap<String, String>();
 
+    public static void copyFile(File src, File dst) {
+        Thread thread = new Thread() {
+            public void run() {
+                try (InputStream in = new FileInputStream(src)) {
+                    try (OutputStream out = new FileOutputStream(dst)) {
+                        // Transfer bytes from in to out
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Log.d("APPINFO", "Copy Fail");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("APPINFO", "Copy Fail");
+                }
+                Log.d("APPINFO", "Copy Done");
+            }
+        };
+        thread.start();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
+
+        Button sharebutton = findViewById(R.id.sharebutton);
+        sharebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    PackageManager m = getPackageManager();
+                    String app = getPackageName();
+                    PackageInfo p = m.getPackageInfo(app, 0);
+
+                    File f = new File(p.applicationInfo.sourceDir);
+                    File f2 = new File(Environment.getExternalStorageDirectory(), "wifilogger_share.apk");
+                    copyFile(f, f2);
+
+                    StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                    StrictMode.setVmPolicy(builder.build());
+
+                    Intent sharingIntent = new Intent();
+                    Uri uri = Uri.fromFile(f);
+                    sharingIntent.setType("*/*");
+                    //sharingIntent.setType("application/vnd.android.package-archive");
+                    sharingIntent.setAction(Intent.ACTION_SEND);
+                    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                    startActivity(Intent.createChooser(sharingIntent, "Share app"));
+                } catch (Exception e) {
+                    Log.d("APPINFO", "hiba: " + e.getMessage());
+                }
+            }
+        });
 
         LinearLayout lin2 = findViewById(R.id.firstlin2);
         LinearLayout lin3 = findViewById(R.id.firstlin3);
@@ -360,10 +420,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         logUser();
         adminPermission();
         requestAppPermissions();
-/*
-        Intent mIntent = new Intent(MainActivity.this, BackgroundService.class);
-        bindService(mIntent, mConnection, BIND_AUTO_CREATE);
-        */
+
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -535,8 +592,17 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     LinearLayout lin5 = findViewById(R.id.firstlin5);
                     lin5.setVisibility(LinearLayout.VISIBLE);
                 } else {
-                    LinearLayout lin2 = findViewById(R.id.firstlin5);
+                    LinearLayout lin5 = findViewById(R.id.firstlin5);
                     lin5.setVisibility(LinearLayout.GONE);
+
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancel(1);
+                    /*StatusBarNotification[] asd = notificationManager.getActiveNotifications();
+                    for(StatusBarNotification notif : asd){
+                        Log.d("NOTIF_",notif.getPackageName() + "_" + notif.getId() + "_" + notif.isOngoing());
+                    }*/
+                    //notificationManager.cancelAll();
                 }
             }
         });
@@ -579,7 +645,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         stop_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startUpdatesGPS();
+                //startUpdatesGPS();
             }
         });
         startServiceBtn.setOnClickListener(new View.OnClickListener() {
@@ -826,7 +892,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         // Now create a location manager
         final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
     }
@@ -845,7 +910,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         settingsClient.checkLocationSettings(locationSettingsRequest);
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
         }
         getFusedLocationProviderClient(getApplicationContext()).requestLocationUpdates(mPlayLocationRequest, new LocationCallback() {
                     @Override
@@ -890,69 +954,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     public double mpsTokmh(double mps) {
         return mps * 3.6;
-    }
-
-    public void showNotif(String Title, String Text) {
-
-        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
-        String[] det = Text.split("\\s+");
-        contentView.setTextViewText(R.id.notif_ssid, "SSID #" + counter);
-        contentView.setTextViewText(R.id.notif_time, "Time #" + BackgroundService.nearbyCount);
-        contentView.setTextViewText(R.id.notif_text2, "" + det[4] + " " + det[5]);
-        contentView.setTextViewText(R.id.notif_text3, BackgroundService.lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, BackgroundService.latitude);
-        contentView.setTextViewText(R.id.notif_long, BackgroundService.longitude);
-        contentView.setTextViewText(R.id.notif_add, BackgroundService.address);
-        //contentView.setTextViewText(R.id.notif_uniq, ""+String.valueOf(backgroundService.nearbyCount));
-        contentView.setTextViewText(R.id.notif_uniq, "Unique APs found: " + String.valueOf(BackgroundService.uniqueAPS.size()));
-
-        Intent intent2 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent3 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent4 = new Intent(getBaseContext(), Receiver.class);
-        intent2.setAction("exit");
-        intent3.setAction("resume");
-        intent4.setAction("pause");
-
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getBaseContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getBaseContext().getApplicationContext(), "0");
-        Intent ii = new Intent(getBaseContext().getApplicationContext(), MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 0, ii, 0);
-
-        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText(Text);
-        bigText.setBigContentTitle(Title);
-        bigText.setSummaryText("Current Status");
-
-        mBuilder.setContentIntent(pendingIntent);
-        mBuilder.setSmallIcon(R.drawable.computer_low);
-        mBuilder.setContent(contentView);
-        mBuilder.setPriority(Notification.PRIORITY_DEFAULT);
-        mBuilder.setStyle(bigText);
-        mBuilder.setVibrate(new long[]{0L});
-        mBuilder.setSound(null);
-        mBuilder.setLights(0xFFff0000, 600, 500);
-        mBuilder.setDefaults(Notification.FLAG_SHOW_LIGHTS);
-
-        mBuilder.addAction(R.drawable.computer_low, "Pause", pendingIntent4);
-        mBuilder.addAction(R.drawable.computer_low, "Resume", pendingIntent3);
-        mBuilder.addAction(R.drawable.computer_low, "Exit", pendingIntent2);
-
-
-        NotificationManager mNotificationManager =
-                (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("0",
-                    Title,
-                    NotificationManager.IMPORTANCE_NONE);
-            mNotificationManager.createNotificationChannel(channel);
-        }
-        mNotificationManager.notify(0, mBuilder.build());
-
     }
 
     public void aplist(final Context context, double lati, double longi) {
@@ -1275,7 +1276,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         String NOTIFICATION_CHANNEL_ID = "new";
                         String channelName = "new";
-                        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
+                        NotificationChannel chan = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_MIN);
                         chan.setLightColor(Color.BLUE);
                         chan.setShowBadge(true);
                         chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
@@ -1296,9 +1297,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
                         Notification notification = notificationBuilder
                                 .setOngoing(true)
-                                .setSmallIcon(R.drawable.search4)
+                                .setSmallIcon(R.drawable.gps2)
                                 .setGroup("wifi")
-                                .setContentTitle("Running")
+                                .setContentTitle("FUT")
                                 .setContent(contentView)
                                 .setSubText("Searching")
                                 .setContentIntent(pi)
@@ -1308,7 +1309,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                                 .build();
                         //startForeground(3, notification);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                            manager.notify(4, notification);
+                            manager.notify(1, notification);
                         }
                     }
                 } catch (Exception e) {
@@ -1339,22 +1340,22 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
                         PackageManager.PERMISSION_GRANTED) {
-            //return;
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
         }
         if (hasReadPermissions() && hasWritePermissions()) {
-            return;
         }
         ActivityCompat.requestPermissions(this,
                 new String[]{
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_NOTIFICATION_POLICY,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
                 }, 1); // your request code
     }
 

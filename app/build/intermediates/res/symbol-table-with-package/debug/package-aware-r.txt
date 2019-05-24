@@ -1558,6 +1558,8 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id servstatus
+id sharebutton
+id sharelin
 id shortcut
 id showCustom
 id showHome
