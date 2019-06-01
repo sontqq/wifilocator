@@ -7,6 +7,7 @@ import android.accounts.AccountManager;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -204,6 +205,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     @Override
     public void onCreate() {
+        createNotifGroup("wifi", "wifi");
+        vibrate(-1, 10);
         try {
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
@@ -219,6 +222,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
             }
+            Log.d("PHONE_", DEVICE_ACCOUNT);
             showOngoing();
 
             AndroidNetworking.initialize(getApplicationContext());
@@ -321,7 +325,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                                         if (NumberUtils.isNumber(response.trim())) {
                                             //UPLOAD_SIZE_LIMIT = Integer.valueOf(response.trim());
                                         } else {
-                                            String lines[] = response.split("\n");
+                                            String[] lines = response.split("\n");
                                             for (String line : lines) {
                                                 String key = line.split("=")[0];
                                                 String value = line.split("=")[1];
@@ -381,7 +385,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             startUpdatesGPS();
             //prepareFusedApi();
             //prepareGoogleApi();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -411,7 +414,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             detail = "Complete " + total + " bytes";
             prog = 100;
         } else {
-            detail = "Progress: " + String.valueOf((int) (uploaded)) + " / " + String.valueOf((int) (total));
+            detail = "Progress: " + (int) (uploaded) + " / " + (int) (total);
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.cloudupload)
@@ -450,7 +453,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             detail = "Complete";
             prog = 100;
         } else {
-            detail = "Progress: " + String.valueOf(prog);
+            detail = "Progress: " + prog;
         }
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.cloudupload)
@@ -552,7 +555,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             if (sourceFile.isDirectory()) {
                 zipSubFolder(out, sourceFile, sourceFile.getParent().length());
             } else {
-                byte data[] = new byte[BUFFER];
+                byte[] data = new byte[BUFFER];
                 FileInputStream fi = new FileInputStream(sourcePath);
                 origin = new BufferedInputStream(fi, BUFFER);
                 ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
@@ -584,7 +587,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             if (file.isDirectory()) {
                 zipSubFolder(out, file, basePathLength);
             } else {
-                byte data[] = new byte[BUFFER];
+                byte[] data = new byte[BUFFER];
                 String unmodifiedFilePath = file.getPath();
                 String relativePath = unmodifiedFilePath
                         .substring(basePathLength);
@@ -626,8 +629,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             if (distancee[0] >= 1 && distancee[0] <= 560000) {
                 sumOfTravelDistance = sumOfTravelDistance + distancee[0];
             }
-            Log.d("DISTANCE_", String.valueOf(distancee[0]) + " meters");
-            Log.d("DISTANCE_", String.valueOf(sumOfTravelDistance) + " meters");
+            Log.d("DISTANCE_", distancee[0] + " meters");
+            Log.d("DISTANCE_", sumOfTravelDistance + " meters");
             previousLocation = LocRes;
         } catch (Exception e) {
             e.printStackTrace();
@@ -646,9 +649,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 f = new File("/storage/emulated/0/Documents/wifilocator_database.csv");
             }
             Log.d("csv_", String.valueOf(f.getParent()));
-            Log.d("UPLOAD_", "CHECK_" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT) + String.valueOf(UPLOAD_SIZE_LIMIT));
+            Log.d("UPLOAD_", "CHECK_" + UPLOAD_3G + UPLOAD_NIGHT + UPLOAD_SIZE_LIMIT);
             if (f.length() / 1024 >= UPLOAD_SIZE_LIMIT) {
-                Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + String.valueOf(UPLOAD_3G) + String.valueOf(UPLOAD_NIGHT));
+                Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + UPLOAD_3G + UPLOAD_NIGHT);
                 if (isuploading == false) {
                     Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
                     if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
@@ -669,8 +672,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                                     @Override
                                     public void onProgress(long bytesUploaded, long totalBytes) {
                                         int prog = (int) ((bytesUploaded / totalBytes) * 100);
-                                        Log.d("FELTOLTES_", "prog: " + String.valueOf(prog));
-                                        Log.d("FELTOLTES_", "progress left: " + String.valueOf(totalBytes - bytesUploaded));
+                                        Log.d("FELTOLTES_", "prog: " + prog);
+                                        Log.d("FELTOLTES_", "progress left: " + (totalBytes - bytesUploaded));
                                         if (prog == 100) {
                                             uploadProgress(100, totalBytes, totalBytes);
                                         } else {
@@ -765,14 +768,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             }
             try {
                 Intent in = new Intent(getApplicationContext(), BackgroundService.class);
-                showNotification(getApplicationContext(), "DETAILS", "Count: " + String.valueOf(count) + " (Service)"
+                showNotification(getApplicationContext(), "DETAILS", "Count: " + count + " (Service)"
                         + "\nLast Change: " + time
                         + "\nDistance: " + distance + " meters"
                         + "\nLongitude: " + longitude
                         + "\nLatitude: " + latitude
                         + "\nAddress: " + address
                         + "\nProvider: " + provider
-                        + "\nSpeed: " + String.valueOf(round(mpsTokmh(Double.valueOf(speed)), 2)) + " km/h"
+                        + "\nSpeed: " + round(mpsTokmh(Double.valueOf(speed)), 2) + " km/h"
                         + "\nAccuracy: " + accuracy + " meters", in);
             } catch (Exception e) {
                 Log.d("NOTIF EXCEPTION: ", e.toString());
@@ -815,12 +818,31 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     }
 
     public void vibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-            v.vibrate(50);
-        }
+        Thread thread = new Thread() {
+            public void run() {
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(40, -1));
+                } else {
+                    v.vibrate(40);
+                }
+            }
+        };
+        thread.start();
+    }
+
+    public void vibrate(int amplitude, int time) {
+        Thread thread = new Thread() {
+            public void run() {
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(time, amplitude));
+                } else {
+                    v.vibrate(50);
+                }
+            }
+        };
+        thread.start();
     }
 
     public void aplist(final Context context, double lati, double longi) {
@@ -829,56 +851,59 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
                     .getSystemService(Context.WIFI_SERVICE);
-            wifiManager.startScan();
+            if (wifiManager.isWifiEnabled() == true) {
+                wifiManager.startScan();
 
-            List<ScanResult> scanResults = wifiManager.getScanResults();
-            nearbyCount = String.valueOf(scanResults.size());
-            int versionCode = BuildConfig.VERSION_CODE;
-            for (ScanResult result : scanResults) {
-                lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
-                if (!uniqueAPS.contains(result.BSSID)) {
-                    uniqueAPS.add(result.BSSID);
-                }
-                //Log.d("WIFIDEBUG", result.SSID + " _ " + result.capabilities);
-                String enc = "notavailable";
-                if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
-                    enc = "NONE";
-                } else if (result.capabilities.contains("WEP")) {
-                    enc = "WEP";
-                } else if (result.capabilities.contains("WPA")) {
-                    enc = "WPA";
-                } else if (result.capabilities.contains("WPA2")) {
-                    enc = "WPA2";
-                }
+                List<ScanResult> scanResults = wifiManager.getScanResults();
+                nearbyCount = String.valueOf(scanResults.size());
+                int versionCode = BuildConfig.VERSION_CODE;
+                for (ScanResult result : scanResults) {
+                    lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
+                    if (!uniqueAPS.contains(result.BSSID)) {
+                        uniqueAPS.add(result.BSSID);
+                    }
+                    //Log.d("WIFIDEBUG", result.SSID + " _ " + result.capabilities);
+                    String enc = "notavailable";
+                    if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
+                        enc = "NONE";
+                    } else if (result.capabilities.contains("WEP")) {
+                        enc = "WEP";
+                    } else if (result.capabilities.contains("WPA")) {
+                        enc = "WPA";
+                    } else if (result.capabilities.contains("WPA2")) {
+                        enc = "WPA2";
+                    }
 
-                String url = MainActivity.INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
-                if (!macList_uniq.contains(result.BSSID)) {
-                    macList_uniq.add(result.BSSID);
-                    vibrate();
-                }
-                if (!urlList_uniq.contains(url + reqBody)) {
-                    urlList_uniq.add(url + reqBody);
-                    saveRecordHttp(url + reqBody);
-                    req_count++;
-                } else {
-                    //Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
-                }
-                if (urlList_uniq.size() >= 5000) {
-                    urlList_uniq.clear();
-                }
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time = sdf.format(new Date());
-                String deviceMan = android.os.Build.MANUFACTURER;
-                if (deviceMan.equalsIgnoreCase("huawei")) {
-                    cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
-                } else {
-                    cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                    String url = MainActivity.INSERT_URL;
+                    String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                    if (!macList_uniq.contains(result.BSSID)) {
+                        macList_uniq.add(result.BSSID);
+                        vibrate();
+                    }
+                    if (!urlList_uniq.contains(url + reqBody)) {
+                        urlList_uniq.add(url + reqBody);
+                        saveRecordHttp(url + reqBody);
+                        req_count++;
+                    } else {
+                        //Log.d("HTTP_", String.valueOf(req_count) + "_ALREADY CONTAINS_" + String.valueOf(urlList_uniq.size()));
+                    }
+                    if (urlList_uniq.size() >= 5000) {
+                        urlList_uniq.clear();
+                    }
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String time = sdf.format(new Date());
+                    String deviceMan = android.os.Build.MANUFACTURER;
+                    if (deviceMan.equalsIgnoreCase("huawei")) {
+                        cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                    } else {
+                        cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                    }
                 }
             }
         } catch (
                 Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
+            vibrate(255, 300);
         }
         // }
         //};
@@ -993,6 +1018,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         }
     }
 
+    public void createNotifGroup(String id, String name) {
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+        NotificationChannelGroup notificationChannelGroup =
+                new NotificationChannelGroup(id, name);
+        notificationManager.createNotificationChannelGroup(notificationChannelGroup);
+    }
     public void showNotification(Context context, String title, String body, Intent intent) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
@@ -1004,8 +1036,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         contentView.setTextViewText(R.id.notif_lat, latitude);
         contentView.setTextViewText(R.id.notif_long, longitude);
         contentView.setTextViewText(R.id.notif_add, "Address: " + address);
-        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + String.valueOf(uniqueAPS.size()));
-        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + String.valueOf(GpsInView) + "_" + String.valueOf(GpsInUse));
+        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + uniqueAPS.size());
+        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + GpsInView + "_" + GpsInUse);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(body);
@@ -1039,7 +1071,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.computer_low)
                 .setContent(contentView)
-
                 .addAction(R.drawable.computer_low, "Pause", pendingIntent4)
                 .addAction(R.drawable.computer_low, "Resume", pendingIntent3)
                 .addAction(R.drawable.computer_low, "Exit", pendingIntent2)

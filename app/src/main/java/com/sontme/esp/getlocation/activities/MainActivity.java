@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     alti.setText(BackgroundService.altitude);
                     spd.setText(BackgroundService.speed + " km/h");
                     if (BackgroundService.distance != null) {
-                        dst.setText(String.valueOf(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters"));
+                        dst.setText(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters");
                     }
                     add.setText(BackgroundService.address);
                     if (BackgroundService.getCount() != 0) {
@@ -222,10 +222,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                     TextView csv1 = findViewById(R.id.val_csv);
                     TextView zip1 = findViewById(R.id.val_zip);
-                    csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                    zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
-                    csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                    zip.setText(String.valueOf((int) (f2.length())) + " bytes");
+                    csv1.setText((int) (f1.length()) / 1024 + " kb");
+                    zip1.setText((int) (f2.length()) + " bytes");
+                    csv.setText((int) (f1.length()) / 1024 + " kb");
+                    zip.setText((int) (f2.length()) + " bytes");
                     val_errors = findViewById(R.id.val_error);
                     val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
                     val_succ = findViewById(R.id.val_succ);
@@ -261,10 +261,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 }
                 TextView csv1 = findViewById(R.id.val_csv);
                 TextView zip1 = findViewById(R.id.val_zip);
-                csv1.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                zip1.setText(String.valueOf((int) (f2.length())) + " bytes");
-                csv.setText(String.valueOf((int) (f1.length()) / 1024) + " kb");
-                zip.setText(String.valueOf((int) (f2.length())) + " bytes");
+                csv1.setText((int) (f1.length()) / 1024 + " kb");
+                zip1.setText((int) (f2.length()) + " bytes");
+                csv.setText((int) (f1.length()) / 1024 + " kb");
+                zip.setText((int) (f2.length()) + " bytes");
                 val_errors = findViewById(R.id.val_error);
                 val_errors.setText(String.valueOf(BackgroundService.urlList_failed.size()));
                 val_succ = findViewById(R.id.val_succ);
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     BackgroundService.initLong = BackgroundService.longitude;
                 }
             }
-            Log.d("INITIAL", String.valueOf(BackgroundService.initLat) + String.valueOf(BackgroundService.initLong));
+            Log.d("INITIAL", BackgroundService.initLat + BackgroundService.initLong);
         } catch (Exception e) {
         }
 
@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
     public static String INSERT_URL = "https://sont.sytes.net/wifilocator/wifi_insert.php";
-    public static String myColors[] = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
+    public static String[] myColors = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f8f3d4", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
     public static Map<String, String> BLEdevices = new HashMap<String, String>();
 
     public static void copyFile(File src, File dst) {
@@ -598,6 +598,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(1);
+
                     /*StatusBarNotification[] asd = notificationManager.getActiveNotifications();
                     for(StatusBarNotification notif : asd){
                         Log.d("NOTIF_",notif.getPackageName() + "_" + notif.getId() + "_" + notif.isOngoing());
@@ -767,7 +768,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         View hView = nv.getHeaderView(0);
         TextView tex = hView.findViewById(R.id.header_verinfo);
-        String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
+        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
         tex.setText(version);
 
         turnGPSOn();
@@ -1046,7 +1047,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         Map<Integer, Integer> combined = new HashMap<Integer, Integer>(hours);
 
                         String str = response;
-                        String lines[] = str.trim().split("\\r?\\n");
+                        String[] lines = str.trim().split("\\r?\\n");
                         try {
                             for (String line : lines) {
                                 String[] words = line.trim().split("\\s+");
@@ -1123,7 +1124,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                         String str = response;
 
-                        String lines[] = str.trim().split("\\r?\\n");
+                        String[] lines = str.trim().split("\\r?\\n");
                         try {
                             for (String line : lines) {
                                 String[] words = line.trim().split("\\s+");
@@ -1190,7 +1191,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         List<PieEntry> entries = new ArrayList<>();
 
                         String str = response;
-                        String lines[] = str.trim().split("xxx");
+                        String[] lines = str.trim().split("xxx");
 
                         int i = 0;
                         Collections.shuffle(Arrays.asList(myColors));
@@ -1259,6 +1260,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void getStatHttp(String path) {
         path = path.replaceAll(Pattern.quote("+"), "");
         path = path.replaceAll(Pattern.quote(" "), "%20");
+        path = path.replaceAll(Pattern.quote("%20"), "");
         Log.d("STAT_", path);
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(path, new AsyncHttpResponseHandler() {
@@ -1268,7 +1270,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     String str = "";
                     str = new String(responseBody, StandardCharsets.UTF_8);
                     Log.d("STAT_", str);
-                    String vagott[] = str.split(Pattern.quote("/"));
+                    String[] vagott = str.split(Pattern.quote("/"));
                     // 0 - new me
                     // 1 - new all
                     // 2 - up me
@@ -1292,14 +1294,15 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         }
 
                         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay_up);
-                        contentView.setTextViewText(R.id.texttxt, "Up: " + vagott[0] + "/" + vagott[1] + " | New: " + vagott[2] + "/" + vagott[3] + " | Travelled: " + BackgroundService.sumOfTravelDistance + "m");
+                        contentView.setTextViewText(R.id.texttxt, "Up: " + vagott[2] + "/" + vagott[3] + " | New: " + vagott[0] + "/" + vagott[1] + " | Travelled: " + BackgroundService.sumOfTravelDistance + "m");
 
                         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), NOTIFICATION_CHANNEL_ID);
                         Notification notification = notificationBuilder
                                 .setOngoing(true)
                                 .setSmallIcon(R.drawable.gps2)
                                 .setGroup("wifi")
-                                .setContentTitle("FUT")
+                                //.setContentTitle("Statistics")
+                                .setContentTitle("Up: " + vagott[2] + "/" + vagott[3] + " | New: " + vagott[0] + "/" + vagott[1] + " | " + BackgroundService.sumOfTravelDistance + "m")
                                 .setContent(contentView)
                                 .setSubText("Searching")
                                 .setContentIntent(pi)
