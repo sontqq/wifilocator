@@ -29,6 +29,8 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
+import android.net.wifi.SupplicantState;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.Build;
@@ -188,9 +190,38 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return mBinder;
     }
 
+    private boolean checkConnectedToDesiredWifi(Context ctx) {
+        Log.d("WIFI__", "1");
+        boolean connected = false;
+
+        String desiredMacAddress = "ac-22-05-49-5e-58";
+
+        WifiManager wifiManager =
+                (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifi = wifiManager.getConnectionInfo();
+        if (wifi != null) {
+            String bssid = wifi.getBSSID();
+            Log.d("WIFI__", "BSSID: " + bssid);
+            connected = desiredMacAddress.equals(bssid);
+        }
+        return connected;
+    }
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d("WIFI__", "CHANGE action: " + action);
+            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo;
+            wifiInfo = wifiManager.getConnectionInfo();
+            if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
+                if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
+                    Toast.makeText(getApplicationContext(), "Welcome home!", Toast.LENGTH_SHORT).show();
+                    Log.d("WIFI__", "Welcome home!");
+                }
+            }
+
             if (intent.getStringExtra("alarm") == "run") {
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 }
@@ -226,8 +257,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             showOngoing();
 
             AndroidNetworking.initialize(getApplicationContext());
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
+            intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
+            intentFilter.addAction(WifiManager.EXTRA_WIFI_INFO);
+            intentFilter.addAction(WifiManager.EXTRA_NETWORK_INFO);
+            intentFilter.addAction(WifiManager.EXTRA_RESULTS_UPDATED);
+            intentFilter.addAction(WifiManager.EXTRA_SUPPLICANT_CONNECTED);
 
-            registerReceiver(broadcastReceiver, new IntentFilter());
+            registerReceiver(broadcastReceiver, intentFilter);
+
             if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             }
             mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -1025,6 +1064,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 new NotificationChannelGroup(id, name);
         notificationManager.createNotificationChannelGroup(notificationChannelGroup);
     }
+
     public void showNotification(Context context, String title, String body, Intent intent) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);

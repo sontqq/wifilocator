@@ -207,7 +207,7 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
         NavigationView navigationView = findViewById(R.id.nv4);
         View hView = navigationView.getHeaderView(0);
         TextView tex = hView.findViewById(R.id.header_verinfo);
-        String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
+        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
         tex.setText(version);
 
     }
@@ -553,7 +553,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
         return super.onOptionsItemSelected(item);
     }
 
-
     public void getList(final Context context, String url) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, new AsyncHttpResponseHandler() {
@@ -565,7 +564,7 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 content = new String(response, StandardCharsets.UTF_8);
                 String stripped = html2text(content);
-                String lines[] = stripped.split("\\r?\\n");
+                String[] lines = stripped.split("\\r?\\n");
                 int lineCount = 0;
                 for (String s : lines) {
                     lineCount++;
