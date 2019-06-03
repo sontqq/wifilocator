@@ -29,13 +29,12 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -59,12 +58,7 @@ import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -74,8 +68,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class BackgroundService extends Service implements GpsStatus.Listener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -175,27 +167,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return mBinder;
     }
 
-    private boolean checkConnectedToDesiredWifi(Context ctx) {
-        Log.d("WIFI__", "1");
-        boolean connected = false;
-
-        String desiredMacAddress = "ac-22-05-49-5e-58";
-
-        WifiManager wifiManager =
-                (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifi = wifiManager.getConnectionInfo();
-        if (wifi != null) {
-            String bssid = wifi.getBSSID();
-            Log.d("WIFI__", "BSSID: " + bssid);
-            connected = desiredMacAddress.equals(bssid);
-        }
-        return connected;
-    }
-
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
             Log.d("WIFI__", "CHANGE action: " + action);
             WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifiInfo;
@@ -220,7 +196,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     @Override
     public void onCreate() {
         createNotifGroup("wifi", "wifi");
-        vibrate(-1, 10);
+        SontHelper.vibrate(getApplicationContext(), -1, 10);
         try {
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
@@ -240,6 +216,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             showOngoing();
 
             AndroidNetworking.initialize(getApplicationContext());
+
+            // THIS IS NOT THE BROADCAST RECEIVER !!
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION);
             intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
@@ -247,6 +225,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             intentFilter.addAction(WifiManager.EXTRA_NETWORK_INFO);
             intentFilter.addAction(WifiManager.EXTRA_RESULTS_UPDATED);
             intentFilter.addAction(WifiManager.EXTRA_SUPPLICANT_CONNECTED);
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+            intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
 
             registerReceiver(broadcastReceiver, intentFilter);
 
@@ -559,82 +540,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListenerr);
     }
 
-    public void logUser() {
-        //Crashlytics.setUserIdentifier("12345");
-        //Crashlytics.setUserEmail("sont16@gmail.com");
-        //Crashlytics.setUserName("wifilocatoruser");
-    }
-
-    public boolean zipFileAtPath(String sourcePath, String toLocation) {
-        final int BUFFER = 2048;
-
-        File sourceFile = new File(sourcePath);
-        try {
-            BufferedInputStream origin = null;
-            FileOutputStream dest = new FileOutputStream(toLocation);
-            ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
-                    dest));
-            if (sourceFile.isDirectory()) {
-                zipSubFolder(out, sourceFile, sourceFile.getParent().length());
-            } else {
-                byte[] data = new byte[BUFFER];
-                FileInputStream fi = new FileInputStream(sourcePath);
-                origin = new BufferedInputStream(fi, BUFFER);
-                ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
-                entry.setTime(sourceFile.lastModified()); // to keep modification time after unzipping
-                out.putNextEntry(entry);
-                int count;
-                while ((count = origin.read(data, 0, BUFFER)) != -1) {
-                    out.write(data, 0, count);
-                }
-            }
-            out.close();
-        } catch (Exception e) {
-            //e.printStackTrace();
-            Log.d("ZIP_", "DONE_error" + e.getMessage());
-            return false;
-        }
-        Log.d("ZIP_", "DONE");
-        return true;
-    }
-
-    private void zipSubFolder(ZipOutputStream out, File folder,
-                              int basePathLength) throws IOException {
-
-        final int BUFFER = 2048;
-
-        File[] fileList = folder.listFiles();
-        BufferedInputStream origin = null;
-        for (File file : fileList) {
-            if (file.isDirectory()) {
-                zipSubFolder(out, file, basePathLength);
-            } else {
-                byte[] data = new byte[BUFFER];
-                String unmodifiedFilePath = file.getPath();
-                String relativePath = unmodifiedFilePath
-                        .substring(basePathLength);
-                FileInputStream fi = new FileInputStream(unmodifiedFilePath);
-                origin = new BufferedInputStream(fi, BUFFER);
-                ZipEntry entry = new ZipEntry(relativePath);
-                entry.setTime(file.lastModified()); // to keep modification time after unzipping
-                out.putNextEntry(entry);
-                int count;
-                while ((count = origin.read(data, 0, BUFFER)) != -1) {
-                    out.write(data, 0, count);
-                }
-                origin.close();
-            }
-        }
-    }
-
-    public String getLastPathComponent(String filePath) {
-        String[] segments = filePath.split("/");
-        if (segments.length == 0)
-            return "";
-        String lastPathComponent = segments[segments.length - 1];
-        return lastPathComponent;
-    }
-
     public void queryLocation(Location LocRes) {
         try {
             float[] distancee = new float[1];
@@ -675,7 +580,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                         //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                         uploadProgress(0, 0, 0);
                         isuploading = true;
-                        zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
+                        SontHelper.zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
                         File zip = new File(f.getParent() + "/wifilocator_database.zip");
                         AndroidNetworking.upload("https://sont.sytes.net/wifilocator/upload.php")
                                 .addMultipartFile("uploaded_file", zip)
@@ -814,7 +719,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                             @Override
                             public void onResponse(String response) {
                                 urlList_successed.add(path);
-                                Log.d("HTTP_RESPONSE_", response);
                                 if (response.trim() == "not recorded") {
                                     not_recorded++;
                                 } else if (response.trim() == "recorded") {
@@ -832,34 +736,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         };
         th2.start();
 
-    }
-
-    public void vibrate() {
-        Thread thread = new Thread() {
-            public void run() {
-                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    v.vibrate(VibrationEffect.createOneShot(40, -1));
-                } else {
-                    v.vibrate(40);
-                }
-            }
-        };
-        thread.start();
-    }
-
-    public void vibrate(int amplitude, int time) {
-        Thread thread = new Thread() {
-            public void run() {
-                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    v.vibrate(VibrationEffect.createOneShot(time, amplitude));
-                } else {
-                    v.vibrate(50);
-                }
-            }
-        };
-        thread.start();
     }
 
     public void aplist(final Context context, double lati, double longi) {
@@ -896,7 +772,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                     String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + SontHelper.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                     if (!macList_uniq.contains(result.BSSID)) {
                         macList_uniq.add(result.BSSID);
-                        vibrate();
+                        SontHelper.vibrate(getApplicationContext());
                     }
                     if (!urlList_uniq.contains(url + reqBody)) {
                         urlList_uniq.add(url + reqBody);
@@ -921,14 +797,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         } catch (
                 Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
-            vibrate(255, 300);
+            SontHelper.vibrate(getApplicationContext(), 255, 300);
         }
         // }
         //};
         //thread.start();
     }
-
-
 
     public void showOngoing() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -982,15 +856,20 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
         String[] det = body.split("\\s+");
-        contentView.setTextViewText(R.id.notif_ssid, "SSID / Count #" + count);
-        contentView.setTextViewText(R.id.notif_time, "Time / HTTP #" + req_count);
-        contentView.setTextViewText(R.id.notif_text2, det[6]);
-        contentView.setTextViewText(R.id.notif_text3, lastSSID);
-        contentView.setTextViewText(R.id.notif_lat, latitude);
-        contentView.setTextViewText(R.id.notif_long, longitude);
+
+        contentView.setTextViewText(R.id.notif_ssid, "#" + count + " | #" + req_count + " | " + lastSSID + " | " + det[6]);
         contentView.setTextViewText(R.id.notif_add, "Address: " + address);
-        contentView.setTextViewText(R.id.notif_uniq, "Unique: " + uniqueAPS.size());
-        contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + GpsInView + "_" + GpsInUse);
+
+        //region Unused
+        //contentView.setTextViewText(R.id.notif_ssid, "Count #" + count);
+        //contentView.setTextViewText(R.id.notif_time, "HTTP #" + req_count);
+        //contentView.setTextViewText(R.id.notif_text2, det[6]);
+        //contentView.setTextViewText(R.id.notif_text3, lastSSID);
+        //contentView.setTextViewText(R.id.notif_lat, latitude);
+        //contentView.setTextViewText(R.id.notif_long, longitude);
+        //contentView.setTextViewText(R.id.notif_uniq, "Unique: " + uniqueAPS.size());
+        //contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + GpsInView + "_" + GpsInUse);
+        //endregion
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(body);
@@ -1017,17 +896,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         intent3.setAction("resume");
         intent4.setAction("pause");
 
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getBaseContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getBaseContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getBaseContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.computer_low)
                 .setContent(contentView)
-                .addAction(R.drawable.computer_low, "Pause", pendingIntent4)
-                .addAction(R.drawable.computer_low, "Resume", pendingIntent3)
-                .addAction(R.drawable.computer_low, "Exit", pendingIntent2)
-
+                .addAction(R.drawable.computer_low_gray, "Pause", pendingIntent4)
+                .addAction(R.drawable.computer_low_gray, "Resume", pendingIntent3)
+                .addAction(R.drawable.computer_low_gray, "Exit", pendingIntent2)
                 .setStyle(bigText)
                 .setGroup("wifi")
                 .setNumber(1)
@@ -1045,8 +923,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     }
 
-
-
+    //region ServiceFunctions
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -1057,7 +934,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return START_STICKY;
 
     }
-
     @Override
     public void onDestroy() {
         SontHelper.showToast(getApplicationContext(), "Service stopped_1");
@@ -1067,16 +943,48 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
         nMgr.cancelAll();
     }
-
     @Override
     public void onStart(Intent intent, int startid) {
         Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
     }
+    //endregion
+
+    //region FUSE API
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        }
+        //location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setSmallestDisplacement(1);
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(1000);
+
+        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
+        Toast.makeText(getBaseContext(), "Google API connected", Toast.LENGTH_SHORT).show();
+
+    }
+    @Override
+    public void onConnectionSuspended(int i) {
+        Toast.makeText(getBaseContext(), "Google API Connection suspended: " + i, Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onLocationChanged(Location location) {
+        //Toast.makeText(getBaseContext(), "fuse speed: " + String.valueOf(location.getSpeed()), Toast.LENGTH_SHORT).show();
+        Log.d("FUSE_API_LOCATION_CHANGE: ", location.toString());
+        queryLocation(location);
+        //vibrate();
+    }
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(getBaseContext(), "Google API Connection failed: " + connectionResult.toString(), Toast.LENGTH_SHORT).show();
+    }
+    //endregion
 
     @Override
     public void onGpsStatusChanged(int event) {
@@ -1104,40 +1012,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
                 break;
         }
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        }
-        //location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setSmallestDisplacement(1);
-        locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(1000);
-
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-        Toast.makeText(getBaseContext(), "Google API connected", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Toast.makeText(getBaseContext(), "Google API Connection suspended: " + i, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        //Toast.makeText(getBaseContext(), "fuse speed: " + String.valueOf(location.getSpeed()), Toast.LENGTH_SHORT).show();
-        Log.d("FUSE_API_LOCATION_CHANGE: ", location.toString());
-        queryLocation(location);
-        //vibrate();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(getBaseContext(), "Google API Connection failed: " + connectionResult.toString(), Toast.LENGTH_SHORT).show();
     }
 
     public class LocalBinder extends Binder {

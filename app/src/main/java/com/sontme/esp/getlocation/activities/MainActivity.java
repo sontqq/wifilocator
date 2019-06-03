@@ -28,7 +28,6 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -125,11 +124,6 @@ import java.util.regex.Pattern;
 import cz.msebera.android.httpclient.Header;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
-
-//import com.crashlytics.android.Crashlytics;
-//import com.github.johnpersano.supertoasts.library.Style;
-//import com.github.johnpersano.supertoasts.library.SuperActivityToast;
-//import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
     //region DEFINING VARIABLES
@@ -307,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 BackgroundService.accuracy = String.valueOf(LocRes.getAccuracy());
                 BackgroundService.latitude = String.valueOf(LocRes.getLatitude());
                 BackgroundService.longitude = String.valueOf(LocRes.getLongitude());
-                BackgroundService.speed = String.valueOf(SontHelper.round(mpsTokmh(LocRes.getSpeed()), 2));
+                BackgroundService.speed = String.valueOf(SontHelper.round(SontHelper.mpsTokmh(LocRes.getSpeed()), 2));
                 BackgroundService.altitude = String.valueOf(LocRes.getAltitude());
                 BackgroundService.bearing = String.valueOf(LocRes.getBearing());
                 BackgroundService.time = String.valueOf(SontHelper.convertTime(LocRes.getTime()));
@@ -676,7 +670,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         btn_upload_http.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (chk_3g_wifi() == "3g") {
+                if (SontHelper.chk_3g_wifi(getApplicationContext()) == "3g") {
                     new MaterialStyledDialog.Builder(MainActivity.this)
                             .setTitle("You are on 3G/4G")
                             .setStyle(com.github.javiersantos.materialstyleddialogs.enums.Style.HEADER_WITH_TITLE)
@@ -961,10 +955,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         return super.onOptionsItemSelected(item);
     }
 
-    public double mpsTokmh(double mps) {
-        return mps * 3.6;
-    }
-
     public void aplist(final Context context, double lati, double longi) {
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
@@ -1233,7 +1223,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         piechart.setCenterText("Shares" + "\n(" + ossz + ")");
                         piechart.getLegend().setEnabled(true);
                         //piechart.animateXY(2000, 2000);
-                        piechart.setEntryLabelColor(invertColor(Color.parseColor(myColors[0])));
+                        piechart.setEntryLabelColor(SontHelper.invertColor(Color.parseColor(myColors[0])));
                         piechart.setEntryLabelTextSize(12);
 
                         set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
@@ -1420,24 +1410,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         } catch (Exception e) {
             Log.d("Error_", e.getMessage());
         }
-    }
-
-    public String chk_3g_wifi() {
-        final ConnectivityManager connMgr = (ConnectivityManager)
-                this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (wifi.isConnectedOrConnecting()) {
-            return "wifi";
-        } else if (mobile.isConnectedOrConnecting()) {
-            return "3g";
-        } else {
-            return "no";
-        }
-    }
-
-    int invertColor(int color) {
-        return color ^ 0x00ffffff;
     }
 
     @Override

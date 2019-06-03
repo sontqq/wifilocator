@@ -4,8 +4,6 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,23 +12,6 @@ import com.sontme.esp.getlocation.activities.MainActivity;
 
 
 public class Receiver extends BroadcastReceiver {
-
-    private boolean checkConnectedToDesiredWifi(Context ctx) {
-        Log.d("WIFI__", "1");
-        boolean connected = false;
-
-        String desiredMacAddress = "ac-22-05-49-5e-58";
-
-        WifiManager wifiManager =
-                (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifi = wifiManager.getConnectionInfo();
-        if (wifi != null) {
-            String bssid = wifi.getBSSID();
-            Log.d("WIFI__", bssid);
-            connected = desiredMacAddress.equals(bssid);
-        }
-        return connected;
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -26,67 +26,6 @@
             android:textStyle="bold"
             android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/notif_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Time"
-            android:textColor="@color/notifText"
-            android:textStyle="bold"
-            android:visibility="visible" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <TextView
-            android:id="@+id/notif_text3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/notifText" />
-
-        <TextView
-            android:id="@+id/notif_text2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/notifText" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <TextView
-            android:id="@+id/notif_long"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/notifText"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/notif_lat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@color/notifText"
-            android:textStyle="italic" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -106,34 +45,6 @@
             android:text="Address"
             android:textAlignment="textStart"
             android:textColor="@color/notifText" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <TextView
-            android:id="@+id/notif_uniq"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Unique"
-            android:textAlignment="textStart"
-            android:textColor="@color/notifText" />
-
-        <TextView
-            android:id="@+id/notif_gps"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textAlignment="textStart"
-            android:textColor="@color/notifText" />
-
-
     </LinearLayout>
 
 </LinearLayout>

@@ -28,7 +28,7 @@ public class wifi_widget extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.wifi_widget);
             watchWidget = new ComponentName(context, wifi_widget.class);
             String s;
-            s = "Count : " + String.valueOf(BackgroundService.getCount()) + " Nearby: " + String.valueOf(BackgroundService.nearbyCount) + " Unique: " + String.valueOf(BackgroundService.uniqueAPS.size());
+            s = "Count : " + BackgroundService.getCount() + " Nearby: " + BackgroundService.nearbyCount + " Unique: " + BackgroundService.uniqueAPS.size();
             remoteViews.setTextViewText(R.id.widget_txt1, s);
             remoteViews.setTextViewText(R.id.widget_txt2, BackgroundService.time);
             appWidgetManager.updateAppWidget(watchWidget, remoteViews);
@@ -94,7 +94,6 @@ public class wifi_widget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
-
             updateAppWidget(context, appWidgetManager, appWidgetId);
 
             RemoteViews remoteViews;
@@ -103,17 +102,15 @@ public class wifi_widget extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.wifi_widget);
             watchWidget = new ComponentName(context, wifi_widget.class);
 
-
-            remoteViews.setOnClickPendingIntent(R.id.widget_btn1, getPendingSelfIntent(context, "android.appwidget.action.APPWIDGET_UPDATE"));
+            remoteViews.setOnClickPendingIntent(R.id.widget_btn1,
+                    getPendingSelfIntent(context, "android.appwidget.action.APPWIDGET_UPDATE"));
             appWidgetManager.updateAppWidget(watchWidget, remoteViews);
 
         }
     }
-
     @Override
     public void onEnabled(Context context) {
     }
-
     @Override
     public void onDisabled(Context context) {
     }

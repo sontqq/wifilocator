@@ -1490,14 +1490,7 @@ id newprogressbar
 id none
 id normal
 id notif_add
-id notif_gps
-id notif_lat
-id notif_long
 id notif_ssid
-id notif_text2
-id notif_text3
-id notif_time
-id notif_uniq
 id notification_background
 id notification_main_column
 id notification_main_column_container

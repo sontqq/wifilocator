@@ -4,7 +4,7 @@
     android:initialLayout="@layout/wifi_widget"
     android:minWidth="40dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/computer_low"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1000"
     android:widgetCategory="home_screen|keyguard"></appwidget-provider>
