@@ -101,6 +101,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.R;
+import com.sontme.esp.getlocation.SontHelper;
 import com.sontme.esp.getlocation.UploadFileFTP;
 import com.sontme.esp.getlocation.UploadFileHTTP;
 
@@ -193,15 +194,15 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     alti.setText(BackgroundService.altitude);
                     spd.setText(BackgroundService.speed + " km/h");
                     if (BackgroundService.distance != null) {
-                        dst.setText(backgroundService.round(Double.valueOf(BackgroundService.distance), 2) + " meters");
+                        dst.setText(SontHelper.round(Double.valueOf(BackgroundService.distance), 2) + " meters");
                     }
                     add.setText(BackgroundService.address);
                     if (BackgroundService.getCount() != 0) {
-                        // c.setText(backgroundService.count);
+                        // c.setText(SontHelper.count);
                     }
                     provider.setText(BackgroundService.provider);
                     if (BackgroundService.uniqueAPS.size() > 0) {
-                        // uniq.setText(backgroundService.uniqueAPS.size());
+                        // uniq.setText(SontHelper.uniqueAPS.size());
                     }
                     WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                     String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -306,13 +307,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 BackgroundService.accuracy = String.valueOf(LocRes.getAccuracy());
                 BackgroundService.latitude = String.valueOf(LocRes.getLatitude());
                 BackgroundService.longitude = String.valueOf(LocRes.getLongitude());
-                BackgroundService.speed = String.valueOf(backgroundService.round(mpsTokmh(LocRes.getSpeed()), 2));
+                BackgroundService.speed = String.valueOf(SontHelper.round(mpsTokmh(LocRes.getSpeed()), 2));
                 BackgroundService.altitude = String.valueOf(LocRes.getAltitude());
                 BackgroundService.bearing = String.valueOf(LocRes.getBearing());
-                BackgroundService.time = String.valueOf(backgroundService.convertTime(LocRes.getTime()));
-                BackgroundService.address = backgroundService.getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                BackgroundService.time = String.valueOf(SontHelper.convertTime(LocRes.getTime()));
+                BackgroundService.address = SontHelper.getCompleteAddressString(getApplicationContext(), LocRes.getLatitude(), LocRes.getLongitude());
                 BackgroundService.provider = LocRes.getProvider();
-                BackgroundService.distance = String.valueOf(backgroundService.getDistance(Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.initLat), Double.valueOf(BackgroundService.longitude), Double.valueOf(BackgroundService.initLong)));
+                BackgroundService.distance = String.valueOf(SontHelper.getDistance(Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.initLat), Double.valueOf(BackgroundService.longitude), Double.valueOf(BackgroundService.initLong)));
                 BackgroundService.ipaddress = ipv4;
 
             } catch (Exception e) {
@@ -458,7 +459,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     Settings.Secure.ANDROID_ID);
         }
         Log.d("ANDROID_ID_", "Android_id:_" + BackgroundService.googleAccount);
-        String ipv4 = BackgroundService.getLocalIpAddress();
+        String ipv4 = SontHelper.getLocalIpAddress();
         BackgroundService.ipaddress = ipv4;
         TextView ip = findViewById(R.id.ip);
         ip.setText(BackgroundService.ipaddress);
@@ -820,7 +821,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         @Override
         public void onServiceDisconnected(ComponentName name) {
             //Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
-            // backgroundService = null;
+            // SontHelper = null;
         }
 
         @Override
@@ -970,7 +971,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     .getSystemService(Context.WIFI_SERVICE);
             List<ScanResult> scanResults = wifiManager.getScanResults();
             for (ScanResult result : scanResults) {
-                BackgroundService.lastSSID = result.SSID + " " + backgroundService.convertDBM(result.level) + "%";
+                BackgroundService.lastSSID = result.SSID + " " + SontHelper.convertDBM(result.level) + "%";
 
                 if (!BackgroundService.uniqueAPS.contains(result.BSSID)) {
                     BackgroundService.uniqueAPS.add(result.BSSID);
@@ -986,7 +987,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 Log.d("WIFI_DEBUG_", result.SSID + " _ " + result.capabilities);
                 int versionCode = BuildConfig.VERSION_CODE;
                 String url = INSERT_URL;
-                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + BackgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + backgroundService.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                String reqBody = "?id=0&ssid=" + result.SSID + "&bssid=" + result.BSSID + "&source=" + BackgroundService.googleAccount + "_v" + versionCode + "&enc=" + enc + "&rssi=" + SontHelper.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                 saveRecordHttp(url + reqBody);
             }
             BackgroundService.nearbyCount = String.valueOf(scanResults.size());

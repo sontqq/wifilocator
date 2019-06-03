@@ -18,15 +18,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
@@ -37,7 +34,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -57,12 +53,8 @@ import com.androidnetworking.interfaces.StringRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.SettingsClient;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -73,24 +65,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 public class BackgroundService extends Service implements GpsStatus.Listener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -226,10 +211,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 }
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, locationListener);
-                Log.d("ALARM_SERVICE_", "ON");
             } else if (intent.getStringExtra("alarm") == "off") {
-                //locationManager.removeUpdates(locationListener);
-                Log.d("ALARM_SERVICE_", "OFF");
+                locationManager.removeUpdates(locationListener);
             }
         }
     };
@@ -652,18 +635,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return lastPathComponent;
     }
 
-    public static int roundFloat(float f) {
-        int c = (int) ((f) + 0.5f);
-        float n = f + 0.5f;
-        return (n - c) % 2 == 0 ? (int) f : c;
-    }
-
     public void queryLocation(Location LocRes) {
         try {
             float[] distancee = new float[1];
 
             Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
-            distancee[0] = roundFloat(distancee[0]);
+            distancee[0] = SontHelper.roundFloat(distancee[0]);
 
             if (distancee[0] >= 1 && distancee[0] <= 560000) {
                 sumOfTravelDistance = sumOfTravelDistance + distancee[0];
@@ -693,7 +670,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 Log.d("UPLOAD_", "SIZE OK TO UPLOAD" + UPLOAD_3G + UPLOAD_NIGHT);
                 if (isuploading == false) {
                     Log.d("UPLOAD_", "STATUS OK TO UPLOAD");
-                    if (chk_3g_wifi() == "wifi" || UPLOAD_3G == true) {
+                    if (SontHelper.chk_3g_wifi(getApplicationContext()) == "wifi" || UPLOAD_3G == true) {
                         Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
                         //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
                         uploadProgress(0, 0, 0);
@@ -773,18 +750,19 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 isuploading = false;
             }
 
-            if (String.valueOf(LocRes.getLongitude()) != null || String.valueOf(LocRes.getLongitude()).length() >= 1) {
+            if (String.valueOf(LocRes.getLongitude()) != null ||
+                    String.valueOf(LocRes.getLongitude()).length() >= 1) {
                 try {
                     accuracy = String.valueOf(LocRes.getAccuracy());
                     latitude = String.valueOf(LocRes.getLatitude());
                     longitude = String.valueOf(LocRes.getLongitude());
-                    speed = String.valueOf(round(mpsTokmh(LocRes.getSpeed()), 2));
+                    speed = String.valueOf(SontHelper.round(SontHelper.mpsTokmh(LocRes.getSpeed()), 2));
                     altitude = String.valueOf(LocRes.getAltitude());
                     bearing = String.valueOf(LocRes.getBearing());
-                    time = String.valueOf(convertTime(LocRes.getTime()));
-                    address = getCompleteAddressString(LocRes.getLatitude(), LocRes.getLongitude());
+                    time = String.valueOf(SontHelper.convertTime(LocRes.getTime()));
+                    address = SontHelper.getCompleteAddressString(getApplicationContext(), LocRes.getLatitude(), LocRes.getLongitude());
                     provider = LocRes.getProvider();
-                    distance = String.valueOf(getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
+                    distance = String.valueOf(SontHelper.getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
                 } catch (Exception e) {
                     Log.d("queryLocation()_", e.toString());
                 }
@@ -814,7 +792,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                         + "\nLatitude: " + latitude
                         + "\nAddress: " + address
                         + "\nProvider: " + provider
-                        + "\nSpeed: " + round(mpsTokmh(Double.valueOf(speed)), 2) + " km/h"
+                        + "\nSpeed: " + SontHelper.round(SontHelper.mpsTokmh(Double.valueOf(speed)), 2) + " km/h"
                         + "\nAccuracy: " + accuracy + " meters", in);
             } catch (Exception e) {
                 Log.d("NOTIF EXCEPTION: ", e.toString());
@@ -897,13 +875,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 nearbyCount = String.valueOf(scanResults.size());
                 int versionCode = BuildConfig.VERSION_CODE;
                 for (ScanResult result : scanResults) {
-                    lastSSID = result.SSID + " " + convertDBM(result.level) + "%";
+                    lastSSID = result.SSID + " " + SontHelper.convertDBM(result.level) + "%";
                     if (!uniqueAPS.contains(result.BSSID)) {
                         uniqueAPS.add(result.BSSID);
                     }
                     //Log.d("WIFIDEBUG", result.SSID + " _ " + result.capabilities);
                     String enc = "notavailable";
-                    if (!result.capabilities.contains("WEP") || !result.capabilities.contains("WPA")) {
+                    if (!result.capabilities.contains("WEP") ||
+                            !result.capabilities.contains("WPA")) {
                         enc = "NONE";
                     } else if (result.capabilities.contains("WEP")) {
                         enc = "WEP";
@@ -914,7 +893,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                     }
 
                     String url = MainActivity.INSERT_URL;
-                    String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
+                    String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + SontHelper.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                     if (!macList_uniq.contains(result.BSSID)) {
                         macList_uniq.add(result.BSSID);
                         vibrate();
@@ -933,9 +912,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                     String time = sdf.format(new Date());
                     String deviceMan = android.os.Build.MANUFACTURER;
                     if (deviceMan.equalsIgnoreCase("huawei")) {
-                        cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                        cs.writeCsv_huawei("0" + "," + result.BSSID + "," + result.SSID + "," + SontHelper.convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
                     } else {
-                        cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
+                        cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + SontHelper.convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
                     }
                 }
             }
@@ -949,73 +928,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         //thread.start();
     }
 
-    public int convertDBM(int dbm) {
-        int quality;
-        if (dbm <= -100)
-            quality = 0;
-        else if (dbm >= -50)
-            quality = 100;
-        else
-            quality = 2 * (dbm + 100);
-        return quality;
-    }
 
-    public double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        long factor = (long) Math.pow(10, places);
-        value = value * factor;
-        long tmp = Math.round(value);
-        return (double) tmp / factor;
-    }
-
-    public double mpsTokmh(double mps) {
-        return mps * 3.6;
-    }
-
-    public String convertTime(long time) {
-        Date date = new Date(time);
-        Format format = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss");
-        return format.format(date);
-    }
-
-    public double getDistance(double lat1, double lat2, double lon1, double lon2) {
-
-        final int R = 6371; // Radius of the earth
-        double latDistance = Math.toRadians(lat2 - lat1);
-        double lonDistance = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
-        double el1 = 0;
-        double el2 = 0;
-        double height = el1 - el2;
-        distance = Math.pow(distance, 2) + Math.pow(height, 2);
-        return Math.sqrt(distance);
-    }
-
-    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
-            if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
-                StringBuilder strReturnedAddress = new StringBuilder();
-
-                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("");
-                }
-                strAdd = strReturnedAddress.toString();
-            } else {
-            }
-        } catch (Exception e) {
-            Log.d("Error_", e.toString());
-        }
-        return strAdd;
-    }
 
     public void showOngoing() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1132,84 +1045,27 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     }
 
-    public void prepareFusedApi() {
-        LocationRequest mLocationRequest;
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(1000);
-        mLocationRequest.setSmallestDisplacement(1); // minimum distance in meters
-        mLocationRequest.setFastestInterval(1000);
 
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-        builder.addLocationRequest(mLocationRequest);
-        LocationSettingsRequest locationSettingsRequest = builder.build();
-
-        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-        settingsClient.checkLocationSettings(locationSettingsRequest);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        }
-        getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        onLocationChanged(locationResult.getLastLocation());
-                    }
-                },
-                Looper.myLooper());
-
-    }
-
-    public void prepareGoogleApi() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this).build();
-        if (googleApiClient != null) {
-            googleApiClient.connect();
-        }
-        Toast.makeText(getBaseContext(), "fuse api prepared", Toast.LENGTH_SHORT).show();
-
-    }
-
-    public void showToast(Context ctx, String text) {
-        if (ctx == null) {
-            ctx = getApplicationContext();
-        }
-        String id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        if (id == "73bedfbd149e01de") {
-            Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
         isRunning = true;
-        showToast(getApplicationContext(), "Service started");
+        SontHelper.showToast(getApplicationContext(), "Service started");
 
         return START_STICKY;
 
     }
 
     @Override
-    public void onDestroy() {/*
-        if (googleApiClient != null) {
-            googleApiClient.disconnect();
-        }*/
-
-        showToast(getApplicationContext(), "Service stopped_1");
+    public void onDestroy() {
+        SontHelper.showToast(getApplicationContext(), "Service stopped_1");
         isRunning = false;
         stopForeground(true);
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
         nMgr.cancelAll();
-    }
-
-    public static boolean isRunning() {
-        return isRunning;
     }
 
     @Override
@@ -1290,39 +1146,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         }
     }
 
-    public String chk_3g_wifi() {
-        final ConnectivityManager connMgr = (ConnectivityManager)
-                this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (wifi.isConnectedOrConnecting()) {
-            return "wifi";
-        } else if (mobile.isConnectedOrConnecting()) {
-            return "3g";
-        } else {
-            return "no";
-        }
-    }
-
-    public static String getLocalIpAddress() {
-        try {
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for (NetworkInterface intf : interfaces) {
-                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
-                for (InetAddress addr : addrs) {
-                    if (!addr.isLoopbackAddress()) {
-                        String sAddr = addr.getHostAddress();
-                        boolean isIPv4 = sAddr.indexOf(':') < 0;
-                        if (isIPv4)
-                            return sAddr;
-                    }
-                }
-            }
-        } catch (Exception ex) {
-        } // for now eat exceptions
-        return "";
-    }
-
     public static boolean checkPermissionLocation(Context c) {
 
         if (ContextCompat.checkSelfPermission(c, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
@@ -1336,3 +1159,4 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return ContextCompat.checkSelfPermission(c, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 }
+

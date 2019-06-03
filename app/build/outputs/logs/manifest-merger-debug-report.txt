@@ -448,7 +448,7 @@ ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-mast
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:108:25-69
 action#android.net.conn.CONNECTIVITY_CHANGE
-ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:109:17-78
+ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:109:17-79
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:109:25-76
 action#android.intent.action.RECEIVE_BOOT_COMPLETED
