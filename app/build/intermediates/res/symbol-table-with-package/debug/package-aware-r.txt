@@ -1490,6 +1490,7 @@ id newprogressbar
 id none
 id normal
 id notif_add
+id notif_add_2
 id notif_ssid
 id notification_background
 id notification_main_column

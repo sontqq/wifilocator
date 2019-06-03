@@ -859,6 +859,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
         contentView.setTextViewText(R.id.notif_ssid, "#" + count + " | #" + req_count + " | " + lastSSID + " | " + det[6]);
         contentView.setTextViewText(R.id.notif_add, "Address: " + address);
+        contentView.setTextViewText(R.id.notif_add_2, "Unique: " + uniqueAPS.size() + " | GPS: " + GpsInView + "/" + GpsInUse);
 
         //region Unused
         //contentView.setTextViewText(R.id.notif_ssid, "Count #" + count);
