@@ -51,7 +51,7 @@ public final class R {
         public static final int layout_progress = 0x7f08008c;
         public static final int layout_progress_holder = 0x7f08008d;
         public static final int layout_secondary_progress = 0x7f08008e;
-        public static final int tv_progress = 0x7f080146;
+        public static final int tv_progress = 0x7f080147;
     }
     public static final class layout {
         private layout() {}

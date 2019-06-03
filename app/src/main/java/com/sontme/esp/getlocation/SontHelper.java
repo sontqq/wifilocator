@@ -3,6 +3,8 @@ package com.sontme.esp.getlocation;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.VibrationEffect;
@@ -29,6 +31,16 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class SontHelper {
+    public void playTone() {
+        Thread thread = new Thread() {
+            public void run() {
+                ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+                toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+            }
+        };
+        thread.start();
+    }
+
     public static void vibrate(Context ctx) {
         Thread thread = new Thread() {
             public void run() {

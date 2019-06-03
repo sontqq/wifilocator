@@ -21,6 +21,7 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
@@ -28,6 +29,8 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -38,6 +41,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -313,7 +317,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             } catch (Exception e) {
                 Log.d("SIZE TIMER CSV ZIP _ ", e.toString());
             }
-
         }
         try {
             if (Double.valueOf(BackgroundService.latitude) != 0 && Double.valueOf(BackgroundService.longitude) != 0) {
@@ -330,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         }
 
         if (BackgroundService.latitude != null) {
-            aplist(getBaseContext(), Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.longitude));
+            aplist(getApplicationContext(), Double.valueOf(BackgroundService.latitude), Double.valueOf(BackgroundService.longitude));
         }
     }
 
@@ -368,6 +371,37 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         thread.start();
     }
 
+    static String CAMERA_IMAGE_BUCKET_NAME =
+            Environment.getExternalStorageDirectory().toString()
+                    + "/DCIM/Camera";
+    static String CAMERA_IMAGE_BUCKET_ID =
+            getBucketId(CAMERA_IMAGE_BUCKET_NAME);
+
+    public static String getBucketId(String path) {
+        return String.valueOf(path.toLowerCase().hashCode());
+    }
+
+    public static List<String> getCameraImages(Context context) {
+        final String[] projection = {MediaStore.Images.Media.DATA};
+        final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
+        final String[] selectionArgs = {CAMERA_IMAGE_BUCKET_ID};
+        final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                null);
+        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            do {
+                final String data = cursor.getString(dataColumn);
+                result.add(data);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -375,6 +409,23 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         setContentView(R.layout.activity_main);
 
         Button sharebutton = findViewById(R.id.sharebutton);
+        Button testbutton = findViewById(R.id.testbutton);
+        testbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+                toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+
+                List<String> list = new ArrayList<String>();
+                list = getCameraImages(getApplicationContext());
+                long allsize = 0;
+                for (String s : list) {
+                    File f = new File(s);
+                    allsize = allsize + f.length();
+                }
+                Log.d("LIST_", "allsize: " + (int) (allsize) / 1024 / 1024 + " mb" + " _ " + "(" + list.size() + ")");
+            }
+        });
         sharebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -596,10 +647,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(1);
 
-                    /*StatusBarNotification[] asd = notificationManager.getActiveNotifications();
+                    // GET ALL NOTIFICATION
+                    /*
+                    StatusBarNotification[] asd = notificationManager.getActiveNotifications();
                     for(StatusBarNotification notif : asd){
                         Log.d("NOTIF_",notif.getPackageName() + "_" + notif.getId() + "_" + notif.isOngoing());
-                    }*/
+                    }
+                    */
                     //notificationManager.cancelAll();
                 }
             }
@@ -620,10 +674,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         //webview.setInitialScale(1);
         webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
         //webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
-
         //endregion
-        //region UI ELEMENT LISTENERS
 
+        //region UI ELEMENT LISTENERS
         exitb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -636,7 +689,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         start_srv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startUpdatesPlay();
+                //startUpdatesPlay();
             }
 
         });
@@ -649,7 +702,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         startServiceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getBaseContext(), "Starting service", Toast.LENGTH_SHORT);
+                //Toast.makeText(getApplicationContext(), "Starting service", Toast.LENGTH_SHORT);
                 startService(new Intent(MainActivity.this, BackgroundService.class));
             }
         });
@@ -691,14 +744,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
                                     http.execute("http://192.168.0.43/wifilocator/upload.php?");
-                                    Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .show();
                 } else {
                     UploadFileHTTP http = new UploadFileHTTP(MainActivity.this);
                     http.execute("http://192.168.0.43/wifilocator/upload.php?");
-                    Toast.makeText(getBaseContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Uploading database over HTTP", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -831,9 +884,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         String stateSaved = savedInstanceState.getString("save_state");
         if (stateSaved == null) {
-            //Toast.makeText(getBaseContext(), "onRestore: null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "onRestore: null", Toast.LENGTH_LONG).show();
         } else {
-            //Toast.makeText(getBaseContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -842,9 +895,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         super.onSaveInstanceState(onState);
         String stateSaved = onState.getString("save_state");
         if (stateSaved == null) {
-            //Toast.makeText(getBaseContext(), "onSave null", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "onSave null", Toast.LENGTH_LONG).show();
         } else {
-            //Toast.makeText(getBaseContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -893,12 +946,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, locationListener);
     }
-
     public void startUpdatesPlay() {
         mPlayLocationRequest = new LocationRequest();
         mPlayLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mPlayLocationRequest.setInterval(1000);
-        mPlayLocationRequest.setFastestInterval(500);
+        mPlayLocationRequest.setSmallestDisplacement(1);
+        mPlayLocationRequest.setFastestInterval(1000);
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
         builder.addLocationRequest(mPlayLocationRequest);
@@ -1065,7 +1118,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         LineDataSet dataSet = new LineDataSet(entries, "Stats");
                         dataSet.setLineWidth(4f);
                         dataSet.setDrawFilled(true);
-                        Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
+                        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.color.nicered1);
                         dataSet.setFillDrawable(drawable);
                         dataSet.setDrawHighlightIndicators(true);
                         Collections.shuffle(Arrays.asList(myColors));
@@ -1140,7 +1193,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         LineDataSet dataSet = new LineDataSet(entries, "Stats");
                         dataSet.setLineWidth(4f);
                         dataSet.setDrawFilled(true);
-                        Drawable drawable = ContextCompat.getDrawable(getBaseContext(), R.color.nicered1);
+                        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.color.nicered1);
                         dataSet.setFillDrawable(drawable);
                         dataSet.setDrawHighlightIndicators(true);
                         Collections.shuffle(Arrays.asList(myColors));
@@ -1361,11 +1414,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     private boolean hasReadPermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        return (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
     private boolean hasWritePermissions() {
-        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+        return (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
     public void releaseQueue() {
@@ -1374,9 +1427,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         //connectionManager.requestWIFIConnection("VENDEG","");
         //connectionManager.requestWIFIConnection("UPC Wi-Free","");
 
-        //Toast.makeText(getBaseContext(),"Connecting to: VENDEG",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Connecting to: VENDEG",Toast.LENGTH_SHORT).show();
 
-        new UploadFileFTP(getBaseContext()).execute("192.168.0.43");
+        new UploadFileFTP(getApplicationContext()).execute("192.168.0.43");
     }
 
     public void requestPermissionLocation() {
@@ -1419,23 +1472,23 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 event != GpsStatus.GPS_EVENT_SATELLITE_STATUS &&
                 event != GpsStatus.GPS_EVENT_STARTED &&
                 event != GpsStatus.GPS_EVENT_STOPPED) {
-            //Toast.makeText(getBaseContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "GPS Unknown event: " + event, Toast.LENGTH_SHORT).show();
         }
         switch (event) {
             case GpsStatus.GPS_EVENT_STARTED:
-                //Toast.makeText(getBaseContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "GPS Event Started", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_STOPPED:
-                //Toast.makeText(getBaseContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "GPS Event Stopped", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_FIRST_FIX:
-                //Toast.makeText(getBaseContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "GPS Event First FIX", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                //Toast.makeText(getBaseContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "GPS SAT Status", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

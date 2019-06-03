@@ -53,9 +53,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.github.johnpersano.supertoasts.library.Style;
-//import com.github.johnpersano.supertoasts.library.SuperActivityToast;
-
 public class MapActivity extends AppCompatActivity implements GpsStatus.Listener {
 
     private DrawerLayout dl;
@@ -181,7 +178,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         NavigationView navigationView = findViewById(R.id.nv2);
         View hView =  navigationView.getHeaderView(0);
         TextView tex = hView.findViewById(R.id.header_verinfo);
-        String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
+        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
         tex.setText(version);
 
         Context ctx = getApplicationContext();
@@ -227,6 +224,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         view.draw(canvas);
         return bitmap;
     }
+
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");

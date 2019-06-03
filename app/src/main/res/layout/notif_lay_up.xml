@@ -17,7 +17,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/computer_low"
+            android:src="@drawable/computer_low_gray"
             android:paddingRight="8dp" />
 
         <TextView
