@@ -21,7 +21,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
@@ -29,8 +28,6 @@ import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.net.Uri;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -41,7 +38,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.StrictMode;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -371,37 +367,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         thread.start();
     }
 
-    static String CAMERA_IMAGE_BUCKET_NAME =
-            Environment.getExternalStorageDirectory().toString()
-                    + "/DCIM/Camera";
-    static String CAMERA_IMAGE_BUCKET_ID =
-            getBucketId(CAMERA_IMAGE_BUCKET_NAME);
-
-    public static String getBucketId(String path) {
-        return String.valueOf(path.toLowerCase().hashCode());
-    }
-
-    public static List<String> getCameraImages(Context context) {
-        final String[] projection = {MediaStore.Images.Media.DATA};
-        final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
-        final String[] selectionArgs = {CAMERA_IMAGE_BUCKET_ID};
-        final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                projection,
-                selection,
-                selectionArgs,
-                null);
-        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
-        if (cursor.moveToFirst()) {
-            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            do {
-                final String data = cursor.getString(dataColumn);
-                result.add(data);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return result;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -413,17 +378,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
-                toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+                SontHelper.playTone();
+                SontHelper.vibrate(getApplicationContext());
 
-                List<String> list = new ArrayList<String>();
-                list = getCameraImages(getApplicationContext());
-                long allsize = 0;
-                for (String s : list) {
-                    File f = new File(s);
-                    allsize = allsize + f.length();
-                }
-                Log.d("LIST_", "allsize: " + (int) (allsize) / 1024 / 1024 + " mb" + " _ " + "(" + list.size() + ")");
+                BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                mBluetoothAdapter.setName("sont_samsung");
+                mBluetoothAdapter.startDiscovery();
+
+                Log.d("BROADCAST_MAIN_", "BL Name: " + mBluetoothAdapter.getName());
+                Log.d("BROADCAST_MAIN_", "BL Address: " + mBluetoothAdapter.getAddress());
+
             }
         });
         sharebutton.setOnClickListener(new View.OnClickListener() {

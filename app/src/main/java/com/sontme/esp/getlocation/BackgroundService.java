@@ -12,6 +12,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.TaskStackBuilder;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -180,8 +182,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-
-            Log.d("WIFI__", "CHANGE action: " + action);
+            //Log.d("BROADCAST_","BSERVICE_" + action);
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d("BROADCAST_", "BSERVICE_BL_NAME_" + device.getName() + "_ADDRESS_" + device.getAddress());
+                if (device.getAddress().equals("00:19:86:00:10:AE")) {
+                    Log.d("BROADCAST_1", "BSERVICE_near_home");
+                }
+            }
             WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifiInfo;
             wifiInfo = wifiManager.getConnectionInfo();
@@ -235,6 +243,15 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
+            // Indicates a change in the Wi-Fi P2P status.
+            intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+            // Indicates a change in the list of available peers.
+            intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+            // Indicates the state of Wi-Fi P2P connectivity has changed.
+            intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+            // Indicates this device's details have changed.
+            intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+            intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
 
             registerReceiver(broadcastReceiver, intentFilter);
 
@@ -998,7 +1015,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 break;
 
             case GpsStatus.GPS_EVENT_STOPPED:
-                Toast.makeText(getApplicationContext(), "GPS Lost Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "GPS Lost Signal", Toast.LENGTH_SHORT).show();
                 break;
 
             case GpsStatus.GPS_EVENT_FIRST_FIX:

@@ -1,14 +1,17 @@
 package com.sontme.esp.getlocation;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +35,47 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class SontHelper {
-    public void playTone() {
+    static String CAMERA_IMAGE_BUCKET_NAME = Environment.getExternalStorageDirectory().toString()
+            + "/DCIM/Camera";
+    static String CAMERA_IMAGE_BUCKET_ID = getBucketId(CAMERA_IMAGE_BUCKET_NAME);
+
+    public static String getBucketId(String path) {
+        return String.valueOf(path.toLowerCase().hashCode());
+    }
+
+    public static List<String> getCameraImages(Context context) {
+        final String[] projection = {MediaStore.Images.Media.DATA};
+        final String selection = MediaStore.Images.Media.BUCKET_ID + " = ?";
+        final String[] selectionArgs = {CAMERA_IMAGE_BUCKET_ID};
+        final Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                selection,
+                selectionArgs,
+                null);
+        ArrayList<String> result = new ArrayList<String>(cursor.getCount());
+        if (cursor.moveToFirst()) {
+            final int dataColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            do {
+                final String data = cursor.getString(dataColumn);
+                result.add(data);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return result;
+    }
+
+    public static List<String> getGallery(Context ctx) {
+        List<String> list = new ArrayList<String>();
+        list = getCameraImages(ctx);
+        long allsize = 0;
+        for (String s : list) {
+            File f = new File(s);
+            allsize = allsize + f.length();
+        }
+        return list;
+    }
+
+    public static void playTone() {
         Thread thread = new Thread() {
             public void run() {
                 ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
