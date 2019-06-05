@@ -12,7 +12,7 @@ Suggested: Android 8.1
 Tested: Android 9.0 SAMSUNG
 
 Screenshots:
-![scr](https://sont.sytes.net/wifilocator/wifi1.jpg)
-![scr](https://sont.sytes.net/wifilocator/wifi2.jpg)
-![scr](https://sont.sytes.net/wifilocator/wifi3.jpg)
-![scr](https://sont.sytes.net/wifilocator/wifi4.jpg)
+<img align="left" width="100" height="100" src="https://sont.sytes.net/wifilocator/wifi1.jpg">
+<img align="left" width="100" height="100" src="https://sont.sytes.net/wifilocator/wifi2.jpg">
+<img align="left" width="100" height="100" src="https://sont.sytes.net/wifilocator/wifi3.jpg">
+<img align="left" width="100" height="100" src="https://sont.sytes.net/wifilocator/wifi4.jpg">
