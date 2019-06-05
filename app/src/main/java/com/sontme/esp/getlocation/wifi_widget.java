@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.sql.Timestamp;
@@ -67,9 +66,6 @@ public class wifi_widget extends AppWidgetProvider {
                         convertedDate = dateFormat.parse(BackgroundService.time);
                         Timestamp t = new Timestamp(convertedDate.getTime());
                         long tl = t.getTime();
-                        Log.d("TIME_1_", current.toString());
-                        Log.d("TIME_2_", String.valueOf(t.getTime()));
-                        Log.d("TIME_DIF_", String.valueOf(current - tl));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

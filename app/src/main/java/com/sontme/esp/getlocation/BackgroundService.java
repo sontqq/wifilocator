@@ -158,7 +158,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     IBinder mBinder = new LocalBinder();
     int req_count;
     public LocationManager locationManager;
-    exporter cs = new exporter("wifilocator_database.csv");
+    CsvExporter cs = new CsvExporter("wifilocator_database.csv");
 
     private static boolean isRunning;
 
@@ -413,13 +413,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             };
             mCountDownTimer.start();
 
-            // Every day 10:05 -> Receiver.class -> "run"
+            // Every day 10:05 -> BroadcastReceiver.class -> "run"
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(Calendar.HOUR_OF_DAY, 14);
             calendar.set(Calendar.MINUTE, 40);
 
-            Intent intent = new Intent(getApplicationContext(), Receiver.class);
+            Intent intent = new Intent(getApplicationContext(), BroadcReceiver.class);
             intent.putExtra("alarm", "run");
             alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
 
@@ -874,7 +874,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                     .setNumber(1)
                     .build();
 
-            startForeground(3, notification);
+            startForeground(35, notification);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 //manager.notify(4, notification);
             }
@@ -919,9 +919,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             notificationManager.createNotificationChannel(mChannel);
         }
 
-        Intent intent2 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent3 = new Intent(getBaseContext(), Receiver.class);
-        Intent intent4 = new Intent(getBaseContext(), Receiver.class);
+        Intent intent2 = new Intent(getBaseContext(), BroadcReceiver.class);
+        Intent intent3 = new Intent(getBaseContext(), BroadcReceiver.class);
+        Intent intent4 = new Intent(getBaseContext(), BroadcReceiver.class);
         intent2.setAction("exit");
         intent3.setAction("resume");
         intent4.setAction("pause");

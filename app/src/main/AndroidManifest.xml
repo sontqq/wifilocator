@@ -102,7 +102,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".Receiver">
+        <receiver android:name=".BroadcReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.wifi.STATE_CHANGE" />

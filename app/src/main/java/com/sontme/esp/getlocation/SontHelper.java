@@ -1,5 +1,7 @@
 package com.sontme.esp.getlocation;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.location.Address;
@@ -13,6 +15,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -38,6 +41,20 @@ public class SontHelper {
     /*
         Frequently used methods to keep other classes clear
     */
+    public static void requestPermissions(Activity act) {
+        ActivityCompat.requestPermissions(act,
+                new String[]{
+                        Manifest.permission.BLUETOOTH,
+                        Manifest.permission.BLUETOOTH_ADMIN,
+                        Manifest.permission.BLUETOOTH_PRIVILEGED,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_NOTIFICATION_POLICY,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                }, 1);
+    }
+
     static String CAMERA_IMAGE_BUCKET_NAME = Environment.getExternalStorageDirectory().toString()
             + "/DCIM/Camera";
     static String CAMERA_IMAGE_BUCKET_ID = getBucketId(CAMERA_IMAGE_BUCKET_NAME);

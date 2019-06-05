@@ -1,41 +1,6 @@
 package com.sontme.esp.getlocation;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DownloadManager;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Environment;
-import android.os.PowerManager;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.sontme.esp.getlocation.activities.MainActivity;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import cz.msebera.android.httpclient.Header;
-
 /*
-
 public class Updater  {
 
     public void checkUpdate(final Context context, String url, final Activity a) {
@@ -238,5 +203,4 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         return FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".com.sontme.esp.tauriqueuewatcher.provider", file);
     }
 }
-
 */

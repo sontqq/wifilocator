@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 
-public class Receiver extends BroadcastReceiver {
+public class BroadcReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -11,12 +11,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class exporter {
+public class CsvExporter {
 
     public String fileName;
     public List<String> csv_list_uniq = new ArrayList<String>();
 
-    public exporter(String fileName) {
+    public CsvExporter(String fileName) {
         this.fileName = fileName;
     }
 
@@ -36,12 +36,13 @@ public class exporter {
                             writer.flush();
                             writer.close();
                         } else {
-                            Log.d("CSV_WRITER_", "Already contains");
+                            Log.d("CSV_EXPORTER_", "Already contains");
                         }
                     } catch (Exception e) {
-                        Log.d("CSV_writer_error_:", e.toString());
+                        Log.d("CSV_EXPORTER_ERROR_", e.toString());
+                        e.printStackTrace();
                     } finally {
-                        Log.d("csv_", "LEFUTOTT");
+                        Log.d("CSV_EXPORTER_", "LEFUTOTT_" + file.length() / 1024 + " kilobytes");
                     }
                 }
             }
@@ -65,16 +66,13 @@ public class exporter {
                             writer.flush();
                             writer.close();
                         } else {
-                            Log.d("CSV_WRITER_", "Already contains");
+                            Log.d("CSV_EXPORTER_HUAW", "Already contains");
                         }
                     } catch (Exception e) {
-                        Log.d("CSV_writer_huawei_error_:", e.toString());
+                        Log.d("CSV_EXPORTER_ERROR_HUAW_", e.toString());
                         e.printStackTrace();
                     } finally {
-                        Log.d("csv_", "LEFUTOTT");
-                        file = new File("/data/user/0/com.sontme.esp.getlocation/files/", fileName);
-                        Log.d("csv_", String.valueOf(file.getAbsolutePath()));
-                        Log.d("csv_", String.valueOf(file.length() / 1024));
+                        Log.d("CSV_EXPORTER_HUAW", "LEFUTOTT_" + file.length() / 1024 + " kilobytes");
                     }
                 }
             }

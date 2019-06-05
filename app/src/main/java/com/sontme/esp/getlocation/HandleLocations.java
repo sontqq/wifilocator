@@ -43,7 +43,9 @@ public class HandleLocations {
         this.lon1 = longitude;
     }
     //endregion
-    // UNUSED YET - need some rework
+
+    // UNUSED YET - SontHelper instead?
+
     public float getDistance(String la1, String lo1, String la2, String lo2){
         Location loc1 = null;
         Double lad1 = Double.valueOf(la1);
