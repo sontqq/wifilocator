@@ -37,8 +37,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -51,10 +49,6 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -70,34 +64,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-public class BackgroundService extends Service implements GpsStatus.Listener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
+public class BackgroundService extends Service implements GpsStatus.Listener/*, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener*/ {
+
     //region GLOBAL / LOCAL VARIABLES
     int GpsInView;
     int GpsInUse;
-    public static String accuracy;
 
+    public static int getCount() {
+        return count;
+    }
     public static String getLatitude() {
         if (latitude == null)
             return "0";
         return latitude;
     }
-
     public static String getLongitude() {
         if (longitude == null)
             return "0";
         return longitude;
     }
-
-    public static String latitude;
-    public static String longitude;
-    public static String speed;
-    public static String altitude;
-    public static String bearing;
-    public static String time;
-    public static String address;
-    public static String provider;
-    public static String distance;
 
     public static String getInitLat() {
         if (initLat == null)
@@ -111,12 +97,18 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return initLong;
     }
 
+    public static String accuracy;
+    public static String latitude;
+    public static String longitude;
+    public static String speed;
+    public static String altitude;
+    public static String bearing;
+    public static String time;
+    public static String address;
+    public static String provider;
+    public static String distance;
     public static String initLat;
     public static String initLong;
-
-    public static int getCount() {
-        return count;
-    }
 
     public static int count = 0;
     public static List<String> urlList_failed = new ArrayList<String>();
@@ -127,7 +119,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     public static String ipaddress;
     public static String googleAccount;
-    public static boolean isUploading;
+    public static boolean isUploading = false;
     //endregion
 
     //region NEW CONSTANTS
@@ -139,7 +131,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     int GPS_UPDATE_TIME = 1000;
     //endregion
 
-    int totalBytesSent = 0;
     public static String HUAWEI_PATH = "/data/user/0/com.sontme.esp.getlocation/files/";
     CountDownTimer mCountDownTimer;
     int UPLOAD_SIZE_LIMIT = 10240;
@@ -160,15 +151,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     public LocationManager locationManager;
     CsvExporter cs = new CsvExporter("wifilocator_database.csv");
 
-    private static boolean isRunning;
-
     public Location previousLocation = new Location(LocationManager.GPS_PROVIDER);
     public static double sumOfTravelDistance = 0;
-
-    // FUSED GOOGLE API //
-    //Location location;
-    static GoogleApiClient googleApiClient;
-    static LocationRequest locationRequest;
 
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
@@ -476,7 +460,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         notificationManager.notify(notificationId, mBuilder.build());
 
     }
-
     public void uploadProgress(int prog) {
 
         Context context = getApplicationContext();
@@ -526,7 +509,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             sendBroadcast(poke);
         }
     }
-
     public void startUpdatesGPS() {
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -743,7 +725,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         }
 
     }
-
     public void aplist(final Context context, double lati, double longi) {
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
@@ -803,7 +784,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             e.printStackTrace();
         }
     }
-
     public void saveRecordHttp(String path) {
         Thread th2 = new Thread() {
             public void run() {
@@ -826,6 +806,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                             @Override
                             public void onError(ANError anError) {
                                 urlList_failed.add(path);
+                                saveRecordHttp(path); // may REDUCE battery life
                                 Log.d("HTTP_ERROR_", anError.toString());
                             }
                         });
@@ -841,7 +822,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
                 new NotificationChannelGroup(id, name);
         notificationManager.createNotificationChannelGroup(notificationChannelGroup);
     }
-
     public void showOngoing() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String NOTIFICATION_CHANNEL_ID = "new";
@@ -880,7 +860,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             }
         }
     }
-
     public void showNotification(Context context, String title, String body, Intent intent) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
@@ -953,74 +932,21 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
 
     }
 
-    //region ServiceFunctions
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
-        isRunning = true;
         SontHelper.showToast(getApplicationContext(), "Service started");
-
         return START_STICKY;
-
     }
-
     @Override
     public void onDestroy() {
         SontHelper.showToast(getApplicationContext(), "Service stopped_1");
-        isRunning = false;
         stopForeground(true);
         String ns = Context.NOTIFICATION_SERVICE;
         NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
         nMgr.cancelAll();
     }
-
-    @Override
-    public void onStart(Intent intent, int startid) {
-        Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
-    }
-    //endregion
-
-    //region FUSE API
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-        }
-        //location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setSmallestDisplacement(GPS_UPDATE_METERS);
-        locationRequest.setInterval(GPS_UPDATE_TIME);
-        locationRequest.setFastestInterval(GPS_UPDATE_TIME);
-
-        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
-        Toast.makeText(getBaseContext(), "Google API connected", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Toast.makeText(getBaseContext(), "Google API Connection suspended: " + i, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        //Toast.makeText(getBaseContext(), "fuse speed: " + String.valueOf(location.getSpeed()), Toast.LENGTH_SHORT).show();
-        Log.d("FUSE_API_LOCATION_CHANGE: ", location.toString());
-        queryLocation(location);
-        //vibrate();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(getBaseContext(), "Google API Connection failed: " + connectionResult.toString(), Toast.LENGTH_SHORT).show();
-    }
-    //endregion
 
     @Override
     public void onGpsStatusChanged(int event) {

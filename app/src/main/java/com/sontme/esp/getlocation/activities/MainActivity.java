@@ -8,7 +8,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
@@ -44,7 +43,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -69,8 +67,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
@@ -78,6 +74,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
+import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.SontHelper;
 
@@ -89,7 +86,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -265,31 +261,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public ActionBarDrawerToggle t;
     public NavigationView nv;
 
-
-    public static void copyFile(File src, File dst) {
-        Thread thread = new Thread() {
-            public void run() {
-                try (InputStream in = new FileInputStream(src)) {
-                    try (OutputStream out = new FileOutputStream(dst)) {
-                        // Transfer bytes from in to out
-                        byte[] buf = new byte[1024];
-                        int len;
-                        while ((len = in.read(buf)) > 0) {
-                            out.write(buf, 0, len);
-                        }
-                    }
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    Log.d("APPINFO", "Copy Fail");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.d("APPINFO", "Copy Fail");
-                }
-                Log.d("APPINFO", "Copy Done");
-            }
-        };
-        thread.start();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -672,23 +643,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         });
 
-        webview.clearCache(true);
-        webview.clearHistory();
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.getSettings().setDomStorageEnabled(true);
-        webview.getSettings().setAllowFileAccess(true);
-        webview.getSettings().setAllowFileAccessFromFileURLs(true);
-        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webview.getSettings().setAppCacheEnabled(true);
-        webview.getSettings().setLoadsImagesAutomatically(true);
-        webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        /*
-        webview.getSettings().setLoadWithOverviewMode(true);
-        webview.getSettings().setUseWideViewPort(false);
-        webview.setInitialScale(1);
-        */
-        webview.setBackgroundColor(Color.argb(100, 234, 234, 234));
-        //webview.loadUrl("https://sont.sytes.net/wifilocator/osm.php");
         //endregion
 
         exitb.setOnClickListener(new View.OnClickListener() {
@@ -706,24 +660,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         TextView tex = hView.findViewById(R.id.header_verinfo);
         String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
         tex.setText(version);
-
-        Thread th2 = new Thread() {
-            public void run() {
-                if (sw.isChecked() == true) {
-                    getChart_timer_updated("https://sont.sytes.net/wifilocator/wifis_chart_updated.php");
-                }
-                if (sw2.isChecked() == true) {
-                    getChart_timer_new("https://sont.sytes.net/wifilocator/wifis_chart_new.php");
-                }
-                if (sw3.isChecked() == true) {
-                    getChart_timer_pie("https://sont.sytes.net/wifilocator/wifis_chart_2.php");
-                }
-                if (sw4.isChecked() == true) {
-                    getStatHttp("https://sont.sytes.net/wifilocator/wifi_stats.php?source=" + BackgroundService.googleAccount);
-                }
-            }
-        };
-        th2.start();
 
         handler.postDelayed(runnable, 1000);
         chart_handler.postDelayed(chart_runnable, 5000);
@@ -761,48 +697,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     };
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        String stateSaved = savedInstanceState.getString("save_state");
-        if (stateSaved == null) {
-            //Toast.makeText(getApplicationContext(), "onRestore: null", Toast.LENGTH_LONG).show();
-        } else {
-            //Toast.makeText(getApplicationContext(), "Saved state onResume: " + stateSaved, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle onState) {
-        super.onSaveInstanceState(onState);
-        String stateSaved = onState.getString("save_state");
-        if (stateSaved == null) {
-            //Toast.makeText(getApplicationContext(), "onSave null", Toast.LENGTH_LONG).show();
-        } else {
-            //Toast.makeText(getApplicationContext(), "Saved state onSave: " + stateSaved, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private BluetoothAdapter.LeScanCallback leScanCallback =
-            new BluetoothAdapter.LeScanCallback() {
-                @Override
-                public void onLeScan(final BluetoothDevice device, int rssi,
-                                     byte[] scanRecord) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("BLE_DEVICE_FOUND_", device.getName() + " _ " + device.getAddress() + " _ " + device.getBondState() + " _ " + device.getUuids());
-                            BLEdevices.put(device.getName(), device.getAddress() + " UUID: " + device.getUuids());
-                        }
-                    });
-                }
-            };
-
-    @Override
     public void onResume() {
         super.onResume();
     }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -812,7 +709,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (t.onOptionsItemSelected(item))
@@ -904,7 +800,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
-
     public void getChart_timer_new(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto")
@@ -979,7 +874,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
-
     public void getChart_timer_pie(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto2")
@@ -1057,7 +951,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
-
     public void getStatHttp(String path) {
         path = path.replaceAll(Pattern.quote("+"), "");
         path = path.replaceAll(Pattern.quote(" "), "%20");
@@ -1167,6 +1060,31 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         }
     }
 
+    public static void copyFile(File src, File dst) {
+        Thread thread = new Thread() {
+            public void run() {
+                try (InputStream in = new FileInputStream(src)) {
+                    try (OutputStream out = new FileOutputStream(dst)) {
+                        // Transfer bytes from in to out
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Log.d("APPINFO", "Copy Fail");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.d("APPINFO", "Copy Fail");
+                }
+                Log.d("APPINFO", "Copy Done");
+            }
+        };
+        thread.start();
+    }
+
     @Override
     public void onGpsStatusChanged(int event) {
         //mStatus = mService.getGpsStatus(mStatus);
@@ -1196,21 +1114,3 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 }
 
-class CustomFormatter implements IValueFormatter {
-
-    private DecimalFormat mFormat;
-
-    public CustomFormatter() {
-        mFormat = new DecimalFormat("###,###,##0");
-    }
-
-    @Override
-    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-
-        if (value > 0) {
-            return mFormat.format(value);
-        } else {
-            return "";
-        }
-    }
-}
