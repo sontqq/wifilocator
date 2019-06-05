@@ -35,6 +35,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class SontHelper {
+    /*
+        Frequently used methods to keep other classes clear
+    */
     static String CAMERA_IMAGE_BUCKET_NAME = Environment.getExternalStorageDirectory().toString()
             + "/DCIM/Camera";
     static String CAMERA_IMAGE_BUCKET_ID = getBucketId(CAMERA_IMAGE_BUCKET_NAME);
