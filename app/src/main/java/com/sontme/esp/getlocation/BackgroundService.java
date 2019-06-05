@@ -12,6 +12,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.TaskStackBuilder;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -30,7 +31,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -182,24 +182,42 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            //Log.d("BROADCAST_","BSERVICE_" + action);
+            Log.d("BS_R", action);
+            if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(action)) {
+                Log.d("BLUETOOTH_", "pairing request !");
+            }
+            if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                Log.d("BLUETOOTH_", "Discovery FINISHED !");
+            }
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.d("BROADCAST_", "BSERVICE_BL_NAME_" + device.getName() + "_ADDRESS_" + device.getAddress());
-                if (device.getAddress().equals("00:19:86:00:10:AE")) {
-                    Log.d("BROADCAST_1", "BSERVICE_near_home");
-                }
-            }
-            WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo;
-            wifiInfo = wifiManager.getConnectionInfo();
-            if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
-                if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
-                    Toast.makeText(getApplicationContext(), "Welcome home!", Toast.LENGTH_SHORT).show();
-                    Log.d("WIFI__", "Welcome home!");
-                }
-            }
+                Log.d("BLUETOOTH_",
+                        "BSERVICE_BL_NAME_" + device.getName() +
+                                "_ADDRESS_" + device.getAddress());
 
+                if (device.getAddress().equals("00:19:86:00:10:AE") && device.getName().equals("DESKTOP-0Q3JAI7")) {
+                    // check if CHARGING
+                    BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+                    ba.cancelDiscovery();
+                    Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
+                    Toast.makeText(getApplicationContext(), "Near home!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            if (WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION.equals(action) ||
+                    (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION.equals(action))) {
+                WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+                WifiInfo wifiInfo;
+                wifiInfo = wifiManager.getConnectionInfo();
+                if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
+                    if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
+                        Toast.makeText(getApplicationContext(), "Welcome home!", Toast.LENGTH_SHORT).show();
+                        Log.d("WIFI__", "Welcome home!");
+                    }
+                } else if (wifiInfo.getSupplicantState() == SupplicantState.DISCONNECTED) {
+                    Toast.makeText(getApplicationContext(), "Good bye!", Toast.LENGTH_SHORT).show();
+                    Log.d("WIFI__", "Leaving home !");
+                }
+            }
             if (intent.getStringExtra("alarm") == "run") {
                 Log.d("ALARM_", "ALARM RAN !");
             } else if (intent.getStringExtra("alarm") == "off") {
@@ -211,7 +229,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
     @Override
     public void onCreate() {
         createNotifGroup("wifi", "wifi");
-        SontHelper.vibrate(getApplicationContext(), 255, 100);
+        SontHelper.vibrate(getApplicationContext(), 1, 50);
         try {
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
@@ -243,15 +261,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
-            // Indicates a change in the Wi-Fi P2P status.
-            intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-            // Indicates a change in the list of available peers.
-            intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-            // Indicates the state of Wi-Fi P2P connectivity has changed.
-            intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-            // Indicates this device's details have changed.
-            intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
             intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+            intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+            intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
 
             registerReceiver(broadcastReceiver, intentFilter);
 
@@ -462,6 +476,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         notificationManager.notify(notificationId, mBuilder.build());
 
     }
+
     public void uploadProgress(int prog) {
 
         Context context = getApplicationContext();
@@ -865,6 +880,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
             }
         }
     }
+
     public void showNotification(Context context, String title, String body, Intent intent) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
@@ -948,6 +964,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         return START_STICKY;
 
     }
+
     @Override
     public void onDestroy() {
         SontHelper.showToast(getApplicationContext(), "Service stopped_1");
@@ -957,10 +974,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
         nMgr.cancelAll();
     }
+
     @Override
     public void onStart(Intent intent, int startid) {
         Toast.makeText(getBaseContext(), "Service started_3", Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         Toast.makeText(getBaseContext(), "Service stopped_2", Toast.LENGTH_SHORT).show();
@@ -983,10 +1002,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         Toast.makeText(getBaseContext(), "Google API connected", Toast.LENGTH_SHORT).show();
 
     }
+
     @Override
     public void onConnectionSuspended(int i) {
         Toast.makeText(getBaseContext(), "Google API Connection suspended: " + i, Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void onLocationChanged(Location location) {
         //Toast.makeText(getBaseContext(), "fuse speed: " + String.valueOf(location.getSpeed()), Toast.LENGTH_SHORT).show();
@@ -994,6 +1015,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener, Go
         queryLocation(location);
         //vibrate();
     }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(getBaseContext(), "Google API Connection failed: " + connectionResult.toString(), Toast.LENGTH_SHORT).show();

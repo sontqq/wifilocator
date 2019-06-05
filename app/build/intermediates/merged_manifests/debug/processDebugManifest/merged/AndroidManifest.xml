@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="3492"
+    android:versionCode="3519"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -160,10 +160,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="6138261560cf83a66633e863070aca5e6fcb6bc8" />
 
         <service
             android:name="com.sontme.esp.getlocation.BackgroundService"

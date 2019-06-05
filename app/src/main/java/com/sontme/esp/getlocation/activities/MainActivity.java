@@ -380,14 +380,51 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onClick(View v) {
                 SontHelper.playTone();
                 SontHelper.vibrate(getApplicationContext());
-
+                /*
                 BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 mBluetoothAdapter.setName("sont_samsung");
                 mBluetoothAdapter.startDiscovery();
 
-                Log.d("BROADCAST_MAIN_", "BL Name: " + mBluetoothAdapter.getName());
-                Log.d("BROADCAST_MAIN_", "BL Address: " + mBluetoothAdapter.getAddress());
+                Log.d("BLUETOOTH_", "BL Name: " + mBluetoothAdapter.getName());
+                Log.d("BLUETOOTH_", "BL Address: " + mBluetoothAdapter.getAddress());
 
+                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+                    Log.d("BLUETOOTH_","BLE adapter is NOT available");
+                }
+                ScanCallback scb = new ScanCallback() {
+                    @Override
+                    public void onScanResult(int callbackType, android.bluetooth.le.ScanResult result) {
+                        Toast.makeText(getApplicationContext(),"LE scan done: " + result.getRssi(),Toast.LENGTH_SHORT).show();
+                        SontHelper.vibrate(getApplicationContext());
+                        Log.d("BLUETOOTH_","result: " + result.toString());
+                        super.onScanResult(callbackType, result);
+                    }
+                    @Override
+                    public void onBatchScanResults(List<android.bluetooth.le.ScanResult> results) {
+                        Toast.makeText(getApplicationContext(),"LE scan done: " + results.size(),Toast.LENGTH_SHORT).show();
+                        SontHelper.vibrate(getApplicationContext());
+                        Log.d("BLUETOOTH_","batch: " + results.size());
+                        super.onBatchScanResults(results);
+                    }
+                    @Override
+                    public void onScanFailed(int errorCode) {
+                        Log.d("BLUETOOTH_","error: " + errorCode);
+                        SontHelper.vibrate(getApplicationContext());
+                        super.onScanFailed(errorCode);
+                    }
+                };
+                BluetoothLeScanner ba = BluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();
+                ba.startScan(scb);
+                Handler handler =  new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //ba.stopScan(scb);
+                        //Log.d("BLUETOOTH_","adapter LE scan done (5s)");
+                        ba.flushPendingScanResults(scb);
+                    }
+                }, 5000);
+                */
             }
         });
         sharebutton.setOnClickListener(new View.OnClickListener() {

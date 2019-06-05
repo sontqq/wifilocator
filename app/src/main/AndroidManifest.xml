@@ -150,11 +150,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="6138261560cf83a66633e863070aca5e6fcb6bc8" />
-
         <service
             android:name=".BackgroundService"
             android:enabled="true"
