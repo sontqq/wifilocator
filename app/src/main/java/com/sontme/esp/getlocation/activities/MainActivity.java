@@ -8,6 +8,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
@@ -76,6 +77,7 @@ import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.R;
+import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
 
 import java.io.File;
@@ -92,11 +94,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 import me.aflak.bluetooth.Bluetooth;
-import me.aflak.bluetooth.interfaces.BluetoothCallback;
 import me.aflak.bluetooth.interfaces.DeviceCallback;
 import me.aflak.bluetooth.interfaces.DiscoveryCallback;
 
@@ -261,99 +263,48 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public ActionBarDrawerToggle t;
     public NavigationView nv;
 
+    public boolean isBLDevicePaired(BluetoothDevice device) {
+        BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+        Set<BluetoothDevice> list = ba.getBondedDevices();
+
+        Log.d("BLUETOOTH_LIBRARY_", "Paired count: " + list.size());
+        for (BluetoothDevice dev : list) {
+            return device.getAddress() == dev.getAddress();
+        }
+        return false;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        wm = (WifiManager) getSystemService(WIFI_SERVICE);
+
+        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        udp.execute("STARTED ACT");
+
 
         Button sharebutton = findViewById(R.id.sharebutton);
         Button testbutton = findViewById(R.id.testbutton);
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final BluetoothDevice[] connectTo = new BluetoothDevice[1];
                 SontHelper.playTone();
                 SontHelper.vibrate(getApplicationContext());
-                /*
-                BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                mBluetoothAdapter.setName("sont_samsung");
-                mBluetoothAdapter.startDiscovery();
-
-                Log.d("BLUETOOTH_", "BL Name: " + mBluetoothAdapter.getName());
-                Log.d("BLUETOOTH_", "BL Address: " + mBluetoothAdapter.getAddress());
-
-                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-                    Log.d("BLUETOOTH_","BLE adapter is NOT available");
-                }
-                ScanCallback scb = new ScanCallback() {
-                    @Override
-                    public void onScanResult(int callbackType, android.bluetooth.le.ScanResult result) {
-                        Toast.makeText(getApplicationContext(),"LE scan done: " + result.getRssi(),Toast.LENGTH_SHORT).show();
-                        SontHelper.vibrate(getApplicationContext());
-                        Log.d("BLUETOOTH_","result: " + result.toString());
-                        super.onScanResult(callbackType, result);
-                    }
-                    @Override
-                    public void onBatchScanResults(List<android.bluetooth.le.ScanResult> results) {
-                        Toast.makeText(getApplicationContext(),"LE scan done: " + results.size(),Toast.LENGTH_SHORT).show();
-                        SontHelper.vibrate(getApplicationContext());
-                        Log.d("BLUETOOTH_","batch: " + results.size());
-                        super.onBatchScanResults(results);
-                    }
-                    @Override
-                    public void onScanFailed(int errorCode) {
-                        Log.d("BLUETOOTH_","error: " + errorCode);
-                        SontHelper.vibrate(getApplicationContext());
-                        super.onScanFailed(errorCode);
-                    }
-                };
-                BluetoothLeScanner ba = BluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();
-                ba.startScan(scb);
-                Handler handler =  new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //ba.stopScan(scb);
-                        //Log.d("BLUETOOTH_","adapter LE scan done (5s)");
-                        ba.flushPendingScanResults(scb);
-                    }
-                }, 5000);
-                */
 
                 Bluetooth bluetooth = new Bluetooth(getApplicationContext());
-                //BluetoothAdapter a = bluetooth.getBluetoothAdapter();
-
-                BluetoothCallback bluetoothCallback = new BluetoothCallback() {
-                    @Override
-                    public void onBluetoothTurningOn() {
-                    }
-
-                    @Override
-                    public void onBluetoothTurningOff() {
-                    }
-
-                    @Override
-                    public void onBluetoothOff() {
-                    }
-
-                    @Override
-                    public void onUserDeniedActivation() {
-                    }
-
-                    @Override
-                    public void onBluetoothOn() {
-                    }
-
-                };
+                //bluetooth.setCallbackOnUI(MainActivity.this);
                 DeviceCallback deviceCallback = new DeviceCallback() {
                     @Override
                     public void onDeviceConnected(BluetoothDevice device) {
-                        Log.d("BLUETOOTH_LIBRARY_", "Connected: " + device.getAddress());
+                        Log.d("BLUETOOTH_LIBRARY_", "Connected to: " + device.getAddress());
                     }
 
                     @Override
                     public void onDeviceDisconnected(BluetoothDevice device, String message) {
+                        Log.d("BLUETOOTH_LIBRARY_", "Disconnected from: " + device.getAddress());
                     }
 
                     @Override
@@ -368,38 +319,87 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                     @Override
                     public void onConnectError(BluetoothDevice device, String message) {
-                        Log.d("BLUETOOTH_LIBRARY_", "error_" + message);
+                        Log.d("BLUETOOTH_LIBRARY_", "ConnectionError_ " + message);
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "CONNECTION ERROR:\n" +
+                                                device.getName() + "\n" +
+                                                device.getAddress() + "\n" +
+                                                message,
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                SontHelper.double_vibrate(getApplicationContext());
+                                SontHelper.vibrate(getApplicationContext());
+                            }
+                        });
                     }
                 };
                 DiscoveryCallback discoveryCallback = new DiscoveryCallback() {
                     @Override
                     public void onDiscoveryStarted() {
+                        //UDP_Client udp = new UDP_Client("192.168.0.43",5000);
+                        //udp.execute("DISCOVERY STARTED");
+                        Log.d("BLUETOOTH_LIBRARY_", "Discovery Started ! " +
+                                System.currentTimeMillis());
                     }
 
                     @Override
                     public void onDiscoveryFinished() {
+                        //UDP_Client udp = new UDP_Client("192.168.0.43",5000);
+                        //udp.execute("DISCOVERY FINISHED");
+                        Log.d("BLUETOOTH_LIBRARY_", "Discovery Finished ! " +
+                                System.currentTimeMillis());
+                        try {
+                            bluetooth.onStop();
+                            bluetooth.onStart();
+                            if (!bluetooth.isEnabled())
+                                bluetooth.enable();
+                            bluetooth.startScanning();
+
+                            //bluetooth.pair(connectTo[0]);
+                            if (bluetooth != null)
+                                Log.d("BLUETOOTH_LIBRARY_", "Bluetooth NOT null");
+                            if (connectTo[0] != null) {
+                                Log.d("BLUETOOTH_LIBRARY_", "Device NOT null");
+                                bluetooth.connectToDevice(connectTo[0]);
+                                Log.d("BLUETOOTH_LIBRARY_", "Connecting ! " +
+                                        connectTo[0].getName() + " " +
+                                        connectTo[0].getAddress());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("BLUETOOTH_LIBRARY_", e.getMessage());
+                        }
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                SontHelper.double_vibrate(getApplicationContext());
+                            }
+                        });
                     }
 
                     @Override
                     public void onDeviceFound(BluetoothDevice device) {
-                        Log.d("BLUETOOTH_LIBRARY_", "Found: " + device.getAddress());
+                        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+                        //udp.execute("BL Devide found: " + device.getName() + " _ " + device.getAddress());
                         if (device.getAddress().equals("00:19:86:00:10:AE")) {
-                            List<BluetoothDevice> devices = bluetooth.getPairedDevices();
-                            if (!devices.contains(device)) {
-                                Log.d("BLUETOOTH_LIBRARY_", "Pairing with: " + device.getName());
-                                bluetooth.pair(device);
+                            //List<BluetoothDevice> devices = bluetooth.getPairedDevices();
+                            if (isBLDevicePaired(device) == true) {
+                                Log.d("BLUETOOTH_LIBRARY_", "Found: " +
+                                        device.getAddress() + " _ PAIRED");
                             } else {
-                                Log.d("BLUETOOTH_LIBRARY_", "Connecting: " + device.getName());
-                                bluetooth.connectToDevice(device);
-                                //bluetooth.connectToDeviceWithPortTrick(device);
-
+                                Log.d("BLUETOOTH_LIBRARY_", "Found: " +
+                                        device.getAddress() + " _ NOT PAIRED");
                             }
+                        } else {
+                            udp.execute(device.getName() + "_" + device.getAddress() + "_" + BackgroundService.latitude + "_" + BackgroundService.longitude);
                         }
                     }
 
                     @Override
                     public void onDevicePaired(BluetoothDevice device) {
-                        Log.d("BLUETOOTH_LIBRARY_", "pairing_" + device.getName());
+                        Log.d("BLUETOOTH_LIBRARY_", "pairing_" +
+                                device.getName() + " _ " +
+                                device.getAddress());
                     }
 
                     @Override
@@ -409,14 +409,17 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                     @Override
                     public void onError(int errorCode) {
-                        Log.d("BLUETOOTH_LIBRARY_", "error_" + errorCode);
+                        Log.d("BLUETOOTH_LIBRARY_", "Error_ " + errorCode);
                     }
                 };
-                bluetooth.setBluetoothCallback(bluetoothCallback);
+
+                //bluetooth.setBluetoothCallback(bluetoothCallback);
                 bluetooth.setDiscoveryCallback(discoveryCallback);
                 bluetooth.setDeviceCallback(deviceCallback);
-                //a.startDiscovery();
+
                 bluetooth.onStart();
+                if (!bluetooth.isEnabled())
+                    bluetooth.enable();
                 bluetooth.startScanning();
             }
         });
@@ -476,6 +479,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
+
+                UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+                udp.execute("ERROR_" + ex.getMessage() + "\n" + ex.getStackTrace());
+
                 Intent mStartActivity = new Intent(context, MainActivity.class);
                 int mPendingIntentId = 123456;
                 PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -504,7 +511,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         TextView ip = findViewById(R.id.ip);
         ip.setText(BackgroundService.ipaddress);
 
-        wm = (WifiManager) getSystemService(WIFI_SERVICE);
         //region DRAWER
         dl = findViewById(R.id.drawler);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
@@ -680,6 +686,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     @Override
     public void onStop() {
+        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        udp.execute("STOPPED ACT");
         super.onStop();
     }
 
@@ -698,12 +706,15 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     @Override
     public void onResume() {
+        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        udp.execute("RESUMING ACT");
         super.onResume();
     }
     @Override
     public void onPause() {
         super.onPause();
-
+        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        udp.execute("PAUSING ACT");
         SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("lastActivity", getClass().getName());

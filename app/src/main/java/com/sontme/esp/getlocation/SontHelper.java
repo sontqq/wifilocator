@@ -133,6 +133,17 @@ public class SontHelper {
         thread.start();
     }
 
+    public static void double_vibrate(Context ctx) {
+        Vibrator v = (Vibrator) ctx.getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {50, 0, 50, 0};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createWaveform(pattern, 1));
+        } else {
+            v.vibrate(40);
+            v.vibrate(VibrationEffect.createWaveform(pattern, 1));
+        }
+    }
+
     public static boolean zipFileAtPath(String sourcePath, String toLocation) {
         final int BUFFER = 2048;
 

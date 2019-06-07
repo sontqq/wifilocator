@@ -39,7 +39,6 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -49,6 +48,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
+import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -181,10 +181,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
                 if (device.getAddress().equals("00:19:86:00:10:AE") && device.getName().equals("DESKTOP-0Q3JAI7")) {
                     // check if CHARGING
-                    BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
-                    ba.cancelDiscovery();
+                    //BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+                    //ba.cancelDiscovery();
                     Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
-                    Toast.makeText(getApplicationContext(), "Near home!", Toast.LENGTH_SHORT).show();
                 }
             }
             if (WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION.equals(action) ||
@@ -194,11 +193,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 wifiInfo = wifiManager.getConnectionInfo();
                 if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
                     if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
-                        Toast.makeText(getApplicationContext(), "Welcome home!", Toast.LENGTH_SHORT).show();
                         Log.d("WIFI__", "Welcome home!");
                     }
                 } else if (wifiInfo.getSupplicantState() == SupplicantState.DISCONNECTED) {
-                    Toast.makeText(getApplicationContext(), "Good bye!", Toast.LENGTH_SHORT).show();
                     Log.d("WIFI__", "Leaving home !");
                 }
             }
@@ -215,6 +212,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         createNotifGroup("wifi", "wifi");
         SontHelper.vibrate(getApplicationContext(), 1, 50);
         try {
+
+            UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+            udp.execute("STARTED SERVICE");
+
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
 
@@ -245,12 +246,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
-            intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+            /*intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
             intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
             intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
             intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
             intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
-
+            */
             registerReceiver(broadcastReceiver, intentFilter);
 
             if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -263,6 +264,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, Throwable ex) {
+
+                    UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+                    udp.execute("ERROR_" + ex.getMessage() + "\n" + ex.getStackTrace());
+
                     Intent mStartActivity = new Intent(getBaseContext(), BackgroundService.class);
                     int mPendingIntentId = 123456;
                     PendingIntent mPendingIntent = PendingIntent.getActivity(getBaseContext(), mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -272,58 +277,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 }
             };
             Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
-
-
-            //region HTTP SERVER
-            /*
-            AsyncHttpServer server = new AsyncHttpServer();
-            List<WebSocket> _sockets = new ArrayList<WebSocket>();
-            server.get("/", new HttpServerRequestCallback() {
-                @Override
-                public void onRequest(AsyncHttpServerRequest request, AsyncHttpServerResponse response) {
-                    String tosend = "";
-                    String os = System.getProperty("os.version");
-                    String sdk = android.os.Build.VERSION.SDK;
-                    String device = android.os.Build.DEVICE;
-                    String model = android.os.Build.MODEL;
-                    String prod = android.os.Build.PRODUCT;
-                    String serviceName = Context.TELEPHONY_SERVICE;
-                    TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
-                    String IMEI, IMSI;
-                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-                    IMEI = m_telephonyManager.getDeviceId();
-                    IMSI = m_telephonyManager.getSubscriberId();
-                    String osf = android.os.Build.VERSION.RELEASE;
-                    long RX = TrafficStats.getTotalRxBytes() / (1024 * 1024);
-                    long TX = TrafficStats.getTotalTxBytes() / (1024 * 1024);
-
-                    ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-                    List<ActivityManager.RunningAppProcessInfo> runningApps = manager.getRunningAppProcesses();
-                    String stat = "";
-                    for (ActivityManager.RunningAppProcessInfo runningApp : runningApps) {
-                        long received = TrafficStats.getUidRxBytes(runningApp.uid);
-                        long sent = TrafficStats.getUidTxBytes(runningApp.uid);
-                        stat = runningApp.uid + " Process: " + runningApp.processName + " Sent: " + sent / (1024 * 1024) + " Received: " + received / 1024 / 1024;
-                        Log.d("NETSTAT", stat);
-                    }
-                    tosend = request.toString();
-                    tosend = tosend + "<br><br>OS: " + os + "<br>OS_2: " + osf + "<br>SDK: " + sdk + "<br>Device: " + device + "<br>Model: " + model + "<br>Product: " + prod + "<br>IMEI: " + IMEI + "<br>IMSI: " + IMSI + "<br>Service name: " + serviceName;
-                    tosend = tosend + "<br>ID: " + Build.ID;
-                    tosend = tosend + "<br>User: " + Build.USER;
-                    tosend = tosend + "<br>Host: " + Build.HOST;
-                    tosend = tosend + "<br>Fingerprint: " + Build.FINGERPRINT;
-                    tosend = tosend + "<br>Board: " + Build.BOARD;
-                    tosend = tosend + "<br>RX: " + RX + " mb TX: " + TX + " mb";
-                    tosend = tosend + "<br>" + stat;
-                    response.send(tosend);
-                    //Toast.MakeText(getApplicationContext(), "Service: HTTP Respond sent", Toast.LENGTH_SHORT).show();
-                }
-            });
-            server.listen(8888);
-            */
-            //endregion
 
             Calendar rightNow = Calendar.getInstance();
             int hour = rightNow.get(Calendar.HOUR_OF_DAY);
@@ -566,6 +519,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
     public void queryLocation(Location LocRes) {
         try {
+            /*
+            UDP_Client udp = new UDP_Client("192.168.0.43",5000);
+            udp.execute(LocRes.toString());
+            */
             float[] distancee = new float[1];
 
             Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
@@ -594,7 +551,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 if (isuploading == false) {
                     if (SontHelper.chk_3g_wifi(getApplicationContext()) == "wifi" || UPLOAD_3G == true) {
                         Log.d("UPLOAD_", "SIZE OK TO UPLOAD");
-                        //Toast.MakeText(getBaseContext(), String.valueOf("Adatbázis feltöltése"), Toast.LENGTH_SHORT).show();
+                        // CHECK IF CHARGING
                         uploadProgress(0, 0, 0);
                         isuploading = true;
                         SontHelper.zipFileAtPath(f.getAbsolutePath(), f.getParent() + "/wifilocator_database.zip");
@@ -941,6 +898,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     }
     @Override
     public void onDestroy() {
+        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        udp.execute("STOPPED SERVICE");
         SontHelper.showToast(getApplicationContext(), "Service stopped_1");
         stopForeground(true);
         String ns = Context.NOTIFICATION_SERVICE;
@@ -982,17 +941,5 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         }
     }
 
-    public static boolean checkPermissionLocation(Context c) {
-
-        if (ContextCompat.checkSelfPermission(c, android.Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(c, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                        PackageManager.PERMISSION_GRANTED) {
-        } else {
-            Toast.makeText(c, "perm error", Toast.LENGTH_LONG).show();
-        }
-
-        return ContextCompat.checkSelfPermission(c, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-    }
 }
 
