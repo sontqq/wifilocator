@@ -105,7 +105,7 @@ import me.aflak.bluetooth.interfaces.DiscoveryCallback;
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
 
     //region DEFINING VARIABLES
-    public int counter = 0;
+    // UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
     public PublisherAdView mPublisherAdView;
     public Context context = this;
     public static TextView alti;
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         setContentView(R.layout.activity_main);
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
-        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STARTED ACT");
 
 
@@ -294,8 +294,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 SontHelper.playTone();
                 SontHelper.vibrate(getApplicationContext());
 
+                SontHelper.check_if_local(getApplicationContext());
+
                 Bluetooth bluetooth = new Bluetooth(getApplicationContext());
-                //bluetooth.setCallbackOnUI(MainActivity.this);
+
                 DeviceCallback deviceCallback = new DeviceCallback() {
                     @Override
                     public void onDeviceConnected(BluetoothDevice device) {
@@ -337,16 +339,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 DiscoveryCallback discoveryCallback = new DiscoveryCallback() {
                     @Override
                     public void onDiscoveryStarted() {
-                        //UDP_Client udp = new UDP_Client("192.168.0.43",5000);
-                        //udp.execute("DISCOVERY STARTED");
                         Log.d("BLUETOOTH_LIBRARY_", "Discovery Started ! " +
                                 System.currentTimeMillis());
                     }
 
                     @Override
                     public void onDiscoveryFinished() {
-                        //UDP_Client udp = new UDP_Client("192.168.0.43",5000);
-                        //udp.execute("DISCOVERY FINISHED");
                         Log.d("BLUETOOTH_LIBRARY_", "Discovery Finished ! " +
                                 System.currentTimeMillis());
                         try {
@@ -379,10 +377,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                     @Override
                     public void onDeviceFound(BluetoothDevice device) {
-                        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
-                        //udp.execute("BL Devide found: " + device.getName() + " _ " + device.getAddress());
                         if (device.getAddress().equals("00:19:86:00:10:AE")) {
-                            //List<BluetoothDevice> devices = bluetooth.getPairedDevices();
                             if (isBLDevicePaired(device) == true) {
                                 Log.d("BLUETOOTH_LIBRARY_", "Found: " +
                                         device.getAddress() + " _ PAIRED");
@@ -391,6 +386,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                                         device.getAddress() + " _ NOT PAIRED");
                             }
                         } else {
+                            UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
                             udp.execute(device.getName() + "_" + device.getAddress() + "_" + BackgroundService.latitude + "_" + BackgroundService.longitude);
                         }
                     }
@@ -479,8 +475,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
-
-                UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
                 udp.execute("ERROR_" + ex.getMessage() + "\n" + ex.getStackTrace());
 
                 Intent mStartActivity = new Intent(context, MainActivity.class);
@@ -686,7 +681,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     @Override
     public void onStop() {
-        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STOPPED ACT");
         super.onStop();
     }
@@ -706,14 +701,14 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     @Override
     public void onResume() {
-        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("RESUMING ACT");
         super.onResume();
     }
     @Override
     public void onPause() {
         super.onPause();
-        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("PAUSING ACT");
         SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

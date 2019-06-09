@@ -1,4 +1,3 @@
-
 package com.sontme.esp.getlocation;
 
 import android.Manifest;
@@ -71,14 +70,18 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     int GpsInView;
     int GpsInUse;
 
+    // UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+
     public static int getCount() {
         return count;
     }
+
     public static String getLatitude() {
         if (latitude == null)
             return "0";
         return latitude;
     }
+
     public static String getLongitude() {
         if (longitude == null)
             return "0";
@@ -131,6 +134,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     int GPS_UPDATE_TIME = 1000;
     //endregion
 
+    private static Context context;
     public static String HUAWEI_PATH = "/data/user/0/com.sontme.esp.getlocation/files/";
     CountDownTimer mCountDownTimer;
     int UPLOAD_SIZE_LIMIT = 10240;
@@ -141,6 +145,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     int uploaded = 0;
     private LocationManager mService;
     public String DEVICE_ACCOUNT;
+    public static String DEVICE_ACCOUNT2;
     public boolean isuploading = false;
     private List<String> urlList_uniq = new ArrayList<String>();
     private List<String> macList_uniq = new ArrayList<String>();
@@ -167,6 +172,14 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.d("BS_R", action);
+            if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+                udp.execute("SCREEN ON");
+            }
+            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+                udp.execute("SCREEN OFF");
+            }
             if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(action)) {
                 Log.d("BLUETOOTH_", "pairing request !");
             }
@@ -181,8 +194,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
                 if (device.getAddress().equals("00:19:86:00:10:AE") && device.getName().equals("DESKTOP-0Q3JAI7")) {
                     // check if CHARGING
-                    //BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
-                    //ba.cancelDiscovery();
+                    // BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+                    // ba.cancelDiscovery();
                     Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
                 }
             }
@@ -212,8 +225,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         createNotifGroup("wifi", "wifi");
         SontHelper.vibrate(getApplicationContext(), 1, 50);
         try {
-
-            UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+            UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
             udp.execute("STARTED SERVICE");
 
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
@@ -226,9 +238,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             if (acc.length() > 3) {
                 DEVICE_ACCOUNT = acc;
                 DEVICE_ACCOUNT = DEVICE_ACCOUNT.replaceAll("[^0-9]", "");
+                DEVICE_ACCOUNT2 = DEVICE_ACCOUNT;
             } else {
                 DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
+                DEVICE_ACCOUNT2 = DEVICE_ACCOUNT;
             }
 
             showOngoing();
@@ -246,12 +260,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
-            /*intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
-            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-            intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
-            intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
-            */
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+
             registerReceiver(broadcastReceiver, intentFilter);
 
             if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -264,8 +275,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, Throwable ex) {
-
-                    UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+                    UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
                     udp.execute("ERROR_" + ex.getMessage() + "\n" + ex.getStackTrace());
 
                     Intent mStartActivity = new Intent(getBaseContext(), BackgroundService.class);
@@ -291,6 +301,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 @Override
                 public void onFinish() {
                     // EVERY 100000 SECONDS
+                    UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+                    udp.execute("HEARTH_BEAT");
                     if (hour > 5 && hour < 23) { // HA NAPPAL / IF DAYLIGHT
                         Log.d("ALARM_3", "ran...");
                         UPLOAD_NIGHT = false;
@@ -519,10 +531,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
     public void queryLocation(Location LocRes) {
         try {
-            /*
-            UDP_Client udp = new UDP_Client("192.168.0.43",5000);
-            udp.execute(LocRes.toString());
-            */
             float[] distancee = new float[1];
 
             Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
@@ -898,7 +906,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     }
     @Override
     public void onDestroy() {
-        UDP_Client udp = new UDP_Client("192.168.0.43", 5000);
+        UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STOPPED SERVICE");
         SontHelper.showToast(getApplicationContext(), "Service stopped_1");
         stopForeground(true);
@@ -938,6 +946,28 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     public class LocalBinder extends Binder {
         public BackgroundService getServerInstance() {
             return BackgroundService.this;
+        }
+    }
+
+    public static Context getAppContext() {
+        return BackgroundService.context;
+    }
+
+    public static boolean check_if_local(Context ctx) {
+        try {
+            Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+            WifiManager wifiManager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo info = wifiManager.getConnectionInfo();
+            String ssid = info.getSSID();
+            if (ssid.contains("UPCAED")) {
+                Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+                return true;
+            } else {
+                Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 

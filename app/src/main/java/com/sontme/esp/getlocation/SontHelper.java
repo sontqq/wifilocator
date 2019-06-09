@@ -2,6 +2,7 @@ package com.sontme.esp.getlocation;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
 import android.location.Address;
@@ -9,6 +10,8 @@ import android.location.Geocoder;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.VibrationEffect;
@@ -37,7 +40,7 @@ import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class SontHelper {
+public class SontHelper extends Application {
     /*
         Frequently used methods to keep other classes clear
     */
@@ -334,6 +337,20 @@ public class SontHelper {
             return "3g";
         } else {
             return "no";
+        }
+    }
+
+    public static boolean check_if_local(Context ctx) {
+        Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+        WifiManager wifiManager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+        String ssid = info.getSSID();
+        if (ssid.contains("UPCAED")) {
+            Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+            return true;
+        } else {
+            Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
+            return false;
         }
     }
 }
