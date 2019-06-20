@@ -70,8 +70,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     int GpsInView;
     int GpsInUse;
 
-    // UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
-
     public static int getCount() {
         return count;
     }
@@ -149,7 +147,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     public boolean isuploading = false;
     private List<String> urlList_uniq = new ArrayList<String>();
     private List<String> macList_uniq = new ArrayList<String>();
-    public static Location mlocation;
+
     public LocationListener locationListener;
     IBinder mBinder = new LocalBinder();
     int req_count;
@@ -302,7 +300,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 public void onFinish() {
                     // EVERY 100000 SECONDS
                     UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
-                    udp.execute("HEARTH_BEAT");
+                    boolean x = SontHelper.isNetworkAvailable(getApplicationContext());
+                    udp.execute("HEARTH_BEAT > " + address + "_" + latitude + "_" + longitude);
                     if (hour > 5 && hour < 23) { // HA NAPPAL / IF DAYLIGHT
                         Log.d("ALARM_3", "ran...");
                         UPLOAD_NIGHT = false;
@@ -480,7 +479,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         LocationListener locationListenerr = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                mlocation = location;
                 GpsInView = location.getExtras().getInt("satellites");
                 LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -494,7 +492,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 }
                 GpsInUse = i;
 
-                queryLocation(location);
+                if (location != null) {
+                    queryLocation(location);
+                }
                 Log.d("GPS_LOCATION_CHANGE: ", location.toString());
             }
 

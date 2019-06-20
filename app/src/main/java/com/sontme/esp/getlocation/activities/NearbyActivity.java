@@ -489,6 +489,7 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                     String snippet = "Source: " + source;
 
                     GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
+                    // CHECK DISTANCE FROM CURRENT TO COORDS
                     CustomMarker m = new CustomMarker(map);
                     // marker timer setalpha
 

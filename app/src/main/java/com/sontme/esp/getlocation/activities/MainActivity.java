@@ -137,10 +137,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public Handler chart_handler = new Handler();
     public BackgroundService backgroundService;
 
-    //String INSERT_URL = "https://sont.sytes.net/mcuinsert2.php";
     public static String INSERT_URL = "https://sont.sytes.net/wifilocator/wifi_insert.php";
     public static String[] myColors = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
-    public static Map<String, String> BLEdevices = new HashMap<String, String>();
 
     //endregion
 

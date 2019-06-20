@@ -22,21 +22,31 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="bluetooth logging over udp packets implemented&#10;need some work on server side&#10;code cleaning">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="hearthbeat over udp">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/jarAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$LocalBinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$LocalBinder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BuildConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/ListActivity.class" afterDir="false" />
@@ -64,13 +74,15 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay.xml.flat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -93,16 +105,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="312" column="40" lean-forward="true" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="40" />
+            <state relative-caret-position="7310">
+              <caret line="495" selection-start-line="495" selection-end-line="495" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="491" column="60" selection-start-line="491" selection-start-column="60" selection-end-line="491" selection-end-column="60" />
               <folding>
-                <element signature="e#2604#2605#0" expanded="true" />
-                <element signature="e#2632#2633#0" expanded="true" />
-                <element signature="e#5415#5416#0" expanded="true" />
-                <element signature="e#5445#5446#0" expanded="true" />
+                <element signature="method#onCreate#0;class#NearbyActivity#0" />
+                <element signature="e#3644#3747#0" />
+                <element signature="e#4662#4787#1" />
+                <element signature="e#4793#4919#1" />
+                <element signature="e#5273#5398#1" />
+                <element signature="e#5404#5530#1" />
+                <element signature="e#5594#5703#1" />
+                <element signature="e#5709#5819#1" />
+                <element signature="e#6085#6193#1" />
+                <element signature="e#6246#6395#1" />
+                <element signature="e#6444#6591#1" />
+                <element signature="e#6597#6669#1" />
+                <element signature="e#7267#8253#0" />
+                <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
+                <element signature="method#drawPoint#0;class#NearbyActivity#0" />
+                <element signature="method#updateMap#0;class#NearbyActivity#0" />
+                <element signature="method#resize#0;class#NearbyActivity#0" />
+                <element signature="method#drawCircle#0;class#NearbyActivity#0" />
+                <element signature="method#animateMarker#0;class#NearbyActivity#0" />
+                <element signature="method#viewToBitmap#0;class#NearbyActivity#0" />
+                <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
+                <element signature="class#20591:22509" />
+                <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
+                <element signature="method#getList#0;class#NearbyActivity#0" />
+                <element signature="method#html2text#0;class#NearbyActivity#0" />
+                <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
+                <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
+                <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
+                <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
+                <element signature="class#Circlee#0" />
+                <element signature="method#onSingleTapUp#0;class#Circlee#0" />
+                <element signature="method#onLongPress#0;class#Circlee#0" />
+                <element signature="class#PopUpWin#0" />
+                <element signature="method#PopUpWin#0;class#PopUpWin#0" />
+                <element signature="method#onOpen#0;class#PopUpWin#0" />
+                <element signature="method#onClose#0;class#PopUpWin#0" />
+                <element signature="class#CustomCluster#0" />
+                <element signature="method#CustomCluster#0;class#CustomCluster#0" />
+                <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
+                <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
+                <element signature="method#round#0;class#CustomCluster#0" />
+                <element signature="method#getDistance#0;class#CustomCluster#0" />
+                <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
+                <element signature="class#CustomMarker#0" />
               </folding>
             </state>
           </provider>
@@ -111,42 +182,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="138" selection-start-line="138" selection-end-line="138" />
             </state>
           </provider>
         </entry>
@@ -154,62 +191,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="276" column="25" selection-start-line="276" selection-start-column="25" selection-end-line="276" selection-end-column="25" />
+            <state relative-caret-position="223">
+              <caret line="357" column="31" selection-start-line="357" selection-start-column="31" selection-end-line="357" selection-end-column="31" />
               <folding>
                 <element signature="method#requestPermissions#0;class#SontHelper#0" />
                 <element signature="method#getBucketId#0;class#SontHelper#0" />
                 <element signature="method#getCameraImages#0;class#SontHelper#0" />
-                <element signature="e#2981#3247#1" />
-                <element signature="e#3093#3208#1" />
                 <element signature="method#getGallery#0;class#SontHelper#0" />
-                <element signature="e#3505#3594#1" />
                 <element signature="method#playTone#0;class#SontHelper#0" />
                 <element signature="method#vibrate#0;class#SontHelper#0" />
-                <element signature="e#4221#4310#1" />
-                <element signature="e#4316#4370#1" />
                 <element signature="method#vibrate#1;class#SontHelper#0" />
-                <element signature="e#4725#4823#1" />
-                <element signature="e#4829#4883#1" />
                 <element signature="method#double_vibrate#0;class#SontHelper#0" />
-                <element signature="e#5174#5252#1" />
-                <element signature="e#5258#5363#1" />
                 <element signature="method#zipFileAtPath#0;class#SontHelper#0" />
-                <element signature="e#5545#6533#0" />
-                <element signature="e#5814#5909#1" />
-                <element signature="e#5915#6498#1" />
-                <element signature="e#6418#6484#1" />
-                <element signature="e#6554#6684#0" />
                 <element signature="method#zipSubFolder#0;class#SontHelper#0" />
-                <element signature="e#7052#7944#1" />
-                <element signature="e#7090#7162#1" />
-                <element signature="e#7168#7934#1" />
-                <element signature="e#7822#7888#1" />
                 <element signature="method#getLastPathComponent#0;class#SontHelper#0" />
                 <element signature="method#roundFloat#0;class#SontHelper#0" />
                 <element signature="method#convertDBM#0;class#SontHelper#0" />
                 <element signature="method#round#0;class#SontHelper#0" />
                 <element signature="method#convertTime#0;class#SontHelper#0" />
                 <element signature="method#getDistance#0;class#SontHelper#0" />
-                <element signature="e#10316#10873#0" />
-                <element signature="e#10441#10842#1" />
-                <element signature="e#10660#10772#1" />
-                <element signature="e#10894#10948#0" />
+                <element signature="method#getCompleteAddressString#0;class#SontHelper#0" />
                 <element signature="method#showToast#0;class#SontHelper#0" />
-                <element signature="e#11065#11099#1" />
-                <element signature="e#11255#11332#1" />
                 <element signature="method#getLocalIpAddress#0;class#SontHelper#0" />
-                <element signature="e#11400#12019#0" />
-                <element signature="e#11562#12009#1" />
-                <element signature="e#11696#11995#1" />
-                <element signature="e#11749#11977#1" />
                 <element signature="method#chk_3g_wifi#0;class#SontHelper#0" />
-                <element signature="e#12539#12577#1" />
-                <element signature="e#12621#12657#1" />
-                <element signature="e#12663#12699#1" />
                 <element signature="method#check_if_local#0;class#SontHelper#0" />
-                <element signature="e#13054#13160#1" />
-                <element signature="e#13164#13271#1" />
               </folding>
             </state>
           </provider>
@@ -229,9 +234,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>welcome</find>
-      <find>thread</find>
-      <find>&quot;3&quot;</find>
       <find>3</find>
       <find>355</find>
       <find>manifest.per</find>
@@ -259,6 +261,9 @@
       <find>udp.execute(BackgroundService.DEVICE_ACCOUNT2 +</find>
       <find>_</find>
       <find>ran.</find>
+      <find>NETWORK_</find>
+      <find>HEART</find>
+      <find>network_</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -336,10 +341,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/wifi_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/wifi_widget_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay_up.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Receiver.java" />
@@ -352,10 +355,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CustomFormatter.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
       </list>
     </option>
   </component>
@@ -373,9 +378,51 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="activities" type="462c0819:PsiDirectoryNode" />
+              <item name="NearbyActivity.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -385,7 +432,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -524,13 +570,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
-    </task>
-    <task id="LOCAL-00022" summary="todo: proper queue system to release, self maintaining&#10;&#10;+ queue system is reverted. caused app crash&#10;&#10;need rework">
-      <created>1551539827070</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1551539827070</updated>
     </task>
     <task id="LOCAL-00023" summary="todo: proper queue system to release, self maintaining&#10;&#10;+ queue system is reverted. caused app crash -&gt; need rework&#10;&#10;statistics is now on the mainactivity&#10;- need to refresh automatically&#10;+ max retrycount (20) is implemented">
       <created>1551544564078</created>
@@ -868,7 +907,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559908538015</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="hearthbeat over udp">
+      <created>1560098257975</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1560098257975</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TodoView">
@@ -884,7 +930,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" side_tool="true" />
@@ -900,10 +946,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.3285968" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" visible="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5020243" side_tool="true" weight="0.25044405" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="10" sideWeight="0.4979757" visible="true" weight="0.3339254" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.4979757" weight="0.3339254" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3285968" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3291815" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3285968" />
@@ -967,7 +1013,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;first chart on mainactivity now shows all hours even if no record on that hour. so always 0-24" />
     <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements" />
     <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements&#10;&#10;upload is also workingbon huawei phones" />
     <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;nearbyactivity fix&#10;upload fix" />
@@ -992,7 +1037,8 @@
     <MESSAGE value="huge code cleaning v2" />
     <MESSAGE value="huge code cleaning v3" />
     <MESSAGE value="bluetooth logging over udp packets implemented&#10;need some work on server side&#10;code cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="bluetooth logging over udp packets implemented&#10;need some work on server side&#10;code cleaning" />
+    <MESSAGE value="hearthbeat over udp" />
+    <option name="LAST_COMMIT_MESSAGE" value="hearthbeat over udp" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1484,65 +1530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="553" column="5" selection-start-line="553" selection-start-column="5" selection-end-line="553" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreate#0;class#NearbyActivity#0" />
-            <element signature="e#3644#3747#0" />
-            <element signature="class#4528:4943" />
-            <element signature="method#onClick#0;class#4528:4943" />
-            <element signature="e#4662#4787#1" />
-            <element signature="e#4793#4919#1" />
-            <element signature="class#5079:5554" />
-            <element signature="method#onCheckedChanged#0;class#5079:5554" />
-            <element signature="e#5273#5398#1" />
-            <element signature="e#5404#5530#1" />
-            <element signature="e#5594#5703#1" />
-            <element signature="e#5709#5819#1" />
-            <element signature="e#6085#6193#1" />
-            <element signature="e#6246#6395#1" />
-            <element signature="e#6444#6591#1" />
-            <element signature="e#6597#6669#1" />
-            <element signature="class#7044:8277" />
-            <element signature="method#onNavigationItemSelected#0;class#7044:8277" />
-            <element signature="e#7267#8253#0" />
-            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
-            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
-            <element signature="method#updateMap#0;class#NearbyActivity#0" />
-            <element signature="method#resize#0;class#NearbyActivity#0" />
-            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
-            <element signature="method#animateMarker#0;class#NearbyActivity#0" />
-            <element signature="method#viewToBitmap#0;class#NearbyActivity#0" />
-            <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
-            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-            <element signature="method#getList#0;class#NearbyActivity#0" />
-            <element signature="method#html2text#0;class#NearbyActivity#0" />
-            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-            <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
-            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
-            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
-            <element signature="class#Circlee#0" />
-            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-            <element signature="method#onLongPress#0;class#Circlee#0" />
-            <element signature="class#PopUpWin#0" />
-            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-            <element signature="method#onOpen#0;class#PopUpWin#0" />
-            <element signature="method#onClose#0;class#PopUpWin#0" />
-            <element signature="class#CustomCluster#0" />
-            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
-            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
-            <element signature="method#round#0;class#CustomCluster#0" />
-            <element signature="method#getDistance#0;class#CustomCluster#0" />
-            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
-            <element signature="class#CustomMarker#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/release/app-release.apk">
       <provider selected="true" editor-type-id="apk-viewer" />
     </entry>
@@ -1580,14 +1567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1793,23 +1772,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
           <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7310">
+          <caret line="495" selection-start-line="495" selection-end-line="495" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1823,82 +1809,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+        <state relative-caret-position="85">
+          <caret line="138" selection-start-line="138" selection-end-line="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="276" column="25" selection-start-line="276" selection-start-column="25" selection-end-line="276" selection-end-column="25" />
+        <state relative-caret-position="223">
+          <caret line="357" column="31" selection-start-line="357" selection-start-column="31" selection-end-line="357" selection-end-column="31" />
           <folding>
             <element signature="method#requestPermissions#0;class#SontHelper#0" />
             <element signature="method#getBucketId#0;class#SontHelper#0" />
             <element signature="method#getCameraImages#0;class#SontHelper#0" />
-            <element signature="e#2981#3247#1" />
-            <element signature="e#3093#3208#1" />
             <element signature="method#getGallery#0;class#SontHelper#0" />
-            <element signature="e#3505#3594#1" />
             <element signature="method#playTone#0;class#SontHelper#0" />
             <element signature="method#vibrate#0;class#SontHelper#0" />
-            <element signature="e#4221#4310#1" />
-            <element signature="e#4316#4370#1" />
             <element signature="method#vibrate#1;class#SontHelper#0" />
-            <element signature="e#4725#4823#1" />
-            <element signature="e#4829#4883#1" />
             <element signature="method#double_vibrate#0;class#SontHelper#0" />
-            <element signature="e#5174#5252#1" />
-            <element signature="e#5258#5363#1" />
             <element signature="method#zipFileAtPath#0;class#SontHelper#0" />
-            <element signature="e#5545#6533#0" />
-            <element signature="e#5814#5909#1" />
-            <element signature="e#5915#6498#1" />
-            <element signature="e#6418#6484#1" />
-            <element signature="e#6554#6684#0" />
             <element signature="method#zipSubFolder#0;class#SontHelper#0" />
-            <element signature="e#7052#7944#1" />
-            <element signature="e#7090#7162#1" />
-            <element signature="e#7168#7934#1" />
-            <element signature="e#7822#7888#1" />
             <element signature="method#getLastPathComponent#0;class#SontHelper#0" />
             <element signature="method#roundFloat#0;class#SontHelper#0" />
             <element signature="method#convertDBM#0;class#SontHelper#0" />
             <element signature="method#round#0;class#SontHelper#0" />
             <element signature="method#convertTime#0;class#SontHelper#0" />
             <element signature="method#getDistance#0;class#SontHelper#0" />
-            <element signature="e#10316#10873#0" />
-            <element signature="e#10441#10842#1" />
-            <element signature="e#10660#10772#1" />
-            <element signature="e#10894#10948#0" />
+            <element signature="method#getCompleteAddressString#0;class#SontHelper#0" />
             <element signature="method#showToast#0;class#SontHelper#0" />
-            <element signature="e#11065#11099#1" />
-            <element signature="e#11255#11332#1" />
             <element signature="method#getLocalIpAddress#0;class#SontHelper#0" />
-            <element signature="e#11400#12019#0" />
-            <element signature="e#11562#12009#1" />
-            <element signature="e#11696#11995#1" />
-            <element signature="e#11749#11977#1" />
             <element signature="method#chk_3g_wifi#0;class#SontHelper#0" />
-            <element signature="e#12539#12577#1" />
-            <element signature="e#12621#12657#1" />
-            <element signature="e#12663#12699#1" />
             <element signature="method#check_if_local#0;class#SontHelper#0" />
-            <element signature="e#13054#13160#1" />
-            <element signature="e#13164#13271#1" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="312" column="40" lean-forward="true" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="40" />
+        <state relative-caret-position="230">
+          <caret line="491" column="60" selection-start-line="491" selection-start-column="60" selection-end-line="491" selection-end-column="60" />
           <folding>
-            <element signature="e#2604#2605#0" expanded="true" />
-            <element signature="e#2632#2633#0" expanded="true" />
-            <element signature="e#5415#5416#0" expanded="true" />
-            <element signature="e#5445#5446#0" expanded="true" />
+            <element signature="method#onCreate#0;class#NearbyActivity#0" />
+            <element signature="e#3644#3747#0" />
+            <element signature="e#4662#4787#1" />
+            <element signature="e#4793#4919#1" />
+            <element signature="e#5273#5398#1" />
+            <element signature="e#5404#5530#1" />
+            <element signature="e#5594#5703#1" />
+            <element signature="e#5709#5819#1" />
+            <element signature="e#6085#6193#1" />
+            <element signature="e#6246#6395#1" />
+            <element signature="e#6444#6591#1" />
+            <element signature="e#6597#6669#1" />
+            <element signature="e#7267#8253#0" />
+            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
+            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
+            <element signature="method#updateMap#0;class#NearbyActivity#0" />
+            <element signature="method#resize#0;class#NearbyActivity#0" />
+            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
+            <element signature="method#animateMarker#0;class#NearbyActivity#0" />
+            <element signature="method#viewToBitmap#0;class#NearbyActivity#0" />
+            <element signature="method#galleryAddPic#0;class#NearbyActivity#0" />
+            <element signature="class#20591:22509" />
+            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
+            <element signature="method#getList#0;class#NearbyActivity#0" />
+            <element signature="method#html2text#0;class#NearbyActivity#0" />
+            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
+            <element signature="method#getResizedBitmap#0;class#NearbyActivity#0" />
+            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
+            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
+            <element signature="class#Circlee#0" />
+            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
+            <element signature="method#onLongPress#0;class#Circlee#0" />
+            <element signature="class#PopUpWin#0" />
+            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
+            <element signature="method#onOpen#0;class#PopUpWin#0" />
+            <element signature="method#onClose#0;class#PopUpWin#0" />
+            <element signature="class#CustomCluster#0" />
+            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
+            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
+            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
+            <element signature="method#round#0;class#CustomCluster#0" />
+            <element signature="method#getDistance#0;class#CustomCluster#0" />
+            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
+            <element signature="class#CustomMarker#0" />
           </folding>
         </state>
       </provider>

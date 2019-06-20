@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -352,5 +353,16 @@ public class SontHelper extends Application {
             Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
             return false;
         }
+    }
+
+    public static boolean isNetworkAvailable(Context c) {
+        Log.d("NETWORK_", "_" + System.currentTimeMillis());
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        Log.d("NETWORK_", "_" + System.currentTimeMillis());
+        return activeNetworkInfo != null &&
+                activeNetworkInfo.isConnected() &&
+                activeNetworkInfo.isConnectedOrConnecting();
     }
 }
