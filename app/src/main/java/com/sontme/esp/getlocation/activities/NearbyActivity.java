@@ -10,17 +10,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.SystemClock;
@@ -38,7 +34,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -53,8 +48,8 @@ import com.sontme.esp.getlocation.ApStrings;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.R;
+import com.sontme.esp.getlocation.SontHelper;
 
-import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.clustering.StaticCluster;
@@ -70,7 +65,6 @@ import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +84,8 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
     private MapView map;
     private FloatingActionButton btn;
     String content = null;
+    private int NEARBY_MIN_DISTANCE = 1000;
+
     static Map<Location, ApStrings> loc_ssid2 = new HashMap<Location, ApStrings>();
 
     public static List<GeoPoint> geoPoints;
@@ -97,29 +93,17 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
     public static Polyline line;
     public BackgroundService backgroundService;
 
-    public Switch sw;
+    public Switch sw; // open wifi only
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //org.osmdroid.config.IConfigurationProvider osmConf = org.osmdroid.config.Configuration.getInstance();
-        //File basePath = new File(getCacheDir().getAbsolutePath(), "osmdroid");
-        //osmConf.setOsmdroidBasePath(basePath);
-        //File tileCache = new File(osmConf.getOsmdroidBasePath().getAbsolutePath(), "tile");
-        //osmConf.setOsmdroidTileCache(tileCache);
-
         setContentView(R.layout.activity_nearby);
-
-        Context ctx = getApplicationContext();
-        //Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
 
         Intent mIntent = new Intent(NearbyActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
         sw = findViewById(R.id.asdd);
-
-
         map = findViewById(R.id.osmmap2);
         btn = findViewById(R.id.button6);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -152,21 +136,23 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
             getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
         }
 
-        //map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(17.0);
-        GeoPoint startPoint = null;
-        if (BackgroundService.getLatitude() == null || BackgroundService.getInitLat() == null) {
-            Toast.makeText(getApplicationContext(), "LOCATION NULL", Toast.LENGTH_SHORT).show();
+        GeoPoint startPoint;
+        if (BackgroundService.getLatitude() == 0 || BackgroundService.getInitLat() == null) {
+            if (sw.isChecked() == false) {
+                getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
+            } else {
+                getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
+            }
         }
-        if (BackgroundService.getLatitude() != "0") {
+        if (BackgroundService.getLatitude() != 0) {
             startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         } else if (BackgroundService.getInitLat() != "0") {
             startPoint = new GeoPoint(Double.valueOf(BackgroundService.getInitLat()), Double.valueOf(BackgroundService.getInitLong()));
         } else {
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
-
         mapController.setCenter(startPoint);
 
         dl = findViewById(R.id.drawler4);
@@ -214,65 +200,27 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
 
     public void drawRouteAndStart() {
         IMapController mapController = map.getController();
-        Context ctx = getApplicationContext();
         LocationManager mService;
         mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
         mService.addGpsStatusListener(this);
 
-        GeoPoint startPoint = null;
-        if (BackgroundService.getLatitude() != "0") {
-            startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
-        } else if (BackgroundService.getInitLat() != "0") {
-            startPoint = new GeoPoint(Double.valueOf(BackgroundService.getInitLat()), Double.valueOf(BackgroundService.getInitLong()));
-        } else {
-            startPoint = new GeoPoint(47.935900, 20.367770);
-        }
+        GeoPoint startPoint;
 
         line = new Polyline();
         geoPoints = new ArrayList<>();
         overlayItemArray = new ArrayList<OverlayItem>();
 
-        //region EXPORT
-        /*
-        export = findViewById(R.id.btn_export);
-        export.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = findViewById(R.id.osmmap);
-                Bitmap bitmap = viewToBitmap(view);
-                try {
-                    FileOutputStream output = new FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
-                    output.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                galleryAddPic();
-                Toast.makeText(getApplicationContext(), "Image saved", Toast.LENGTH_SHORT).show();
-            }
-        });
-        */
-        //endregion
-
-        //Context ctx = getApplicationContext();
-        //Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx));
-        //final MapView map = findViewById(R.id.osmmap);
-        //IMapController mapController = map.getController();
-        //map.setTileSource(TileSourceFactory.MAPNIK);
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
-        //GeoPoint startPoint = null;
-        if (BackgroundService.getLatitude() != null) {
+
+        if (BackgroundService.getLatitude() != 0) {
             startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         } else {
             startPoint = new GeoPoint(47.935900, 20.367770);
         }
         mapController.setCenter(startPoint);
-
 
         updateMap(map);
         drawPoint(map);
@@ -292,9 +240,9 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
         map.getOverlays().clear();
         map.invalidate();
         Drawable pin = getResources().getDrawable(R.drawable.wifi5);
-        GeoPoint geo = null;
+        GeoPoint geo;
 
-        if (BackgroundService.getLatitude() != null || BackgroundService.getLatitude() != "0") {
+        if (BackgroundService.getLatitude() != 0 || BackgroundService.getLatitude() != 0) {
             geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         } else {
             geo = new GeoPoint(47.935900, 20.367770);
@@ -317,18 +265,17 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
     }
 
     private void updateMap(MapView map) {
-        GeoPoint geo = null;
-        if (BackgroundService.getLatitude() != null) {
+        GeoPoint geo;
+        if (BackgroundService.getLatitude() != 0) {
             geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         } else {
             geo = new GeoPoint(47.935900, 20.367770);
         }
-        OverlayItem point = new OverlayItem("Actual", "Position", geo);
         ItemizedIconOverlay<OverlayItem> itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(this, overlayItemArray, null);
         line.setOnClickListener(new Polyline.OnClickListener() {
             @Override
             public boolean onClick(Polyline polyline, MapView mapView, GeoPoint eventPos) {
-
+                Log.d("MARKER_LINE_", "Clicked: " + polyline.getDistance());
                 return false;
             }
         });
@@ -343,6 +290,7 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
             try {
                 line.setPoints(geoPoints);
             } catch (Exception e) {
+                e.printStackTrace();
             }
             map.getOverlayManager().add(line);
         }
@@ -406,45 +354,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
 
     }
 
-    public void animateMarker(final Marker marker, final GeoPoint toPosition) {
-        final Handler handler = new Handler();
-        final long start = SystemClock.uptimeMillis();
-        Projection proj = map.getProjection();
-        Point startPoint = proj.toPixels(marker.getPosition(), null);
-        final IGeoPoint startGeoPoint = proj.fromPixels(startPoint.x, startPoint.y);
-        final long duration = 500;
-        final Interpolator interpolator = new LinearInterpolator();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                long elapsed = SystemClock.uptimeMillis() - start;
-                float t = interpolator.getInterpolation((float) elapsed / duration);
-                double lng = t * toPosition.getLongitude() + (1 - t) * startGeoPoint.getLongitude();
-                double lat = t * toPosition.getLatitude() + (1 - t) * startGeoPoint.getLatitude();
-                marker.setPosition(new GeoPoint(lat, lng));
-                if (t < 1.0) {
-                    handler.postDelayed(this, 15);
-                }
-                map.postInvalidate();
-            }
-        });
-    }
-
-    public Bitmap viewToBitmap(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-        return bitmap;
-    }
-
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/map.png");
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
-
     protected void drawMarkers(final MapView map, Map<Location, ApStrings> loc_ssid) {
         Thread thread = new Thread() {
             public void run() {
@@ -466,7 +375,7 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
 
                 map.getOverlays().clear();
                 map.invalidate();
-                int counter = 0;
+                //int counter = 0;
 
                 int height = 70;
                 int width = 70;
@@ -491,8 +400,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                     GeoPoint geo = new GeoPoint(coords.getLatitude(), coords.getLongitude());
                     // CHECK DISTANCE FROM CURRENT TO COORDS
                     CustomMarker m = new CustomMarker(map);
-                    // marker timer setalpha
-
                     m.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker, MapView mapView) {
@@ -530,10 +437,8 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                     m.setInfoWindow(pop);
                     m.setIcon(d); // pin
                     m.setPosition(geo);
-                    //m.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                    //((CustomCluster) clusterer).animateMarkerDropping(m, map);
                     clusterer.add(m);
-                    counter++;
+                    //counter++;
                 }
 
                 overlays.add(clusterer);
@@ -587,14 +492,18 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                         x.setLatitude(lati);
                         x.setLongitude(longi);
                         ApStrings desc = new ApStrings(recordTime, ssid, bssid, str, source);
-                        loc_ssid2.put(x, desc);
+                        // check if < 500 meters
+                        if (SontHelper.getDistance(lati, BackgroundService.getLatitude(), longi, BackgroundService.getLongitude()) <= NEARBY_MIN_DISTANCE) {
+                            loc_ssid2.put(x, desc);
+                            Log.d("DISTANCE_MARK_", " > " + SontHelper.getDistance(lati, BackgroundService.getLatitude(), longi, BackgroundService.getLongitude()));
+                        }
                     } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
                 Toast.makeText(getApplicationContext(), "Found: " + lineCount, Toast.LENGTH_SHORT).show();
                 drawCircle(map);
                 drawMarkers(map, loc_ssid2);
-                //drawRouteAndStart();
             }
 
             @Override
@@ -626,23 +535,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
 
     public Context getContext() {
         return getApplicationContext();
-    }
-
-    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
-        bm.recycle();
-        return resizedBitmap;
     }
 
     public void onGpsStatusChanged(int event) {

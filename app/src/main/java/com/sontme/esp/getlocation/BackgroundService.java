@@ -30,6 +30,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -74,16 +75,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         return count;
     }
 
-    public static String getLatitude() {
+    public static double getLatitude() {
         if (latitude == null)
-            return "0";
-        return latitude;
+            return 0;
+        return Double.valueOf(latitude);
     }
 
-    public static String getLongitude() {
+    public static double getLongitude() {
         if (longitude == null)
-            return "0";
-        return longitude;
+            return 0;
+        return Double.valueOf(longitude);
     }
 
     public static String getInitLat() {
@@ -132,7 +133,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     int GPS_UPDATE_TIME = 1000;
     //endregion
 
-    private static Context context;
     public static String HUAWEI_PATH = "/data/user/0/com.sontme.esp.getlocation/files/";
     CountDownTimer mCountDownTimer;
     int UPLOAD_SIZE_LIMIT = 10240;
@@ -260,6 +260,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             intentFilter.addAction(Intent.ACTION_HEADSET_PLUG);
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+            intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
 
             registerReceiver(broadcastReceiver, intentFilter);
 
@@ -294,6 +295,12 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // EVERY 10000 SECONDS
+                    BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
+                    int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+                    if (batLevel <= 30) {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(1);
+                    }
                 }
 
                 @Override
@@ -377,10 +384,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
             turnGPSOn();
             startUpdatesGPS();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void uploadProgress(int prog, long uploaded, long total) {
@@ -750,34 +757,37 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         }
     }
     public void saveRecordHttp(String path) {
-        Thread th2 = new Thread() {
-            public void run() {
-                AndroidNetworking.get(path)
-                        .setUserAgent("sont_wifilocator")
-                        .setTag("save_record_http")
-                        .setPriority(Priority.LOW)
-                        .build()
-                        .getAsString(new StringRequestListener() {
-                            @Override
-                            public void onResponse(String response) {
-                                urlList_successed.add(path);
-                                if (response.trim() == "not recorded") {
-                                    not_recorded++;
-                                } else if (response.trim() == "recorded") {
-                                    recorded++;
+        // Only try to SAVE RECORD if internet is available
+        if (SontHelper.isNetworkAvailable(getApplicationContext()) == true) {
+            Thread th2 = new Thread() {
+                public void run() {
+                    AndroidNetworking.get(path)
+                            .setUserAgent("sont_wifilocator")
+                            .setTag("save_record_http")
+                            .setPriority(Priority.LOW)
+                            .build()
+                            .getAsString(new StringRequestListener() {
+                                @Override
+                                public void onResponse(String response) {
+                                    urlList_successed.add(path);
+                                    if (response.trim() == "not recorded") {
+                                        not_recorded++;
+                                    } else if (response.trim() == "recorded") {
+                                        recorded++;
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onError(ANError anError) {
-                                urlList_failed.add(path);
-                                saveRecordHttp(path); // may REDUCE battery life
-                                Log.d("HTTP_ERROR_", anError.toString());
-                            }
-                        });
-            }
-        };
-        th2.start();
+                                @Override
+                                public void onError(ANError anError) {
+                                    urlList_failed.add(path);
+                                    saveRecordHttp(path); // may REDUCE battery life
+                                    Log.d("HTTP_ERROR_RETRYING_TO_RECORD_", anError.toString());
+                                }
+                            });
+                }
+            };
+            th2.start();
+        }
     }
 
     public void createNotifGroup(String id, String name) {
@@ -834,17 +844,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         contentView.setTextViewText(R.id.notif_add, "Address: " + address);
         contentView.setTextViewText(R.id.notif_add_2, "Unique: " + uniqueAPS.size() + "/" + urlList_uniq.size() + "/" + recorded + " | GPS: " + GpsInView + "/" + GpsInUse);
 
-        //region Unused
-        //contentView.setTextViewText(R.id.notif_ssid, "Count #" + count);
-        //contentView.setTextViewText(R.id.notif_time, "HTTP #" + req_count);
-        //contentView.setTextViewText(R.id.notif_text2, det[6]);
-        //contentView.setTextViewText(R.id.notif_text3, lastSSID);
-        //contentView.setTextViewText(R.id.notif_lat, latitude);
-        //contentView.setTextViewText(R.id.notif_long, longitude);
-        //contentView.setTextViewText(R.id.notif_uniq, "Unique: " + uniqueAPS.size());
-        //contentView.setTextViewText(R.id.notif_gps, "GPS Satellites: " + GpsInView + "_" + GpsInUse);
-        //endregion
-
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(body);
         bigText.setBigContentTitle(title);
@@ -863,23 +862,23 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             notificationManager.createNotificationChannel(mChannel);
         }
 
+        Intent intent1 = new Intent(getBaseContext(), BroadcReceiver.class);
         Intent intent2 = new Intent(getBaseContext(), BroadcReceiver.class);
         Intent intent3 = new Intent(getBaseContext(), BroadcReceiver.class);
-        Intent intent4 = new Intent(getBaseContext(), BroadcReceiver.class);
-        intent2.setAction("exit");
-        intent3.setAction("resume");
-        intent4.setAction("pause");
+        intent1.setAction("exit");
+        intent2.setAction("resume");
+        intent3.setAction("pause");
 
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent1, PendingIntent.FLAG_ONE_SHOT);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent2, PendingIntent.FLAG_ONE_SHOT);
         PendingIntent pendingIntent3 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent3, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(getApplicationContext(), 1, intent4, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.computer_low)
                 .setContent(contentView)
-                .addAction(R.drawable.computer_low_gray, "Pause", pendingIntent4)
-                .addAction(R.drawable.computer_low_gray, "Resume", pendingIntent3)
-                .addAction(R.drawable.computer_low_gray, "Exit", pendingIntent2)
+                .addAction(R.drawable.computer_low_gray, "Pause", pendingIntent3)
+                .addAction(R.drawable.computer_low_gray, "Resume", pendingIntent2)
+                .addAction(R.drawable.computer_low_gray, "Exit", pendingIntent1)
                 .setStyle(bigText)
                 .setGroup("wifi")
                 .setNumber(1)
@@ -947,10 +946,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         public BackgroundService getServerInstance() {
             return BackgroundService.this;
         }
-    }
-
-    public static Context getAppContext() {
-        return BackgroundService.context;
     }
 
     public static boolean check_if_local(Context ctx) {

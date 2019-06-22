@@ -189,7 +189,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.setMultiTouchControls(true);
         mapController.setZoom(18.0);
         GeoPoint startPoint = null;
-        if (BackgroundService.getLatitude() != null) {
+        if (BackgroundService.getLatitude() != 0) {
             startPoint = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{
@@ -263,7 +263,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
 
     private void updateMap(MapView map) {
         GeoPoint geo = null;
-        if (BackgroundService.getLatitude() != null) {
+        if (BackgroundService.getLatitude() != 0) {
             geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{
@@ -305,7 +305,7 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
         map.invalidate();
         Drawable pin = getResources().getDrawable(R.drawable.wifi5);
         GeoPoint geo = null;
-        if (BackgroundService.getLatitude() != null) {
+        if (BackgroundService.getLatitude() != 0) {
             geo = new GeoPoint(Double.valueOf(BackgroundService.getLatitude()), Double.valueOf(BackgroundService.getLongitude()));
         }
         else{

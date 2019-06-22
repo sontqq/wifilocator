@@ -5,6 +5,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
@@ -302,7 +306,7 @@ public class SontHelper extends Application {
         }
         String id = Settings.Secure.getString(ctx.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-        if (id == "73bedfbd149e01de") {
+        if (id.equals("73bedfbd149e01de")) {
             Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show();
         }
 
@@ -364,5 +368,28 @@ public class SontHelper extends Application {
         return activeNetworkInfo != null &&
                 activeNetworkInfo.isConnected() &&
                 activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+
+    // NEED TO FIX RETURN VALUE (0)
+    public static int stepCounter(Context c) {
+        final int[] count = {0};
+        SensorManager sensorManager = (SensorManager) c.getSystemService(Context.SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Log.d("STEP_COUNTER_", "STEP: " + sensor.toString());
+        SensorEventListener sel = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                count[0] = (int) event.values[0];
+                Log.d("STEP_COUNTER_", "CHANGE: " + "[" + event.values.length + "] " + event.values[0]);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+
+        sensorManager.registerListener(sel, sensor, 1000);
+        return count[0];
     }
 }

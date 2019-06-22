@@ -1,4 +1,4 @@
-#Thu Jun 20 13:07:45 CEST 2019
+#Sat Jun 22 13:00:34 CEST 2019
 path.2=classes2.dex
 path.1=classes.dex
 path.0=classes.dex

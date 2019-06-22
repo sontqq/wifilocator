@@ -49,19 +49,13 @@ public class BroadcReceiver extends BroadcastReceiver {
             System.exit(2);
         }
         if (intent.getAction() == "pause") {
-            //Global.isUploading = true;
-            //Global.wanarun = false;
             Toast.makeText(context, "Pausing", Toast.LENGTH_SHORT).show();
-
         }
         if (intent.getAction() == "resume") {
-            //Global.isUploading = false;
             Toast.makeText(context, "Resuming", Toast.LENGTH_SHORT).show();
-            //Global.wanarun = true;
         }
         if (intent.getAction() == "btn") {
             Toast.makeText(context,"NotifButtonPressed",Toast.LENGTH_SHORT).show();
-            Log.d("NOTIF","NOTIFPRESSED");
         }
 
         if (intent.getAction() == "widgetButton") {

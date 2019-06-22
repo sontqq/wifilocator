@@ -105,7 +105,6 @@ import me.aflak.bluetooth.interfaces.DiscoveryCallback;
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
 
     //region DEFINING VARIABLES
-    // UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
     public PublisherAdView mPublisherAdView;
     public Context context = this;
     public static TextView alti;
