@@ -11,10 +11,13 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TEST_" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OBJECT_SCK" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" line="12" />
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -22,13 +25,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="minor">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="object sending (experimental)">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UdpServerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/G4RCxd_zCKbERVHTRRkamIC232E=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/ApStrings.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/ApStrings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/BackgroundService$4.class" afterDir="false" />
@@ -75,18 +86,19 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/NearbyActivity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/PopUpWin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/PopUpWin$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/PopUpWin.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/activities/PopUpWin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/wifi_widget$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sontme/esp/getlocation/wifi_widget$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-debug.ap_" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ApStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ApStrings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BroadcReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BroadcReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,207 +124,127 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6">
-              <caret line="387" column="30" lean-forward="true" selection-start-line="387" selection-start-column="30" selection-end-line="387" selection-end-column="30" />
+            <state relative-caret-position="141">
+              <caret line="716" column="32" lean-forward="true" selection-start-line="716" selection-start-column="32" selection-end-line="716" selection-end-column="32" />
               <folding>
-                <element signature="e#2408#2441#0" />
-                <element signature="e#2548#2683#0" />
-                <element signature="e#2689#2827#0" />
-                <element signature="e#2833#2951#0" />
-                <element signature="e#2957#3078#0" />
-                <element signature="e#3954#3976#0" />
-                <element signature="e#5603#5758#1" />
-                <element signature="e#5816#5972#1" />
-                <element signature="e#6044#6117#1" />
-                <element signature="e#6193#6269#1" />
-                <element signature="e#6331#7006#1" />
-                <element signature="e#6716#6992#1" />
-                <element signature="e#6738#6758#0" />
-                <element signature="e#7171#7849#1" />
-                <element signature="e#7444#7688#1" />
-                <element signature="e#7589#7670#1" />
-                <element signature="e#7761#7835#1" />
-                <element signature="e#7907#7970#1" />
-                <element signature="e#8021#8101#1" />
-                <element signature="e#8626#8687#1" />
-                <element signature="e#8722#8899#1" />
-                <element signature="e#8905#9128#1" />
-                <element signature="class#10709:11631" />
-                <element signature="method#uncaughtException#0;class#10709:11631" />
-                <element signature="class#13055:15659" />
-                <element signature="method#onResponse#0;class#13055:15659" />
-                <element signature="e#13537#15349#1" />
-                <element signature="e#13692#13975#1" />
-                <element signature="e#14139#15307#1" />
-                <element signature="e#14391#14538#1" />
-                <element signature="method#onError#0;class#13055:15659" />
-                <element signature="e#15689#15757#1" />
-                <element signature="e#16830#18659#0" />
-                <element signature="e#17375#17694#1" />
-                <element signature="e#17778#17866#1" />
-                <element signature="e#17872#17961#1" />
-                <element signature="e#18664#20296#0" />
-                <element signature="e#19182#19387#1" />
-                <element signature="e#19471#19539#1" />
-                <element signature="e#19545#19598#1" />
-                <element signature="e#20302#20816#0" />
-                <element signature="e#20486#20810#1" />
-                <element signature="e#20821#23470#0" />
-                <element signature="class#21007:22566" />
-                <element signature="method#onLocationChanged#0;class#21007:22566" />
-                <element signature="e#21715#21817#1" />
-                <element signature="e#21887#21951#1" />
-                <element signature="method#onStatusChanged#0;class#21007:22566" />
-                <element signature="method#onProviderEnabled#0;class#21007:22566" />
-                <element signature="method#onProviderDisabled#0;class#21007:22566" />
-                <element signature="e#23476#32526#0" />
-                <element signature="e#23533#24006#0" />
-                <element signature="e#23867#23956#1" />
-                <element signature="e#24027#24071#0" />
-                <element signature="e#24182#32519#1" />
-                <element signature="e#24400#24519#1" />
-                <element signature="e#24525#24628#1" />
-                <element signature="e#24685#29689#1" />
-                <element signature="e#24729#29638#1" />
-                <element signature="e#24835#29539#1" />
-                <element signature="class#25830:26688" />
-                <element signature="method#onProgress#0;class#25830:26688" />
-                <element signature="e#26342#26474#1" />
-                <element signature="e#26480#26616#1" />
-                <element signature="class#26739:29469" />
-                <element signature="method#onResponse#0;class#26739:29469" />
-                <element signature="e#27200#28567#0" />
-                <element signature="e#27556#27683#1" />
-                <element signature="e#27745#27981#1" />
-                <element signature="e#28043#28169#1" />
-                <element signature="e#28231#28369#1" />
-                <element signature="e#28375#28525#1" />
-                <element signature="e#28588#28704#0" />
-                <element signature="method#onError#0;class#26739:29469" />
-                <element signature="e#29695#29747#1" />
-                <element signature="e#29887#30984#1" />
-                <element signature="e#29909#30828#0" />
-                <element signature="e#30849#30970#0" />
-                <element signature="e#31001#31367#0" />
-                <element signature="e#31088#31353#1" />
-                <element signature="e#31155#31335#1" />
-                <element signature="e#31388#31499#0" />
-                <element signature="e#31535#31652#1" />
-                <element signature="e#31669#32378#0" />
-                <element signature="e#32399#32509#0" />
-                <element signature="e#32531#35961#0" />
-                <element signature="e#32614#35753#0" />
-                <element signature="e#32814#35743#1" />
-                <element signature="e#33128#35729#1" />
-                <element signature="e#33283#33359#1" />
-                <element signature="e#33539#33600#1" />
-                <element signature="e#33647#33707#1" />
-                <element signature="e#33754#33814#1" />
-                <element signature="e#33862#33923#1" />
-                <element signature="e#34340#34488#1" />
-                <element signature="e#34552#34724#1" />
-                <element signature="e#34808#34877#1" />
-                <element signature="e#35156#35434#1" />
-                <element signature="e#35440#35711#1" />
-                <element signature="e#35791#35955#0" />
-                <element signature="e#36417#37770#0" expanded="true" />
-                <element signature="class#36355:37256" />
-                <element signature="method#onResponse#0;class#36355:37256" />
-                <element signature="e#36621#36708#1" />
-                <element signature="e#36749#36832#1" />
-                <element signature="method#onError#0;class#36355:37256" />
-                <element signature="e#37769#37770#0" expanded="true" />
-                <element signature="e#37316#37674#0" />
-                <element signature="e#37679#39613#0" />
-                <element signature="e#37767#39607#1" />
-                <element signature="e#39618#42774#0" />
-                <element signature="e#40828#41033#1" />
-                <element signature="e#42780#43239#0" />
-                <element signature="e#43244#43704#0" />
-                <element signature="e#43710#44909#0" />
-                <element signature="e#44049#44171#1" />
-                <element signature="e#44195#44903#0" />
-                <element signature="e#44915#45070#0" />
-                <element signature="e#45076#45772#0" />
-                <element signature="e#45140#45708#0" />
-                <element signature="e#45453#45572#1" />
-                <element signature="e#45578#45698#1" />
-                <element signature="e#45729#45766#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="667" column="47" selection-start-line="667" selection-start-column="47" selection-end-line="667" selection-end-column="47" />
-              <folding>
-                <element signature="class#NearbyActivity#0" />
-                <element signature="method#onCreate#0;class#NearbyActivity#0" />
-                <element signature="class#4097:4512" />
-                <element signature="method#onClick#0;class#4097:4512" />
-                <element signature="e#4231#4356#1" />
-                <element signature="e#4362#4488#1" />
-                <element signature="class#4648:5123" />
-                <element signature="method#onCheckedChanged#0;class#4648:5123" />
-                <element signature="e#4842#4967#1" />
-                <element signature="e#4973#5099#1" />
-                <element signature="e#5163#5272#1" />
-                <element signature="e#5278#5388#1" />
-                <element signature="class#6731:7964" />
-                <element signature="method#onNavigationItemSelected#0;class#6731:7964" />
-                <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
-                <element signature="class#9377:9548" />
-                <element signature="method#run#0;class#9377:9548" />
-                <element signature="method#drawPoint#0;class#NearbyActivity#0" />
-                <element signature="class#10365:10681" />
-                <element signature="method#onMarkerClick#0;class#10365:10681" />
-                <element signature="method#updateMap#0;class#NearbyActivity#0" />
-                <element signature="class#11246:11518" />
-                <element signature="method#onClick#0;class#11246:11518" />
-                <element signature="method#resize#0;class#NearbyActivity#0" />
-                <element signature="method#drawCircle#0;class#NearbyActivity#0" />
-                <element signature="class#14107:14300" />
-                <element signature="method#onClick#0;class#14107:14300" />
-                <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-                <element signature="class#16624:18542" />
-                <element signature="method#onMarkerClick#0;class#16624:18542" />
-                <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-                <element signature="method#getList#0;class#NearbyActivity#0" />
-                <element signature="method#html2text#0;class#NearbyActivity#0" />
-                <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-                <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
-                <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
-                <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-                <element signature="method#onLongPress#0;class#Circlee#0" />
-                <element signature="class#PopUpWin#0" />
-                <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-                <element signature="method#onOpen#0;class#PopUpWin#0" />
-                <element signature="class#26182:26595" />
-                <element signature="method#onClick#0;class#26182:26595" />
-                <element signature="method#onClose#0;class#PopUpWin#0" />
-                <element signature="class#CustomCluster#0" />
-                <element signature="method#CustomCluster#0;class#CustomCluster#0" />
-                <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-                <element signature="class#27876:28420" />
-                <element signature="method#run#0;class#27876:28420" />
-                <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
-                <element signature="method#round#0;class#CustomCluster#0" />
-                <element signature="method#getDistance#0;class#CustomCluster#0" />
-                <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
-                <element signature="class#CustomMarker#0" />
+                <element signature="e#2442#2475#0" />
+                <element signature="e#2582#2717#0" />
+                <element signature="e#2723#2861#0" />
+                <element signature="e#2867#2985#0" />
+                <element signature="e#2991#3112#0" />
+                <element signature="e#3988#4010#0" />
+                <element signature="e#5637#5792#1" />
+                <element signature="e#5850#6006#1" />
+                <element signature="e#6078#6151#1" />
+                <element signature="e#6227#6303#1" />
+                <element signature="e#6365#7040#1" />
+                <element signature="e#6750#7026#1" />
+                <element signature="e#6772#6792#0" />
+                <element signature="e#7205#7899#1" />
+                <element signature="e#7478#7722#1" />
+                <element signature="e#7623#7704#1" />
+                <element signature="e#7811#7885#1" />
+                <element signature="e#7957#8020#1" />
+                <element signature="e#8083#8163#1" />
+                <element signature="e#8426#18346#0" />
+                <element signature="e#8579#18275#0" />
+                <element signature="e#8688#8749#1" />
+                <element signature="e#8784#8961#1" />
+                <element signature="e#8967#9190#1" />
+                <element signature="class#10838:11760" />
+                <element signature="method#uncaughtException#0;class#10838:11760" />
+                <element signature="class#12288:17402" />
+                <element signature="method#onTick#0;class#12288:17402" />
+                <element signature="e#12440#12587#1" />
+                <element signature="method#onFinish#0;class#12288:17402" />
+                <element signature="e#13051#16188#1" />
+                <element signature="class#13560:16164" />
+                <element signature="method#onResponse#0;class#13560:16164" />
+                <element signature="e#14042#15854#1" />
+                <element signature="e#14197#14480#1" />
+                <element signature="e#14644#15812#1" />
+                <element signature="e#14896#15043#1" />
+                <element signature="method#onError#0;class#13560:16164" />
+                <element signature="e#16194#16262#1" />
+                <element signature="e#17279#17323#0" />
+                <element signature="e#18272#20101#0" />
+                <element signature="e#17880#18199#1" />
+                <element signature="e#18283#18371#1" />
+                <element signature="e#18377#18466#1" />
+                <element signature="e#20106#21738#0" />
+                <element signature="e#19687#19892#1" />
+                <element signature="e#19976#20044#1" />
+                <element signature="e#20050#20103#1" />
+                <element signature="e#21744#22258#0" />
+                <element signature="e#20991#21315#1" />
+                <element signature="e#22263#24912#0" />
+                <element signature="class#21512:23071" />
+                <element signature="method#onLocationChanged#0;class#21512:23071" />
+                <element signature="e#22220#22322#1" />
+                <element signature="e#22392#22456#1" />
+                <element signature="method#onStatusChanged#0;class#21512:23071" />
+                <element signature="method#onProviderEnabled#0;class#21512:23071" />
+                <element signature="method#onProviderDisabled#0;class#21512:23071" />
+                <element signature="e#24905#25024#1" />
+                <element signature="e#25030#25133#1" />
+                <element signature="e#25190#30194#1" />
+                <element signature="e#25234#30143#1" />
+                <element signature="e#25340#30044#1" />
+                <element signature="class#26335:27193" />
+                <element signature="method#onProgress#0;class#26335:27193" />
+                <element signature="e#26847#26979#1" />
+                <element signature="e#26985#27121#1" />
+                <element signature="class#27244:29974" />
+                <element signature="method#onResponse#0;class#27244:29974" />
+                <element signature="e#27705#29072#0" />
+                <element signature="e#28061#28188#1" />
+                <element signature="e#28250#28486#1" />
+                <element signature="e#28548#28674#1" />
+                <element signature="e#28736#28874#1" />
+                <element signature="e#28880#29030#1" />
+                <element signature="e#29093#29209#0" />
+                <element signature="method#onError#0;class#27244:29974" />
+                <element signature="e#30200#30252#1" />
+                <element signature="e#30391#31427#1" />
+                <element signature="e#30413#31332#0" />
+                <element signature="e#31353#31413#0" />
+                <element signature="e#31531#31796#1" />
+                <element signature="e#31598#31778#1" />
+                <element signature="e#32782#32834#0" />
+                <element signature="e#33608#33684#1" />
+                <element signature="e#33864#33925#1" />
+                <element signature="e#33972#34032#1" />
+                <element signature="e#34079#34139#1" />
+                <element signature="e#34187#34248#1" />
+                <element signature="e#34665#34813#1" />
+                <element signature="e#34877#35049#1" />
+                <element signature="e#35133#35202#1" />
+                <element signature="e#35481#35759#1" />
+                <element signature="e#35765#36036#1" />
+                <element signature="e#36116#36280#0" />
+                <element signature="e#37228#38828#0" />
+                <element signature="e#36469#37885#1" />
+                <element signature="class#36850:37815" />
+                <element signature="method#onResponse#0;class#36850:37815" />
+                <element signature="e#37132#37227#1" />
+                <element signature="e#37268#37359#1" />
+                <element signature="method#onError#0;class#36850:37815" />
+                <element signature="e#38834#39192#0" />
+                <element signature="e#39197#41131#0" />
+                <element signature="e#38348#40188#1" />
+                <element signature="e#41136#44292#0" />
+                <element signature="e#41409#41614#1" />
+                <element signature="e#44298#44757#0" />
+                <element signature="e#44762#45222#0" />
+                <element signature="e#45228#46427#0" />
+                <element signature="e#44630#44752#1" />
+                <element signature="e#44776#45484#0" />
+                <element signature="e#46513#46668#0" />
+                <element signature="e#46594#47290#0" />
+                <element signature="e#45721#46289#0" />
+                <element signature="e#46034#46153#1" />
+                <element signature="e#46159#46279#1" />
+                <element signature="e#46310#46347#0" />
               </folding>
             </state>
           </provider>
@@ -321,71 +253,198 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="650" column="33" lean-forward="true" selection-start-line="650" selection-start-column="33" selection-end-line="650" selection-end-column="33" />
+            <state relative-caret-position="200">
+              <caret line="436" column="34" selection-start-line="436" selection-start-column="34" selection-end-line="436" selection-end-column="34" />
+              <folding>
+                <element signature="e#4069#4096#0" />
+                <element signature="class#5468:10380" />
+                <element signature="method#run#0;class#5468:10380" />
+                <element signature="e#5543#8298#0" />
+                <element signature="e#5590#8284#1" />
+                <element signature="e#5908#6045#1" />
+                <element signature="e#7077#7326#1" />
+                <element signature="e#7332#7549#1" />
+                <element signature="e#8319#8429#0" />
+                <element signature="e#8483#10319#1" />
+                <element signature="e#9181#9418#1" />
+                <element signature="e#9424#9629#1" />
+                <element signature="class#10423:11409" />
+                <element signature="method#run#0;class#10423:11409" />
+                <element signature="e#10498#11253#0" />
+                <element signature="e#10597#10722#1" />
+                <element signature="e#10768#10885#1" />
+                <element signature="e#10931#11046#1" />
+                <element signature="e#11092#11239#1" />
+                <element signature="e#11274#11342#0" />
+                <element signature="e#11511#11906#0" />
+                <element signature="e#11807#11878#1" />
+                <element signature="class#12885:14732" />
+                <element signature="method#onDeviceConnected#0;class#12885:14732" />
+                <element signature="method#onDeviceDisconnected#0;class#12885:14732" />
+                <element signature="method#onMessage#0;class#12885:14732" />
+                <element signature="method#onError#0;class#12885:14732" />
+                <element signature="method#onConnectError#0;class#12885:14732" />
+                <element signature="class#14008:14690" />
+                <element signature="method#run#0;class#14008:14690" />
+                <element signature="class#14792:18395" />
+                <element signature="method#onDiscoveryStarted#0;class#14792:18395" />
+                <element signature="method#onDiscoveryFinished#0;class#14792:18395" />
+                <element signature="e#15313#16251#0" />
+                <element signature="e#15824#16225#1" />
+                <element signature="e#16272#16421#0" />
+                <element signature="class#16482:16682" />
+                <element signature="method#run#0;class#16482:16682" />
+                <element signature="method#onDeviceFound#0;class#14792:18395" />
+                <element signature="e#16887#17349#1" />
+                <element signature="e#16955#17134#1" />
+                <element signature="e#17140#17323#1" />
+                <element signature="e#17355#17650#1" />
+                <element signature="method#onDevicePaired#0;class#14792:18395" />
+                <element signature="method#onDeviceUnpaired#0;class#14792:18395" />
+                <element signature="method#onError#0;class#14792:18395" />
+                <element signature="e#18977#19879#0" expanded="true" />
+                <element signature="e#19878#19879#0" expanded="true" />
+                <element signature="class#18829:20090" />
+                <element signature="method#onClick#0;class#18829:20090" />
+                <element signature="e#18938#19961#0" />
+                <element signature="e#19982#20066#0" />
+                <element signature="class#21279:22121" />
+                <element signature="method#uncaughtException#0;class#21279:22121" />
+                <element signature="e#22393#22446#1" />
+                <element signature="e#22477#22539#1" />
+                <element signature="e#22545#22723#1" />
+                <element signature="e#22926#22941#0" />
+                <element signature="class#23267:24496" />
+                <element signature="method#onNavigationItemSelected#0;class#23267:24496" />
+                <element signature="e#23490#24472#0" />
+                <element signature="class#24731:25138" />
+                <element signature="method#onAdLoaded#0;class#24731:25138" />
+                <element signature="method#onAdFailedToLoad#0;class#24731:25138" />
+                <element signature="e#25169#25189#0" />
+                <element signature="class#26042:26564" />
+                <element signature="method#onCheckedChanged#0;class#26042:26564" />
+                <element signature="e#26235#26386#1" />
+                <element signature="e#26392#26540#1" />
+                <element signature="class#26610:27132" />
+                <element signature="method#onCheckedChanged#0;class#26610:27132" />
+                <element signature="e#26803#26954#1" />
+                <element signature="e#26960#27108#1" />
+                <element signature="class#27178:27700" />
+                <element signature="method#onCheckedChanged#0;class#27178:27700" />
+                <element signature="e#27371#27522#1" />
+                <element signature="e#27528#27676#1" />
+                <element signature="class#27746:28916" />
+                <element signature="method#onCheckedChanged#0;class#27746:28916" />
+                <element signature="e#27939#28090#1" />
+                <element signature="e#28096#28892#1" />
+                <element signature="class#28978:29236" />
+                <element signature="e#29015#29056#0" />
+                <element signature="method#onClick#0;class#28978:29236" />
+                <element signature="e#29781#30970#0" expanded="true" />
+                <element signature="e#30969#30970#0" expanded="true" />
+                <element signature="e#30284#30476#0" />
+                <element signature="class#30518:31015" />
+                <element signature="method#onServiceDisconnected#0;class#30518:31015" />
+                <element signature="method#onServiceConnected#0;class#30518:31015" />
+                <element signature="e#31022#31219#0" />
+                <element signature="e#31224#31638#0" />
+                <element signature="e#31643#31834#0" />
+                <element signature="e#31840#32186#0" />
+                <element signature="e#32031#32180#1" />
+                <element signature="class#32417:36124" />
+                <element signature="method#onResponse#0;class#32417:36124" />
+                <element signature="e#32820#32892#1" />
+                <element signature="e#33222#33872#0" />
+                <element signature="e#33278#33483#1" />
+                <element signature="e#33627#33846#1" />
+                <element signature="e#33893#34030#0" />
+                <element signature="method#onError#0;class#32417:36124" />
+                <element signature="e#36137#39966#0" />
+                <element signature="class#36358:39958" />
+                <element signature="method#onResponse#0;class#36358:39958" />
+                <element signature="e#36763#36835#1" />
+                <element signature="e#37166#37816#0" />
+                <element signature="e#37222#37427#1" />
+                <element signature="e#37571#37790#1" />
+                <element signature="method#onError#0;class#36358:39958" />
+                <element signature="e#39971#43963#0" />
+                <element signature="class#40193:43955" />
+                <element signature="method#onResponse#0;class#40193:43955" />
+                <element signature="e#40760#41707#1" />
+                <element signature="e#40941#41024#1" />
+                <element signature="e#41109#41191#1" />
+                <element signature="e#41276#41359#1" />
+                <element signature="e#41392#41629#0" />
+                <element signature="method#onError#0;class#40193:43955" />
+                <element signature="e#43968#48228#0" />
+                <element signature="class#44295:48220" />
+                <element signature="method#onSuccess#0;class#44295:48220" />
+                <element signature="e#44457#47621#0" />
+                <element signature="e#44702#44715#0" />
+                <element signature="e#44890#47603#1" />
+                <element signature="e#45863#45977#1" />
+                <element signature="e#47493#47581#1" />
+                <element signature="e#47642#47702#0" />
+                <element signature="method#onFailure#0;class#44295:48220" />
+                <element signature="e#48010#48196#1" />
+                <element signature="e#48234#48749#0" />
+                <element signature="e#48419#48743#1" />
+                <element signature="e#48755#49526#0" />
+                <element signature="e#48805#49410#0" />
+                <element signature="e#48856#49400#1" />
+                <element signature="e#48878#49227#0" />
+                <element signature="e#49248#49386#0" />
+                <element signature="e#49431#49520#0" />
+                <element signature="e#49532#50491#0" />
+                <element signature="e#49717#50111#0" />
+                <element signature="e#49790#50093#0" />
+                <element signature="e#49992#50071#1" />
+                <element signature="e#50144#50255#0" />
+                <element signature="e#50278#50389#0" />
+                <element signature="e#50497#51718#0" />
+                <element signature="e#50984#51712#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="373" column="34" selection-start-line="373" selection-start-column="34" selection-end-line="373" selection-end-column="34" />
+            <state relative-caret-position="102">
+              <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
               <folding>
-                <element signature="method#requestPermissions#0;class#SontHelper#0" />
-                <element signature="method#getBucketId#0;class#SontHelper#0" />
-                <element signature="method#getCameraImages#0;class#SontHelper#0" />
-                <element signature="e#3013#3279#1" />
-                <element signature="e#3125#3240#1" />
-                <element signature="method#getGallery#0;class#SontHelper#0" />
-                <element signature="e#3537#3626#1" />
-                <element signature="method#playTone#0;class#SontHelper#0" />
-                <element signature="method#vibrate#0;class#SontHelper#0" />
-                <element signature="e#4253#4342#1" />
-                <element signature="e#4348#4402#1" />
-                <element signature="method#vibrate#1;class#SontHelper#0" />
-                <element signature="e#4757#4855#1" />
-                <element signature="e#4861#4915#1" />
-                <element signature="method#double_vibrate#0;class#SontHelper#0" />
-                <element signature="e#5206#5284#1" />
-                <element signature="e#5290#5395#1" />
-                <element signature="method#zipFileAtPath#0;class#SontHelper#0" />
-                <element signature="e#5577#6565#0" />
-                <element signature="e#5846#5941#1" />
-                <element signature="e#5947#6530#1" />
-                <element signature="e#6450#6516#1" />
-                <element signature="e#6586#6716#0" />
-                <element signature="method#zipSubFolder#0;class#SontHelper#0" />
-                <element signature="e#7084#7976#1" />
-                <element signature="e#7122#7194#1" />
-                <element signature="e#7200#7966#1" />
-                <element signature="e#7854#7920#1" />
-                <element signature="method#getLastPathComponent#0;class#SontHelper#0" />
-                <element signature="method#roundFloat#0;class#SontHelper#0" />
-                <element signature="method#convertDBM#0;class#SontHelper#0" />
-                <element signature="method#round#0;class#SontHelper#0" />
-                <element signature="method#convertTime#0;class#SontHelper#0" />
-                <element signature="method#getDistance#0;class#SontHelper#0" />
-                <element signature="method#getCompleteAddressString#0;class#SontHelper#0" />
-                <element signature="e#10348#10905#0" />
-                <element signature="e#10473#10874#1" />
-                <element signature="e#10692#10804#1" />
-                <element signature="e#10926#10980#0" />
-                <element signature="e#11097#11131#1" />
-                <element signature="method#getLocalIpAddress#0;class#SontHelper#0" />
-                <element signature="e#11432#12051#0" />
-                <element signature="e#11594#12041#1" />
-                <element signature="e#11728#12027#1" />
-                <element signature="e#11781#12009#1" />
-                <element signature="method#chk_3g_wifi#0;class#SontHelper#0" />
-                <element signature="e#12571#12609#1" />
-                <element signature="e#12653#12689#1" />
-                <element signature="e#12695#12731#1" />
-                <element signature="method#check_if_local#0;class#SontHelper#0" />
-                <element signature="e#13086#13193#1" />
-                <element signature="e#13199#13307#1" />
-                <element signature="method#isNetworkAvailable#0;class#SontHelper#0" />
+                <element signature="e#1991#2116#0" />
+                <element signature="e#2712#2832#0" />
+                <element signature="e#2837#2963#0" />
+                <element signature="e#2968#3090#0" />
+                <element signature="e#3155#3257#0" />
+                <element signature="e#3263#3389#0" />
+                <element signature="e#3816#3944#0" />
+                <element signature="e#4115#4363#0" />
+                <element signature="e#4372#4618#0" />
+                <element signature="e#4627#4872#0" />
+                <element signature="e#4882#5807#0" />
+                <element signature="e#4936#5787#0" />
+                <element signature="e#5817#5940#0" />
+                <element signature="e#5949#6064#0" />
+                <element signature="e#6073#6222#0" />
+                <element signature="e#6232#7310#0" />
+                <element signature="e#6533#7290#0" />
+                <element signature="e#7319#7480#0" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -405,11 +464,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>manifest.per</find>
-      <find>init</find>
-      <find>init()</find>
-      <find>lefut</find>
-      <find>#f8f3d</find>
       <find>APP_COLOR:</find>
       <find>vibra</find>
       <find>double_vib</find>
@@ -430,11 +484,16 @@
       <find>udp.execute(BackgroundService.DEVICE_ACCOUNT2 +</find>
       <find>_</find>
       <find>ran.</find>
-      <find>NETWORK_</find>
       <find>HEART</find>
       <find>network_</find>
       <find>broadcast</find>
       <find>exit</find>
+      <find>provider</find>
+      <find>&lt;=</find>
+      <find>result</find>
+      <find>testbu</find>
+      <find>TAG</find>
+      <find>NETWORK_</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -481,10 +540,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/popup_shape.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/gradient.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/anim.xml" />
@@ -520,17 +575,21 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Updater.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/HandleLocations.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/wifi_widget.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CustomFormatter.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BroadcReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ApStrings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UdpServerThread.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SerialLocation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
       </list>
     </option>
@@ -554,6 +613,47 @@
           <expand>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="activities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Servers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="UploadFileHTTP.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
@@ -561,8 +661,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -700,13 +800,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
-    </task>
-    <task id="LOCAL-00024" summary="todo: proper queue system to release, self maintaining&#10;&#10;+ queue system is reverted. caused app crash -&gt; need rework&#10;&#10;statistics is now on the mainactivity&#10;- need to refresh automatically&#10;+ max retrycount (20) is implemented&#10;&#10;+ minor fix (device id)">
-      <created>1551549509997</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1551549509997</updated>
     </task>
     <task id="LOCAL-00025" summary="TODO: proper queue system to release, self maintaining&#10;+ queue system is reverted. caused app crash -&gt; need rework&#10;+ need to refresh automatically&#10;? auto retry causes app crash&#10;&#10;+ BackgroundService is now fused with crashreports">
       <created>1551559875305</created>
@@ -1044,7 +1137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561029286731</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="energy saving">
+      <created>1561201486641</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1561201486641</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1071,7 +1171,7 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4979757" weight="0.25044405" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4979757" visible="true" weight="0.25044405" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39679715" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1079,7 +1179,7 @@
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.3285968" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5020243" side_tool="true" weight="0.25044405" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="10" sideWeight="0.4979757" visible="true" weight="0.3339254" />
+      <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.4979757" weight="0.3339254" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.3285968" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3291815" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3285968" />
@@ -1143,8 +1243,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements" />
-    <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements&#10;&#10;upload is also workingbon huawei phones" />
     <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;nearbyactivity fix&#10;upload fix" />
     <MESSAGE value="TODO:&#10;          Auto HTTP Upload on WiFi&#10;          csv import to mysql&#10;          Custom http upload layout&#10;          MapActivity &quot;keep points&quot;&#10;          &#10;          nearbyactivity fix&#10;          upload fix&#10;          &#10;          webview changed to show mobile version" />
     <MESSAGE value="TODO:&#10;          Auto HTTP Upload on WiFi&#10;          csv import to mysql&#10;          Custom http upload layout&#10;          MapActivity &quot;keep points&quot;&#10;          &#10;          nearbyactivity fix&#10;          upload fix&#10;          &#10;          webview changed to show mobile version&#10;          &#10;          toasts disabled" />
@@ -1168,424 +1266,13 @@
     <MESSAGE value="bluetooth logging over udp packets implemented&#10;need some work on server side&#10;code cleaning" />
     <MESSAGE value="hearthbeat over udp" />
     <MESSAGE value="minor" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor" />
+    <MESSAGE value="energy saving" />
+    <MESSAGE value="object sending (experimental)" />
+    <option name="LAST_COMMIT_MESSAGE" value="object sending (experimental)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/content/Context.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="3348" column="33" selection-start-line="3348" selection-start-column="27" selection-end-line="3348" selection-end-column="33" />
-          <folding>
-            <element signature="docComment;class#Context#0" />
-            <element signature="e#3311#3323#0" />
-            <element signature="e#3328#3505#0" />
-            <element signature="e#3584#3596#0" />
-            <element signature="e#3601#3785#0" />
-            <element signature="e#3871#3883#0" />
-            <element signature="e#3888#4126#0" />
-            <element signature="e#4209#4398#0" />
-            <element signature="e#4455#5372#0" />
-            <element signature="e#5452#6374#0" />
-            <element signature="e#6455#6671#0" />
-            <element signature="e#6727#7945#0" />
-            <element signature="e#8024#8351#0" />
-            <element signature="e#8427#8749#0" />
-            <element signature="e#8821#8833#0" />
-            <element signature="e#8838#9160#0" />
-            <element signature="e#9247#10469#0" />
-            <element signature="e#10530#10998#0" />
-            <element signature="e#11060#11637#0" />
-            <element signature="e#11701#12073#0" />
-            <element signature="e#12135#12577#0" />
-            <element signature="e#12647#12945#0" />
-            <element signature="e#13009#13316#0" />
-            <element signature="e#13375#13722#0" />
-            <element signature="e#13792#14194#0" />
-            <element signature="e#14261#14434#0" />
-            <element signature="e#14508#14704#0" />
-            <element signature="e#14784#14929#0" />
-            <element signature="e#15013#15389#0" />
-            <element signature="e#15461#15923#0" />
-            <element signature="e#15996#16613#0" />
-            <element signature="e#16674#16883#0" />
-            <element signature="e#16947#17095#0" />
-            <element signature="e#17160#17970#0" />
-            <element signature="e#18040#18052#0" />
-            <element signature="e#18057#18173#0" />
-            <element signature="e#18265#18374#0" />
-            <element signature="e#18448#18921#0" />
-            <element signature="e#18973#19431#0" />
-            <element signature="e#19483#19556#0" />
-            <element signature="e#19618#19690#0" />
-            <element signature="e#19754#20160#0" />
-            <element signature="e#20210#20444#0" />
-            <element signature="e#20210#20633#0" />
-            <element signature="e#20639#22165#0" />
-            <element signature="e#22224#22286#0" />
-            <element signature="e#22345#22600#0" />
-            <element signature="e#22345#22820#0" />
-            <element signature="e#22826#23368#0" />
-            <element signature="e#22826#23518#0" />
-            <element signature="e#23524#23685#0" />
-            <element signature="e#23524#23839#0" />
-            <element signature="e#23845#24030#0" />
-            <element signature="e#23845#24157#0" />
-            <element signature="e#24163#24437#0" />
-            <element signature="e#24568#25100#0" />
-            <element signature="e#24568#25259#0" />
-            <element signature="e#25265#25771#0" />
-            <element signature="e#25903#26424#0" />
-            <element signature="e#25903#26564#0" />
-            <element signature="e#26570#27062#0" />
-            <element signature="e#26570#27216#0" />
-            <element signature="e#27223#27570#0" />
-            <element signature="e#27632#27761#0" />
-            <element signature="e#27824#27896#0" />
-            <element signature="e#28001#28282#0" />
-            <element signature="e#28001#28425#0" />
-            <element signature="e#28431#28722#0" />
-            <element signature="e#28431#28941#0" />
-            <element signature="e#28947#29276#0" />
-            <element signature="e#28947#29461#0" />
-            <element signature="e#29467#29796#0" />
-            <element signature="e#29467#30081#0" />
-            <element signature="e#30087#30176#0" />
-            <element signature="e#30232#30285#0" />
-            <element signature="e#30336#30414#0" />
-            <element signature="e#30469#30853#0" />
-            <element signature="e#30906#30973#0" />
-            <element signature="e#31037#31409#0" />
-            <element signature="e#31468#31848#0" />
-            <element signature="e#31903#31992#0" />
-            <element signature="e#32117#32963#0" />
-            <element signature="e#33069#33929#0" />
-            <element signature="e#34033#34709#0" />
-            <element signature="e#34806#35156#0" />
-            <element signature="e#35228#35240#0" />
-            <element signature="e#35298#35717#0" />
-            <element signature="e#35824#36482#0" />
-            <element signature="e#36611#37054#0" />
-            <element signature="e#37113#37652#0" />
-            <element signature="e#37715#38263#0" />
-            <element signature="e#38333#39018#0" />
-            <element signature="e#39063#39662#0" />
-            <element signature="e#39708#40657#0" />
-            <element signature="e#40711#45545#0" />
-            <element signature="e#45634#48979#0" />
-            <element signature="e#49047#52156#0" />
-            <element signature="e#52200#54321#0" />
-            <element signature="e#54368#56130#0" />
-            <element signature="e#56176#57032#0" />
-            <element signature="e#57082#60059#0" />
-            <element signature="e#60127#60399#0" />
-            <element signature="e#60404#60413#0" />
-            <element signature="e#60483#63575#0" />
-            <element signature="e#63632#65793#0" />
-            <element signature="e#65850#66131#0" />
-            <element signature="e#66178#67277#0" />
-            <element signature="e#67349#68089#0" />
-            <element signature="e#68224#69388#0" />
-            <element signature="e#69580#70270#0" />
-            <element signature="e#70358#70722#0" />
-            <element signature="e#70785#71303#0" />
-            <element signature="e#71364#71636#0" />
-            <element signature="e#71687#71809#0" />
-            <element signature="e#71876#72000#0" />
-            <element signature="e#72068#72222#0" />
-            <element signature="e#72303#72459#0" />
-            <element signature="e#72541#72792#0" />
-            <element signature="e#72887#73143#0" />
-            <element signature="e#73241#73482#0" />
-            <element signature="e#73566#73884#0" />
-            <element signature="e#73965#74394#0" />
-            <element signature="e#73965#74655#0" />
-            <element signature="e#74661#75824#0" />
-            <element signature="e#75943#76666#0" />
-            <element signature="e#75943#76967#0" />
-            <element signature="e#76973#77709#0" />
-            <element signature="e#76973#78019#0" />
-            <element signature="e#78025#78199#0" />
-            <element signature="e#78282#78601#0" />
-            <element signature="e#78687#79954#0" />
-            <element signature="e#80056#81608#0" />
-            <element signature="e#80056#81875#0" />
-            <element signature="e#81881#82551#0" />
-            <element signature="e#82807#84162#0" />
-            <element signature="e#84444#85433#0" />
-            <element signature="e#85514#86770#0" />
-            <element signature="e#86901#88187#0" />
-            <element signature="e#88309#89649#0" />
-            <element signature="e#89794#91186#0" />
-            <element signature="e#91349#91528#0" />
-            <element signature="e#91639#92660#0" />
-            <element signature="e#92797#94843#0" />
-            <element signature="e#95165#97347#0" />
-            <element signature="e#97690#97954#0" />
-            <element signature="e#98208#98569#0" />
-            <element signature="e#98760#99447#0" />
-            <element signature="e#99675#100514#0" />
-            <element signature="e#100519#100529#0" />
-            <element signature="e#100783#101552#0" />
-            <element signature="e#101791#103347#0" />
-            <element signature="e#103749#103980#0" />
-            <element signature="e#104373#104627#0" />
-            <element signature="e#105046#106183#0" />
-            <element signature="e#106188#106199#0" />
-            <element signature="e#106356#108793#0" />
-            <element signature="e#108798#108809#0" />
-            <element signature="e#109151#109810#0" />
-            <element signature="e#109815#109826#0" />
-            <element signature="e#109985#110908#0" />
-            <element signature="e#110913#110924#0" />
-            <element signature="e#111207#111289#0" />
-            <element signature="e#111294#111305#0" />
-            <element signature="e#111604#113351#0" />
-            <element signature="e#113356#113367#0" />
-            <element signature="e#113823#114856#0" />
-            <element signature="e#114861#114872#0" />
-            <element signature="e#115157#117816#0" />
-            <element signature="e#117984#119367#0" />
-            <element signature="e#119613#121215#0" />
-            <element signature="e#121420#123140#0" />
-            <element signature="e#123379#124417#0" />
-            <element signature="e#124422#124431#0" />
-            <element signature="e#124725#125007#0" />
-            <element signature="e#125086#128269#0" />
-            <element signature="e#128353#129758#0" />
-            <element signature="e#129852#129946#0" />
-            <element signature="e#129951#129960#0" />
-            <element signature="e#130138#131649#0" />
-            <element signature="e#131712#131796#0" />
-            <element signature="e#131801#131810#0" />
-            <element signature="e#131978#132061#0" />
-            <element signature="e#132222#135448#0" />
-            <element signature="e#135605#135804#0" />
-            <element signature="e#135809#135819#0" />
-            <element signature="e#135605#136156#0" />
-            <element signature="e#136162#136362#0" />
-            <element signature="e#136162#136664#0" />
-            <element signature="e#136670#137031#0" />
-            <element signature="e#137110#138280#0" />
-            <element signature="e#138440#138452#0" />
-            <element signature="e#138457#141646#0" />
-            <element signature="e#141728#148566#0" />
-            <element signature="e#148662#150772#0" />
-            <element signature="e#148662#151259#0" />
-            <element signature="e#150900#150969#0" />
-            <element signature="e#151265#151525#0" />
-            <element signature="e#151622#151874#0" />
-            <element signature="e#151936#152160#0" />
-            <element signature="e#152228#152463#0" />
-            <element signature="e#152556#152807#0" />
-            <element signature="e#152871#153129#0" />
-            <element signature="e#153211#153479#0" />
-            <element signature="e#153545#153801#0" />
-            <element signature="e#153869#154123#0" />
-            <element signature="e#154185#154448#0" />
-            <element signature="e#154935#155275#0" />
-            <element signature="e#155347#155580#0" />
-            <element signature="e#155648#155902#0" />
-            <element signature="e#155970#156167#0" />
-            <element signature="e#156243#156582#0" />
-            <element signature="e#156646#156878#0" />
-            <element signature="e#156942#157204#0" />
-            <element signature="e#157270#157541#0" />
-            <element signature="e#157618#157807#0" />
-            <element signature="e#157877#158109#0" />
-            <element signature="e#158177#158432#0" />
-            <element signature="e#158503#158769#0" />
-            <element signature="e#158845#159059#0" />
-            <element signature="e#159121#159433#0" />
-            <element signature="e#159506#159621#0" />
-            <element signature="e#159708#159915#0" />
-            <element signature="e#159977#160234#0" />
-            <element signature="e#160306#160320#0" />
-            <element signature="e#160394#160408#0" />
-            <element signature="e#160494#160747#0" />
-            <element signature="e#160807#161092#0" />
-            <element signature="e#161159#161433#0" />
-            <element signature="e#161504#161753#0" />
-            <element signature="e#161844#162090#0" />
-            <element signature="e#162095#162105#0" />
-            <element signature="e#162191#162572#0" />
-            <element signature="e#162647#162929#0" />
-            <element signature="e#162993#163267#0" />
-            <element signature="e#163335#163596#0" />
-            <element signature="e#163667#163942#0" />
-            <element signature="e#164004#164295#0" />
-            <element signature="e#164369#164622#0" />
-            <element signature="e#164698#164958#0" />
-            <element signature="e#165036#165322#0" />
-            <element signature="e#165388#165685#0" />
-            <element signature="e#165789#166055#0" />
-            <element signature="e#166121#166388#0" />
-            <element signature="e#166468#166732#0" />
-            <element signature="e#166794#167079#0" />
-            <element signature="e#167166#167452#0" />
-            <element signature="e#167522#167755#0" />
-            <element signature="e#167844#168059#0" />
-            <element signature="e#168135#168351#0" />
-            <element signature="e#168436#168632#0" />
-            <element signature="e#168702#168855#0" />
-            <element signature="e#168948#169084#0" />
-            <element signature="e#169160#169365#0" />
-            <element signature="e#169443#169693#0" />
-            <element signature="e#169772#169973#0" />
-            <element signature="e#170039#170155#0" />
-            <element signature="e#170231#170461#0" />
-            <element signature="e#170539#170726#0" />
-            <element signature="e#170791#170985#0" />
-            <element signature="e#171053#171242#0" />
-            <element signature="e#171315#171488#0" />
-            <element signature="e#171546#171737#0" />
-            <element signature="e#172013#172025#0" />
-            <element signature="e#172083#172403#0" />
-            <element signature="e#172461#172718#0" />
-            <element signature="e#172782#173079#0" />
-            <element signature="e#173170#173425#0" />
-            <element signature="e#173487#173752#0" />
-            <element signature="e#173818#174070#0" />
-            <element signature="e#174130#174419#0" />
-            <element signature="e#174496#174809#0" />
-            <element signature="e#174885#175142#0" />
-            <element signature="e#175207#175476#0" />
-            <element signature="e#175540#175736#0" />
-            <element signature="e#175798#176058#0" />
-            <element signature="e#176141#176416#0" />
-            <element signature="e#176490#176668#0" />
-            <element signature="e#176730#176994#0" />
-            <element signature="e#177062#177245#0" />
-            <element signature="e#177338#177590#0" />
-            <element signature="e#177663#177919#0" />
-            <element signature="e#177996#178360#0" />
-            <element signature="e#178469#178743#0" />
-            <element signature="e#178826#179118#0" />
-            <element signature="e#179202#179400#0" />
-            <element signature="e#179461#179688#0" />
-            <element signature="e#179759#179978#0" />
-            <element signature="e#180068#180330#0" />
-            <element signature="e#180398#180681#0" />
-            <element signature="e#180768#181015#0" />
-            <element signature="e#181092#181143#0" />
-            <element signature="e#181250#181343#0" />
-            <element signature="e#181431#181507#0" />
-            <element signature="e#181575#181659#0" />
-            <element signature="e#181740#181863#0" />
-            <element signature="e#181940#182199#0" />
-            <element signature="e#182265#182453#0" />
-            <element signature="e#182531#182724#0" />
-            <element signature="e#182807#183008#0" />
-            <element signature="e#183094#183282#0" />
-            <element signature="e#183377#184073#0" />
-            <element signature="e#184078#184143#0" />
-            <element signature="e#184273#184285#0" />
-            <element signature="e#184448#185480#0" />
-            <element signature="e#185485#185549#0" />
-            <element signature="e#185668#186358#0" />
-            <element signature="e#186363#186433#0" />
-            <element signature="e#186558#186985#0" />
-            <element signature="e#187101#187668#0" />
-            <element signature="e#187803#188712#0" />
-            <element signature="e#188836#189394#0" />
-            <element signature="e#189524#190998#0" />
-            <element signature="e#191124#192833#0" />
-            <element signature="e#192931#194082#0" />
-            <element signature="e#194210#195089#0" />
-            <element signature="e#195094#195159#0" />
-            <element signature="e#195322#195334#0" />
-            <element signature="e#195518#196351#0" />
-            <element signature="e#196356#196424#0" />
-            <element signature="e#196564#197210#0" />
-            <element signature="e#197215#197289#0" />
-            <element signature="e#197447#198434#0" />
-            <element signature="e#198439#198522#0" />
-            <element signature="e#198774#199586#0" />
-            <element signature="e#199732#200520#0" />
-            <element signature="e#200655#201253#0" />
-            <element signature="e#201394#202322#0" />
-            <element signature="e#202579#202591#0" />
-            <element signature="e#202596#202895#0" />
-            <element signature="e#202986#203686#0" />
-            <element signature="e#203755#204092#0" />
-            <element signature="e#204164#204395#0" />
-            <element signature="e#204462#204605#0" />
-            <element signature="e#204686#204833#0" />
-            <element signature="e#204918#205039#0" />
-            <element signature="e#205112#206271#0" />
-            <element signature="e#206436#206672#0" />
-            <element signature="e#206436#207030#0" />
-            <element signature="e#207036#207145#0" />
-            <element signature="e#207323#208015#0" />
-            <element signature="e#208146#208219#0" />
-            <element signature="e#208328#208401#0" />
-            <element signature="e#208515#209382#0" />
-            <element signature="e#209503#210492#0" />
-            <element signature="e#210574#212020#0" />
-            <element signature="e#212093#213309#0" />
-            <element signature="e#213401#213849#0" />
-            <element signature="e#213932#213956#0" />
-            <element signature="e#214004#214028#0" />
-            <element signature="e#214089#214283#0" />
-            <element signature="e#214353#214522#0" />
-            <element signature="e#214584#214774#0" />
-            <element signature="e#214855#214953#0" />
-            <element signature="e#215013#215037#0" />
-            <element signature="e#215013#215168#0" />
-            <element signature="e#215174#215198#0" />
-            <element signature="e#215174#215420#0" />
-            <element signature="e#215426#215450#0" />
-            <element signature="e#215426#215597#0" />
-            <element signature="e#215603#215627#0" />
-            <element signature="e#215603#215762#0" />
-            <element signature="e#215768#215792#0" />
-            <element signature="e#215873#215897#0" />
-            <element signature="e#215873#215990#0" />
-            <element signature="e#215996#216020#0" />
-            <element signature="e#216108#216132#0" />
-            <element signature="e#216108#216273#0" />
-            <element signature="e#216279#216448#0" />
-            <element signature="e#216279#216901#0" />
-            <element signature="e#216506#216583#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/appwidget/AppWidgetProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="56" column="58" lean-forward="true" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="692" column="22" selection-start-line="692" selection-start-column="22" selection-end-line="692" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/wifi4_25.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/wifi5.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/app/PendingIntent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="1243" column="16" selection-start-line="1243" selection-start-column="16" selection-end-line="1243" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.MKergall/osmbonuspack/6.5.2/c1dbad418cb24c82585b56facc3a2e0bd8586510/osmbonuspack-6.5.2-sources.jar!/org/osmdroid/bonuspack/clustering/RadiusMarkerClusterer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -1597,13 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="387" column="46" selection-start-line="387" selection-start-column="46" selection-end-line="387" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Location.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="450" column="23" selection-start-line="450" selection-start-column="23" selection-end-line="450" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1772,13 +1452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/HandleLocations.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1844,13 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -1862,34 +1528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
           <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1940,10 +1578,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="661" column="47" selection-start-line="661" selection-start-column="47" selection-end-line="661" selection-end-column="47" />
+          <folding>
+            <element signature="class#NearbyActivity#0" />
+            <element signature="method#onCreate#0;class#NearbyActivity#0" />
+            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
+            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
+            <element signature="method#updateMap#0;class#NearbyActivity#0" />
+            <element signature="method#resize#0;class#NearbyActivity#0" />
+            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
+            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
+            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
+            <element signature="method#getList#0;class#NearbyActivity#0" />
+            <element signature="method#html2text#0;class#NearbyActivity#0" />
+            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
+            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
+            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
+            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
+            <element signature="method#onLongPress#0;class#Circlee#0" />
+            <element signature="class#PopUpWin#0" />
+            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
+            <element signature="method#onOpen#0;class#PopUpWin#0" />
+            <element signature="method#onClose#0;class#PopUpWin#0" />
+            <element signature="class#CustomCluster#0" />
+            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
+            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
+            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
+            <element signature="method#round#0;class#CustomCluster#0" />
+            <element signature="method#getDistance#0;class#CustomCluster#0" />
+            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
+            <element signature="class#CustomMarker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/net/Socket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-446">
+          <caret line="213" column="11" selection-start-line="213" selection-start-column="11" selection-end-line="213" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/location/Location.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="150" column="11" selection-start-line="150" selection-start-column="11" selection-end-line="150" selection-end-column="11" />
+          <folding>
+            <element signature="e#5448#5449#0" expanded="true" />
+            <element signature="e#5484#5485#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ApStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="44" column="26" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/ConnectionManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        <state relative-caret-position="221">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
           <folding>
             <element signature="method#enableWifi#0;class#ConnectionManager#0" />
             <element signature="e#988#1045#1" />
@@ -1975,117 +1697,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BroadcReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="51" column="74" selection-start-line="51" selection-start-column="74" selection-end-line="51" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="667" column="47" selection-start-line="667" selection-start-column="47" selection-end-line="667" selection-end-column="47" />
-          <folding>
-            <element signature="class#NearbyActivity#0" />
-            <element signature="method#onCreate#0;class#NearbyActivity#0" />
-            <element signature="class#4097:4512" />
-            <element signature="method#onClick#0;class#4097:4512" />
-            <element signature="e#4231#4356#1" />
-            <element signature="e#4362#4488#1" />
-            <element signature="class#4648:5123" />
-            <element signature="method#onCheckedChanged#0;class#4648:5123" />
-            <element signature="e#4842#4967#1" />
-            <element signature="e#4973#5099#1" />
-            <element signature="e#5163#5272#1" />
-            <element signature="e#5278#5388#1" />
-            <element signature="class#6731:7964" />
-            <element signature="method#onNavigationItemSelected#0;class#6731:7964" />
-            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
-            <element signature="class#9377:9548" />
-            <element signature="method#run#0;class#9377:9548" />
-            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
-            <element signature="class#10365:10681" />
-            <element signature="method#onMarkerClick#0;class#10365:10681" />
-            <element signature="method#updateMap#0;class#NearbyActivity#0" />
-            <element signature="class#11246:11518" />
-            <element signature="method#onClick#0;class#11246:11518" />
-            <element signature="method#resize#0;class#NearbyActivity#0" />
-            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
-            <element signature="class#14107:14300" />
-            <element signature="method#onClick#0;class#14107:14300" />
-            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-            <element signature="class#16624:18542" />
-            <element signature="method#onMarkerClick#0;class#16624:18542" />
-            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-            <element signature="method#getList#0;class#NearbyActivity#0" />
-            <element signature="method#html2text#0;class#NearbyActivity#0" />
-            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
-            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
-            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-            <element signature="method#onLongPress#0;class#Circlee#0" />
-            <element signature="class#PopUpWin#0" />
-            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-            <element signature="method#onOpen#0;class#PopUpWin#0" />
-            <element signature="class#26182:26595" />
-            <element signature="method#onClick#0;class#26182:26595" />
-            <element signature="method#onClose#0;class#PopUpWin#0" />
-            <element signature="class#CustomCluster#0" />
-            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
-            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-            <element signature="class#27876:28420" />
-            <element signature="method#run#0;class#27876:28420" />
-            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
-            <element signature="method#round#0;class#CustomCluster#0" />
-            <element signature="method#getDistance#0;class#CustomCluster#0" />
-            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
-            <element signature="class#CustomMarker#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="373" column="34" selection-start-line="373" selection-start-column="34" selection-end-line="373" selection-end-column="34" />
+        <state relative-caret-position="93">
+          <caret line="435" selection-start-line="435" selection-end-line="435" />
           <folding>
             <element signature="method#requestPermissions#0;class#SontHelper#0" />
             <element signature="method#getBucketId#0;class#SontHelper#0" />
             <element signature="method#getCameraImages#0;class#SontHelper#0" />
-            <element signature="e#3013#3279#1" />
-            <element signature="e#3125#3240#1" />
             <element signature="method#getGallery#0;class#SontHelper#0" />
-            <element signature="e#3537#3626#1" />
             <element signature="method#playTone#0;class#SontHelper#0" />
             <element signature="method#vibrate#0;class#SontHelper#0" />
-            <element signature="e#4253#4342#1" />
-            <element signature="e#4348#4402#1" />
             <element signature="method#vibrate#1;class#SontHelper#0" />
-            <element signature="e#4757#4855#1" />
-            <element signature="e#4861#4915#1" />
             <element signature="method#double_vibrate#0;class#SontHelper#0" />
-            <element signature="e#5206#5284#1" />
-            <element signature="e#5290#5395#1" />
             <element signature="method#zipFileAtPath#0;class#SontHelper#0" />
-            <element signature="e#5577#6565#0" />
-            <element signature="e#5846#5941#1" />
-            <element signature="e#5947#6530#1" />
-            <element signature="e#6450#6516#1" />
-            <element signature="e#6586#6716#0" />
             <element signature="method#zipSubFolder#0;class#SontHelper#0" />
-            <element signature="e#7084#7976#1" />
-            <element signature="e#7122#7194#1" />
-            <element signature="e#7200#7966#1" />
-            <element signature="e#7854#7920#1" />
             <element signature="method#getLastPathComponent#0;class#SontHelper#0" />
             <element signature="method#roundFloat#0;class#SontHelper#0" />
             <element signature="method#convertDBM#0;class#SontHelper#0" />
@@ -2093,163 +1719,396 @@
             <element signature="method#convertTime#0;class#SontHelper#0" />
             <element signature="method#getDistance#0;class#SontHelper#0" />
             <element signature="method#getCompleteAddressString#0;class#SontHelper#0" />
-            <element signature="e#10348#10905#0" />
-            <element signature="e#10473#10874#1" />
-            <element signature="e#10692#10804#1" />
-            <element signature="e#10926#10980#0" />
-            <element signature="e#11097#11131#1" />
             <element signature="method#getLocalIpAddress#0;class#SontHelper#0" />
-            <element signature="e#11432#12051#0" />
-            <element signature="e#11594#12041#1" />
-            <element signature="e#11728#12027#1" />
-            <element signature="e#11781#12009#1" />
             <element signature="method#chk_3g_wifi#0;class#SontHelper#0" />
-            <element signature="e#12571#12609#1" />
-            <element signature="e#12653#12689#1" />
-            <element signature="e#12695#12731#1" />
             <element signature="method#check_if_local#0;class#SontHelper#0" />
-            <element signature="e#13086#13193#1" />
-            <element signature="e#13199#13307#1" />
             <element signature="method#isNetworkAvailable#0;class#SontHelper#0" />
+            <element signature="method#stepCounter#0;class#SontHelper#0" />
+            <element signature="method#getUsbDevices#0;class#SontHelper#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileFTP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1390">
+          <caret line="21" column="39" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/UploadFileHTTP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2308">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BroadcReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="51" column="74" selection-start-line="51" selection-start-column="74" selection-end-line="51" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UdpServerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#717#718#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+          <folding>
+            <element signature="e#1991#2116#0" />
+            <element signature="e#2712#2832#0" />
+            <element signature="e#2837#2963#0" />
+            <element signature="e#2968#3090#0" />
+            <element signature="e#3155#3257#0" />
+            <element signature="e#3263#3389#0" />
+            <element signature="e#3816#3944#0" />
+            <element signature="e#4115#4363#0" />
+            <element signature="e#4372#4618#0" />
+            <element signature="e#4627#4872#0" />
+            <element signature="e#4882#5807#0" />
+            <element signature="e#4936#5787#0" />
+            <element signature="e#5817#5940#0" />
+            <element signature="e#5949#6064#0" />
+            <element signature="e#6073#6222#0" />
+            <element signature="e#6232#7310#0" />
+            <element signature="e#6533#7290#0" />
+            <element signature="e#7319#7480#0" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="650" column="33" lean-forward="true" selection-start-line="650" selection-start-column="33" selection-end-line="650" selection-end-column="33" />
+        <state relative-caret-position="200">
+          <caret line="436" column="34" selection-start-line="436" selection-start-column="34" selection-end-line="436" selection-end-column="34" />
+          <folding>
+            <element signature="e#4069#4096#0" />
+            <element signature="class#5468:10380" />
+            <element signature="method#run#0;class#5468:10380" />
+            <element signature="e#5543#8298#0" />
+            <element signature="e#5590#8284#1" />
+            <element signature="e#5908#6045#1" />
+            <element signature="e#7077#7326#1" />
+            <element signature="e#7332#7549#1" />
+            <element signature="e#8319#8429#0" />
+            <element signature="e#8483#10319#1" />
+            <element signature="e#9181#9418#1" />
+            <element signature="e#9424#9629#1" />
+            <element signature="class#10423:11409" />
+            <element signature="method#run#0;class#10423:11409" />
+            <element signature="e#10498#11253#0" />
+            <element signature="e#10597#10722#1" />
+            <element signature="e#10768#10885#1" />
+            <element signature="e#10931#11046#1" />
+            <element signature="e#11092#11239#1" />
+            <element signature="e#11274#11342#0" />
+            <element signature="e#11511#11906#0" />
+            <element signature="e#11807#11878#1" />
+            <element signature="class#12885:14732" />
+            <element signature="method#onDeviceConnected#0;class#12885:14732" />
+            <element signature="method#onDeviceDisconnected#0;class#12885:14732" />
+            <element signature="method#onMessage#0;class#12885:14732" />
+            <element signature="method#onError#0;class#12885:14732" />
+            <element signature="method#onConnectError#0;class#12885:14732" />
+            <element signature="class#14008:14690" />
+            <element signature="method#run#0;class#14008:14690" />
+            <element signature="class#14792:18395" />
+            <element signature="method#onDiscoveryStarted#0;class#14792:18395" />
+            <element signature="method#onDiscoveryFinished#0;class#14792:18395" />
+            <element signature="e#15313#16251#0" />
+            <element signature="e#15824#16225#1" />
+            <element signature="e#16272#16421#0" />
+            <element signature="class#16482:16682" />
+            <element signature="method#run#0;class#16482:16682" />
+            <element signature="method#onDeviceFound#0;class#14792:18395" />
+            <element signature="e#16887#17349#1" />
+            <element signature="e#16955#17134#1" />
+            <element signature="e#17140#17323#1" />
+            <element signature="e#17355#17650#1" />
+            <element signature="method#onDevicePaired#0;class#14792:18395" />
+            <element signature="method#onDeviceUnpaired#0;class#14792:18395" />
+            <element signature="method#onError#0;class#14792:18395" />
+            <element signature="e#18977#19879#0" expanded="true" />
+            <element signature="e#19878#19879#0" expanded="true" />
+            <element signature="class#18829:20090" />
+            <element signature="method#onClick#0;class#18829:20090" />
+            <element signature="e#18938#19961#0" />
+            <element signature="e#19982#20066#0" />
+            <element signature="class#21279:22121" />
+            <element signature="method#uncaughtException#0;class#21279:22121" />
+            <element signature="e#22393#22446#1" />
+            <element signature="e#22477#22539#1" />
+            <element signature="e#22545#22723#1" />
+            <element signature="e#22926#22941#0" />
+            <element signature="class#23267:24496" />
+            <element signature="method#onNavigationItemSelected#0;class#23267:24496" />
+            <element signature="e#23490#24472#0" />
+            <element signature="class#24731:25138" />
+            <element signature="method#onAdLoaded#0;class#24731:25138" />
+            <element signature="method#onAdFailedToLoad#0;class#24731:25138" />
+            <element signature="e#25169#25189#0" />
+            <element signature="class#26042:26564" />
+            <element signature="method#onCheckedChanged#0;class#26042:26564" />
+            <element signature="e#26235#26386#1" />
+            <element signature="e#26392#26540#1" />
+            <element signature="class#26610:27132" />
+            <element signature="method#onCheckedChanged#0;class#26610:27132" />
+            <element signature="e#26803#26954#1" />
+            <element signature="e#26960#27108#1" />
+            <element signature="class#27178:27700" />
+            <element signature="method#onCheckedChanged#0;class#27178:27700" />
+            <element signature="e#27371#27522#1" />
+            <element signature="e#27528#27676#1" />
+            <element signature="class#27746:28916" />
+            <element signature="method#onCheckedChanged#0;class#27746:28916" />
+            <element signature="e#27939#28090#1" />
+            <element signature="e#28096#28892#1" />
+            <element signature="class#28978:29236" />
+            <element signature="e#29015#29056#0" />
+            <element signature="method#onClick#0;class#28978:29236" />
+            <element signature="e#29781#30970#0" expanded="true" />
+            <element signature="e#30969#30970#0" expanded="true" />
+            <element signature="e#30284#30476#0" />
+            <element signature="class#30518:31015" />
+            <element signature="method#onServiceDisconnected#0;class#30518:31015" />
+            <element signature="method#onServiceConnected#0;class#30518:31015" />
+            <element signature="e#31022#31219#0" />
+            <element signature="e#31224#31638#0" />
+            <element signature="e#31643#31834#0" />
+            <element signature="e#31840#32186#0" />
+            <element signature="e#32031#32180#1" />
+            <element signature="class#32417:36124" />
+            <element signature="method#onResponse#0;class#32417:36124" />
+            <element signature="e#32820#32892#1" />
+            <element signature="e#33222#33872#0" />
+            <element signature="e#33278#33483#1" />
+            <element signature="e#33627#33846#1" />
+            <element signature="e#33893#34030#0" />
+            <element signature="method#onError#0;class#32417:36124" />
+            <element signature="e#36137#39966#0" />
+            <element signature="class#36358:39958" />
+            <element signature="method#onResponse#0;class#36358:39958" />
+            <element signature="e#36763#36835#1" />
+            <element signature="e#37166#37816#0" />
+            <element signature="e#37222#37427#1" />
+            <element signature="e#37571#37790#1" />
+            <element signature="method#onError#0;class#36358:39958" />
+            <element signature="e#39971#43963#0" />
+            <element signature="class#40193:43955" />
+            <element signature="method#onResponse#0;class#40193:43955" />
+            <element signature="e#40760#41707#1" />
+            <element signature="e#40941#41024#1" />
+            <element signature="e#41109#41191#1" />
+            <element signature="e#41276#41359#1" />
+            <element signature="e#41392#41629#0" />
+            <element signature="method#onError#0;class#40193:43955" />
+            <element signature="e#43968#48228#0" />
+            <element signature="class#44295:48220" />
+            <element signature="method#onSuccess#0;class#44295:48220" />
+            <element signature="e#44457#47621#0" />
+            <element signature="e#44702#44715#0" />
+            <element signature="e#44890#47603#1" />
+            <element signature="e#45863#45977#1" />
+            <element signature="e#47493#47581#1" />
+            <element signature="e#47642#47702#0" />
+            <element signature="method#onFailure#0;class#44295:48220" />
+            <element signature="e#48010#48196#1" />
+            <element signature="e#48234#48749#0" />
+            <element signature="e#48419#48743#1" />
+            <element signature="e#48755#49526#0" />
+            <element signature="e#48805#49410#0" />
+            <element signature="e#48856#49400#1" />
+            <element signature="e#48878#49227#0" />
+            <element signature="e#49248#49386#0" />
+            <element signature="e#49431#49520#0" />
+            <element signature="e#49532#50491#0" />
+            <element signature="e#49717#50111#0" />
+            <element signature="e#49790#50093#0" />
+            <element signature="e#49992#50071#1" />
+            <element signature="e#50144#50255#0" />
+            <element signature="e#50278#50389#0" />
+            <element signature="e#50497#51718#0" />
+            <element signature="e#50984#51712#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SerialLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#288#289#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="387" column="30" lean-forward="true" selection-start-line="387" selection-start-column="30" selection-end-line="387" selection-end-column="30" />
+        <state relative-caret-position="141">
+          <caret line="716" column="32" lean-forward="true" selection-start-line="716" selection-start-column="32" selection-end-line="716" selection-end-column="32" />
           <folding>
-            <element signature="e#2408#2441#0" />
-            <element signature="e#2548#2683#0" />
-            <element signature="e#2689#2827#0" />
-            <element signature="e#2833#2951#0" />
-            <element signature="e#2957#3078#0" />
-            <element signature="e#3954#3976#0" />
-            <element signature="e#5603#5758#1" />
-            <element signature="e#5816#5972#1" />
-            <element signature="e#6044#6117#1" />
-            <element signature="e#6193#6269#1" />
-            <element signature="e#6331#7006#1" />
-            <element signature="e#6716#6992#1" />
-            <element signature="e#6738#6758#0" />
-            <element signature="e#7171#7849#1" />
-            <element signature="e#7444#7688#1" />
-            <element signature="e#7589#7670#1" />
-            <element signature="e#7761#7835#1" />
-            <element signature="e#7907#7970#1" />
-            <element signature="e#8021#8101#1" />
-            <element signature="e#8626#8687#1" />
-            <element signature="e#8722#8899#1" />
-            <element signature="e#8905#9128#1" />
-            <element signature="class#10709:11631" />
-            <element signature="method#uncaughtException#0;class#10709:11631" />
-            <element signature="class#13055:15659" />
-            <element signature="method#onResponse#0;class#13055:15659" />
-            <element signature="e#13537#15349#1" />
-            <element signature="e#13692#13975#1" />
-            <element signature="e#14139#15307#1" />
-            <element signature="e#14391#14538#1" />
-            <element signature="method#onError#0;class#13055:15659" />
-            <element signature="e#15689#15757#1" />
-            <element signature="e#16830#18659#0" />
-            <element signature="e#17375#17694#1" />
-            <element signature="e#17778#17866#1" />
-            <element signature="e#17872#17961#1" />
-            <element signature="e#18664#20296#0" />
-            <element signature="e#19182#19387#1" />
-            <element signature="e#19471#19539#1" />
-            <element signature="e#19545#19598#1" />
-            <element signature="e#20302#20816#0" />
-            <element signature="e#20486#20810#1" />
-            <element signature="e#20821#23470#0" />
-            <element signature="class#21007:22566" />
-            <element signature="method#onLocationChanged#0;class#21007:22566" />
-            <element signature="e#21715#21817#1" />
-            <element signature="e#21887#21951#1" />
-            <element signature="method#onStatusChanged#0;class#21007:22566" />
-            <element signature="method#onProviderEnabled#0;class#21007:22566" />
-            <element signature="method#onProviderDisabled#0;class#21007:22566" />
-            <element signature="e#23476#32526#0" />
-            <element signature="e#23533#24006#0" />
-            <element signature="e#23867#23956#1" />
-            <element signature="e#24027#24071#0" />
-            <element signature="e#24182#32519#1" />
-            <element signature="e#24400#24519#1" />
-            <element signature="e#24525#24628#1" />
-            <element signature="e#24685#29689#1" />
-            <element signature="e#24729#29638#1" />
-            <element signature="e#24835#29539#1" />
-            <element signature="class#25830:26688" />
-            <element signature="method#onProgress#0;class#25830:26688" />
-            <element signature="e#26342#26474#1" />
-            <element signature="e#26480#26616#1" />
-            <element signature="class#26739:29469" />
-            <element signature="method#onResponse#0;class#26739:29469" />
-            <element signature="e#27200#28567#0" />
-            <element signature="e#27556#27683#1" />
-            <element signature="e#27745#27981#1" />
-            <element signature="e#28043#28169#1" />
-            <element signature="e#28231#28369#1" />
-            <element signature="e#28375#28525#1" />
-            <element signature="e#28588#28704#0" />
-            <element signature="method#onError#0;class#26739:29469" />
-            <element signature="e#29695#29747#1" />
-            <element signature="e#29887#30984#1" />
-            <element signature="e#29909#30828#0" />
-            <element signature="e#30849#30970#0" />
-            <element signature="e#31001#31367#0" />
-            <element signature="e#31088#31353#1" />
-            <element signature="e#31155#31335#1" />
-            <element signature="e#31388#31499#0" />
-            <element signature="e#31535#31652#1" />
-            <element signature="e#31669#32378#0" />
-            <element signature="e#32399#32509#0" />
-            <element signature="e#32531#35961#0" />
-            <element signature="e#32614#35753#0" />
-            <element signature="e#32814#35743#1" />
-            <element signature="e#33128#35729#1" />
-            <element signature="e#33283#33359#1" />
-            <element signature="e#33539#33600#1" />
-            <element signature="e#33647#33707#1" />
-            <element signature="e#33754#33814#1" />
-            <element signature="e#33862#33923#1" />
-            <element signature="e#34340#34488#1" />
-            <element signature="e#34552#34724#1" />
-            <element signature="e#34808#34877#1" />
-            <element signature="e#35156#35434#1" />
-            <element signature="e#35440#35711#1" />
-            <element signature="e#35791#35955#0" />
-            <element signature="e#36417#37770#0" expanded="true" />
-            <element signature="class#36355:37256" />
-            <element signature="method#onResponse#0;class#36355:37256" />
-            <element signature="e#36621#36708#1" />
-            <element signature="e#36749#36832#1" />
-            <element signature="method#onError#0;class#36355:37256" />
-            <element signature="e#37769#37770#0" expanded="true" />
-            <element signature="e#37316#37674#0" />
-            <element signature="e#37679#39613#0" />
-            <element signature="e#37767#39607#1" />
-            <element signature="e#39618#42774#0" />
-            <element signature="e#40828#41033#1" />
-            <element signature="e#42780#43239#0" />
-            <element signature="e#43244#43704#0" />
-            <element signature="e#43710#44909#0" />
-            <element signature="e#44049#44171#1" />
-            <element signature="e#44195#44903#0" />
-            <element signature="e#44915#45070#0" />
-            <element signature="e#45076#45772#0" />
-            <element signature="e#45140#45708#0" />
-            <element signature="e#45453#45572#1" />
-            <element signature="e#45578#45698#1" />
-            <element signature="e#45729#45766#0" />
+            <element signature="e#2442#2475#0" />
+            <element signature="e#2582#2717#0" />
+            <element signature="e#2723#2861#0" />
+            <element signature="e#2867#2985#0" />
+            <element signature="e#2991#3112#0" />
+            <element signature="e#3988#4010#0" />
+            <element signature="e#5637#5792#1" />
+            <element signature="e#5850#6006#1" />
+            <element signature="e#6078#6151#1" />
+            <element signature="e#6227#6303#1" />
+            <element signature="e#6365#7040#1" />
+            <element signature="e#6750#7026#1" />
+            <element signature="e#6772#6792#0" />
+            <element signature="e#7205#7899#1" />
+            <element signature="e#7478#7722#1" />
+            <element signature="e#7623#7704#1" />
+            <element signature="e#7811#7885#1" />
+            <element signature="e#7957#8020#1" />
+            <element signature="e#8083#8163#1" />
+            <element signature="e#8426#18346#0" />
+            <element signature="e#8579#18275#0" />
+            <element signature="e#8688#8749#1" />
+            <element signature="e#8784#8961#1" />
+            <element signature="e#8967#9190#1" />
+            <element signature="class#10838:11760" />
+            <element signature="method#uncaughtException#0;class#10838:11760" />
+            <element signature="class#12288:17402" />
+            <element signature="method#onTick#0;class#12288:17402" />
+            <element signature="e#12440#12587#1" />
+            <element signature="method#onFinish#0;class#12288:17402" />
+            <element signature="e#13051#16188#1" />
+            <element signature="class#13560:16164" />
+            <element signature="method#onResponse#0;class#13560:16164" />
+            <element signature="e#14042#15854#1" />
+            <element signature="e#14197#14480#1" />
+            <element signature="e#14644#15812#1" />
+            <element signature="e#14896#15043#1" />
+            <element signature="method#onError#0;class#13560:16164" />
+            <element signature="e#16194#16262#1" />
+            <element signature="e#17279#17323#0" />
+            <element signature="e#18272#20101#0" />
+            <element signature="e#17880#18199#1" />
+            <element signature="e#18283#18371#1" />
+            <element signature="e#18377#18466#1" />
+            <element signature="e#20106#21738#0" />
+            <element signature="e#19687#19892#1" />
+            <element signature="e#19976#20044#1" />
+            <element signature="e#20050#20103#1" />
+            <element signature="e#21744#22258#0" />
+            <element signature="e#20991#21315#1" />
+            <element signature="e#22263#24912#0" />
+            <element signature="class#21512:23071" />
+            <element signature="method#onLocationChanged#0;class#21512:23071" />
+            <element signature="e#22220#22322#1" />
+            <element signature="e#22392#22456#1" />
+            <element signature="method#onStatusChanged#0;class#21512:23071" />
+            <element signature="method#onProviderEnabled#0;class#21512:23071" />
+            <element signature="method#onProviderDisabled#0;class#21512:23071" />
+            <element signature="e#24905#25024#1" />
+            <element signature="e#25030#25133#1" />
+            <element signature="e#25190#30194#1" />
+            <element signature="e#25234#30143#1" />
+            <element signature="e#25340#30044#1" />
+            <element signature="class#26335:27193" />
+            <element signature="method#onProgress#0;class#26335:27193" />
+            <element signature="e#26847#26979#1" />
+            <element signature="e#26985#27121#1" />
+            <element signature="class#27244:29974" />
+            <element signature="method#onResponse#0;class#27244:29974" />
+            <element signature="e#27705#29072#0" />
+            <element signature="e#28061#28188#1" />
+            <element signature="e#28250#28486#1" />
+            <element signature="e#28548#28674#1" />
+            <element signature="e#28736#28874#1" />
+            <element signature="e#28880#29030#1" />
+            <element signature="e#29093#29209#0" />
+            <element signature="method#onError#0;class#27244:29974" />
+            <element signature="e#30200#30252#1" />
+            <element signature="e#30391#31427#1" />
+            <element signature="e#30413#31332#0" />
+            <element signature="e#31353#31413#0" />
+            <element signature="e#31531#31796#1" />
+            <element signature="e#31598#31778#1" />
+            <element signature="e#32782#32834#0" />
+            <element signature="e#33608#33684#1" />
+            <element signature="e#33864#33925#1" />
+            <element signature="e#33972#34032#1" />
+            <element signature="e#34079#34139#1" />
+            <element signature="e#34187#34248#1" />
+            <element signature="e#34665#34813#1" />
+            <element signature="e#34877#35049#1" />
+            <element signature="e#35133#35202#1" />
+            <element signature="e#35481#35759#1" />
+            <element signature="e#35765#36036#1" />
+            <element signature="e#36116#36280#0" />
+            <element signature="e#37228#38828#0" />
+            <element signature="e#36469#37885#1" />
+            <element signature="class#36850:37815" />
+            <element signature="method#onResponse#0;class#36850:37815" />
+            <element signature="e#37132#37227#1" />
+            <element signature="e#37268#37359#1" />
+            <element signature="method#onError#0;class#36850:37815" />
+            <element signature="e#38834#39192#0" />
+            <element signature="e#39197#41131#0" />
+            <element signature="e#38348#40188#1" />
+            <element signature="e#41136#44292#0" />
+            <element signature="e#41409#41614#1" />
+            <element signature="e#44298#44757#0" />
+            <element signature="e#44762#45222#0" />
+            <element signature="e#45228#46427#0" />
+            <element signature="e#44630#44752#1" />
+            <element signature="e#44776#45484#0" />
+            <element signature="e#46513#46668#0" />
+            <element signature="e#46594#47290#0" />
+            <element signature="e#45721#46289#0" />
+            <element signature="e#46034#46153#1" />
+            <element signature="e#46159#46279#1" />
+            <element signature="e#46310#46347#0" />
           </folding>
         </state>
       </provider>

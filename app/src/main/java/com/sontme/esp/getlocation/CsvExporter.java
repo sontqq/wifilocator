@@ -36,13 +36,13 @@ public class CsvExporter {
                             writer.flush();
                             writer.close();
                         } else {
-                            Log.d("CSV_EXPORTER_", "Already contains");
+                            //Log.d("CSV_EXPORTER_", "Already contains");
                         }
                     } catch (Exception e) {
-                        Log.d("CSV_EXPORTER_ERROR_", e.toString());
+                        //Log.d("CSV_EXPORTER_ERROR_", e.toString());
                         e.printStackTrace();
                     } finally {
-                        Log.d("CSV_EXPORTER_", "LEFUTOTT_" + file.length() / 1024 + " kilobytes");
+                        //Log.d("CSV_EXPORTER_", "LEFUTOTT_" + file.length() / 1024 + " kilobytes");
                     }
                 }
             }

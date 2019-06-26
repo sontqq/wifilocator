@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
+import android.location.Location;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -73,6 +74,7 @@ import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.sontme.esp.getlocation.ApStrings;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.CustomFormatter;
@@ -86,7 +88,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,9 +103,6 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
-import me.aflak.bluetooth.Bluetooth;
-import me.aflak.bluetooth.interfaces.DeviceCallback;
-import me.aflak.bluetooth.interfaces.DiscoveryCallback;
 
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
 
@@ -287,14 +289,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 final BluetoothDevice[] connectTo = new BluetoothDevice[1];
                 SontHelper.playTone();
                 SontHelper.vibrate(getApplicationContext());
-
-                SontHelper.check_if_local(getApplicationContext());
-
                 Bluetooth bluetooth = new Bluetooth(getApplicationContext());
-
                 DeviceCallback deviceCallback = new DeviceCallback() {
                     @Override
                     public void onDeviceConnected(BluetoothDevice device) {
@@ -405,15 +404,42 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         Log.d("BLUETOOTH_LIBRARY_", "Error_ " + errorCode);
                     }
                 };
-
                 //bluetooth.setBluetoothCallback(bluetoothCallback);
                 bluetooth.setDiscoveryCallback(discoveryCallback);
                 bluetooth.setDeviceCallback(deviceCallback);
-
                 bluetooth.onStart();
                 if (!bluetooth.isEnabled())
                     bluetooth.enable();
                 bluetooth.startScanning();
+                */
+
+                Thread thx = new Thread() {
+                    public void run() {
+                        boolean check = true;
+                        try {
+                            ServerSocket server = new ServerSocket(1234);
+                            while (check) {
+                                Socket s = server.accept();
+                                ObjectInputStream in = new ObjectInputStream(s.getInputStream());
+                                Object obj = in.readObject();
+                                //String objReceived = (String) in.readObject();
+                                if (obj instanceof String) {
+                                    Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + obj);
+                                } else if (obj instanceof ApStrings) {
+                                    Log.d("OBJECT_SCK_", "RECEIVED_APSTRINGS_" + obj);
+                                } else if (obj instanceof Location) {
+                                    Log.d("OBJECT_SCK_", "RECEIVED_LOCATION");
+                                }
+                            }
+                        } catch (Exception e) {
+                            check = false;
+                            e.printStackTrace();
+                            Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
+                        }
+                    }
+                };
+                thx.start();
+
             }
         });
         sharebutton.setOnClickListener(new View.OnClickListener() {
@@ -702,6 +728,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         udp.execute("RESUMING ACT");
         super.onResume();
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -712,6 +739,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         editor.putString("lastActivity", getClass().getName());
         editor.commit();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (t.onOptionsItemSelected(item))
@@ -803,6 +831,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
+
     public void getChart_timer_new(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto")
@@ -877,6 +906,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
+
     public void getChart_timer_pie(String path) {
         AndroidNetworking.get(path)
                 .setTag("chart_auto2")
@@ -954,6 +984,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     }
                 });
     }
+
     public void getStatHttp(String path) {
         path = path.replaceAll(Pattern.quote("+"), "");
         path = path.replaceAll(Pattern.quote(" "), "%20");

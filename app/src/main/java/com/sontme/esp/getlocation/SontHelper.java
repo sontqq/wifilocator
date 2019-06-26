@@ -4,11 +4,16 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
@@ -17,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.VibrationEffect;
@@ -25,6 +31,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -40,6 +47,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
@@ -391,5 +400,50 @@ public class SontHelper extends Application {
 
         sensorManager.registerListener(sel, sensor, 1000);
         return count[0];
+    }
+
+    public static boolean isBatteryCharging(Context context) {
+        // Check battery sticky broadcast
+        final Intent batteryIntent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        return (batteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING);
+    }
+
+    public static String getCurrentWifiName(Context c) {
+        WifiManager wifiManager = (WifiManager) c.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+        return info.getSSID();
+    }
+
+    public static void getUsbDevices(Context c) {
+        UsbManager manager = (UsbManager) c.getSystemService(Context.USB_SERVICE);
+        HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
+        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
+        Log.d("TEST_", "dev list_ " + deviceList.size());
+        if (deviceList.size() >= 1) {
+            //Toast.makeText(c,"USB device found: " + deviceList.size(),Toast.LENGTH_LONG).show();
+        }
+        while (deviceIterator.hasNext()) {
+            UsbDevice device = deviceIterator.next();
+            Toast.makeText(c, "USB Found: " + device.toString(), Toast.LENGTH_LONG).show();
+            Log.d("TEST_", "device_" + device.toString());
+        }
+        //return deviceList;
+    }
+
+    public static Bitmap getScreenBitmap(Context c, View view) {
+
+        view.setDrawingCacheEnabled(true);
+        view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
+        view.buildDrawingCache();
+
+        if (view.getDrawingCache() == null) {
+            return null;
+        }
+
+        Bitmap snapshot = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        view.destroyDrawingCache();
+
+        return snapshot;
     }
 }

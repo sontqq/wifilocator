@@ -1,12 +1,8 @@
 package com.sontme.esp.getlocation;
 
-import android.provider.Settings;
-import android.support.annotation.NonNull;
+import java.io.Serializable;
 
-import java.util.Comparator;
-import java.util.Date;
-
-public class ApStrings {
+public class ApStrings implements Serializable {
     private String time;
     private String ssid;
     private String mac;

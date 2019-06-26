@@ -155,6 +155,7 @@
             android:name=".BackgroundService"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>

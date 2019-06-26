@@ -48,6 +48,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
+import com.sontme.esp.getlocation.Servers.ObjectSender;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.activities.MainActivity;
 
@@ -295,9 +296,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // EVERY 10000 SECONDS
+
+                    String ap = "hello_bello";
+
+                    ObjectSender s = new ObjectSender(ap, "127.0.0.1", 1234, getApplicationContext());
+                    s.execute();
+
                     BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
                     int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-                    if (batLevel <= 30) {
+                    if (batLevel <= 30 && SontHelper.isBatteryCharging(getApplicationContext()) == false) {
+                        Toast.makeText(getApplicationContext(), "Exiting, too low battery!", Toast.LENGTH_LONG).show();
                         android.os.Process.killProcess(android.os.Process.myPid());
                         System.exit(1);
                     }
@@ -308,7 +316,9 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     // EVERY 100000 SECONDS
                     UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
                     boolean x = SontHelper.isNetworkAvailable(getApplicationContext());
-                    udp.execute("HEARTH_BEAT > " + address + "_" + latitude + "_" + longitude);
+                    BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
+                    int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+                    udp.execute("HEARTH_BEAT > " + "BATTERY:" + batLevel + "_" + address + "_" + latitude + "_" + longitude);
                     if (hour > 5 && hour < 23) { // HA NAPPAL / IF DAYLIGHT
                         Log.d("ALARM_3", "ran...");
                         UPLOAD_NIGHT = false;
@@ -643,7 +653,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             } else {
                 isuploading = false;
             }
-
             if (String.valueOf(LocRes.getLongitude()) != null ||
                     String.valueOf(LocRes.getLongitude()).length() >= 1) {
                 try {
@@ -658,7 +667,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     provider = LocRes.getProvider();
                     distance = String.valueOf(SontHelper.getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
                 } catch (Exception e) {
-                    Log.d("queryLocation()_", e.toString());
                     e.printStackTrace();
                 }
             }
@@ -672,10 +680,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     }
                 }
             } catch (Exception e) {
-                Log.d("queryLocation()_2_", e.toString());
                 e.printStackTrace();
             }
-
             if (latitude != null) {
                 aplist(getApplicationContext(), Double.valueOf(latitude), Double.valueOf(longitude));
             }
@@ -691,7 +697,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                         + "\nSpeed: " + SontHelper.round(SontHelper.mpsTokmh(Double.valueOf(speed)), 2) + " km/h"
                         + "\nAccuracy: " + accuracy + " meters", in);
             } catch (Exception e) {
-                Log.d("NOTIF EXCEPTION: ", e.toString());
                 e.printStackTrace();
             }
         }
@@ -706,7 +711,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 List<ScanResult> scanResults = wifiManager.getScanResults();
                 nearbyCount = String.valueOf(scanResults.size());
                 int versionCode = BuildConfig.VERSION_CODE;
+
                 for (ScanResult result : scanResults) {
+                    ObjectSender s = new ObjectSender(result, "127.0.0.1", 1234, getApplicationContext());
+                    s.execute();
                     lastSSID = result.SSID + " " + SontHelper.convertDBM(result.level) + "%";
                     if (!uniqueAPS.contains(result.BSSID)) {
                         uniqueAPS.add(result.BSSID);
