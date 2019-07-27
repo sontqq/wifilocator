@@ -2,6 +2,7 @@ package com.sontme.esp.getlocation.activities;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -58,6 +59,17 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -72,6 +84,8 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
+import com.google.android.gms.common.AccountPicker;
+import com.google.android.gms.common.SignInButton;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sontme.esp.getlocation.ApStrings;
@@ -81,6 +95,10 @@ import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -262,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public ActionBarDrawerToggle t;
     public NavigationView nv;
 
+    CallbackManager callbackManager;
+
     public boolean isBLDevicePaired(BluetoothDevice device) {
         BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
         Set<BluetoothDevice> list = ba.getBondedDevices();
@@ -273,17 +293,128 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         return false;
     }
 
+    private void setFacebookData(final LoginResult loginResult) {
+        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        // Application code
+                        try {
+                            Log.d("FACEBOOK_LOGIN_" + "resp: ", response.toString());
+
+                            String email = response.getJSONObject().getString("email");
+                            String firstName = response.getJSONObject().getString("first_name");
+                            String lastName = response.getJSONObject().getString("last_name");
+
+                            Profile profile = Profile.getCurrentProfile();
+                            String id = profile.getId();
+                            String link = profile.getLinkUri().toString();
+
+                            if (Profile.getCurrentProfile() != null) {
+                                Log.d("FACEBOOK_LOGIN_", "PROFILEPICTURE: " + Profile.getCurrentProfile().getProfilePictureUri(200, 200));
+                            }
+
+                            Log.d("FACEBOOK_LOGIN_" + "Email: ", email);
+                            Log.d("FACEBOOK_LOGIN_" + "FirstName: ", firstName);
+                            Log.d("FACEBOOK_LOGIN_" + "LastName: ", lastName);
+                            Log.d("FACEBOOK_LOGIN_" + "ID: ", id);
+                            Log.d("FACEBOOK_LOGIN_" + "Link: ", link);
+                            Log.d("FACEBOOK_LOGIN_", response.getJSONObject().getString("friends"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,email,first_name,last_name,gender,friends");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    private void getFacebookFriends(LoginResult loginResult) {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        GraphRequest graphRequest = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject jsonObject, GraphResponse graphResponse) {
+                try {
+                    if (jsonObject != null) {
+                        JSONArray jsonArrayFriends = jsonObject.getJSONObject("friends").getJSONArray("data");
+                        JSONObject friendlistObject = jsonArrayFriends.getJSONObject(0);
+                        String friendListID = friendlistObject.getString("id");
+                        //myNewGraphReq(friendListID);
+                        Log.d("FACEBOOK_LOGIN_" + "FRIENDLIST: ", friendListID);
+                    }
+                    Log.d("FACEBOOK_LOGIN_" + "graphresponse: ", graphResponse.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Bundle param = new Bundle();
+        param.putString("fields", "friends");
+        graphRequest.setParameters(param);
+        graphRequest.executeAsync();
+    }
+
+    private void myNewGraphReq(String friendlistId) {
+        final String graphPath = "/" + friendlistId + "/members/";
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        GraphRequest request = new GraphRequest(token, graphPath, null, HttpMethod.GET, new GraphRequest.Callback() {
+            @Override
+            public void onCompleted(GraphResponse graphResponse) {
+                JSONObject object = graphResponse.getJSONObject();
+                try {
+                    JSONArray arrayOfUsersInFriendList = object.getJSONArray("data");
+                    JSONObject user = arrayOfUsersInFriendList.getJSONObject(0);
+                    String usersName = user.getString("name");
+                    Log.d("FACEBOOK_LOGIN" + "username: ", usersName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        Bundle param = new Bundle();
+        param.putString("fields", "name");
+        request.setParameters(param);
+        request.executeAsync();
+    }
+
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case 101:
+                    try {
+                        String type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE);
+                        String name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                        Log.d("GOOGLE_ACC_", type + "_" + name);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+    }
+    @Override
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        Log.d("FACEBOOK_LOGIN", "key:" + FacebookSdk.getApplicationSignature(this));
+        // AppEventsLogger.activateApp(getApplicationContext());
+
+
         UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STARTED ACT");
 
-
+        SignInButton googleSignInButton = findViewById(R.id.sign_in_button);
         Button sharebutton = findViewById(R.id.sharebutton);
         Button testbutton = findViewById(R.id.testbutton);
         testbutton.setOnClickListener(new View.OnClickListener() {
@@ -469,7 +600,38 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 }
             }
         });
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AccountPicker.newChooseAccountIntent(null, null,
+                        null, false, null, null, null, null);
+                startActivityForResult(intent, 101);
+            }
+        });
+        callbackManager = CallbackManager.Factory.create();
 
+        LoginButton loginButton = findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList("user_friends", "email", "public_profile"));
+        loginButton.setLoginText("Login");
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                setFacebookData(loginResult);
+                //getFacebookFriends(loginResult);
+                Log.d("FACEBOOK_LOGIN", "Success appid: " + loginResult.getAccessToken().getApplicationId());
+                Log.d("FACEBOOK_LOGIN", "Success uid: " + loginResult.getAccessToken().getUserId());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("FACEBOOK_LOGIN", "cancelled");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("FACEBOOK_LOGIN", "error: " + error.toString());
+            }
+        });
         LinearLayout lin2 = findViewById(R.id.firstlin2);
         LinearLayout lin3 = findViewById(R.id.firstlin3);
         LinearLayout lin4 = findViewById(R.id.firstlin4);

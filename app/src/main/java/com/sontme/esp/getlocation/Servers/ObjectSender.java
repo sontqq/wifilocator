@@ -49,7 +49,7 @@ public class ObjectSender extends AsyncTask<Object, Object, Object> {
             out.flush();
             //out.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             Log.d("OBJECT_SCK_", "ERROR_class_" + e.getMessage());
         }
         return null;

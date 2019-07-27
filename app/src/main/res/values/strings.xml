@@ -6,8 +6,13 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
 
-    <string name="facebook_app_id">2183815621892163</string>
+
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+
+
+    <string name="facebook_app_id">2348325075257429</string>
+    <string name="fb_login_protocol_scheme">fb2348325075257429</string>
+
 
 </resources>

@@ -28,12 +28,20 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\anim\\abc_slide_out_top.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_button_like_icon_selected.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xhdpi-v4\\com_facebook_button_like_icon_selected.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mappinicon_min_25.png.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\mappinicon_min_25.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_login_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable\\com_facebook_button_login_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -72,8 +80,12 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\layout\\popup.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_black_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_black_xout.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_big_media_narrow.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_background_color.xml.flat",
@@ -160,8 +172,16 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_button_icon_white.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-mdpi-v4\\com_facebook_button_icon_white.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_com_facebook_button_text_color.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\color\\com_facebook_button_text_color.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
@@ -185,7 +205,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_big_media.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_16dp.png.flat",
@@ -206,6 +226,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_profile_picture_blank_portrait.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_profile_picture_blank_portrait.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -316,16 +340,16 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_list_longpressed_holo.9.png"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_bottom.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_text_select_handle_middle_mtrl_light.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_36dp.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -340,8 +364,16 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\layout\\abc_tooltip.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_black_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_black_bottomnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_disabled.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_black_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_black_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_multichoice_material.xml.flat",
@@ -376,6 +408,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\drawable\\md_selector_dark.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_button_background.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
     },
@@ -402,6 +438,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-mdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_xout.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -434,6 +474,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-hdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_button_icon_white.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xhdpi-v4\\com_facebook_button_icon_white.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -490,6 +534,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_dark.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\color\\abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_blue_xout.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_sharp_add_black_36.png.flat",
@@ -560,6 +608,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\anim\\decelerate_cubic.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_blue_bottomnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_sharp_add_black_36.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable-hdpi-v4\\sharp_add_black_36.png"
     },
@@ -610,6 +662,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_black_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_black_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -764,6 +820,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_favicon_blue.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_favicon_blue.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_btn_unelevated_state_list_anim.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\animator\\mtrl_btn_unelevated_state_list_anim.xml"
     },
@@ -780,6 +840,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\color\\mtrl_bottom_nav_item_tint.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20_common_google_signin_btn_text_dark_normal.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\beb4ca22cc804e8da004fc40212f2770\\res\\drawable-watch-v20\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_sharp_add_black_36.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable-xxhdpi-v4\\sharp_add_black_36.png"
     },
@@ -790,6 +854,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_center.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable\\center.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_icon.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_button_icon.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_ripple_color.xml.flat",
@@ -829,7 +897,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_media_cancel_action.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_media_cancel_action.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_stroke_color_selector.xml.flat",
@@ -860,6 +928,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_black_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_black_topnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
     },
@@ -870,6 +942,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_temp.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\9c9cc9c6e9744a11cf853ae41751ce9c\\res\\layout\\activity_temp.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_auth_dialog_header_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_auth_dialog_header_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_marker_default_focused_base.png.flat",
@@ -898,6 +974,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim-v21_design_bottom_sheet_slide_in.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\anim-v21\\design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_login_silver_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable\\com_facebook_button_login_silver_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -956,6 +1036,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable\\notification_icon_background.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_black_topnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_disabled.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
     },
@@ -966,6 +1050,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_blue_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -1032,6 +1120,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_button_like_icon_selected.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-hdpi-v4\\com_facebook_button_like_icon_selected.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_computer_low_gray.png.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\computer_low_gray.png"
     },
@@ -1064,6 +1156,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\layout\\md_dialog_list_check.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_device_auth_dialog_fragment.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\layout\\com_facebook_device_auth_dialog_fragment.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
@@ -1074,6 +1170,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_md_nav_back.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\drawable-xxhdpi-v4\\md_nav_back.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_close.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-hdpi-v4\\com_facebook_close.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_md_nav_back.png.flat",
@@ -1136,6 +1236,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20_common_google_signin_btn_text_disabled.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\beb4ca22cc804e8da004fc40212f2770\\res\\drawable-watch-v20\\common_google_signin_btn_text_disabled.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
@@ -1192,6 +1296,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\drawable\\md_item_selected.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_com_facebook_button_like_icon_selected.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xxhdpi-v4\\com_facebook_button_like_icon_selected.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_light.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\color\\common_google_signin_btn_text_light.xml"
     },
@@ -1224,6 +1332,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\layout\\md_dialog_custom.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_like_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_button_like_background.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_text_btn_ripple_color.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\color\\mtrl_btn_text_btn_ripple_color.xml"
     },
@@ -1248,12 +1360,16 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_blue_topnub.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\color\\abc_hint_foreground_material_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi_search2.png.flat",
@@ -1261,7 +1377,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_media.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_sharp_remove_black_36.png.flat",
@@ -1298,6 +1414,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_light.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_button_like_icon_selected.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-mdpi-v4\\com_facebook_button_like_icon_selected.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_md_selector.xml.flat",
@@ -1344,6 +1464,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\drawable\\ic_mtrl_chip_checked_black.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_background.9.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_round_corner_progress_icon.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a4f1dff879399c103ba9c963750ca1eb\\res\\mipmap-mdpi\\round_corner_progress_icon.png"
     },
@@ -1356,12 +1480,12 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -1382,6 +1506,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_style_dialog_header_icon.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\cbfef72b6ab6b247f73a361bcdf92d30\\res\\layout\\style_dialog_header_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_auth_dialog_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_auth_dialog_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_list.xml.flat",
@@ -1428,12 +1556,28 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_black_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_black_xout.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_auth_dialog_cancel_background.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable\\com_facebook_auth_dialog_cancel_background.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_md_item_selected_dark.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\drawable\\md_item_selected_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_topnub.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_activity_layout.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\layout\\com_facebook_activity_layout.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -1528,6 +1672,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_smart_device_dialog_fragment.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\layout\\com_facebook_smart_device_dialog_fragment.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -1546,6 +1694,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_black_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_black_bottomnub.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -1636,6 +1788,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_button_icon_blue.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-hdpi-v4\\com_facebook_button_icon_blue.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_moreinfo_arrow_pressed.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable\\moreinfo_arrow_pressed.png"
     },
@@ -1712,6 +1868,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable-xxhdpi-v4\\googleg_disabled_color_18.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_com_facebook_button_icon_blue.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xxhdpi-v4\\com_facebook_button_icon_blue.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
     },
@@ -1721,7 +1881,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_media_custom.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_media_custom.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
@@ -1752,12 +1912,12 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_listitem_singlechoice.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\layout\\md_listitem_singlechoice.xml"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_listitem_singlechoice.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\layout\\md_listitem_singlechoice.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_textfield_search_material.xml.flat",
@@ -1778,6 +1938,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_button_icon_blue.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-mdpi-v4\\com_facebook_button_icon_blue.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
@@ -1833,7 +1997,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_progress_indeterminate_horizontal.xml.flat",
@@ -1846,6 +2010,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_middle_mtrl_dark.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-hdpi-v4\\abc_text_select_handle_middle_mtrl_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_login_fragment.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\layout\\com_facebook_login_fragment.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_colored_item_tint.xml.flat",
@@ -1862,6 +2030,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_subheader.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_black_xout.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_web_shape.xml.flat",
@@ -1928,6 +2100,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_com_facebook_button_icon_white.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xxhdpi-v4\\com_facebook_button_icon_white.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_btn_colored_borderless_text_material.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
@@ -1950,6 +2126,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\437f225d7d2357ff4bf2f1033e0d9ac8\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_profile_picture_blank_square.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_profile_picture_blank_square.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator-v21_design_appbar_state_list_animator.xml.flat",
@@ -2004,6 +2184,14 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\pin2.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_button_icon_blue.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xhdpi-v4\\com_facebook_button_icon_blue.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_black_bottomnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_design_ic_visibility.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\drawable-hdpi-v4\\design_ic_visibility.png"
     },
@@ -2022,6 +2210,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_input_check.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a3fa7bd2cea8d73b5f395cb1e9e3a614\\res\\layout\\md_dialog_input_check.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_black_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
@@ -2072,12 +2264,20 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-hdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_close.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-xhdpi-v4\\com_facebook_close.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_mapmode.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable\\ic_menu_mapmode.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_design_ic_visibility.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\drawable-xxxhdpi-v4\\design_ic_visibility.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_close.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-mdpi-v4\\com_facebook_close.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator_design_fab_show_motion_spec.xml.flat",
@@ -2113,7 +2313,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_media_action.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_media_action.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -2204,6 +2404,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4ef53955c6d3d9d409438689e305a978\\res\\drawable-xxhdpi-v4\\osm_ic_follow_me.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20_common_google_signin_btn_text_light_normal.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\beb4ca22cc804e8da004fc40212f2770\\res\\drawable-watch-v20\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_shrink_fade_out_from_bottom.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
@@ -2244,6 +2448,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-hdpi-v4\\com_facebook_tooltip_blue_bottomnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_chip_text_color.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6d209aa4771093717000d2d25716cf71\\res\\color\\mtrl_chip_text_color.xml"
     },
@@ -2276,6 +2484,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_com_facebook_tooltip_bubble.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_popup_exit.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\anim\\abc_popup_exit.xml"
     },
@@ -2298,6 +2510,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header.xml.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_background.9.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_check_circle.png.flat",
@@ -2374,6 +2590,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_topnub.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
@@ -2500,6 +2720,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_bottomnub.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
@@ -2509,7 +2733,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_lines_media.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_lines_media.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mappin.png.flat",
@@ -2541,7 +2765,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\59300afca9f78b47f811732b33d1ba0c\\res\\layout\\notification_template_big_media_custom.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\502df54b2b2bb323208b4ad6e9c02d4d\\res\\layout\\notification_template_big_media_custom.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
@@ -2554,6 +2778,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-ldrtl-xhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_black_topnub.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-mdpi-v4\\com_facebook_tooltip_black_topnub.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_sharp_remove_black_36.png.flat",
@@ -2696,12 +2924,24 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5679d845b616efea41ee8001d416b6cf\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_button_icon_white.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\5f7741edcfc73295caa37a43f6e2dc36\\res\\drawable-hdpi-v4\\com_facebook_button_icon_white.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_xout.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable-xhdpi-v4\\com_facebook_tooltip_blue_xout.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\325afde03a3e801b45d2e06f59facf86\\res\\drawable-mdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_login_logo.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\3a768a60f2f00d8d26a48b55a1ce22fe\\res\\drawable\\com_facebook_button_login_logo.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20_abc_dialog_material_background.xml.flat",
