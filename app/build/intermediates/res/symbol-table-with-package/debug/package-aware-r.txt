@@ -321,6 +321,7 @@ attr imageButtonStyle
 attr indeterminateProgressStyle
 attr initialActivityCount
 attr insetForeground
+attr isDarkTheme
 attr isLightTheme
 attr itemBackground
 attr itemHorizontalPadding
@@ -752,6 +753,7 @@ color common_google_signin_btn_text_light_disabled
 color common_google_signin_btn_text_light_focused
 color common_google_signin_btn_text_light_pressed
 color common_google_signin_btn_tint
+color dark_blue
 color design_bottom_navigation_shadow_color
 color design_default_color_primary
 color design_default_color_primary_dark
@@ -851,6 +853,7 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color text_color_dark
 color tooltip_background_dark
 color tooltip_background_light
 color webgray
@@ -1211,6 +1214,22 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable bonuspack_bubble
+drawable btn_google_dark_disabled
+drawable btn_google_dark_focus
+drawable btn_google_dark_normal
+drawable btn_google_dark_pressed
+drawable btn_google_light_disabled
+drawable btn_google_light_focus
+drawable btn_google_light_normal
+drawable btn_google_light_pressed
+drawable btn_google_signin_dark_disabled
+drawable btn_google_signin_dark_focus
+drawable btn_google_signin_dark_normal
+drawable btn_google_signin_dark_pressed
+drawable btn_google_signin_light_disabled
+drawable btn_google_signin_light_focus
+drawable btn_google_signin_light_normal
+drawable btn_google_signin_light_pressed
 drawable btn_moreinfo
 drawable center
 drawable cloudupload
@@ -1260,6 +1279,7 @@ drawable common_google_signin_btn_text_light_normal_background
 drawable computer
 drawable computer_low
 drawable computer_low_gray
+drawable dark_theme_google_icon_selector
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1285,6 +1305,7 @@ drawable ic_menu_offline
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable light_theme_google_icon_selector
 drawable list
 drawable mapicon
 drawable mapmark
@@ -1476,6 +1497,9 @@ id exitUntilCollapsed
 id exitb
 id expand_activities_button
 id expanded_menu
+id fblin
+id fbprofimg
+id fbtxtname
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1491,9 +1515,13 @@ id firstlin_sw4
 id fixed
 id forever
 id ghost_view
+id golin
 id gone
+id googleprofimg
+id googletxtname
 id group_divider
 id groups
+id gsignout
 id header_str
 id header_verinfo
 id home
@@ -1993,6 +2021,7 @@ string fb_login_protocol_scheme
 string fiets_nl
 string firebase_database_url
 string first_fix_message
+string flurry_key
 string format_distance_feet
 string format_distance_kilometers
 string format_distance_meters
@@ -2002,6 +2031,8 @@ string gcm_defaultSenderId
 string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
+string google_sign_in
+string google_sign_up
 string google_storage_bucket
 string hide_bottom_view_on_scroll_behavior
 string hills
@@ -2625,6 +2656,7 @@ styleable BottomAppBar backgroundTint fabAlignmentMode fabCradleMargin fabCradle
 styleable BottomNavigationView elevation itemBackground itemHorizontalTranslationEnabled itemIconSize itemIconTint itemTextAppearanceActive itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable BottomSheetBehavior_Layout behavior_fitToContents behavior_hideable behavior_peekHeight behavior_skipCollapsed
 styleable ButtonBarLayout allowStacking
+styleable ButtonStyleable android_text isDarkTheme
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection

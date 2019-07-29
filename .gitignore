@@ -13,3 +13,13 @@
 /update.bat
 ./update.bat
 ./update.bat
+build.bradle
+.build.bradle
+/.build.bradle
+.gradle.properties
+/.gradle.properties
+c:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\res\values\secrets_apikeys.xml
+/secrets_apikeys.xml
+./secrets_apikeys.xml
+secrets_apikeys.xml
+**/*/res/values/secrets_apikeys.xml

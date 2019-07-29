@@ -217,15 +217,82 @@
                     android:layout_height="wrap_content"
                     android:text="test button" />
 
-                <com.google.android.gms.common.SignInButton
-                    android:id="@+id/sign_in_button"
+                <LinearLayout
+                    android:id="@+id/golin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                <com.facebook.login.widget.LoginButton
-                    android:id="@+id/login_button"
+                    <ImageView
+                        android:id="@+id/googleprofimg"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        ads:srcCompat="@drawable/com_facebook_button_icon_blue" />
+
+                    <TextView
+                        android:id="@+id/googletxtname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <com.shobhitpuri.custombuttons.GoogleSignInButton
+                        android:id="@+id/sign_in_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_weight="1"
+                        android:text="Sign in with Google"
+                        app:isDarkTheme="false" />
+
+                    <Button
+                        android:id="@+id/gsignout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="Logout" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fblin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/fbprofimg"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        ads:srcCompat="@drawable/com_facebook_button_icon_blue" />
+
+                    <TextView
+                        android:id="@+id/fbtxtname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="TextView" />
+
+                    <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+                        facebook:com_facebook_login_text="Login"
+                        facebook:com_facebook_logout_text="Logout"
+                        android:id="@+id/login_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

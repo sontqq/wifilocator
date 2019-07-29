@@ -39,6 +39,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -227,22 +228,29 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
             udp.execute("STARTED SERVICE");
 
+            //region SET UP USER
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
-
             String acc = "no";
             for (Account s : list) {
                 acc = String.valueOf(s.name);
+                Log.d("APP_LOGIN", s.name);
             }
             if (acc.length() > 3) {
                 DEVICE_ACCOUNT = acc;
-                DEVICE_ACCOUNT = DEVICE_ACCOUNT.replaceAll("[^0-9]", "");
-                DEVICE_ACCOUNT2 = DEVICE_ACCOUNT;
+                if (isValidEmail(DEVICE_ACCOUNT) == true) {
+                    Log.d("APP_LOGIN", "Valid email: " + DEVICE_ACCOUNT);
+                } else if (isValidPhoneNumber(DEVICE_ACCOUNT)) {
+                    Log.d("APP_LOGIN", "Valid phone number: " + DEVICE_ACCOUNT);
+                } else {
+                    DEVICE_ACCOUNT = DEVICE_ACCOUNT.replaceAll("[^0-9]", "");
+                    Log.d("APP_LOGIN", "Not an Email nor a Phone Number: " + DEVICE_ACCOUNT);
+                }
             } else {
                 DEVICE_ACCOUNT = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                         Settings.Secure.ANDROID_ID);
-                DEVICE_ACCOUNT2 = DEVICE_ACCOUNT;
             }
+            //endregion
 
             showOngoing();
 
@@ -904,6 +912,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
     }
 
+    public final static boolean isValidEmail(String target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    public final static boolean isValidPhoneNumber(String target) {
+        return target.matches("^[+]?[0-9]{10,13}$");
+    }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
