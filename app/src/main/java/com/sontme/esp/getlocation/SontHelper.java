@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -34,8 +36,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.opencv.core.Scalar;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -354,6 +360,14 @@ public class SontHelper extends Application {
         }
     }
 
+    public static Bitmap reduceBitmapQuality(Bitmap bitmap, int quality) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //bitmap.compress(Bitmap.CompressFormat.PNG, quality, out);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+        Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
+        return decoded;
+    }
+
     public static boolean check_if_local(Context ctx) {
         Log.d("LAN_", String.valueOf(System.currentTimeMillis()));
         WifiManager wifiManager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
@@ -378,7 +392,6 @@ public class SontHelper extends Application {
                 activeNetworkInfo.isConnected() &&
                 activeNetworkInfo.isConnectedOrConnecting();
     }
-
 
     // NEED TO FIX RETURN VALUE (0)
     public static int stepCounter(Context c) {
@@ -446,4 +459,29 @@ public class SontHelper extends Application {
 
         return snapshot;
     }
+
+    public static Scalar argbtoScalar(int r, int g, int b, int a) {
+        Scalar s = new Scalar(r, b, g, a);
+        return s;
+    }
+
+    public static Bitmap convertViewToBitmap(View v) {
+        Bitmap b = Bitmap.createBitmap(v.getLayoutParams().width, v.getLayoutParams().height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        v.layout(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+        v.draw(c);
+        return b;
+    }
+
+    public static Bitmap resize(Bitmap source, int w, int h) {
+
+        float imageRatio = (float) source.getWidth() / (float) source.getHeight();
+
+        int imageViewWidth = w;
+        int imageRealHeight = (int) (imageViewWidth / imageRatio);
+
+        Bitmap imageToShow = Bitmap.createScaledBitmap(source, imageViewWidth, imageRealHeight, true);
+        return imageToShow;
+    }
+
 }

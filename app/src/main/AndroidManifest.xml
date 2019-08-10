@@ -23,15 +23,10 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -42,10 +37,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -57,10 +50,10 @@
         tools:ignore="ProtectedPermissions" />
 
     <uses-feature android:name="android.hardware.wifi" />
-
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission
         android:name="android.permission.BLUETOOTH_PRIVILEGED"
@@ -75,11 +68,25 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/computer"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".opencv_realtime"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation" />
+        <activity
+            android:name=".activity_image"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".activity_camera"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity android:name=".activities.HeatMapp" />
+
         <receiver android:name=".wifi_widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/wifi_widget_info" />
@@ -116,7 +123,6 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
                 <action android:name="android.intent.action.BluetoothDevice.ACTION_FOUND" />
                 <action android:name="android.BluetoothDevice.ACTION_FOUND" />
-
             </intent-filter>
         </receiver>
 
@@ -149,7 +155,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MainActivity"
             android:alwaysRetainTaskState="true"
@@ -160,7 +165,6 @@
             <intent-filter>
                 <action android:name="android.net.wifi.STATE_CHANGE" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.RECEIVE_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MAIN" />
@@ -171,11 +175,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".BackgroundService"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
     </application>
 
 </manifest>

@@ -39,77 +39,77 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int bubble_description = 0x7f08002e;
-        public static final int bubble_image = 0x7f08002f;
-        public static final int bubble_moreinfo = 0x7f080030;
-        public static final int bubble_subdescription = 0x7f080031;
-        public static final int bubble_title = 0x7f080032;
+        public static final int bubble_description = 0x7f080034;
+        public static final int bubble_image = 0x7f080035;
+        public static final int bubble_moreinfo = 0x7f080036;
+        public static final int bubble_subdescription = 0x7f080037;
+        public static final int bubble_title = 0x7f080038;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int bonuspack_bubble = 0x7f0b0021;
+        public static final int bonuspack_bubble = 0x7f0b0025;
     }
     public static final class string {
         private string() {}
 
-        public static final int about = 0x7f0e0029;
-        public static final int about_message = 0x7f0e002a;
-        public static final int app_name = 0x7f0e002f;
-        public static final int base = 0x7f0e0032;
-        public static final int base_nl = 0x7f0e0033;
-        public static final int bing = 0x7f0e0034;
-        public static final int compass = 0x7f0e0061;
-        public static final int cyclemap = 0x7f0e0062;
-        public static final int fiets_nl = 0x7f0e0069;
-        public static final int first_fix_message = 0x7f0e006b;
-        public static final int format_distance_feet = 0x7f0e006d;
-        public static final int format_distance_kilometers = 0x7f0e006e;
-        public static final int format_distance_meters = 0x7f0e006f;
-        public static final int format_distance_miles = 0x7f0e0070;
-        public static final int format_distance_nautical_miles = 0x7f0e0071;
-        public static final int hills = 0x7f0e007a;
-        public static final int map_mode = 0x7f0e0083;
-        public static final int mapbox = 0x7f0e0084;
-        public static final int mapnik = 0x7f0e0085;
-        public static final int mapquest_aerial = 0x7f0e0086;
-        public static final int mapquest_osm = 0x7f0e0087;
-        public static final int my_location = 0x7f0e0089;
-        public static final int offline = 0x7f0e008a;
-        public static final int osmbonuspack_directions_1 = 0x7f0e008b;
-        public static final int osmbonuspack_directions_12 = 0x7f0e008c;
-        public static final int osmbonuspack_directions_17 = 0x7f0e008d;
-        public static final int osmbonuspack_directions_18 = 0x7f0e008e;
-        public static final int osmbonuspack_directions_19 = 0x7f0e008f;
-        public static final int osmbonuspack_directions_2 = 0x7f0e0090;
-        public static final int osmbonuspack_directions_24 = 0x7f0e0091;
-        public static final int osmbonuspack_directions_27 = 0x7f0e0092;
-        public static final int osmbonuspack_directions_28 = 0x7f0e0093;
-        public static final int osmbonuspack_directions_29 = 0x7f0e0094;
-        public static final int osmbonuspack_directions_3 = 0x7f0e0095;
-        public static final int osmbonuspack_directions_30 = 0x7f0e0096;
-        public static final int osmbonuspack_directions_31 = 0x7f0e0097;
-        public static final int osmbonuspack_directions_32 = 0x7f0e0098;
-        public static final int osmbonuspack_directions_33 = 0x7f0e0099;
-        public static final int osmbonuspack_directions_34 = 0x7f0e009a;
-        public static final int osmbonuspack_directions_4 = 0x7f0e009b;
-        public static final int osmbonuspack_directions_5 = 0x7f0e009c;
-        public static final int osmbonuspack_directions_6 = 0x7f0e009d;
-        public static final int osmbonuspack_directions_7 = 0x7f0e009e;
-        public static final int osmbonuspack_directions_8 = 0x7f0e009f;
-        public static final int osmbonuspack_format_distance_kilometers = 0x7f0e00a0;
-        public static final int osmbonuspack_format_distance_meters = 0x7f0e00a1;
-        public static final int osmbonuspack_format_hours = 0x7f0e00a2;
-        public static final int osmbonuspack_format_minutes = 0x7f0e00a3;
-        public static final int osmbonuspack_format_seconds = 0x7f0e00a4;
-        public static final int public_transport = 0x7f0e00ab;
-        public static final int roads_nl = 0x7f0e00ac;
-        public static final int samples = 0x7f0e00b4;
-        public static final int set_mode_hide_me = 0x7f0e00b6;
-        public static final int set_mode_offline = 0x7f0e00b7;
-        public static final int set_mode_online = 0x7f0e00b8;
-        public static final int set_mode_show_me = 0x7f0e00b9;
-        public static final int topo = 0x7f0e00bb;
-        public static final int unknown = 0x7f0e00bc;
+        public static final int about = 0x7f0f0029;
+        public static final int about_message = 0x7f0f002a;
+        public static final int app_name = 0x7f0f002f;
+        public static final int base = 0x7f0f0032;
+        public static final int base_nl = 0x7f0f0033;
+        public static final int bing = 0x7f0f0034;
+        public static final int compass = 0x7f0f0061;
+        public static final int cyclemap = 0x7f0f0062;
+        public static final int fiets_nl = 0x7f0f0069;
+        public static final int first_fix_message = 0x7f0f006b;
+        public static final int format_distance_feet = 0x7f0f006d;
+        public static final int format_distance_kilometers = 0x7f0f006e;
+        public static final int format_distance_meters = 0x7f0f006f;
+        public static final int format_distance_miles = 0x7f0f0070;
+        public static final int format_distance_nautical_miles = 0x7f0f0071;
+        public static final int hills = 0x7f0f007a;
+        public static final int map_mode = 0x7f0f0083;
+        public static final int mapbox = 0x7f0f0084;
+        public static final int mapnik = 0x7f0f0085;
+        public static final int mapquest_aerial = 0x7f0f0086;
+        public static final int mapquest_osm = 0x7f0f0087;
+        public static final int my_location = 0x7f0f0089;
+        public static final int offline = 0x7f0f008a;
+        public static final int osmbonuspack_directions_1 = 0x7f0f008b;
+        public static final int osmbonuspack_directions_12 = 0x7f0f008c;
+        public static final int osmbonuspack_directions_17 = 0x7f0f008d;
+        public static final int osmbonuspack_directions_18 = 0x7f0f008e;
+        public static final int osmbonuspack_directions_19 = 0x7f0f008f;
+        public static final int osmbonuspack_directions_2 = 0x7f0f0090;
+        public static final int osmbonuspack_directions_24 = 0x7f0f0091;
+        public static final int osmbonuspack_directions_27 = 0x7f0f0092;
+        public static final int osmbonuspack_directions_28 = 0x7f0f0093;
+        public static final int osmbonuspack_directions_29 = 0x7f0f0094;
+        public static final int osmbonuspack_directions_3 = 0x7f0f0095;
+        public static final int osmbonuspack_directions_30 = 0x7f0f0096;
+        public static final int osmbonuspack_directions_31 = 0x7f0f0097;
+        public static final int osmbonuspack_directions_32 = 0x7f0f0098;
+        public static final int osmbonuspack_directions_33 = 0x7f0f0099;
+        public static final int osmbonuspack_directions_34 = 0x7f0f009a;
+        public static final int osmbonuspack_directions_4 = 0x7f0f009b;
+        public static final int osmbonuspack_directions_5 = 0x7f0f009c;
+        public static final int osmbonuspack_directions_6 = 0x7f0f009d;
+        public static final int osmbonuspack_directions_7 = 0x7f0f009e;
+        public static final int osmbonuspack_directions_8 = 0x7f0f009f;
+        public static final int osmbonuspack_format_distance_kilometers = 0x7f0f00a0;
+        public static final int osmbonuspack_format_distance_meters = 0x7f0f00a1;
+        public static final int osmbonuspack_format_hours = 0x7f0f00a2;
+        public static final int osmbonuspack_format_minutes = 0x7f0f00a3;
+        public static final int osmbonuspack_format_seconds = 0x7f0f00a4;
+        public static final int public_transport = 0x7f0f00ab;
+        public static final int roads_nl = 0x7f0f00ac;
+        public static final int samples = 0x7f0f00b4;
+        public static final int set_mode_hide_me = 0x7f0f00b6;
+        public static final int set_mode_offline = 0x7f0f00b7;
+        public static final int set_mode_online = 0x7f0f00b8;
+        public static final int set_mode_show_me = 0x7f0f00b9;
+        public static final int topo = 0x7f0f00bb;
+        public static final int unknown = 0x7f0f00bc;
     }
 }

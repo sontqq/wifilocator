@@ -104,6 +104,10 @@ attr behavior_hideable
 attr behavior_overlapTop
 attr behavior_peekHeight
 attr behavior_skipCollapsed
+attr blur
+attr borderAlpha
+attr borderColor
+attr borderLength
 attr borderWidth
 attr borderlessButtonStyle
 attr bottomAppBarStyle
@@ -139,6 +143,7 @@ attr cameraTargetLat
 attr cameraTargetLng
 attr cameraTilt
 attr cameraZoom
+attr camera_id
 attr cardBackgroundColor
 attr cardCornerRadius
 attr cardElevation
@@ -234,6 +239,11 @@ attr counterMaxLength
 attr counterOverflowTextAppearance
 attr counterTextAppearance
 attr customNavigationLayout
+attr dataPadding
+attr dataPaddingBottom
+attr dataPaddingLeft
+attr dataPaddingRight
+attr dataPaddingTop
 attr defaultQueryHint
 attr dialogCornerRadius
 attr dialogPreferredPadding
@@ -276,6 +286,7 @@ attr fastScrollHorizontalThumbDrawable
 attr fastScrollHorizontalTrackDrawable
 attr fastScrollVerticalThumbDrawable
 attr fastScrollVerticalTrackDrawable
+attr finderOffset
 attr firstBaselineToTopHeight
 attr floatingActionButtonStyle
 attr font
@@ -337,6 +348,8 @@ attr itemTextAppearanceInactive
 attr itemTextColor
 attr keylines
 attr labelVisibilityMode
+attr laserColor
+attr laserEnabled
 attr lastBaselineToBottomHeight
 attr latLngBoundsNorthEastLatitude
 attr latLngBoundsNorthEastLongitude
@@ -422,11 +435,15 @@ attr liteMode
 attr logo
 attr logoDescription
 attr mapType
+attr maskColor
 attr materialButtonStyle
 attr materialCardViewStyle
 attr maxActionInlineWidth
 attr maxButtonHeight
+attr maxDrawingHeight
+attr maxDrawingWidth
 attr maxImageSize
+attr maxOpacity
 attr md_background_color
 attr md_btn_negative_selector
 attr md_btn_neutral_selector
@@ -458,6 +475,7 @@ attr md_title_gravity
 attr md_widget_color
 attr measureWithLargestChild
 attr menu
+attr minOpacity
 attr mpb_progressStyle
 attr mpb_setBothDrawables
 attr mpb_showTrack
@@ -469,6 +487,7 @@ attr navigationIcon
 attr navigationMode
 attr navigationViewStyle
 attr numericModifiers
+attr opacity
 attr overlapAnchor
 attr paddingBottomNoButtons
 attr paddingEnd
@@ -492,6 +511,7 @@ attr progressBarStyle
 attr queryBackground
 attr queryHint
 attr radioButtonStyle
+attr radius
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
@@ -520,6 +540,7 @@ attr rcTextProgressMargin
 attr rcTextProgressSize
 attr reverseLayout
 attr rippleColor
+attr roundedCorner
 attr scopeUris
 attr scrimAnimationDuration
 attr scrimBackground
@@ -530,11 +551,13 @@ attr searchViewStyle
 attr seekBarStyle
 attr selectableItemBackground
 attr selectableItemBackgroundBorderless
+attr shouldScaleToFill
 attr showAsAction
 attr showDividers
 attr showMotionSpec
 attr showText
 attr showTitle
+attr show_fps
 attr singleChoiceItemLayout
 attr singleLine
 attr singleSelection
@@ -545,6 +568,7 @@ attr spinBars
 attr spinnerDropDownItemStyle
 attr spinnerStyle
 attr splitTrack
+attr squaredFinder
 attr srcCompat
 attr stackFromEnd
 attr state_above_anchor
@@ -650,6 +674,7 @@ attr tooltipText
 attr track
 attr trackTint
 attr trackTintMode
+attr transparentBackground
 attr ttcIndex
 attr uiCompass
 attr uiMapToolbar
@@ -674,6 +699,14 @@ attr windowMinWidthMajor
 attr windowMinWidthMinor
 attr windowNoTitle
 attr zOrderOnTop
+attr zxing_framing_rect_height
+attr zxing_framing_rect_width
+attr zxing_possible_result_points
+attr zxing_result_view
+attr zxing_scanner_layout
+attr zxing_use_texture_view
+attr zxing_viewfinder_laser
+attr zxing_viewfinder_mask
 bool abc_action_bar_embed_tabs
 bool abc_allow_stacked_button_bar
 bool abc_config_actionMenuItemAllCaps
@@ -856,7 +889,20 @@ color switch_thumb_normal_material_light
 color text_color_dark
 color tooltip_background_dark
 color tooltip_background_light
+color viewfinder_border
+color viewfinder_laser
+color viewfinder_mask
 color webgray
+color zxing_custom_possible_result_points
+color zxing_custom_result_view
+color zxing_custom_viewfinder_laser
+color zxing_custom_viewfinder_mask
+color zxing_possible_result_points
+color zxing_result_view
+color zxing_status_text
+color zxing_transparent
+color zxing_viewfinder_laser
+color zxing_viewfinder_mask
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1118,6 +1164,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -1409,6 +1459,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id actual
 id add
 id adjust_height
 id adjust_width
@@ -1416,10 +1467,12 @@ id alertTitle
 id all
 id alti
 id always
+id any
 id asdd
 id async
 id auto
 id automatic
+id back
 id barrier
 id beginning
 id blebtn1
@@ -1427,7 +1480,10 @@ id blebtn2
 id blocking
 id bottom
 id box_count
+id btn_cam1
+id btn_cam2
 id btn_export
+id btn_post
 id btn_up_http
 id bubble_description
 id bubble_image
@@ -1450,6 +1506,7 @@ id chronometer
 id circular
 id clip_horizontal
 id clip_vertical
+id closediag
 id collapseActionView
 id com_facebook_body_frame
 id com_facebook_button_xout
@@ -1470,6 +1527,9 @@ id currentstatus
 id currentstatus_left
 id custom
 id customPanel
+id custom_view
+id customimg
+id cv_linlay
 id dark
 id decor_content_parent
 id default_activity_button
@@ -1514,6 +1574,9 @@ id firstlin_sw3
 id firstlin_sw4
 id fixed
 id forever
+id framelay
+id front
+id getimg
 id ghost_view
 id golin
 id gone
@@ -1524,6 +1587,7 @@ id groups
 id gsignout
 id header_str
 id header_verinfo
+id heatmap
 id home
 id homeAsUp
 id horizontal
@@ -1556,6 +1620,7 @@ id light
 id line1
 id line3
 id linid
+id linlay_img
 id list
 id listMode
 id list_item
@@ -1617,6 +1682,7 @@ id nv2
 id nv3
 id nv4
 id open_graph
+id opencv_histogram
 id osmmap
 id osmmap2
 id outline
@@ -1642,8 +1708,11 @@ id psnip
 id pssid
 id pstat
 id publisherAdView
+id qr_img
 id radio
+id readqr
 id release_btn
+id resp_bitmap
 id right
 id right_icon
 id right_side
@@ -1669,15 +1738,19 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id seekBar
+id seekBar2
 id select_dialog_listview
 id selected
 id servstatus
+id sf_preview
 id sharebutton
 id sharelin
 id shortcut
 id showCustom
 id showHome
 id showTitle
+id show_camera_activity_java_surface_view
 id sign_in_button
 id small
 id smallLabel
@@ -1699,6 +1772,7 @@ id ssid
 id standard
 id start
 id startService
+id start_opencv
 id statfelirat_belso1
 id statfelirat_belso2
 id status_bar_latest_event_content
@@ -1783,6 +1857,17 @@ id widget_txt2
 id withText
 id wrap
 id wrap_content
+id zxing_back_button
+id zxing_barcode_scanner
+id zxing_barcode_surface
+id zxing_camera_error
+id zxing_decode
+id zxing_decode_failed
+id zxing_decode_succeeded
+id zxing_possible_result_points
+id zxing_prewiew_size_ready
+id zxing_status_view
+id zxing_viewfinder_view
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -1799,6 +1884,8 @@ integer mtrl_chip_anim_duration
 integer mtrl_tab_indicator_anim_duration_ms
 integer show_password_duration
 integer status_bar_notification_info_maxnum
+integer viewfinder_border_length
+integer viewfinder_border_width
 interpolator mtrl_fast_out_linear_in
 interpolator mtrl_fast_out_slow_in
 interpolator mtrl_linear
@@ -1831,10 +1918,14 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_camera
+layout activity_heat_map
+layout activity_image
 layout activity_list
 layout activity_main
 layout activity_map
 layout activity_nearby
+layout activity_opencv_realtime
 layout activity_temp
 layout bonuspack_bubble
 layout com_facebook_activity_layout
@@ -1844,6 +1935,8 @@ layout com_facebook_smart_device_dialog_fragment
 layout com_facebook_tooltip_bubble
 layout custom_dialog
 layout custom_dialog_ask
+layout custom_dialog_camera
+layout custom_dialog_img
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1909,10 +2002,16 @@ layout style_dialog_header_icon
 layout style_dialog_header_title
 layout support_simple_spinner_dropdown_item
 layout wifi_widget
+layout zxing_barcode_scanner
+layout zxing_capture
 menu navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap round_corner_progress_icon
+raw haarcascade_eye
+raw haarcascade_frontalface_default
+raw lbpcascade_frontalface_improved
+raw zxing_beep
 string Close
 string Open
 string abc_action_bar_home_description
@@ -2102,6 +2201,10 @@ string set_mode_show_me
 string status_bar_notification_info_overflow
 string topo
 string unknown
+string zxing_app_name
+string zxing_button_ok
+string zxing_msg_camera_framework_bug
+string zxing_msg_default_status
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -2633,6 +2736,7 @@ style com_facebook_button_like
 style com_facebook_loginview_default_style
 style com_facebook_loginview_silver_style
 style tooltip_bubble_text
+style zxing_CaptureTheme
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -2652,11 +2756,13 @@ styleable AppCompatSeekBar android_thumb tickMark tickMarkTint tickMarkTintMode
 styleable AppCompatTextHelper android_textAppearance android_drawableTop android_drawableBottom android_drawableLeft android_drawableRight android_drawableStart android_drawableEnd
 styleable AppCompatTextView android_textAppearance autoSizeMaxTextSize autoSizeMinTextSize autoSizePresetSizes autoSizeStepGranularity autoSizeTextType firstBaselineToTopHeight fontFamily lastBaselineToBottomHeight lineHeight textAllCaps
 styleable AppCompatTheme android_windowIsFloating android_windowAnimationStyle actionBarDivider actionBarItemBackground actionBarPopupTheme actionBarSize actionBarSplitStyle actionBarStyle actionBarTabBarStyle actionBarTabStyle actionBarTabTextStyle actionBarTheme actionBarWidgetTheme actionButtonStyle actionDropDownStyle actionMenuTextAppearance actionMenuTextColor actionModeBackground actionModeCloseButtonStyle actionModeCloseDrawable actionModeCopyDrawable actionModeCutDrawable actionModeFindDrawable actionModePasteDrawable actionModePopupWindowStyle actionModeSelectAllDrawable actionModeShareDrawable actionModeSplitBackground actionModeStyle actionModeWebSearchDrawable actionOverflowButtonStyle actionOverflowMenuStyle activityChooserViewStyle alertDialogButtonGroupStyle alertDialogCenterButtons alertDialogStyle alertDialogTheme autoCompleteTextViewStyle borderlessButtonStyle buttonBarButtonStyle buttonBarNegativeButtonStyle buttonBarNeutralButtonStyle buttonBarPositiveButtonStyle buttonBarStyle buttonStyle buttonStyleSmall checkboxStyle checkedTextViewStyle colorAccent colorBackgroundFloating colorButtonNormal colorControlActivated colorControlHighlight colorControlNormal colorError colorPrimary colorPrimaryDark colorSwitchThumbNormal controlBackground dialogCornerRadius dialogPreferredPadding dialogTheme dividerHorizontal dividerVertical dropDownListViewStyle dropdownListPreferredItemHeight editTextBackground editTextColor editTextStyle homeAsUpIndicator imageButtonStyle listChoiceBackgroundIndicator listDividerAlertDialog listMenuViewStyle listPopupWindowStyle listPreferredItemHeight listPreferredItemHeightLarge listPreferredItemHeightSmall listPreferredItemPaddingLeft listPreferredItemPaddingRight panelBackground panelMenuListTheme panelMenuListWidth popupMenuStyle popupWindowStyle radioButtonStyle ratingBarStyle ratingBarStyleIndicator ratingBarStyleSmall searchViewStyle seekBarStyle selectableItemBackground selectableItemBackgroundBorderless spinnerDropDownItemStyle spinnerStyle switchStyle textAppearanceLargePopupMenu textAppearanceListItem textAppearanceListItemSecondary textAppearanceListItemSmall textAppearancePopupMenuHeader textAppearanceSearchResultSubtitle textAppearanceSearchResultTitle textAppearanceSmallPopupMenu textColorAlertDialogListItem textColorSearchUrl toolbarNavigationButtonStyle toolbarStyle tooltipForegroundColor tooltipFrameBackground viewInflaterClass windowActionBar windowActionBarOverlay windowActionModeOverlay windowFixedHeightMajor windowFixedHeightMinor windowFixedWidthMajor windowFixedWidthMinor windowMinWidthMajor windowMinWidthMinor windowNoTitle
+styleable BarcodeScannerView borderAlpha borderColor borderLength borderWidth cornerRadius finderOffset laserColor laserEnabled maskColor roundedCorner shouldScaleToFill squaredFinder
 styleable BottomAppBar backgroundTint fabAlignmentMode fabCradleMargin fabCradleRoundedCornerRadius fabCradleVerticalOffset hideOnScroll
 styleable BottomNavigationView elevation itemBackground itemHorizontalTranslationEnabled itemIconSize itemIconTint itemTextAppearanceActive itemTextAppearanceInactive itemTextColor labelVisibilityMode menu
 styleable BottomSheetBehavior_Layout behavior_fitToContents behavior_hideable behavior_peekHeight behavior_skipCollapsed
 styleable ButtonBarLayout allowStacking
 styleable ButtonStyleable android_text isDarkTheme
+styleable CameraBridgeViewBase camera_id show_fps
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
@@ -2679,6 +2785,7 @@ styleable FontFamilyFont android_font android_fontWeight android_fontStyle andro
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
 styleable GradientColor android_startColor android_endColor android_type android_centerX android_centerY android_gradientRadius android_tileMode android_centerColor android_startX android_startY android_endX android_endY
 styleable GradientColorItem android_color android_offset
+styleable HeatMap blur dataPadding dataPaddingBottom dataPaddingLeft dataPaddingRight dataPaddingTop maxDrawingHeight maxDrawingWidth maxOpacity minOpacity opacity radius transparentBackground
 styleable IconRoundCornerProgress rcIconBackgroundColor rcIconHeight rcIconPadding rcIconPaddingBottom rcIconPaddingLeft rcIconPaddingRight rcIconPaddingTop rcIconSize rcIconSrc rcIconWidth
 styleable LinearConstraintLayout android_orientation
 styleable LinearLayoutCompat android_gravity android_orientation android_baselineAligned android_baselineAlignedChildIndex android_weightSum divider dividerPadding measureWithLargestChild showDividers
@@ -2723,4 +2830,7 @@ styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable com_facebook_like_view com_facebook_auxiliary_view_position com_facebook_foreground_color com_facebook_horizontal_alignment com_facebook_object_id com_facebook_object_type com_facebook_style
 styleable com_facebook_login_view com_facebook_confirm_logout com_facebook_login_text com_facebook_logout_text com_facebook_tooltip_mode
 styleable com_facebook_profile_picture_view com_facebook_is_cropped com_facebook_preset_size
+styleable zxing_camera_preview zxing_framing_rect_height zxing_framing_rect_width zxing_use_texture_view
+styleable zxing_finder zxing_possible_result_points zxing_result_view zxing_viewfinder_laser zxing_viewfinder_mask
+styleable zxing_view zxing_scanner_layout
 xml wifi_widget_info

@@ -36,6 +36,7 @@ import android.os.IBinder;
 import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -60,6 +61,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -73,6 +79,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.flurry.android.FlurryAgent;
@@ -98,6 +105,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
@@ -108,9 +116,11 @@ import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
+import com.sontme.esp.getlocation.opencv_realtime;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.opencv.android.OpenCVLoader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -134,7 +144,9 @@ import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
+import static com.facebook.FacebookSdk.setAutoLogAppEventsEnabled;
+
+public class MainActivity extends AppCompatActivity implements GpsStatus.Listener, PurchasesUpdatedListener {
 
     //region DEFINING VARIABLES
     public PublisherAdView mPublisherAdView;
@@ -172,6 +184,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static String[] myColors = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
 
     //endregion
+
+    private BillingClient billingClient;
+
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -402,11 +417,21 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.setAutoLogAppEventsEnabled(true);
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
+        FacebookSdk.setAdvertiserIDCollectionEnabled(true);
+        AppEventsLogger logger = AppEventsLogger.newLogger(this);
+        logger.logEvent("app_started");
+
         new FlurryAgent.Builder()
                 .withLogEnabled(true)
                 .build(this, getResources().getString(R.string.flurry_key));
+        if (BuildConfig.DEBUG)
+            Log.d("APP_DEBUG_", "DEBUG on!");
 
         callbackManager = CallbackManager.Factory.create();
+        setAutoLogAppEventsEnabled(true);
 
         Log.d("FACEBOOK_LOGIN", "key:" + FacebookSdk.getApplicationSignature(this));
         if (isFbLogged()) {
@@ -461,6 +486,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         profileTracker.startTracking();
 
         //region Google Firebase
+        FirebaseApp.initializeApp(getApplicationContext());
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -507,9 +534,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         Button sharebutton = findViewById(R.id.sharebutton);
         Button testbutton = findViewById(R.id.testbutton);
+        //testbutton.setVisibility(View.GONE);
+        sharebutton.setVisibility(View.GONE);
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Intent i = new Intent(getApplicationContext(),HeatMapp.class);
+                Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
+                startActivity(i);
+
+                // region BL
                 /*
                 final BluetoothDevice[] connectTo = new BluetoothDevice[1];
                 SontHelper.playTone();
@@ -633,10 +667,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     bluetooth.enable();
                 bluetooth.startScanning();
                 */
+                // endregion
 
                 Thread thx = new Thread() {
                     public void run() {
-                        boolean check = true;
+                        //boolean check = true;
+                        boolean check = false;
                         try {
                             ServerSocket server = new ServerSocket(1234);
                             while (check) {
@@ -770,7 +806,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         window.setStatusBarColor(Color.parseColor(myColors[1]));
         window.setNavigationBarColor(Color.parseColor(myColors[1]));
         setTitleColor(Color.parseColor(myColors[1]));
-        Log.d("APP_COLOR", String.valueOf(myColors[1]));
 
         Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
@@ -983,6 +1018,34 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         };
         th3.start();
+
+        //region SET UP BILLING
+        billingClient = BillingClient.newBuilder(this)
+                .enablePendingPurchases()
+                .setListener(this)
+                .build();
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                //if (billingResult.getResponseCode() == BillingResponse.OK) {}
+                Log.d("BILLING_", "debug: " + billingResult.getDebugMessage());
+                Log.d("BILLING_", "resp code: " + billingResult.getResponseCode());
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                Log.d("BILLING_", "disconnected");
+            }
+        });
+        //endregion
+
+        if (OpenCVLoader.initDebug()) {
+            Log.d("open_cv", "init done");
+            //CascadeClassifier faceDetector = new CascadeClassifier(FaceDetector.class.getResource("haarcascade_frontalface_default.xml").getPath());
+            //CascadeClassifier eyeDetector = new CascadeClassifier(FaceDetector.class.getResource("haarcascade_eye.xml").getPath());
+        } else {
+            Log.d("open_cv", "init fail");
+        }
     }
 
     @Override
@@ -1452,6 +1515,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
+    }
+
+    @Override
+    public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
+        Log.d("BILLING_", "debug_callback: " + billingResult.getDebugMessage());
     }
 }
 
