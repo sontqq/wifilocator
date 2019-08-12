@@ -6,10 +6,15 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,9 +24,11 @@ import android.hardware.usb.UsbManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.media.AudioManager;
+import android.media.FaceDetector;
 import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
@@ -32,6 +39,7 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -393,6 +401,18 @@ public class SontHelper extends Application {
                 activeNetworkInfo.isConnectedOrConnecting();
     }
 
+    /**
+     * WARNING !! NOT WORKING YET ! UNUSED
+     *
+     * @param c
+     * @return
+     */
+    public static boolean isNetworkAvailable_2(Context c) {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
+
     // NEED TO FIX RETURN VALUE (0)
     public static int stepCounter(Context c) {
         final int[] count = {0};
@@ -483,5 +503,149 @@ public class SontHelper extends Application {
         Bitmap imageToShow = Bitmap.createScaledBitmap(source, imageViewWidth, imageRealHeight, true);
         return imageToShow;
     }
+
+    public static void turnGPSOn(Context ctx) {
+        String provider = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        if (!provider.contains("gps")) { //if gps is disabled
+            final Intent poke = new Intent();
+            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
+            poke.setData(Uri.parse("3"));
+            ctx.sendBroadcast(poke);
+        }
+    }
+
+    public static void openLocationSettings(Context ctx) {
+        Intent intent = new Intent(
+                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        ctx.startActivity(intent);
+    }
+
+    public static boolean isLocationServicesEnabled(Context context) {
+        int locationMode = 0;
+        String locationProviders;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+        } else {
+            locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
+
+
+    }
+
+    public static void requestCameraPermission(Context ctx) {
+        if (ctx.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) ctx, new String[]{Manifest.permission.CAMERA}, 1);
+        }
+    }
+
+    public static boolean checkLowWifiSignalStr(Context ctx) {
+        // ha a jelenleg kapcsolodott wifi jelerosseg NEM kisebb mint x% VAGY NEM KAPCSOLODOTT WIFIHEZ akkor -> TRUE
+        // tehát mehet a hálózati forgalom
+        ConnectivityManager connManager = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        WifiManager wifiManager = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+        if (mWifi.isConnected()) {
+            int conn_quality = SontHelper.convertDBM(wifiManager.getConnectionInfo().getRssi());
+            return conn_quality >= 30;
+        }
+        return true;
+    }
+
+    public static ArrayList<String> getAllImagesPath(Activity activity) {
+        Uri uri;
+        ArrayList<String> listOfAllImages = new ArrayList<String>();
+        Cursor cursor;
+        int column_index_data, column_index_folder_name;
+        String PathOfImage = null;
+        uri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+        String[] projection = {MediaStore.MediaColumns.DATA,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+
+        cursor = activity.getContentResolver().query(uri, projection, null,
+                null, null);
+
+        column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+        column_index_folder_name = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        while (cursor.moveToNext()) {
+            PathOfImage = cursor.getString(column_index_data);
+
+            listOfAllImages.add(PathOfImage);
+        }
+        return listOfAllImages;
+    }
+
+    public Bitmap cropBitmapRect(Bitmap bmp, Rect r) {
+        return Bitmap.createBitmap(bmp, r.left, r.right, r.width(), r.height());
+    }
+
+    public static Bitmap findFaceDrawRectROI(Bitmap bitmap, int maxfaces) {
+        Bitmap tempBitmap = bitmap.copy(Bitmap.Config.RGB_565, true);
+        Canvas tempCanvas = new Canvas(tempBitmap);
+        Log.d("camera_api", "findface()");
+
+        FaceDetector.Face[] faces = new FaceDetector.Face[maxfaces];
+        FaceDetector fd = new FaceDetector(tempBitmap.getWidth(), tempBitmap.getHeight(), maxfaces);
+        int facesfound = fd.findFaces(tempBitmap, faces);
+        for (FaceDetector.Face f : faces) {
+            try {
+                PointF p = new PointF();
+                f.getMidPoint(p);
+                Log.d("camera_api", "faces found: " + facesfound + " w: " + p.x + " h: " + p.y);
+
+                Paint.FontMetrics fm = new Paint.FontMetrics();
+                Paint paint = new Paint();
+                paint.setColor(Color.argb(100, 255, 0, 0));
+                paint.setStyle(Paint.Style.FILL);
+                paint.setStrokeWidth(15f);
+                paint.setTextSize(40);
+
+                Paint circlePaint = new Paint();
+                circlePaint.setColor(Color.argb(100, 0, 255, 0));
+                circlePaint.setStrokeWidth(10);
+
+                paint.getFontMetrics(fm);
+
+                tempCanvas.drawText(String.valueOf(f.confidence()),
+                        tempBitmap.getWidth() / 2,
+                        tempBitmap.getHeight() / 2 + -(fm.ascent + fm.descent) / 2, paint);
+                tempCanvas.drawCircle(p.x, p.y, 200, circlePaint);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return tempBitmap;
+    }
+
+    public static Bitmap findFaceCropROI(Bitmap bitmap, int maxfaces) {
+        Bitmap tempBitmap = bitmap.copy(Bitmap.Config.RGB_565, true);
+        Canvas tempCanvas = new Canvas(tempBitmap);
+        Log.d("camera_api", "findface()");
+
+        FaceDetector.Face[] faces = new FaceDetector.Face[maxfaces];
+        FaceDetector fd = new FaceDetector(tempBitmap.getWidth(), tempBitmap.getHeight(), maxfaces);
+        int facesfound = fd.findFaces(tempBitmap, faces);
+        for (FaceDetector.Face f : faces) {
+            try {
+                PointF p = new PointF();
+                f.getMidPoint(p);
+                Log.d("camera_api", "faces found: " + facesfound + " w: " + p.x + " h: " + p.y);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return tempBitmap;
+    }
+
 
 }

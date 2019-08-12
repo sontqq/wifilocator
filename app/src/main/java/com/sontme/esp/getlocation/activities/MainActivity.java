@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -45,8 +46,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +57,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
@@ -187,6 +191,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     private BillingClient billingClient;
 
+    private Handler mHandler = new Handler();
+    AlertDialog.Builder alert_dialog;
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -432,6 +438,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         callbackManager = CallbackManager.Factory.create();
         setAutoLogAppEventsEnabled(true);
+
+        FrameLayout placeholder = findViewById(R.id.placeholder);
+        NavigationView nv = findViewById(R.id.nv);
+        placeholder.setVisibility(View.VISIBLE);
+        nv.setVisibility(View.VISIBLE);
 
         Log.d("FACEBOOK_LOGIN", "key:" + FacebookSdk.getApplicationSignature(this));
         if (isFbLogged()) {
@@ -737,7 +748,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
 
         LoginButton loginButton = findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("user_friends", "email", "public_profile", "user_status"));
+        loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         loginButton.setLoginText("Login");
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -1045,6 +1056,66 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             //CascadeClassifier eyeDetector = new CascadeClassifier(FaceDetector.class.getResource("haarcascade_eye.xml").getPath());
         } else {
             Log.d("open_cv", "init fail");
+        }
+
+        alert_dialog = new AlertDialog.Builder(MainActivity.this);
+
+        Button livebtn = findViewById(R.id.testbutton2);
+        livebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
+                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+                    alert_dialog.setView(alert_v);
+                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
+                    alert_dialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.d("test_func", "ran");
+                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
+                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+                    alert_dialog.setView(alert_v);
+                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
+                    //alert_dialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        try {
+            /*
+            ArrayList<String> photos = new ArrayList<>();
+            photos = SontHelper.getAllImagesPath(MainActivity.this);
+
+            Uri photouri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            Log.d("face_find", "count: " + photos.size());
+            int i = 0;
+            for (String photo : photos) {
+                i++;
+                Log.d("face_find", i + " photo: " + photo);
+                File f = new File(photo);
+                Uri img_uri = Uri.fromFile(f);
+                InputStream is = getContentResolver().openInputStream(img_uri);
+                BufferedInputStream bis = new BufferedInputStream(is);
+                Bitmap face_bmp = BitmapFactory.decodeStream(bis);
+                Bitmap rect_face_bmp = SontHelper.findFaceDrawRectROI(face_bmp, 5);
+                Log.d("face_find","original bytes: " + face_bmp.getByteCount());
+                Log.d("face_find","rected bytes: " + rect_face_bmp.getByteCount());
+            }
+            */
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

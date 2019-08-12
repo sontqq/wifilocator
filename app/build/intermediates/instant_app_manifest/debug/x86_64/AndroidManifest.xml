@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="4792"
+    android:versionCode="4965"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -103,9 +103,13 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/computer"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity android:name="com.sontme.esp.getlocation.opencv_realtime" />
+        <activity
+            android:name="com.sontme.esp.getlocation.opencv_realtime"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.sontme.esp.getlocation.activity_image"
             android:theme="@style/Theme.Design.NoActionBar" />

@@ -992,6 +992,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\0fd42789ba71eaef8643d2e5f2d18aca\\res\\animator\\mtrl_fab_transformation_sheet_expand_spec.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_dialog_livedata.xml.flat",
+        "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\layout\\custom_dialog_livedata.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_icon_round_corner_progress_bar.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\2181a12b81a66ab447021111555ecb39\\res\\layout\\layout_icon_round_corner_progress_bar.xml"
     },

@@ -166,6 +166,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     private List<String> urlList_uniq = new ArrayList<String>();
     private List<String> macList_uniq = new ArrayList<String>();
 
+    public String getLivedata() {
+        return livedata;
+    }
+
+    public static String livedata;
+    public int nearbyWifiCount;
+
     public LocationListener locationListener;
     IBinder mBinder = new LocalBinder();
     int req_count;
@@ -179,64 +186,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     private PendingIntent alarmIntent;
 
     private WiFiDirectBroadcastReceiver wiFiDirectBroadcastReceiver;
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return mBinder;
-    }
-
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            Log.d("BS_R", action);
-            if (Intent.ACTION_SCREEN_ON.equals(action)) {
-                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
-                udp.execute("SCREEN ON");
-            }
-            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
-                udp.execute("SCREEN OFF");
-            }
-            if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(action)) {
-                Log.d("BLUETOOTH_", "pairing request !");
-            }
-            if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                Log.d("BLUETOOTH_", "Discovery FINISHED !");
-            }
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.d("BLUETOOTH_",
-                        "BSERVICE_BL_NAME_" + device.getName() +
-                                "_ADDRESS_" + device.getAddress());
-
-                if (device.getAddress().equals("00:19:86:00:10:AE") && device.getName().equals("DESKTOP-0Q3JAI7")) {
-                    // check if CHARGING
-                    // BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
-                    // ba.cancelDiscovery();
-                    Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
-                }
-            }
-            if (WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION.equals(action) ||
-                    (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION.equals(action))) {
-                WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-                WifiInfo wifiInfo;
-                wifiInfo = wifiManager.getConnectionInfo();
-                if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
-                    if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
-                        Log.d("WIFI__", "Welcome home!");
-                    }
-                } else if (wifiInfo.getSupplicantState() == SupplicantState.DISCONNECTED) {
-                    Log.d("WIFI__", "Leaving home !");
-                }
-            }
-            if (intent.getStringExtra("alarm") == "run") {
-                Log.d("ALARM_", "ALARM RAN !");
-            } else if (intent.getStringExtra("alarm") == "off") {
-                locationManager.removeUpdates(locationListener);
-            }
-        }
-    };
 
     @Override
     public void onCreate() {
@@ -300,8 +249,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             intentFilter_p2p.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
             registerReceiver(wiFiDirectBroadcastReceiver, intentFilter_p2p);
 
-
+            if (SontHelper.isLocationServicesEnabled(getApplicationContext()) == false) {
+                SontHelper.openLocationSettings(getApplicationContext());
+            }
             if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                SontHelper.openLocationSettings(getApplicationContext());
             }
             mService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             mService.addGpsStatusListener(this);
@@ -482,6 +434,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     AlarmManager.INTERVAL_DAY, alarmIntent);
 
             turnGPSOn();
+            SontHelper.turnGPSOn(getApplicationContext());
+
             startUpdatesGPS();
             if (DEVICE_ACCOUNT.contains("sont16@gmail.com") || DEVICE_ACCOUNT.contains("2152161")) {
                 WroupService wroupService = WroupService.getInstance(getApplicationContext());
@@ -565,10 +519,69 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 wroupClient.sendMessageToServer(message);
                 Log.d("wifi_p2p", "trying to connect to: " + wsdevice[0].getDeviceMac());
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d("BS_R", action);
+            if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+                udp.execute("SCREEN ON");
+            }
+            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
+                udp.execute("SCREEN OFF");
+            }
+            if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(action)) {
+                Log.d("BLUETOOTH_", "pairing request !");
+            }
+            if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                Log.d("BLUETOOTH_", "Discovery FINISHED !");
+            }
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Log.d("BLUETOOTH_",
+                        "BSERVICE_BL_NAME_" + device.getName() +
+                                "_ADDRESS_" + device.getAddress());
+
+                if (device.getAddress().equals("00:19:86:00:10:AE") && device.getName().equals("DESKTOP-0Q3JAI7")) {
+                    // check if CHARGING
+                    // BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+                    // ba.cancelDiscovery();
+                    Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
+                }
+            }
+            if (WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION.equals(action) ||
+                    (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION.equals(action))) {
+                WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+                WifiInfo wifiInfo;
+                wifiInfo = wifiManager.getConnectionInfo();
+                if (wifiInfo.getSupplicantState() == SupplicantState.COMPLETED) { // connection finished
+                    if (wifiInfo.getSSID().contains("UPCAEDB2C3") || wifiInfo.getBSSID().contains("ac:22:05:47:39:f8")) {
+                        Log.d("WIFI__", "Welcome home!");
+                    }
+                } else if (wifiInfo.getSupplicantState() == SupplicantState.DISCONNECTED) {
+                    Log.d("WIFI__", "Leaving home !");
+                }
+            }
+            if (intent.getStringExtra("alarm") == "run") {
+                Log.d("ALARM_", "ALARM RAN !");
+            } else if (intent.getStringExtra("alarm") == "off") {
+                locationManager.removeUpdates(locationListener);
+            }
+        }
+    };
 
     public void uploadProgress(int prog, long uploaded, long total) {
 
@@ -611,6 +624,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         notificationManager.notify(notificationId, mBuilder.build());
 
     }
+
     public void uploadProgress(int prog) {
 
         Context context = getApplicationContext();
@@ -660,6 +674,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             sendBroadcast(poke);
         }
     }
+
     public void startUpdatesGPS() {
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -872,6 +887,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         }
 
     }
+
     public void aplist(final Context context, double lati, double longi) {
         try {
             WifiManager wifiManager = (WifiManager) context.getApplicationContext()
@@ -881,8 +897,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 List<ScanResult> scanResults = wifiManager.getScanResults();
                 nearbyCount = String.valueOf(scanResults.size());
                 int versionCode = BuildConfig.VERSION_CODE;
-
+                livedata = "";
                 for (ScanResult result : scanResults) {
+                    livedata = livedata + "<b>" +
+                            result.SSID + "</b> -> " +
+                            SontHelper.convertDBM(result.level) + "% -> <i>" +
+                            result.BSSID + "</i>\n";
+
                     ObjectSender s = new ObjectSender(result, "127.0.0.1", 1234, getApplicationContext());
                     s.execute();
                     lastSSID = result.SSID + " " + SontHelper.convertDBM(result.level) + "%";
@@ -926,6 +947,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                         cs.writeCsv("0" + "," + result.BSSID + "," + result.SSID + "," + SontHelper.convertDBM(result.level) + "," + DEVICE_ACCOUNT + "_v" + versionCode + "," + enc + "," + lati + "," + longi + "," + result.frequency + "," + time);
                     }
                 }
+                nearbyWifiCount = scanResults.size();
             }
         } catch (
                 Exception e) {
@@ -934,37 +956,42 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             e.printStackTrace();
         }
     }
+
     public void saveRecordHttp(String path) {
         // Only try to SAVE RECORD if internet is available
         if (SontHelper.isNetworkAvailable(getApplicationContext()) == true) {
-            Thread th2 = new Thread() {
-                public void run() {
-                    AndroidNetworking.get(path)
-                            .setUserAgent("sont_wifilocator")
-                            .setTag("save_record_http")
-                            .setPriority(Priority.LOW)
-                            .build()
-                            .getAsString(new StringRequestListener() {
-                                @Override
-                                public void onResponse(String response) {
-                                    urlList_successed.add(path);
-                                    if (response.trim() == "not recorded") {
-                                        not_recorded++;
-                                    } else if (response.trim() == "recorded") {
-                                        recorded++;
+            try {
+                Thread th2 = new Thread() {
+                    public void run() {
+                        AndroidNetworking.get(path)
+                                .setUserAgent("sont_wifilocator")
+                                .setTag("save_record_http")
+                                .setPriority(Priority.LOW)
+                                .build()
+                                .getAsString(new StringRequestListener() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        urlList_successed.add(path);
+                                        if (response.trim() == "not recorded") {
+                                            not_recorded++;
+                                        } else if (response.trim() == "recorded") {
+                                            recorded++;
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onError(ANError anError) {
-                                    urlList_failed.add(path);
-                                    saveRecordHttp(path); // may REDUCE battery life
-                                    Log.d("HTTP_ERROR_RETRYING_TO_RECORD_", anError.toString());
-                                }
-                            });
-                }
-            };
-            th2.start();
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        urlList_failed.add(path);
+                                        saveRecordHttp(path); // may REDUCE battery life
+                                        Log.d("HTTP_ERROR_RETRYING_TO_RECORD_", anError.toString());
+                                    }
+                                });
+                    }
+                };
+                th2.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -975,6 +1002,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 new NotificationChannelGroup(id, name);
         notificationManager.createNotificationChannelGroup(notificationChannelGroup);
     }
+
     public void showOngoing() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String NOTIFICATION_CHANNEL_ID = "new";
@@ -1013,6 +1041,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             }
         }
     }
+
     public void showNotification(Context context, String title, String body, Intent intent) {
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notif_lay);
@@ -1021,6 +1050,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         contentView.setTextViewText(R.id.notif_ssid, "#" + count + " | #" + req_count + "/-" + urlList_failed.size() + " | " + lastSSID + " | " + det[6]);
         contentView.setTextViewText(R.id.notif_add, "Address: " + address);
         contentView.setTextViewText(R.id.notif_add_2, "Unique: " + uniqueAPS.size() + "/" + urlList_uniq.size() + "/" + recorded + " | GPS: " + GpsInView + "/" + GpsInUse);
+
+        contentView.setTextViewText(R.id.minimalist_notif_text, "Near: " + nearbyWifiCount);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.bigText(body);
@@ -1081,6 +1112,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     public final static boolean isValidPhoneNumber(String target) {
         return target.matches("^[+]?[0-9]{10,13}$");
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -1088,6 +1120,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         SontHelper.showToast(getApplicationContext(), "Service started");
         return START_STICKY;
     }
+
     @Override
     public void onDestroy() {
         UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
