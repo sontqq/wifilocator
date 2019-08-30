@@ -9,9 +9,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.admin.DevicePolicyManager;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -126,6 +123,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.opencv.android.OpenCVLoader;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -143,7 +141,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import cz.msebera.android.httpclient.Header;
@@ -177,8 +174,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     private TextView val_errors;
     WifiManager wm;
-    public DevicePolicyManager mDPM;
-    public ComponentName mAdminName;
 
     public Handler handler = new Handler();
     public Handler chart_handler = new Handler();
@@ -390,6 +385,22 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         e.printStackTrace();
                     }
                     break;
+                case 999:
+                    try {
+                        Uri selectedImage = data.getData();
+                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                        Bitmap faced_bmp = BitmapFactory.decodeStream(imageStream);
+                        AlertDialog.Builder face_img_dialog = new AlertDialog.Builder(MainActivity.this);
+                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View v = inflater.inflate(R.layout.custom_dialog_img_full, null, false);
+                        ImageView imgv = v.findViewById(R.id.popupimg);
+                        imgv.setImageBitmap(SontHelper.findFaceDrawRectROI(faced_bmp, 5));
+                        //imgv.setImageBitmap(SontHelper.findFaceCropROI(faced_bmp,5));
+                        face_img_dialog.setView(v);
+                        face_img_dialog.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
             }
         if (requestCode == 102) { // GOOGLE SIGN IN CALLBACK
             try {
@@ -413,6 +424,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 e.printStackTrace();
             }
         }
+
     }
 
     @Override
@@ -805,10 +817,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         lin4.setVisibility(LinearLayout.GONE);
         lin5.setVisibility(LinearLayout.GONE);
 
-        wifi_check();
-        adminPermission_check();
+        SontHelper.wifi_check_enabled(getApplicationContext());
+        SontHelper.adminPermission_check(getApplicationContext(), MainActivity.this);
         SontHelper.requestPermissions(this);
-        turnGPSOn();
+        SontHelper.turnGPSOn(getApplicationContext());
 
         // NOTIFICATION BAR COLOR RANDOMIZATOR
         Window window = getWindow();
@@ -983,15 +995,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(1);
-
-                    // GET ALL NOTIFICATION
-                    /*
-                    StatusBarNotification[] asd = notificationManager.getActiveNotifications();
-                    for(StatusBarNotification notif : asd){
-                        Log.d("NOTIF_",notif.getPackageName() + "_" + notif.getId() + "_" + notif.isOngoing());
-                    }
-                    */
-                    //notificationManager.cancelAll();
                 }
             }
         });
@@ -1052,8 +1055,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         if (OpenCVLoader.initDebug()) {
             Log.d("open_cv", "init done");
-            //CascadeClassifier faceDetector = new CascadeClassifier(FaceDetector.class.getResource("haarcascade_frontalface_default.xml").getPath());
-            //CascadeClassifier eyeDetector = new CascadeClassifier(FaceDetector.class.getResource("haarcascade_eye.xml").getPath());
         } else {
             Log.d("open_cv", "init fail");
         }
@@ -1093,30 +1094,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         });
 
-        try {
-            /*
-            ArrayList<String> photos = new ArrayList<>();
-            photos = SontHelper.getAllImagesPath(MainActivity.this);
-
-            Uri photouri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-            Log.d("face_find", "count: " + photos.size());
-            int i = 0;
-            for (String photo : photos) {
-                i++;
-                Log.d("face_find", i + " photo: " + photo);
-                File f = new File(photo);
-                Uri img_uri = Uri.fromFile(f);
-                InputStream is = getContentResolver().openInputStream(img_uri);
-                BufferedInputStream bis = new BufferedInputStream(is);
-                Bitmap face_bmp = BitmapFactory.decodeStream(bis);
-                Bitmap rect_face_bmp = SontHelper.findFaceDrawRectROI(face_bmp, 5);
-                Log.d("face_find","original bytes: " + face_bmp.getByteCount());
-                Log.d("face_find","rected bytes: " + rect_face_bmp.getByteCount());
-            }
-            */
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //findFaceOnAllPhotos();
+        //SontHelper.pickImage(MainActivity.this);
+        
     }
 
     @Override
@@ -1162,15 +1142,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         if (t.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
-    }
-
-    public void wifi_check() {
-        // TURN ON WIFI
-        WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if (!wifi.isWifiEnabled()) {
-            Toast.makeText(getApplicationContext(), "Turning on WiFi", Toast.LENGTH_SHORT).show();
-            wifi.setWifiEnabled(true);
-        }
     }
 
     public void getChart_timer_updated(String path) {
@@ -1480,37 +1451,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         });
     }
 
-    public void turnGPSOn() {
-        String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-
-        if (!provider.contains("gps")) { //if gps is disabled
-            final Intent poke = new Intent();
-            poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
-            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-            poke.setData(Uri.parse("3"));
-            sendBroadcast(poke);
-        }
-    }
-
-    public void adminPermission_check() {
-        try {
-            if (!mDPM.isAdminActive(mAdminName)) {
-                try {
-                    Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
-                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "extrainfo");
-                    startActivityForResult(intent, 0);
-                } catch (Exception e) {
-                    Log.d("Error_setting_admin_permission_", e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            Log.d("Error_", e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
     public static void copyFile(File src, File dst) {
         Thread thread = new Thread() {
             public void run() {
@@ -1534,17 +1474,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         };
         thread.start();
-    }
-
-    public boolean isBLDevicePaired(BluetoothDevice device) {
-        BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> list = ba.getBondedDevices();
-
-        Log.d("BLUETOOTH_LIBRARY_", "Paired count: " + list.size());
-        for (BluetoothDevice dev : list) {
-            return device.getAddress() == dev.getAddress();
-        }
-        return false;
     }
 
     @Override
@@ -1591,6 +1520,32 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     @Override
     public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
         Log.d("BILLING_", "debug_callback: " + billingResult.getDebugMessage());
+    }
+
+    public void findFaceOnAllPhotos() {
+        try {
+            ArrayList<String> photos = new ArrayList<>();
+            photos = SontHelper.getAllImagesPath(MainActivity.this);
+
+            Uri photouri = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            Log.d("face_find", "count: " + photos.size());
+            int i = 0;
+            for (String photo : photos) {
+                i++;
+                Log.d("face_find", i + " photo: " + photo);
+                File f = new File(photo);
+                Uri img_uri = Uri.fromFile(f);
+                InputStream is = getContentResolver().openInputStream(img_uri);
+                BufferedInputStream bis = new BufferedInputStream(is);
+                Bitmap face_bmp = BitmapFactory.decodeStream(bis);
+                Bitmap rect_face_bmp = SontHelper.findFaceDrawRectROI(face_bmp, 5);
+                Log.d("face_find", "original bytes: " + face_bmp.getByteCount());
+                Log.d("face_find", "rected bytes: " + rect_face_bmp.getByteCount());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 

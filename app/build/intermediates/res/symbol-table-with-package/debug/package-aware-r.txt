@@ -1704,6 +1704,7 @@ id pimg
 id pin
 id placeholder
 id plinlay
+id popupimg
 id progress_bar
 id progress_circular
 id progress_horizontal
@@ -1943,6 +1944,7 @@ layout custom_dialog
 layout custom_dialog_ask
 layout custom_dialog_camera
 layout custom_dialog_img
+layout custom_dialog_img_full
 layout custom_dialog_livedata
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

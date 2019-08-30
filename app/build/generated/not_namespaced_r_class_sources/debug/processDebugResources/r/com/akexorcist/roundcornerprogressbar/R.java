@@ -51,14 +51,14 @@ public final class R {
         public static final int layout_progress = 0x7f0800b5;
         public static final int layout_progress_holder = 0x7f0800b6;
         public static final int layout_secondary_progress = 0x7f0800b7;
-        public static final int tv_progress = 0x7f080184;
+        public static final int tv_progress = 0x7f080185;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int layout_icon_round_corner_progress_bar = 0x7f0b003e;
-        public static final int layout_round_corner_progress_bar = 0x7f0b003f;
-        public static final int layout_text_round_corner_progress_bar = 0x7f0b0040;
+        public static final int layout_icon_round_corner_progress_bar = 0x7f0b003f;
+        public static final int layout_round_corner_progress_bar = 0x7f0b0040;
+        public static final int layout_text_round_corner_progress_bar = 0x7f0b0041;
     }
     public static final class mipmap {
         private mipmap() {}

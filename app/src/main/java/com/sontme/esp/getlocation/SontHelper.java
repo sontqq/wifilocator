@@ -3,6 +3,10 @@ package com.sontme.esp.getlocation;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.app.admin.DevicePolicyManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,6 +18,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -44,34 +50,250 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.LaxRedirectStrategy;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.opencv.core.Scalar;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Queue;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/*
+   Frequently used methods to keep other classes clear
+*/
 public class SontHelper extends Application {
-    /*
-        Frequently used methods to keep other classes clear
-    */
+
+    public class Crawler {
+        /**
+         * Usage:
+         * handleAll(getHTML_jsoup(START_URL));
+         * while (!toVisit2.isEmpty()) {
+         * String x = toVisit2.poll();
+         * try {
+         * handleAll(getHTML_jsoup(x));
+         * } catch (Exception e) {
+         * badUrl.add(x);
+         * //e.printStackTrace();
+         * }
+         * updateProgress(wasVisited.size(), toVisit2.size());
+         * }
+         */
+
+        Queue<String> toVisit2 = new LinkedList<>();
+        ArrayList<String> wasVisited = new ArrayList<>();
+        ArrayList<String> badUrl = new ArrayList<>();
+        ArrayList<String> found_email = new ArrayList<>();
+
+        String currentUrl;
+        String currentTitle;
+        double currentSize;
+
+        Thread loadingThread;
+        //Task<Parent> asyncTask;
+
+        String START_URL = "http://hvg.hu";
+        double bandwidth = 0;
+
+
+        public double round(double value, int places) {
+            if (places < 0) throw new IllegalArgumentException();
+
+            BigDecimal bd = BigDecimal.valueOf(value);
+            bd = bd.setScale(places, RoundingMode.HALF_UP);
+            return bd.doubleValue();
+        }
+
+        public boolean recordEmail(String email) {
+            try {
+                getHTML_native("http://192.168.0.43/esp_crawler/crawler_email.php?source=" + currentUrl + "&email=" + email);
+            } catch (Exception e) {
+                //e.printStackTrace();
+                return false;
+            }
+            return true;
+        }
+
+        public String getHTML_jsoup(String urlToRead) {
+            HttpClient client = HttpClientBuilder.create()
+                    .setRedirectStrategy(new LaxRedirectStrategy())
+                    //.setConnectionTimeToLive(3000, TimeUnit.MILLISECONDS)
+                    .setUserAgent("sont-crawler")
+                    .build();
+            HttpGet request = new HttpGet(urlToRead);
+            String theString = null;
+            Document doc;
+            try {
+                HttpResponse response = client.execute(request);
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    try (InputStream stream = entity.getContent()) {
+                        theString = IOUtils.toString(stream, StandardCharsets.UTF_8);
+                        doc = Jsoup.parse(theString);
+                        currentTitle = doc.title();
+                        currentSize = theString.length() / 1024;
+                        currentSize = round(currentSize, 2);
+                    }
+                }
+                wasVisited.add(urlToRead);
+                currentUrl = urlToRead;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return theString;
+        }
+
+        public String getHTML_native(String urlToRead) {
+            StringBuffer response = new StringBuffer();
+            try {
+                URL url = new URL(urlToRead);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                int respcode = conn.getResponseCode();
+                if (respcode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader inputReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line;
+                    while ((line = inputReader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    inputReader.close();
+                }
+            } catch (Exception e) {
+                //e.printStackTrace();
+            }
+            return response.toString();
+        }
+
+        public void handleAll(String resp) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            ArrayList<String> innerLinks = new ArrayList<>();
+            ArrayList<String> innerMails = new ArrayList<>();
+            innerLinks = getUrlsFromString(resp);
+            innerMails = findEmails(resp);
+
+            parseMails(innerMails);
+            parseLinks(innerLinks);
+
+            System.out.println("Page size: " + resp.length() / 1024 + " kb");
+            bandwidth += resp.length();
+        }
+
+        public void parseMails(ArrayList<String> mailsFound) {
+            int found = 0;
+            for (String s : mailsFound) {
+                if (!s.contains("png")) {
+                    if (!found_email.contains(s)) {
+                        //textfield.appendText(s + " -> [" + currentSize  + " kb]" + " -> [" + currentTitle + "] -> [" + currentUrl + "]\n");
+                        //appendFile("emails.txt", s);
+                        found_email.add(s);
+                        recordEmail(s);
+                        found++;
+                    }
+                }
+            }
+            if (found >= 1)
+                System.out.println("Mails found: " + found);
+        }
+
+        public void parseLinks(ArrayList<String> linksFound) {
+            int found = 0;
+            for (String s : linksFound) {
+                if (!s.contains("youtube.com")) {
+                    if (!toVisit2.contains(s) && !wasVisited.contains(s)) {
+                        String extension = s.substring(s.lastIndexOf(".") + 1);
+                        if (!extension.contains("png") ||
+                                !extension.contains(".js") ||
+                                !extension.contains("mp4") ||
+                                !extension.contains("mp3") ||
+                                !extension.contains("m4a")) {
+                            toVisit2.add(s); // ADD UNIQUE URL TO TOVISIT LIST
+                            found++;
+                        } else {
+                            //System.out.println("excluded extension found: " + s);
+                        }
+                    }
+                } else {
+                    //System.out.println("youtube excluded: " + s);
+                }
+            }
+            if (found >= 1)
+                System.out.println("Found links: " + found);
+        }
+
+        public ArrayList<String> getUrlsFromString(String content) {
+            ArrayList<String> result = new ArrayList<String>();
+            String regex = "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(content);
+            while (m.find()) {
+                result.add(m.group());
+            }
+            //System.out.println("geturlsfromstring: " + content.length());
+            return result;
+        }
+
+        public ArrayList<String> findEmails(String str) {
+            Matcher m = Pattern.compile("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+").matcher(str);
+            ArrayList<String> a = new ArrayList<>();
+            while (m.find()) {
+                if (m.group().length() > 7)
+                    a.add(m.group());
+            }
+            return a;
+        }
+    }
+
+    public static class BluetoothFunctions {
+        public boolean isBLDevicePaired(BluetoothDevice device) {
+            BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
+            Set<BluetoothDevice> list = ba.getBondedDevices();
+
+            Log.d("BLUETOOTH_LIBRARY_", "Paired count: " + list.size());
+            for (BluetoothDevice dev : list) {
+                return device.getAddress() == dev.getAddress();
+            }
+            return false;
+        }
+    }
+
     public static void requestPermissions(Activity act) {
         ActivityCompat.requestPermissions(act,
                 new String[]{
@@ -626,6 +848,21 @@ public class SontHelper extends Application {
         return tempBitmap;
     }
 
+    public static Bitmap getCircledBitmap(Bitmap bitmap, PointF point) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        canvas.drawCircle(point.x, point.y, bitmap.getWidth() / 3, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
+
     public static Bitmap findFaceCropROI(Bitmap bitmap, int maxfaces) {
         Bitmap tempBitmap = bitmap.copy(Bitmap.Config.RGB_565, true);
         Canvas tempCanvas = new Canvas(tempBitmap);
@@ -638,6 +875,7 @@ public class SontHelper extends Application {
             try {
                 PointF p = new PointF();
                 f.getMidPoint(p);
+                tempBitmap = SontHelper.getCircledBitmap(tempBitmap,p);
                 Log.d("camera_api", "faces found: " + facesfound + " w: " + p.x + " h: " + p.y);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -647,5 +885,39 @@ public class SontHelper extends Application {
         return tempBitmap;
     }
 
+    public static void pickImage(Activity act){
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        act.startActivityForResult(photoPickerIntent, 999);
+    }
 
+    public static void wifi_check_enabled(Context ctx) {
+        // TURN ON WIFI
+        WifiManager wifi = (WifiManager) ctx.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (!wifi.isWifiEnabled()) {
+            Toast.makeText(ctx, "Turning on WiFi", Toast.LENGTH_SHORT).show();
+            wifi.setWifiEnabled(true);
+        }
+    }
+
+    public static void adminPermission_check(Context ctx, Activity a) {
+        DevicePolicyManager mDPM = null;
+        ComponentName mAdminName = null;
+        try {
+            if (!mDPM.isAdminActive(mAdminName)) {
+                try {
+                    Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                    intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "extrainfo");
+                    a.startActivityForResult(intent, 0);
+                } catch (Exception e) {
+                    Log.d("Error_setting_admin_permission_", e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            Log.d("Error_", e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

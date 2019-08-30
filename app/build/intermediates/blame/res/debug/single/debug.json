@@ -2692,6 +2692,10 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\wifi4_25.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_dialog_img_full.xml.flat",
+        "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\layout\\custom_dialog_img_full.xml"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_btn_google_dark_normal.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\820c5b04a0cb66608cd90cb9b367be82\\res\\drawable-xxhdpi-v4\\btn_google_dark_normal.9.png"
     },
