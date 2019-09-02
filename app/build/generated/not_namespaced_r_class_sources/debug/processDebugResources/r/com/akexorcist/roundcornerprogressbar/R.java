@@ -46,19 +46,19 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int iv_progress_icon = 0x7f0800ad;
-        public static final int layout_background = 0x7f0800b4;
-        public static final int layout_progress = 0x7f0800b5;
-        public static final int layout_progress_holder = 0x7f0800b6;
-        public static final int layout_secondary_progress = 0x7f0800b7;
-        public static final int tv_progress = 0x7f080185;
+        public static final int iv_progress_icon = 0x7f0800af;
+        public static final int layout_background = 0x7f0800b6;
+        public static final int layout_progress = 0x7f0800b7;
+        public static final int layout_progress_holder = 0x7f0800b8;
+        public static final int layout_secondary_progress = 0x7f0800b9;
+        public static final int tv_progress = 0x7f080187;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int layout_icon_round_corner_progress_bar = 0x7f0b003f;
-        public static final int layout_round_corner_progress_bar = 0x7f0b0040;
-        public static final int layout_text_round_corner_progress_bar = 0x7f0b0041;
+        public static final int layout_icon_round_corner_progress_bar = 0x7f0b0040;
+        public static final int layout_round_corner_progress_bar = 0x7f0b0041;
+        public static final int layout_text_round_corner_progress_bar = 0x7f0b0042;
     }
     public static final class mipmap {
         private mipmap() {}

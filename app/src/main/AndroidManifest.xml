@@ -70,10 +70,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.CrawlerActivity"></activity>
         <activity
             android:name=".opencv_realtime"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation" />
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity_image"
             android:theme="@style/Theme.Design.NoActionBar" />

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="5005"
+    android:versionCode="5171"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -103,8 +103,10 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/computer"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity android:name="com.sontme.esp.getlocation.activities.CrawlerActivity" />
         <activity
             android:name="com.sontme.esp.getlocation.opencv_realtime"
             android:configChanges="orientation"

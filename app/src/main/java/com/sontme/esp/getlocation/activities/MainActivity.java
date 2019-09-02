@@ -11,6 +11,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -22,7 +23,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
-import android.location.Location;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -43,7 +43,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +56,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -110,14 +113,12 @@ import com.google.firebase.FirebaseApp;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
-import com.sontme.esp.getlocation.ApStrings;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
-import com.sontme.esp.getlocation.opencv_realtime;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,10 +131,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -563,8 +561,53 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void onClick(View v) {
                 //Intent i = new Intent(getApplicationContext(),HeatMapp.class);
-                Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
-                startActivity(i);
+                //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
+                final String[] site = {""};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Start URL");
+                builder.setMessage("Please give me a start URL");
+                final TextView asd = new TextView(MainActivity.this);
+                final EditText input = new EditText(MainActivity.this);
+                input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        Log.d("dialog_input", "changed: " + s.toString() + start + "_" + count + "_" + after);
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.d("dialog_input", "changed: " + s.toString() + start + "_" + before + "_" + count);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        Log.d("dialog_input", "changed: " + s.toString());
+                    }
+                });
+                input.setText("http://");
+
+                asd.setText("hellooooo");
+
+                builder.setView(input);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        site[0] = input.getText().toString();
+                        Intent i = new Intent(getApplicationContext(), CrawlerActivity.class);
+                        i.putExtra("site", site[0]);
+                        startActivity(i);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
 
                 // region BL
                 /*
@@ -691,7 +734,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 bluetooth.startScanning();
                 */
                 // endregion
-
+                //region udp
+                /*
                 Thread thx = new Thread() {
                     public void run() {
                         //boolean check = true;
@@ -718,8 +762,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         }
                     }
                 };
-                thx.start();
-
+                thx.start();*/
+                //endregion
             }
         });
         sharebutton.setOnClickListener(new View.OnClickListener() {

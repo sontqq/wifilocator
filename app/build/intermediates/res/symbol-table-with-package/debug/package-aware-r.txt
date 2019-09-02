@@ -1523,6 +1523,8 @@ id container
 id content
 id contentPanel
 id coordinator
+id crawler_progress
+id crawlerstats
 id currentstatus
 id currentstatus_left
 id custom
@@ -1926,6 +1928,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_camera
+layout activity_crawler
 layout activity_heat_map
 layout activity_image
 layout activity_list

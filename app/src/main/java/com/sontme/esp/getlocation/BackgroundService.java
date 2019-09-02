@@ -852,7 +852,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     provider = LocRes.getProvider();
                     distance = String.valueOf(SontHelper.getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
             try {

@@ -48,7 +48,7 @@ public final class R {
     public static final class layout {
         private layout() {}
 
-        public static final int bonuspack_bubble = 0x7f0b0025;
+        public static final int bonuspack_bubble = 0x7f0b0026;
     }
     public static final class string {
         private string() {}
