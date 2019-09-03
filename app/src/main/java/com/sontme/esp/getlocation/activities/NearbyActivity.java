@@ -117,6 +117,8 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
             }
         });
 
+        //OpenStreetMapTileProviderConstants.setUserAgentValue(BuildConfig.APPLICATION_ID);
+
         IMapController mapController = map.getController();
 
         drawRouteAndStart();
@@ -475,11 +477,19 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                 for (String s : lines) {
                     lineCount++;
                     String[] splittedStr = s.split("OVER");
-                    String recordTime = splittedStr[1];
-                    String ssid = splittedStr[2];
-                    String bssid = splittedStr[3];
-                    String str = splittedStr[4];
                     String source;
+                    String recordTime = null;
+                    String ssid = null;
+                    String bssid = null;
+                    String str = null;
+                    try {
+                        recordTime = splittedStr[1];
+                        ssid = splittedStr[2];
+                        bssid = splittedStr[3];
+                        str = splittedStr[4];
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     try {
                         source = splittedStr[8];
                     } catch (Exception e) {

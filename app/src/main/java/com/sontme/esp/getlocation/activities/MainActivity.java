@@ -43,9 +43,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.Html;
-import android.text.TextWatcher;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.Spanned;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -567,27 +568,22 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Start URL");
                 builder.setMessage("Please give me a start URL");
-                final TextView asd = new TextView(MainActivity.this);
                 final EditText input = new EditText(MainActivity.this);
-                input.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                        Log.d("dialog_input", "changed: " + s.toString() + start + "_" + count + "_" + after);
+                InputFilter filter = new InputFilter() {
+                    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                        String filtered = "";
+                        for (int i = start; i < end; i++) {
+                            char character = source.charAt(i);
+                            if (!Character.isWhitespace(character)) {
+                                filtered += character;
+                            }
+                        }
+                        return filtered;
                     }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        Log.d("dialog_input", "changed: " + s.toString() + start + "_" + before + "_" + count);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        Log.d("dialog_input", "changed: " + s.toString());
-                    }
-                });
+                };
+                input.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                input.setFilters(new InputFilter[]{filter});
                 input.setText("http://");
-
-                asd.setText("hellooooo");
 
                 builder.setView(input);
 

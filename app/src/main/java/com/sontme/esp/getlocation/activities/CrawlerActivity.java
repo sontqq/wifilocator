@@ -17,6 +17,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.sontme.esp.getlocation.R;
+import com.sontme.esp.getlocation.SontHelper;
 
 import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
@@ -60,6 +61,9 @@ public class CrawlerActivity extends AppCompatActivity {
         }
 
         System.setProperty("http.keepAlive", "false");
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        System.setProperty("sun.net.client.defaultConnectTimeout", "1000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "1000");
 
         Crawler c = new Crawler(getApplicationContext());
         c.START_URL = URL;
@@ -79,7 +83,7 @@ public class CrawlerActivity extends AppCompatActivity {
                     stats.setText(Html.fromHtml(c.status));
                 progress.setMax(c.toVisit2.size());
                 progress.setProgress(c.wasVisited.size());
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 200);
             }
         };
         handler.post(run);
@@ -90,15 +94,8 @@ public class CrawlerActivity extends AppCompatActivity {
 }
 
 class Crawler extends AsyncTask<String, Integer, String> {
-
     Context ctx;
     public String status;
-
-
-    public Crawler(Context ctx) {
-        this.ctx = ctx;
-        System.setProperty("http.keepAlive", "false");
-    }
 
     public Queue<String> toVisit2 = new LinkedList<>();
     public ArrayList<String> wasVisited = new ArrayList<>();
@@ -109,12 +106,22 @@ class Crawler extends AsyncTask<String, Integer, String> {
     public static Map<String, Integer> domains = new HashMap<String, Integer>();
 
 
+    public Crawler(Context ctx) {
+        this.ctx = ctx;
+        System.setProperty("http.keepAlive", "false");
+        System.setProperty("java.net.preferIPv4Stack", "true");
+        System.setProperty("sun.net.client.defaultConnectTimeout", "1000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "1000");
+    }
+
+
+
     String currentUrl;
     String currentTitle;
     double currentSize;
-
     double bandwidth = 0;
-    double bandwidth_contentlength = 0;
+    int notMime = 0;
+
 
     public String START_URL;
 
@@ -127,9 +134,8 @@ class Crawler extends AsyncTask<String, Integer, String> {
             status = status + "<br><br>" + "<b>Size:</b> " + currentSize;
             status = status + "<br><br>" + "<b>Found emails:</b> " + found_email.size();
             status = status + "<br><br>" + "<b>Bandwidth:</b> " + round(bandwidth / 1024 / 1024, 2) + " mb";
-            status = status + "<br><br>" + "<b>Bandwidth CL:</b> " + round(bandwidth_contentlength / 1024 / 1024, 2) + " mb";
-
             status = status + "<br><br>" + "<b>Bad URLs:</b> " + badUrl.size();
+            status = status + "<br>";
 
             Object[] a = Crawler.mimes.entrySet().toArray();
             Arrays.sort(a, new Comparator() {
@@ -138,15 +144,28 @@ class Crawler extends AsyncTask<String, Integer, String> {
                             .compareTo(((Map.Entry<String, Integer>) o1).getValue());
                 }
             });
-            Log.d("_mimes", "---");
+            status = status + "<br><b>Mimes: </b>";
             for (Object e : a) {
                 status = status + "<br>" + ((Map.Entry<String, Integer>) e).getKey() + " : "
                         + ((Map.Entry<String, Integer>) e).getValue();
             }
-            status = status + "<br><br>";
+            status = status + "<br><b>Bad Mimes: </b>" + notMime;
+            status = status + "<br>";
             status = status + "<br>" + "<b>http:</b> " + http_s.get("http");
             status = status + "<br>" + "<b>https:</b> " + http_s.get("https");
-            Log.d("_mimes", "---");
+
+            Object[] b = Crawler.domains.entrySet().toArray();
+            Arrays.sort(b, new Comparator() {
+                public int compare(Object o1, Object o2) {
+                    return ((Map.Entry<String, Integer>) o2).getValue()
+                            .compareTo(((Map.Entry<String, Integer>) o1).getValue());
+                }
+            });
+            status = status + "<br><br><b>Domains: </b>";
+            for (Object e : b) {
+                status = status + "<br>" + ((Map.Entry<String, Integer>) e).getKey() + " : "
+                        + ((Map.Entry<String, Integer>) e).getValue();
+            }
 
         } else {
             status = "progress: " + values[0];
@@ -155,9 +174,7 @@ class Crawler extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... strings) {
-        Log.d("CRAW_", "tovisit_kint: " + toVisit2.size());
         while (!toVisit2.isEmpty()) {
-            Log.d("CRAW_", "tovisit_bent: " + toVisit2.size());
             String x = toVisit2.poll();
             try {
                 handleAll(getHTML_jsoup(x));
@@ -207,147 +224,160 @@ class Crawler extends AsyncTask<String, Integer, String> {
         return true;
     }
 
+    public String getHTML_exp(String urlToRead) {
+        return null;
+    }
+
     public String getHTML_jsoup(String urlToRead) {
+        if (!SontHelper.isValidURL(urlToRead)) {
+            //badUrl.add(urlToRead);
+            Log.d("CRAWLER_", "BAD URL ->" + urlToRead);
+            // You dont need to check since Jsoup parses and extractes all the urls
+            //return null;
+        }
         final Document[] doc = {null};
-        Thread thread = new Thread() {
-            public void run() {
+        try {
+            String body = null;
+            int redirCount = 0;
+
+            int domaincount = domains.containsKey(SontHelper.getDomainFromURL(urlToRead)) ? domains.get(SontHelper.getDomainFromURL(urlToRead)) : 0;
+            domains.put(SontHelper.getDomainFromURL(urlToRead), domaincount + 1);
+            Object o = null;
+
+            if (urlToRead.contains("http://")) {
+                URL url = new URL(urlToRead);
+                HttpURLConnection.setFollowRedirects(false);
+                HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+                HttpURLConnection finalHttpConn = httpConn;
+
                 try {
-                    String body = null;
-                    int redirCount = 0;
-                    if (urlToRead.contains("https://")) {
-                        URL url = new URL(urlToRead);
-                        HttpsURLConnection.setFollowRedirects(false);
-                        HttpsURLConnection httpConn = (HttpsURLConnection) url.openConnection();
-                        try {
-                            httpConn.setConnectTimeout(1000);
-                            httpConn.setReadTimeout(1000);
-                            httpConn.setUseCaches(false);
-                            httpConn.setRequestMethod("GET");
-                            httpConn.setInstanceFollowRedirects(false);
-                            httpConn.setRequestProperty("Connection", "close");
-                            HttpsURLConnection.setFollowRedirects(false);
+                    httpConn.setConnectTimeout(1000);
+                    httpConn.setReadTimeout(1000);
+                    httpConn.setUseCaches(false);
+                    httpConn.setRequestMethod("GET");
+                    httpConn.setInstanceFollowRedirects(false);
+                    httpConn.setRequestProperty("Connection", "close");
+                    HttpURLConnection.setFollowRedirects(false);
 
-                            /*
-                            Map<String, List<String>> headers = httpConn.getHeaderFields();
-                            for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
-                                if (entry.getKey().contains("Content-Length"))
-                                    Log.d("HEADERS_", entry.getKey() + " => " + entry.getValue());
-                            }
-                            bandwidth_contentlength = Double.parseDouble(httpConn.getHeaderField("Content-Length"));
-                            */
-                            int count_s = http_s.containsKey("https") ? http_s.get("https") : 0;
-                            http_s.put("https", count_s + 1);
-                            /*
-                            int count = mimes.containsKey(httpConn.getContentType()) ? mimes.get(httpConn.getContentType()) : 0;
-                            mimes.put(httpConn.getContentType(), count + 1);
-                            if (!httpConn.getContentType().contains("text/html") || httpConn.getContentLength() > 1000000) {
-                                httpConn.disconnect();
-                            }
-                            */
-                            boolean redirect = false;
+                    int count_s = http_s.containsKey("http") ? http_s.get("http") : 0;
+                    http_s.put("http", count_s + 1);
 
-                            int status = httpConn.getResponseCode();
-                            if (status != HttpsURLConnection.HTTP_OK) {
-                                if (status == HttpsURLConnection.HTTP_MOVED_TEMP
-                                        || status == HttpsURLConnection.HTTP_MOVED_PERM
-                                        || status == HttpsURLConnection.HTTP_SEE_OTHER)
-                                    redirect = true;
-                            }
-
-                            if (redirect) {
-                                redirCount++;
-                                String newUrl = httpConn.getHeaderField("Location");
-                                String cookies = httpConn.getHeaderField("Set-Cookie");
-                                httpConn.disconnect();
-                                httpConn = (HttpsURLConnection) new URL(newUrl).openConnection();
-                                httpConn.setRequestProperty("Cookie", cookies);
-                            }
-
-                            InputStream inputStream = httpConn.getInputStream();
-                            body = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-                        } catch (Exception e) {
-                        } finally {
+                    int count = mimes.containsKey(httpConn.getContentType()) ? mimes.get(httpConn.getContentType()) : 0;
+                    mimes.put(httpConn.getContentType(), count + 1);
+                    if (wasVisited.size() > 5) {
+                        if (!httpConn.getContentType().contains("text/html")) {
+                            notMime++;
                             httpConn.disconnect();
-                        }
-                    } else {
-                        URL url = new URL(urlToRead);
-                        HttpURLConnection.setFollowRedirects(false);
-                        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-                        try {
-                            httpConn.setUseCaches(false);
-                            httpConn.setConnectTimeout(1000);
-                            httpConn.setReadTimeout(1000);
-                            httpConn.setRequestMethod("GET");
-                            httpConn.setInstanceFollowRedirects(false);
-                            httpConn.setRequestProperty("Connection", "close");
-                            HttpURLConnection.setFollowRedirects(false);
-                            /*
-                            Map<String, List<String>> headers = httpConn.getHeaderFields();
-                            for (Map.Entry<String, List<String>> entry : headers.entrySet()) {
-                                if (entry.getKey().contains("Content-Length"))
-                                    Log.d("HEADERS_", entry.getKey() + " => " + entry.getValue());
-                            }
-                            bandwidth_contentlength = Double.parseDouble(httpConn.getHeaderField("Content-Length"));
-                            */
-                            int count_s = http_s.containsKey("http") ? http_s.get("http") : 0;
-                            http_s.put("http", count_s + 1);
-                            /*
-                            int count = mimes.containsKey(httpConn.getContentType()) ? mimes.get(httpConn.getContentType()) : 0;
-                            mimes.put(httpConn.getContentType(), count + 1);
-                            if (!httpConn.getContentType().contains("text/html") || httpConn.getContentLength() > 1000000) {
-                                httpConn.disconnect();
-                            }
-                            */
-                            boolean redirect = false;
-
-                            int status = httpConn.getResponseCode();
-                            if (status != HttpURLConnection.HTTP_OK) {
-                                if (status == HttpURLConnection.HTTP_MOVED_TEMP
-                                        || status == HttpURLConnection.HTTP_MOVED_PERM
-                                        || status == HttpURLConnection.HTTP_SEE_OTHER)
-                                    redirect = true;
-                            }
-
-                            if (redirect) {
-                                redirCount++;
-                                String newUrl = httpConn.getHeaderField("Location");
-                                String cookies = httpConn.getHeaderField("Set-Cookie");
-                                httpConn.disconnect();
-                                httpConn = (HttpsURLConnection) new URL(newUrl).openConnection();
-                                httpConn.setRequestProperty("Cookie", cookies);
-                            }
-
-                            InputStream inputStream = httpConn.getInputStream();
-                            body = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            //httpConn.disconnect();
-                            Log.d("CRAWLER_", "redirected count: " + redirCount);
+                            return null;
                         }
                     }
 
-                    doc[0] = Jsoup.parse(body);
+                    boolean redirect = false;
 
-                    currentTitle = doc[0].title();
-                    currentSize = doc[0].toString().length() / 1024;
-                    currentSize = round(currentSize, 2);
+                    int status = httpConn.getResponseCode();
+                    if (status != HttpURLConnection.HTTP_OK) {
+                        if (status == HttpURLConnection.HTTP_MOVED_TEMP
+                                || status == HttpURLConnection.HTTP_MOVED_PERM
+                                || status == HttpURLConnection.HTTP_SEE_OTHER)
+                            redirect = true;
+                    }
 
-                    wasVisited.add(urlToRead);
-                    currentUrl = urlToRead;
-                    Log.d("CRAWLER_", "[title]: " + currentTitle + " [size]: " + currentSize + " [url]:" + urlToRead);
-                    if (redirCount > 3)
-                        Log.d("CRAWLER_", "redirected loop: " + redirCount);
+                    if (redirect) {
+                        redirCount++;
+                        String newUrl = httpConn.getHeaderField("Location");
+                        String cookies = httpConn.getHeaderField("Set-Cookie");
+                        httpConn.disconnect();
+                        httpConn = (HttpURLConnection) new URL(newUrl).openConnection();
+                        httpConn.setRequestProperty("Cookie", cookies);
+                    }
+
+                    InputStream inputStream = httpConn.getInputStream();
+                    body = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
                 } catch (Exception e) {
-                    //getHTML_jsoup(urlToRead);
                     e.printStackTrace();
+                    httpConn.getErrorStream().close();
+                    httpConn.getInputStream().close();
+                    httpConn.getOutputStream().close();
+                } finally {
+                    /*httpConn.disconnect();
+                    httpConn.getInputStream().close();
+                    httpConn.getOutputStream().close();*/
+                }
+            } else {
+                URL url = new URL(urlToRead);
+                HttpsURLConnection.setFollowRedirects(false);
+                HttpsURLConnection httpConn = (HttpsURLConnection) url.openConnection();
+                try {
+                    httpConn.setUseCaches(false);
+                    httpConn.setConnectTimeout(1000);
+                    httpConn.setReadTimeout(1000);
+                    httpConn.setRequestMethod("GET");
+                    httpConn.setInstanceFollowRedirects(false);
+                    httpConn.setRequestProperty("Connection", "close");
+                    HttpsURLConnection.setFollowRedirects(false);
+
+                    int count_s = http_s.containsKey("https") ? http_s.get("https") : 0;
+                    http_s.put("https", count_s + 1);
+
+                    int count = mimes.containsKey(httpConn.getContentType()) ? mimes.get(httpConn.getContentType()) : 0;
+                    mimes.put(httpConn.getContentType(), count + 1);
+
+                    if (wasVisited.size() > 5) {
+                        if (!httpConn.getContentType().contains("text/html")) {
+                            notMime++;
+                            httpConn.disconnect();
+                            return null;
+                        }
+                    }
+
+                    boolean redirect = false;
+
+                    int status = httpConn.getResponseCode();
+                    if (status != HttpsURLConnection.HTTP_OK) {
+                        if (status == HttpsURLConnection.HTTP_MOVED_TEMP
+                                || status == HttpsURLConnection.HTTP_MOVED_PERM
+                                || status == HttpsURLConnection.HTTP_SEE_OTHER)
+                            redirect = true;
+                    }
+
+                    if (redirect) {
+                        redirCount++;
+                        String newUrl = httpConn.getHeaderField("Location");
+                        String cookies = httpConn.getHeaderField("Set-Cookie");
+                        httpConn.disconnect();
+                        httpConn = (HttpsURLConnection) new URL(newUrl).openConnection();
+                        httpConn.setRequestProperty("Cookie", cookies);
+                    }
+
+                    InputStream inputStream = httpConn.getInputStream();
+                    body = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+                } catch (Exception e) {
+                    httpConn.disconnect();
+                    httpConn.getInputStream().close();
+                    httpConn.getOutputStream().close();
+                    e.printStackTrace();
+                } finally {
+                    /*
+                    httpConn.disconnect();
+                    httpConn.getInputStream().close();
+                    httpConn.getOutputStream().close();
+                    */
                 }
             }
-        };
-        thread.start();
-        try {
-            thread.join();
+
+            doc[0] = Jsoup.parse(body);
+
+            currentTitle = doc[0].title();
+            currentSize = doc[0].toString().length() / 1024;
+            currentSize = round(currentSize, 2);
+
+            wasVisited.add(urlToRead);
+            currentUrl = urlToRead;
+            Log.d("CRAWLER_", "[title]: " + currentTitle + " [size]: " + currentSize + " [url]:" + urlToRead);
+            if (redirCount > 3)
+                Log.d("CRAWLER_", "redirect loop detected: " + redirCount + " => " + currentUrl);
         } catch (Exception e) {
+            //getHTML_jsoup(urlToRead);
             e.printStackTrace();
         }
         return doc[0].toString();
@@ -363,7 +393,7 @@ class Crawler extends AsyncTask<String, Integer, String> {
         parseMails(innerMails);
         parseLinks(innerLinks);
 
-        System.out.println("Page size: " + resp.length() / 1024 + " kb");
+        //out.println("Page size: " + resp.length() / 1024 + " kb");
         bandwidth += resp.length();
     }
 
