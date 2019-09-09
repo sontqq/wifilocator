@@ -140,4 +140,9 @@ dependencies {
 
     implementation 'com.koushikdutta.async:androidasync:2.+'
 
+    implementation 'com.bugsee:bugsee-android:+'
+
+    implementation 'com.jjoe64:graphview:4.2.2'
+
+
 }

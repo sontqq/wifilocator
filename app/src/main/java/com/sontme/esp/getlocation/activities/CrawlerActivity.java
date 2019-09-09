@@ -229,12 +229,6 @@ class Crawler extends AsyncTask<String, Integer, String> {
     }
 
     public String getHTML_jsoup(String urlToRead) {
-        if (!SontHelper.isValidURL(urlToRead)) {
-            //badUrl.add(urlToRead);
-            Log.d("CRAWLER_", "BAD URL ->" + urlToRead);
-            // You dont need to check since Jsoup parses and extractes all the urls
-            //return null;
-        }
         final Document[] doc = {null};
         try {
             String body = null;
@@ -242,7 +236,6 @@ class Crawler extends AsyncTask<String, Integer, String> {
 
             int domaincount = domains.containsKey(SontHelper.getDomainFromURL(urlToRead)) ? domains.get(SontHelper.getDomainFromURL(urlToRead)) : 0;
             domains.put(SontHelper.getDomainFromURL(urlToRead), domaincount + 1);
-            Object o = null;
 
             if (urlToRead.contains("http://")) {
                 URL url = new URL(urlToRead);

@@ -166,9 +166,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     private List<String> urlList_uniq = new ArrayList<String>();
     private List<String> macList_uniq = new ArrayList<String>();
 
-    public String getLivedata() {
-        return livedata;
-    }
+    public static List<ScanResult> scanResults_forchart;
 
     public static String livedata;
     public int nearbyWifiCount;
@@ -292,7 +290,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
                     BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
                     int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-                    if (batLevel <= 30 && SontHelper.isBatteryCharging(getApplicationContext()) == false) {
+                    if (batLevel <= 20 && SontHelper.isBatteryCharging(getApplicationContext()) == false) {
                         Toast.makeText(getApplicationContext(), "Exiting, too low battery!", Toast.LENGTH_LONG).show();
                         android.os.Process.killProcess(android.os.Process.myPid());
                         System.exit(1);
@@ -895,6 +893,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             if (wifiManager.isWifiEnabled() == true) {
                 wifiManager.startScan(); // force scan
                 List<ScanResult> scanResults = wifiManager.getScanResults();
+                scanResults_forchart = scanResults;
                 nearbyCount = String.valueOf(scanResults.size());
                 int versionCode = BuildConfig.VERSION_CODE;
                 livedata = "";
@@ -949,8 +948,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 }
                 nearbyWifiCount = scanResults.size();
             }
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             Log.d("APP", "ERROR " + e.getMessage());
             SontHelper.vibrate(getApplicationContext(), 255, 300);
             e.printStackTrace();
@@ -959,6 +957,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
     public void saveRecordHttp(String path) {
         // Only try to SAVE RECORD if internet is available
+        //if(SontHelper.isWifiConnecting(getApplicationContext()) == false){
         if (SontHelper.isNetworkAvailable(getApplicationContext()) == true) {
             try {
                 Thread th2 = new Thread() {
@@ -993,6 +992,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 e.printStackTrace();
             }
         }
+        //}
     }
 
     public void createNotifGroup(String id, String name) {

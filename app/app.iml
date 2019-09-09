@@ -131,6 +131,7 @@
     <orderEntry type="library" name="Gradle: com.android.billingclient:billing:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: ca.heartlandsoftware:androidheatmap:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.MKergall:osmbonuspack:6.5.2@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.jjoe64:graphview:4.2.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-maps:16.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-location:16.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-auth:16.0.0@aar" level="project" />
@@ -201,6 +202,7 @@
     <orderEntry type="library" name="Gradle: com.flurry.android:analytics:11.6.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: me.dm7.barcodescanner:core:1.9.13@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.journeyapps:zxing-android-embedded:3.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.bugsee:bugsee-android:1.14.9@aar" level="project" />
     <orderEntry type="module" module-name="openCVLibrary343" />
     <orderEntry type="library" name="Gradle: org.apache.http.legacy-android-28" level="project" />
   </component>

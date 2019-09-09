@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="5204"
+    android:versionCode="5293"
     android:versionName="3.0" >
 
     <uses-sdk
         android:minSdkVersion="26"
         android:targetSdkVersion="28" />
+
+    <uses-feature android:name="android.hardware.wifi" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -43,13 +49,6 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
-
-    <uses-feature android:name="android.hardware.wifi" />
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="false" />
-    <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
@@ -96,7 +95,7 @@
         android:allowBackup="true"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:debuggable="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/computer"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -105,6 +104,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.sontme.esp.getlocation.activities.RealTimeChart"
+            android:hardwareAccelerated="true" />
         <activity android:name="com.sontme.esp.getlocation.activities.CrawlerActivity" />
         <activity
             android:name="com.sontme.esp.getlocation.opencv_realtime"
@@ -117,17 +119,6 @@
             android:name="com.sontme.esp.getlocation.activity_camera"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity android:name="com.sontme.esp.getlocation.activities.HeatMapp" />
-
-        <receiver android:name="com.sontme.esp.getlocation.wifi_widget" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/wifi_widget_info" />
-        </receiver>
-
         <activity
             android:name="com.sontme.esp.getlocation.activities.NearbyActivity"
             android:alwaysRetainTaskState="true"
@@ -146,35 +137,6 @@
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
-
-        <receiver android:name="com.sontme.esp.getlocation.BroadcReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.net.wifi.STATE_CHANGE" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.RECEIVE_BOOT_COMPLETED" />
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.REBOOT" />
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
-                <action android:name="android.intent.action.BluetoothDevice.ACTION_FOUND" />
-                <action android:name="android.BluetoothDevice.ACTION_FOUND" />
-            </intent-filter>
-        </receiver>
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <meta-data
-            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
-            android:value="true" />
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4051604993335718~5748521133" />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -213,14 +175,50 @@
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4051604993335718~5748521133" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
+
+        <receiver android:name="com.sontme.esp.getlocation.wifi_widget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/wifi_widget_info" />
+        </receiver>
+        <receiver android:name="com.sontme.esp.getlocation.BroadcReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.RECEIVE_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.BluetoothDevice.ACTION_FOUND" />
+                <action android:name="android.BluetoothDevice.ACTION_FOUND" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name="com.sontme.esp.getlocation.BackgroundService"
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <meta-data
-            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
-            android:value="true" />
 
         <receiver
             android:name="com.allyants.notifyme.BootNotifyMe"
@@ -269,6 +267,21 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.bugsee.library.RequestPermissionsActivity"
+            android:theme="@style/BugseeTheme.Transparent" />
+        <activity
+            android:name="com.bugsee.library.send.SendBundleActivity"
+            android:theme="@style/BugseeActivityStyle" >
+        </activity>
+        <activity
+            android:name="com.bugsee.library.activity.EditScreenshotActivity"
+            android:theme="@style/BugseeActivityStyle" >
+        </activity>
+        <activity
+            android:name="com.bugsee.library.activity.FeedbackActivity"
+            android:theme="@style/BugseeActivityStyle" >
+        </activity>
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"

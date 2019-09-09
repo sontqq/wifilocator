@@ -11,7 +11,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
@@ -21,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
 import android.net.Uri;
@@ -44,9 +44,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.text.Spanned;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,7 +54,6 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,6 +71,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
+import com.bugsee.library.Bugsee;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -111,6 +108,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public BackgroundService backgroundService;
 
     public static String INSERT_URL = "https://sont.sytes.net/wifilocator/wifi_insert.php";
-    public static String[] myColors = {"#f857b5", "#f781bc", "#fdffdc", "#c5ecbe", "#00b8a9", "#f6416c", "#ffde7d", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#dcedc1", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
+    public static String[] myColors = {"#f857b5", "#f781bc", "#c5ecbe", "#00b8a9", "#f6416c", "#7effdb", "#b693fe", "#8c82fc", "#ff9de2", "#a8e6cf", "#ffd3b6", "#ffaaa5", "#fc5185", "#384259"};
 
     //endregion
 
@@ -309,6 +310,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     CallbackManager callbackManager;
 
+    private final Handler mHandler2 = new Handler();
+    private Runnable mTimer1;
+    private LineGraphSeries<DataPoint> mSeries1;
+    private LineGraphSeries<DataPoint> mSeries2;
+    private double graph2LastXValue = 5d;
+
     private void setFacebookData(final LoginResult loginResult) {
         GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
                 new GraphRequest.GraphJSONObjectCallback() {
@@ -431,6 +438,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        HashMap<String, Object> options = new HashMap<>();
+        options.put(Bugsee.Option.NotificationBarTrigger, false);
+
+        Bugsee.launch(this, "c92a6836-3405-491e-ac28-e5024324a9d6", options);
+
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -563,8 +576,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onClick(View v) {
                 //Intent i = new Intent(getApplicationContext(),HeatMapp.class);
                 //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
-                final String[] site = {""};
 
+                Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
+                startActivity(i);
+
+                /*
+                final String[] site = {""};
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Start URL");
                 builder.setMessage("Please give me a start URL");
@@ -584,9 +601,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 input.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
                 input.setFilters(new InputFilter[]{filter});
                 input.setText("http://");
-
                 builder.setView(input);
-
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -602,8 +617,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         dialog.cancel();
                     }
                 });
-
                 builder.show();
+                */
+
+
 
                 // region BL
                 /*
@@ -1136,7 +1153,68 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
         //findFaceOnAllPhotos();
         //SontHelper.pickImage(MainActivity.this);
-        
+
+        GraphView graph = findViewById(R.id.rlgraph_main);
+
+        graph.setTitle("Realtime WiFi");
+
+        mSeries1 = new LineGraphSeries<>(generateData());
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(100);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(100);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);
+        graph.getGridLabelRenderer().setVerticalLabelsVisible(true);
+        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        mSeries1.setTitle("Realtime Data");
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(getResources().getColor(R.color.nicered1));
+        paint.setAlpha(100);
+        paint.setStrokeWidth(10);
+        //paint.setPathEffect(new DashPathEffect(new float[]{7, 10}, 0));
+        mSeries1.setCustomPaint(paint);
+        graph.addSeries(mSeries1);
+
+        mTimer1 = new Runnable() {
+            @Override
+            public void run() {
+                //mSeries1.resetData(generateData());
+                graph2LastXValue += 1d;
+                mSeries1.appendData(new DataPoint(graph2LastXValue, getWifiC()), true, 100);
+                mHandler2.postDelayed(this, 100);
+            }
+        };
+        mHandler2.postDelayed(mTimer1, 0);
+
+    }
+
+    private DataPoint[] generateData() {
+        DataPoint[] values = new DataPoint[1];
+        DataPoint v = new DataPoint(0, 0);
+        values[0] = v;
+        return values;
+    }
+
+    private double getWifiC() {
+        double r = 0;
+        try {
+            r = BackgroundService.scanResults_forchart.size();
+        } catch (Exception e) {
+            r = 0;
+        }
+        return r;
+    }
+
+    private double getWifiC_nearby() {
+        double r = 0;
+        try {
+            r = BackgroundService.uniqueAPS.size();
+        } catch (Exception e) {
+            r = 0;
+        }
+        return r;
     }
 
     @Override

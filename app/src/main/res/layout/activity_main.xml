@@ -211,6 +211,12 @@
                     android:layout_height="wrap_content"
                     android:text="Share App" />
 
+                <com.jjoe64.graphview.GraphView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:id="@+id/rlgraph_main" />
+
+
                 <Button
                     android:id="@+id/testbutton"
                     android:layout_width="match_parent"

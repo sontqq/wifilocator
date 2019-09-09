@@ -27,6 +27,7 @@
             android:text="Running"
             android:textColor="@color/common_google_signin_btn_text_light_pressed" />
 
+
     </LinearLayout>
 
 </LinearLayout>

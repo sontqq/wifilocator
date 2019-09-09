@@ -104,6 +104,14 @@ public class SontHelper extends Application {
         return mWifi.isConnected();
     }
 
+    public static boolean isWifiConnecting(Context ctx) {
+        ConnectivityManager connManager = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mMob = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        boolean connecting;
+        return (!mWifi.isConnected()) && (mWifi.isConnectedOrConnecting());
+    }
+
     public static void requestPermissions(Activity act) {
         ActivityCompat.requestPermissions(act,
                 new String[]{
@@ -134,6 +142,7 @@ public class SontHelper extends Application {
         return m.find();
 
     }
+
     public static String getBucketId(String path) {
         return String.valueOf(path.toLowerCase().hashCode());
     }
