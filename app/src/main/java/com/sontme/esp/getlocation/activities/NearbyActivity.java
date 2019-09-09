@@ -75,6 +75,7 @@ import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
 
+// something is wrong with zooming in/out the map. the markers are jumping around
 
 public class NearbyActivity extends AppCompatActivity implements GpsStatus.Listener {
 
@@ -103,7 +104,45 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
         Intent mIntent = new Intent(NearbyActivity.this, BackgroundService.class);
         bindService(mIntent, mConnection, BIND_AUTO_CREATE);
 
+        Button km1 = findViewById(R.id.maxdistok1);
+        Button km10 = findViewById(R.id.maxdistok10);
+        Button kminf = findViewById(R.id.maxdistokinf);
         sw = findViewById(R.id.asdd);
+        km1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NEARBY_MIN_DISTANCE = 1000;
+                if (sw.isChecked() == false) {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
+                } else {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
+                }
+            }
+        });
+        km10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NEARBY_MIN_DISTANCE = 10000;
+                if (sw.isChecked() == false) {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
+                } else {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
+                }
+            }
+        });
+        kminf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NEARBY_MIN_DISTANCE = Integer.MAX_VALUE;
+                if (sw.isChecked() == false) {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_all.php");
+                } else {
+                    getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
+                }
+            }
+        });
+
+
         map = findViewById(R.id.osmmap2);
         btn = findViewById(R.id.button6);
         btn.setOnClickListener(new View.OnClickListener() {

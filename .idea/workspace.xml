@@ -145,78 +145,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="realtime chart on mainactivity to show nearby wifi count over a short period of time">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/RealTimeChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_real_time_chart.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay.xml.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay_up.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_notif_lay_up.xml.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-cs_values-cs.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-cs_values-cs.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-de_values-de.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-de_values-de.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es_values-es.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-es_values-es.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr_values-fr.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-fr_values-fr.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hi_values-hi.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hi_values-hi.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ja_values-ja.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ja_values-ja.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ru_values-ru.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-ru_values-ru.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_nearby.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_nearby.xml.flat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/CrawlerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/CrawlerActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notif_lay_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -274,11 +230,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="1184" column="89" lean-forward="true" selection-start-line="1184" selection-start-column="89" selection-end-line="1184" selection-end-column="89" />
+            <state relative-caret-position="136">
+              <caret line="1174" column="33" selection-start-line="1174" selection-start-column="33" selection-end-line="1174" selection-end-column="33" />
               <folding>
                 <element signature="class#7305:12217" />
                 <element signature="method#run#0;class#7305:12217" />
@@ -461,6 +417,152 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="78" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="method#onCreate#0;class#NearbyActivity#0" />
+                <element signature="class#3914:4368" />
+                <element signature="method#onClick#0;class#3914:4368" />
+                <element signature="e#4087#4212#1" />
+                <element signature="e#4218#4344#1" />
+                <element signature="class#4407:4862" />
+                <element signature="method#onClick#0;class#4407:4862" />
+                <element signature="e#4581#4706#1" />
+                <element signature="e#4712#4838#1" />
+                <element signature="class#4902:5369" />
+                <element signature="method#onClick#0;class#4902:5369" />
+                <element signature="e#5088#5213#1" />
+                <element signature="e#5219#5345#1" />
+                <element signature="class#5530:5945" />
+                <element signature="method#onClick#0;class#5530:5945" />
+                <element signature="e#4007#4132#1" />
+                <element signature="e#4138#4264#1" />
+                <element signature="class#6174:6649" />
+                <element signature="method#onCheckedChanged#0;class#6174:6649" />
+                <element signature="e#4711#4836#1" />
+                <element signature="e#4842#4968#1" />
+                <element signature="e#5032#5141#1" />
+                <element signature="e#5147#5257#1" />
+                <element signature="e#5458#5752#1" />
+                <element signature="e#5501#5618#1" />
+                <element signature="e#5624#5742#1" />
+                <element signature="e#5803#5952#1" />
+                <element signature="e#6001#6148#1" />
+                <element signature="e#6154#6226#1" />
+                <element signature="class#8257:9490" />
+                <element signature="method#onNavigationItemSelected#0;class#8257:9490" />
+                <element signature="e#6823#7809#0" />
+                <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
+                <element signature="e#8852#9001#1" />
+                <element signature="e#9007#9079#1" />
+                <element signature="class#10912:11083" />
+                <element signature="method#run#0;class#10912:11083" />
+                <element signature="method#drawPoint#0;class#NearbyActivity#0" />
+                <element signature="e#9726#9868#1" />
+                <element signature="e#9874#9939#1" />
+                <element signature="class#11900:12216" />
+                <element signature="method#onMarkerClick#0;class#11900:12216" />
+                <element signature="method#updateMap#0;class#NearbyActivity#0" />
+                <element signature="e#10743#10885#1" />
+                <element signature="e#10891#10956#1" />
+                <element signature="class#12781:13054" />
+                <element signature="method#onClick#0;class#12781:13054" />
+                <element signature="e#11446#11948#1" />
+                <element signature="e#11760#11818#0" />
+                <element signature="e#11839#11891#0" />
+                <element signature="class#12023:12561" />
+                <element signature="method#onServiceDisconnected#0;class#12023:12561" />
+                <element signature="method#onServiceConnected#0;class#12023:12561" />
+                <element signature="method#resize#0;class#NearbyActivity#0" />
+                <element signature="method#drawCircle#0;class#NearbyActivity#0" />
+                <element signature="e#13025#13171#0" />
+                <element signature="e#13192#13261#0" />
+                <element signature="e#13446#13539#1" />
+                <element signature="class#15643:15836" />
+                <element signature="method#onClick#0;class#15643:15836" />
+                <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
+                <element signature="e#15785#18770#1" />
+                <element signature="class#18160:20078" />
+                <element signature="method#onMarkerClick#0;class#18160:20078" />
+                <element signature="e#17167#17335#1" />
+                <element signature="e#17369#17537#1" />
+                <element signature="e#18149#18238#1" />
+                <element signature="e#18244#18332#1" />
+                <element signature="e#18862#18928#1" />
+                <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
+                <element signature="method#getList#0;class#NearbyActivity#0" />
+                <element signature="class#19411:22402" />
+                <element signature="method#onStart#0;class#19411:22402" />
+                <element signature="method#onSuccess#0;class#19411:22402" />
+                <element signature="e#19882#21673#1" />
+                <element signature="e#20202#20419#0" />
+                <element signature="e#20440#20508#0" />
+                <element signature="e#20533#20605#0" />
+                <element signature="e#20626#20693#0" />
+                <element signature="e#20718#21566#0" />
+                <element signature="e#21300#21544#1" />
+                <element signature="e#21587#21655#0" />
+                <element signature="method#onFailure#0;class#19411:22402" />
+                <element signature="method#onRetry#0;class#19411:22402" />
+                <element signature="method#html2text#0;class#NearbyActivity#0" />
+                <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
+                <element signature="e#22636#22796#1" />
+                <element signature="e#22654#22723#0" />
+                <element signature="e#22744#22786#0" />
+                <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
+                <element signature="e#23229#23344#1" />
+                <element signature="e#23368#24062#0" />
+                <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
+                <element signature="class#Circlee#0" />
+                <element signature="method#onSingleTapUp#0;class#Circlee#0" />
+                <element signature="e#24368#24515#0" />
+                <element signature="method#onLongPress#0;class#Circlee#0" />
+                <element signature="class#PopUpWin#0" />
+                <element signature="method#PopUpWin#0;class#PopUpWin#0" />
+                <element signature="method#onOpen#0;class#PopUpWin#0" />
+                <element signature="e#25623#26770#1" />
+                <element signature="e#26019#26169#1" />
+                <element signature="e#26175#26227#1" />
+                <element signature="class#28002:28415" />
+                <element signature="method#onClick#0;class#28002:28415" />
+                <element signature="method#onClose#0;class#PopUpWin#0" />
+                <element signature="class#CustomCluster#0" />
+                <element signature="method#CustomCluster#0;class#CustomCluster#0" />
+                <element signature="class#27136:27720" />
+                <element signature="method#onServiceDisconnected#0;class#27136:27720" />
+                <element signature="e#27264#27360#0" />
+                <element signature="method#onServiceConnected#0;class#27136:27720" />
+                <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
+                <element signature="class#29696:30240" />
+                <element signature="method#run#0;class#29696:30240" />
+                <element signature="e#28488#28559#1" />
+                <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
+                <element signature="e#29073#29328#1" />
+                <element signature="e#29391#29644#1" />
+                <element signature="e#29650#29860#1" />
+                <element signature="method#round#0;class#CustomCluster#0" />
+                <element signature="method#getDistance#0;class#CustomCluster#0" />
+                <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
+                <element signature="e#32209#32274#1" />
+                <element signature="class#CustomMarker#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -578,7 +680,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Updater.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/HandleLocations.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/wifi_widget.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CustomFormatter.java" />
@@ -617,7 +718,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_img_full.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Crawler.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_crawler.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/CrawlerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -629,6 +729,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
       </list>
     </option>
   </component>
@@ -686,6 +788,14 @@
               <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="activities" type="462c0819:PsiDirectoryNode" />
               <item name="CrawlerActivity.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="activities" type="462c0819:PsiDirectoryNode" />
+              <item name="NearbyActivity.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
@@ -875,13 +985,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
-    </task>
-    <task id="LOCAL-00033" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv/zip size fix&#10;date to csv&#10;csv import to mysql">
-      <created>1552039746671</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1552039746671</updated>
     </task>
     <task id="LOCAL-00034" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;custom dialog with working progressbar (calculations needed)">
       <created>1552062218974</created>
@@ -1219,7 +1322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567499686055</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="realtime chart on mainactivity to show nearby wifi count over a short period of time">
+      <created>1568008076977</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1568008076979</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1235,7 +1345,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24939272" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24939272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Build Variants" order="3" sideWeight="0.50133336" side_tool="true" weight="0.24939272" />
@@ -1246,12 +1356,12 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49473685" visible="true" weight="0.27353463" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49473685" weight="0.27353463" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39609236" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.3285968" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.49959514" visible="true" weight="0.3285968" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.6802842" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50526315" side_tool="true" weight="0.27353463" />
       <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.49473685" weight="0.3339254" />
@@ -1314,14 +1424,6 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_camera.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/graphics/Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1670,128 +1772,6 @@
           <folding>
             <element signature="e#3442#3443#0" expanded="true" />
             <element signature="e#3468#3469#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="120" column="10" selection-start-line="120" selection-start-column="10" selection-end-line="120" selection-end-column="10" />
-          <folding>
-            <element signature="class#3873:4288" />
-            <element signature="method#onClick#0;class#3873:4288" />
-            <element signature="e#4007#4132#1" />
-            <element signature="e#4138#4264#1" />
-            <element signature="class#4424:4899" />
-            <element signature="method#onCheckedChanged#0;class#4424:4899" />
-            <element signature="e#4618#4743#1" />
-            <element signature="e#4749#4875#1" />
-            <element signature="e#4939#5048#1" />
-            <element signature="e#5054#5164#1" />
-            <element signature="e#5365#5659#1" />
-            <element signature="e#5408#5525#1" />
-            <element signature="e#5531#5649#1" />
-            <element signature="e#5710#5859#1" />
-            <element signature="e#5908#6055#1" />
-            <element signature="e#6061#6133#1" />
-            <element signature="class#6507:7740" />
-            <element signature="method#onNavigationItemSelected#0;class#6507:7740" />
-            <element signature="e#6730#7716#0" />
-            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
-            <element signature="e#8759#8908#1" />
-            <element signature="e#8914#8986#1" />
-            <element signature="class#9162:9333" />
-            <element signature="method#run#0;class#9162:9333" />
-            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
-            <element signature="e#9633#9775#1" />
-            <element signature="e#9781#9846#1" />
-            <element signature="class#10150:10466" />
-            <element signature="method#onMarkerClick#0;class#10150:10466" />
-            <element signature="method#updateMap#0;class#NearbyActivity#0" />
-            <element signature="e#10650#10792#1" />
-            <element signature="e#10798#10863#1" />
-            <element signature="class#11031:11304" />
-            <element signature="method#onClick#0;class#11031:11304" />
-            <element signature="e#11353#11855#1" />
-            <element signature="e#11667#11725#0" />
-            <element signature="e#11746#11798#0" />
-            <element signature="class#11930:12468" />
-            <element signature="method#onServiceDisconnected#0;class#11930:12468" />
-            <element signature="method#onServiceConnected#0;class#11930:12468" />
-            <element signature="method#resize#0;class#NearbyActivity#0" />
-            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
-            <element signature="e#12932#13078#0" />
-            <element signature="e#13099#13168#0" />
-            <element signature="e#13353#13446#1" />
-            <element signature="class#13893:14086" />
-            <element signature="method#onClick#0;class#13893:14086" />
-            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
-            <element signature="e#15692#18677#1" />
-            <element signature="class#16410:18328" />
-            <element signature="method#onMarkerClick#0;class#16410:18328" />
-            <element signature="e#17074#17242#1" />
-            <element signature="e#17276#17444#1" />
-            <element signature="e#18056#18145#1" />
-            <element signature="e#18151#18239#1" />
-            <element signature="e#18769#18835#1" />
-            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
-            <element signature="method#getList#0;class#NearbyActivity#0" />
-            <element signature="class#19318:22107" />
-            <element signature="method#onStart#0;class#19318:22018" />
-            <element signature="method#onSuccess#0;class#19318:22107" />
-            <element signature="e#19789#21378#1" />
-            <element signature="e#19908#20192#0" />
-            <element signature="e#20211#20279#0" />
-            <element signature="e#20149#20221#0" />
-            <element signature="e#20242#20309#0" />
-            <element signature="e#20334#21182#0" />
-            <element signature="e#20916#21160#1" />
-            <element signature="e#21203#21271#0" />
-            <element signature="method#onFailure#0;class#19318:22107" />
-            <element signature="method#onRetry#0;class#19318:22107" />
-            <element signature="method#html2text#0;class#NearbyActivity#0" />
-            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
-            <element signature="e#22252#22412#1" />
-            <element signature="e#22270#22339#0" />
-            <element signature="e#22360#22402#0" />
-            <element signature="e#22492#22539#1" />
-            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
-            <element signature="e#22845#22960#1" />
-            <element signature="e#22984#23678#0" />
-            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
-            <element signature="class#Circlee#0" />
-            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
-            <element signature="e#23984#24131#0" />
-            <element signature="method#onLongPress#0;class#Circlee#0" />
-            <element signature="class#PopUpWin#0" />
-            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
-            <element signature="method#onOpen#0;class#PopUpWin#0" />
-            <element signature="e#25239#26386#1" />
-            <element signature="e#25635#25785#1" />
-            <element signature="e#25791#25843#1" />
-            <element signature="class#25961:26374" />
-            <element signature="method#onClick#0;class#25961:26374" />
-            <element signature="method#onClose#0;class#PopUpWin#0" />
-            <element signature="class#CustomCluster#0" />
-            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
-            <element signature="class#26752:27336" />
-            <element signature="method#onServiceDisconnected#0;class#26752:27336" />
-            <element signature="e#26880#26976#0" />
-            <element signature="method#onServiceConnected#0;class#26752:27336" />
-            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
-            <element signature="class#27655:28199" />
-            <element signature="method#run#0;class#27655:28199" />
-            <element signature="e#28104#28175#1" />
-            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
-            <element signature="e#28689#28944#1" />
-            <element signature="e#29007#29260#1" />
-            <element signature="e#29266#29476#1" />
-            <element signature="method#round#0;class#CustomCluster#0" />
-            <element signature="method#getDistance#0;class#CustomCluster#0" />
-            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
-            <element signature="e#31825#31890#1" />
-            <element signature="class#CustomMarker#0" />
           </folding>
         </state>
       </provider>
@@ -2315,8 +2295,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="1184" column="89" lean-forward="true" selection-start-line="1184" selection-start-column="89" selection-end-line="1184" selection-end-column="89" />
+        <state relative-caret-position="136">
+          <caret line="1174" column="33" selection-start-line="1174" selection-start-column="33" selection-end-line="1174" selection-end-column="33" />
           <folding>
             <element signature="class#7305:12217" />
             <element signature="method#run#0;class#7305:12217" />
@@ -2494,6 +2474,148 @@
             <element signature="method#doInBackground#0;class#DownloadImageTask#0" />
             <element signature="e#74463#74600#0" />
             <element signature="e#74621#74665#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="method#onCreate#0;class#NearbyActivity#0" />
+            <element signature="class#3914:4368" />
+            <element signature="method#onClick#0;class#3914:4368" />
+            <element signature="e#4087#4212#1" />
+            <element signature="e#4218#4344#1" />
+            <element signature="class#4407:4862" />
+            <element signature="method#onClick#0;class#4407:4862" />
+            <element signature="e#4581#4706#1" />
+            <element signature="e#4712#4838#1" />
+            <element signature="class#4902:5369" />
+            <element signature="method#onClick#0;class#4902:5369" />
+            <element signature="e#5088#5213#1" />
+            <element signature="e#5219#5345#1" />
+            <element signature="class#5530:5945" />
+            <element signature="method#onClick#0;class#5530:5945" />
+            <element signature="e#4007#4132#1" />
+            <element signature="e#4138#4264#1" />
+            <element signature="class#6174:6649" />
+            <element signature="method#onCheckedChanged#0;class#6174:6649" />
+            <element signature="e#4711#4836#1" />
+            <element signature="e#4842#4968#1" />
+            <element signature="e#5032#5141#1" />
+            <element signature="e#5147#5257#1" />
+            <element signature="e#5458#5752#1" />
+            <element signature="e#5501#5618#1" />
+            <element signature="e#5624#5742#1" />
+            <element signature="e#5803#5952#1" />
+            <element signature="e#6001#6148#1" />
+            <element signature="e#6154#6226#1" />
+            <element signature="class#8257:9490" />
+            <element signature="method#onNavigationItemSelected#0;class#8257:9490" />
+            <element signature="e#6823#7809#0" />
+            <element signature="method#drawRouteAndStart#0;class#NearbyActivity#0" />
+            <element signature="e#8852#9001#1" />
+            <element signature="e#9007#9079#1" />
+            <element signature="class#10912:11083" />
+            <element signature="method#run#0;class#10912:11083" />
+            <element signature="method#drawPoint#0;class#NearbyActivity#0" />
+            <element signature="e#9726#9868#1" />
+            <element signature="e#9874#9939#1" />
+            <element signature="class#11900:12216" />
+            <element signature="method#onMarkerClick#0;class#11900:12216" />
+            <element signature="method#updateMap#0;class#NearbyActivity#0" />
+            <element signature="e#10743#10885#1" />
+            <element signature="e#10891#10956#1" />
+            <element signature="class#12781:13054" />
+            <element signature="method#onClick#0;class#12781:13054" />
+            <element signature="e#11446#11948#1" />
+            <element signature="e#11760#11818#0" />
+            <element signature="e#11839#11891#0" />
+            <element signature="class#12023:12561" />
+            <element signature="method#onServiceDisconnected#0;class#12023:12561" />
+            <element signature="method#onServiceConnected#0;class#12023:12561" />
+            <element signature="method#resize#0;class#NearbyActivity#0" />
+            <element signature="method#drawCircle#0;class#NearbyActivity#0" />
+            <element signature="e#13025#13171#0" />
+            <element signature="e#13192#13261#0" />
+            <element signature="e#13446#13539#1" />
+            <element signature="class#15643:15836" />
+            <element signature="method#onClick#0;class#15643:15836" />
+            <element signature="method#drawMarkers#0;class#NearbyActivity#0" />
+            <element signature="e#15785#18770#1" />
+            <element signature="class#18160:20078" />
+            <element signature="method#onMarkerClick#0;class#18160:20078" />
+            <element signature="e#17167#17335#1" />
+            <element signature="e#17369#17537#1" />
+            <element signature="e#18149#18238#1" />
+            <element signature="e#18244#18332#1" />
+            <element signature="e#18862#18928#1" />
+            <element signature="method#onOptionsItemSelected#0;class#NearbyActivity#0" />
+            <element signature="method#getList#0;class#NearbyActivity#0" />
+            <element signature="class#19411:22402" />
+            <element signature="method#onStart#0;class#19411:22402" />
+            <element signature="method#onSuccess#0;class#19411:22402" />
+            <element signature="e#19882#21673#1" />
+            <element signature="e#20202#20419#0" />
+            <element signature="e#20440#20508#0" />
+            <element signature="e#20533#20605#0" />
+            <element signature="e#20626#20693#0" />
+            <element signature="e#20718#21566#0" />
+            <element signature="e#21300#21544#1" />
+            <element signature="e#21587#21655#0" />
+            <element signature="method#onFailure#0;class#19411:22402" />
+            <element signature="method#onRetry#0;class#19411:22402" />
+            <element signature="method#html2text#0;class#NearbyActivity#0" />
+            <element signature="method#ParseDouble#0;class#NearbyActivity#0" />
+            <element signature="e#22636#22796#1" />
+            <element signature="e#22654#22723#0" />
+            <element signature="e#22744#22786#0" />
+            <element signature="method#onGpsStatusChanged#0;class#NearbyActivity#0" />
+            <element signature="e#23229#23344#1" />
+            <element signature="e#23368#24062#0" />
+            <element signature="method#onPointerCaptureChanged#0;class#NearbyActivity#0" />
+            <element signature="class#Circlee#0" />
+            <element signature="method#onSingleTapUp#0;class#Circlee#0" />
+            <element signature="e#24368#24515#0" />
+            <element signature="method#onLongPress#0;class#Circlee#0" />
+            <element signature="class#PopUpWin#0" />
+            <element signature="method#PopUpWin#0;class#PopUpWin#0" />
+            <element signature="method#onOpen#0;class#PopUpWin#0" />
+            <element signature="e#25623#26770#1" />
+            <element signature="e#26019#26169#1" />
+            <element signature="e#26175#26227#1" />
+            <element signature="class#28002:28415" />
+            <element signature="method#onClick#0;class#28002:28415" />
+            <element signature="method#onClose#0;class#PopUpWin#0" />
+            <element signature="class#CustomCluster#0" />
+            <element signature="method#CustomCluster#0;class#CustomCluster#0" />
+            <element signature="class#27136:27720" />
+            <element signature="method#onServiceDisconnected#0;class#27136:27720" />
+            <element signature="e#27264#27360#0" />
+            <element signature="method#onServiceConnected#0;class#27136:27720" />
+            <element signature="method#animateMarkerDropping#0;class#CustomCluster#0" />
+            <element signature="class#29696:30240" />
+            <element signature="method#run#0;class#29696:30240" />
+            <element signature="e#28488#28559#1" />
+            <element signature="method#onSingleTapUp#0;class#CustomCluster#0" />
+            <element signature="e#29073#29328#1" />
+            <element signature="e#29391#29644#1" />
+            <element signature="e#29650#29860#1" />
+            <element signature="method#round#0;class#CustomCluster#0" />
+            <element signature="method#getDistance#0;class#CustomCluster#0" />
+            <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
+            <element signature="e#32209#32274#1" />
+            <element signature="class#CustomMarker#0" />
           </folding>
         </state>
       </provider>

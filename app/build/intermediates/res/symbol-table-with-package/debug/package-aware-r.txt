@@ -1756,6 +1756,9 @@ id mainListView
 id main_content
 id map
 id masked
+id maxdistok1
+id maxdistok10
+id maxdistokinf
 id md_buttonDefaultNegative
 id md_buttonDefaultNeutral
 id md_buttonDefaultPositive

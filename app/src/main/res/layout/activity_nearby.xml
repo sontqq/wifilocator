@@ -16,6 +16,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/maxdistok1"
+                    android:text="1 KM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/maxdistok10"
+                    android:text="10 KM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/maxdistokinf"
+                    android:text="Inf. KM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/asdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/web_shape"
+                android:text="Open WiFi Only"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+
+
+            <org.osmdroid.views.MapView
+                android:id="@+id/osmmap2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/button6"
             android:layout_width="wrap_content"
@@ -35,32 +90,6 @@
             android:visibility="visible"
             app:backgroundTint="@color/notifText" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Switch
-                android:id="@+id/asdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
-                android:background="@drawable/web_shape"
-                android:text="Open WiFi Only"
-                android:textAlignment="textStart"
-                android:textStyle="bold" />
-
-            <org.osmdroid.views.MapView
-                android:id="@+id/osmmap2"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-
-        </LinearLayout>
-
 
     </RelativeLayout>
 
@@ -72,8 +101,7 @@
         android:layout_gravity="start"
         android:layout_weight="1"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/navigation_menu">
-    </android.support.design.widget.NavigationView>
+        app:menu="@menu/navigation_menu"></android.support.design.widget.NavigationView>
 
 
 </android.support.v4.widget.DrawerLayout>

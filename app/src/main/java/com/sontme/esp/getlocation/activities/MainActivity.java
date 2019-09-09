@@ -1173,14 +1173,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         paint.setColor(getResources().getColor(R.color.nicered1));
         paint.setAlpha(100);
         paint.setStrokeWidth(10);
-        //paint.setPathEffect(new DashPathEffect(new float[]{7, 10}, 0));
         mSeries1.setCustomPaint(paint);
         graph.addSeries(mSeries1);
 
         mTimer1 = new Runnable() {
             @Override
             public void run() {
-                //mSeries1.resetData(generateData());
                 graph2LastXValue += 1d;
                 mSeries1.appendData(new DataPoint(graph2LastXValue, getWifiC()), true, 100);
                 mHandler2.postDelayed(this, 100);
