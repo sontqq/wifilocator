@@ -4,7 +4,7 @@ OpenSource WiFi Wardriving app.
 
 This application is running in the background and searches for wifi connections. Once it found it saves to the database.
 
-Browse on map: https://sont.sytes.net/wifilocator/osm.php
+Browse on map: https://sont.sytes.net/wifilocator/osm.php or http://sont.sytes.net/wifilocator/map.php (with clustering)
 
 Browse on list: https://sont.sytes.net/wifis.php
 
