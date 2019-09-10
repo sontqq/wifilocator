@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="5310"
+    android:versionCode="5314"
     android:versionName="3.0" >
 
     <uses-sdk

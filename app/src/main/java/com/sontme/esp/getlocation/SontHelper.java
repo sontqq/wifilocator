@@ -55,6 +55,7 @@ import org.opencv.core.Scalar;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -62,6 +63,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
@@ -755,7 +757,6 @@ public class SontHelper extends Application {
         }
     }
 
-
     public static void generateGFX(File file, String name, List<Location> points) {
         String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx xmlns=\"http://www.topografix.com/GPX/1/1\" creator=\"MapSource 6.15.5\" version=\"1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\"><trk>\n";
         name = "<name>" + name + "</name><trkseg>\n";
@@ -782,5 +783,36 @@ public class SontHelper extends Application {
         }
     }
 
+    public static void generateKML(List<Location> points) {
+        String fullKML = "";
+        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n <kml xmlns=\"http://earth.google.com/kml/2.2\">\n";
+        String segments = "";
+        String footer = "</kml>";
 
+        for (Location location : points) {
+            segments += "<Placemark>\n" +
+                    "<name>" + "asd" + "</name>\n" +
+                    "<description>desc</description>\n" +
+                    "<Point>\n" +
+                    "<coordinates>" + location.getLatitude() + "," + location.getLongitude() + "</coordinates>\n" +
+                    "</Placemark>\n";
+        }
+
+        fullKML = header + segments + footer;
+        Log.d("KML_", fullKML);
+        File file = null;
+        try {
+            file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "wifiloc.kml");
+            PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
+            StringBuilder sb = new StringBuilder();
+            sb.append(fullKML);
+            writer.append(sb.toString());
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Log.d("KML_location", file.toString());
+        }
+    }
 }

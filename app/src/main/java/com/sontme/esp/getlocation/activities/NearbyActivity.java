@@ -53,7 +53,6 @@ import com.sontme.esp.getlocation.SontHelper;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.clustering.RadiusMarkerClusterer;
 import org.osmdroid.bonuspack.clustering.StaticCluster;
-import org.osmdroid.bonuspack.kml.KmlDocument;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -66,7 +65,6 @@ import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.Polyline;
 import org.osmdroid.views.overlay.infowindow.InfoWindow;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -141,12 +139,6 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                 } else {
                     getList(getBaseContext(), "https://sont.sytes.net/wifilocator/wifis_nearby_open.php");
                 }
-
-                KmlDocument kmlDocument = new KmlDocument();
-                kmlDocument.mKmlRoot.addOverlay(map.getMapOverlay(), kmlDocument);
-                File localFile = kmlDocument.getDefaultPathForAndroid("my_route.kml");
-                Log.d("KML_export", localFile.toString());
-                kmlDocument.saveAsKML(localFile);
 
             }
         });

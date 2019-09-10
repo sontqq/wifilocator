@@ -177,6 +177,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     public LocationManager locationManager;
     CsvExporter cs = new CsvExporter("wifilocator_database.csv");
 
+    public static List<Location> locations = new ArrayList<>();
+
     public Location previousLocation = new Location(LocationManager.GPS_PROVIDER);
     public static double sumOfTravelDistance = 0;
 
@@ -731,6 +733,8 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
 
     public void queryLocation(Location LocRes) {
         try {
+            locations.add(LocRes);
+
             float[] distancee = new float[1];
 
             Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
