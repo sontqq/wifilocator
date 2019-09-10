@@ -29,6 +29,7 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.media.AudioManager;
 import android.media.FaceDetector;
 import android.media.ToneGenerator;
@@ -59,11 +60,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -751,4 +754,33 @@ public class SontHelper extends Application {
             e.printStackTrace();
         }
     }
+
+
+    public static void generateGFX(File file, String name, List<Location> points) {
+        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx xmlns=\"http://www.topografix.com/GPX/1/1\" creator=\"MapSource 6.15.5\" version=\"1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\"><trk>\n";
+        name = "<name>" + name + "</name><trkseg>\n";
+
+        String segments = "";
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        for (Location location : points) {
+            segments += "<trkpt lat=\"" + location.getLatitude() + "\" lon=\"" + location.getLongitude() + "\"><time>" + df.format(new Date(location.getTime())) + "</time></trkpt>\n";
+        }
+
+        String footer = "</trkseg></trk></gpx>";
+
+        try {
+            FileWriter writer = new FileWriter(file, false);
+            writer.append(header);
+            writer.append(name);
+            writer.append(segments);
+            writer.append(footer);
+            writer.flush();
+            writer.close();
+
+        } catch (IOException e) {
+            Log.e("generateGfx", "Error Writting Path", e);
+        }
+    }
+
+
 }

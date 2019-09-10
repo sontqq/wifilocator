@@ -22,8 +22,8 @@ MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\sont
 MERGED from [com.google.android.gms:play-services-auth:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\55824029a8db6a90a24ba6eb891ed1e7\play-services-auth-16.0.0\AndroidManifest.xml:17:1-39:12
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\d931b6ee6814a5f50540ade5bc873f3a\firebase-ads-17.1.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9e4048092796925c23eda2b7233dd2c4\firebase-core-16.0.6\AndroidManifest.xml:2:1-9:12
-MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\129c2679b6f4afb53102e5495650b1bd\osmbonuspack-6.5.2\AndroidManifest.xml:2:1-13:12
-MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:2:1-29:12
+MERGED from [com.github.MKergall:osmbonuspack:6.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\277b1b0ad60a97e23d979f641c3fe1de\osmbonuspack-6.6.0\AndroidManifest.xml:2:1-13:12
+MERGED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:2:1-29:12
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\eb40a42d3c704f4c549fd4ed346678c7\androidasync-2.2.1\AndroidManifest.xml:2:1-16:12
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\62ecafb64e5264ad00cc8259d2e16061\MPAndroidChart-v3.1.0-alpha\AndroidManifest.xml:2:1-20:12
 MERGED from [com.akexorcist:RoundCornerProgressBar:2.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8ec10a438f82d0d2c08ef2098f77adfa\RoundCornerProgressBar-2.0.3\AndroidManifest.xml:2:1-12:12
@@ -139,8 +139,8 @@ MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\cac
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\d931b6ee6814a5f50540ade5bc873f3a\firebase-ads-17.1.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9e4048092796925c23eda2b7233dd2c4\firebase-core-16.0.6\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9e4048092796925c23eda2b7233dd2c4\firebase-core-16.0.6\AndroidManifest.xml:7:5-20
-MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\129c2679b6f4afb53102e5495650b1bd\osmbonuspack-6.5.2\AndroidManifest.xml:11:5-20
-MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\129c2679b6f4afb53102e5495650b1bd\osmbonuspack-6.5.2\AndroidManifest.xml:11:5-20
+MERGED from [com.github.MKergall:osmbonuspack:6.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\277b1b0ad60a97e23d979f641c3fe1de\osmbonuspack-6.6.0\AndroidManifest.xml:11:5-20
+MERGED from [com.github.MKergall:osmbonuspack:6.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\277b1b0ad60a97e23d979f641c3fe1de\osmbonuspack-6.6.0\AndroidManifest.xml:11:5-20
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\eb40a42d3c704f4c549fd4ed346678c7\androidasync-2.2.1\AndroidManifest.xml:13:5-14:19
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\eb40a42d3c704f4c549fd4ed346678c7\androidasync-2.2.1\AndroidManifest.xml:13:5-14:19
 MERGED from [com.flurry.android:analytics:11.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\86472f91a158347cd1c7a9969ef883f0\analytics-11.6.0\AndroidManifest.xml:14:5-20
@@ -449,8 +449,8 @@ ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-mast
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:134:13-46
 uses-feature#android.hardware.wifi
 ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:139:5-58
-MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:25:5-27:36
-MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:25:5-27:36
+MERGED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:25:5-27:36
+MERGED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:25:5-27:36
 MERGED from [com.journeyapps:zxing-android-embedded:3.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\e1d0f276a4023c8a2971fbe879be8b14\zxing-android-embedded-3.1.0\AndroidManifest.xml:43:5-45:36
 MERGED from [com.journeyapps:zxing-android-embedded:3.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\e1d0f276a4023c8a2971fbe879be8b14\zxing-android-embedded-3.1.0\AndroidManifest.xml:43:5-45:36
 	android:name
@@ -725,10 +725,10 @@ MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\cac
 MERGED from [com.google.firebase:firebase-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\d931b6ee6814a5f50540ade5bc873f3a\firebase-ads-17.1.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9e4048092796925c23eda2b7233dd2c4\firebase-core-16.0.6\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-core:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9e4048092796925c23eda2b7233dd2c4\firebase-core-16.0.6\AndroidManifest.xml:5:5-44
-MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\129c2679b6f4afb53102e5495650b1bd\osmbonuspack-6.5.2\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.MKergall:osmbonuspack:6.5.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\129c2679b6f4afb53102e5495650b1bd\osmbonuspack-6.5.2\AndroidManifest.xml:7:5-9:41
-MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:7:5-9:41
-MERGED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.MKergall:osmbonuspack:6.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\277b1b0ad60a97e23d979f641c3fe1de\osmbonuspack-6.6.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.MKergall:osmbonuspack:6.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\277b1b0ad60a97e23d979f641c3fe1de\osmbonuspack-6.6.0\AndroidManifest.xml:7:5-9:41
+MERGED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:7:5-9:41
+MERGED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\eb40a42d3c704f4c549fd4ed346678c7\androidasync-2.2.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\eb40a42d3c704f4c549fd4ed346678c7\androidasync-2.2.1\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0-alpha] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\62ecafb64e5264ad00cc8259d2e16061\MPAndroidChart-v3.1.0-alpha\AndroidManifest.xml:16:5-18:41
@@ -936,31 +936,31 @@ ADDED from [com.google.android.gms:play-services-auth:16.0.0] C:\Users\sont1\.gr
 	android:name
 		ADDED from [com.google.android.gms:play-services-auth:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\55824029a8db6a90a24ba6eb891ed1e7\play-services-auth-16.0.0\AndroidManifest.xml:34:13-89
 supports-screens
-ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:11:5-14:40
+ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:11:5-14:40
 	android:largeScreens
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:13:9-36
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:13:9-36
 	android:normalScreens
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:14:9-37
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:14:9-37
 	android:anyDensity
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:12:9-34
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:12:9-34
 uses-feature#android.hardware.location.network
-ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:16:5-18:36
+ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:16:5-18:36
 	android:required
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:18:9-33
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:18:9-33
 	android:name
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:17:9-57
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:17:9-57
 uses-feature#android.hardware.location.gps
-ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:19:5-21:36
+ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:19:5-21:36
 	android:required
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:21:9-33
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:21:9-33
 	android:name
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:20:9-53
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:20:9-53
 uses-feature#android.hardware.telephony
-ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:22:5-24:36
+ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:22:5-24:36
 	android:required
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:24:9-33
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:24:9-33
 	android:name
-		ADDED from [org.osmdroid:osmdroid-android:6.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4b26f326685c4443d3dac0489c7e1377\osmdroid-android-6.0.3\AndroidManifest.xml:23:9-50
+		ADDED from [org.osmdroid:osmdroid-android:6.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a59cbfa860e0c6bbfc070ce58dfe61cd\osmdroid-android-6.1.0\AndroidManifest.xml:23:9-50
 uses-permission#com.android.vending.BILLING
 ADDED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\13e7568204022265e7c03ffb6b50b4f8\billing-2.0.1\AndroidManifest.xml:10:5-67
 	android:name

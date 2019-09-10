@@ -144,35 +144,108 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="realtime chart on mainactivity to show nearby wifi count over a short period of time">
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="NearbyActivity got three new buttons for range limitations: 1km, 10km, infinite&#10;need some fix with the markers^">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-it.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-pl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_nearby.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_activity_nearby.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_center_map.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_center_map.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_follow_me.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_follow_me.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_follow_me_on.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_follow_me_on.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_ic_map_ortho.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_osm_ic_ic_map_ortho.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_sharp_add_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_sharp_add_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_sharp_remove_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_sharp_remove_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_marker_cluster.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_marker_cluster.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_center_map.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_center_map.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_follow_me.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_follow_me.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_follow_me_on.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_follow_me_on.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_ic_map_ortho.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_osm_ic_ic_map_ortho.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_sharp_add_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_sharp_add_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_sharp_remove_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_sharp_remove_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_center_map.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_center_map.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_follow_me.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_follow_me.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_follow_me_on.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_follow_me_on.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_ic_map_ortho.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_osm_ic_ic_map_ortho.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_sharp_add_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_sharp_add_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_sharp_remove_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_sharp_remove_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_center_map.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_center_map.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_follow_me.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_follow_me.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_follow_me_on.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_follow_me_on.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_ic_map_ortho.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_osm_ic_ic_map_ortho.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_sharp_add_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_sharp_add_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_sharp_remove_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_sharp_remove_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_center_map.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_center_map.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_follow_me.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_follow_me.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_follow_me_on.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_follow_me_on.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_ic_map_ortho.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_osm_ic_ic_map_ortho.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_sharp_add_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_sharp_add_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_sharp_remove_black_36.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_sharp_remove_black_36.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_bonuspack_bubble.9.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_bonuspack_bubble.9.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_btn_moreinfo.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_btn_moreinfo.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_center.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_center.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_direction_arrow.png.flat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_compass.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_compass.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_mapmode.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_mapmode.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_mylocation.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_mylocation.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_offline.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_ic_menu_offline.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_marker_default.png.flat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_marker_default_focused_base.png.flat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_moreinfo_arrow.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_moreinfo_arrow.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_moreinfo_arrow_pressed.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_moreinfo_arrow_pressed.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_navto_small.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_navto_small.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_next.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_next.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_person.png.flat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_previous.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_previous.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_zoom_in.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_zoom_in.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_zoom_out.png.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/drawable_zoom_out.png.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_bonuspack_bubble.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout_bonuspack_bubble.xml.flat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -233,8 +306,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="1174" column="33" selection-start-line="1174" selection-start-column="33" selection-end-line="1174" selection-end-column="33" />
+            <state relative-caret-position="187">
+              <caret line="1184" column="49" selection-start-line="1184" selection-start-column="49" selection-end-line="1184" selection-end-column="49" />
               <folding>
                 <element signature="class#7305:12217" />
                 <element signature="method#run#0;class#7305:12217" />
@@ -417,13 +490,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-867">
+              <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
+            <state relative-caret-position="-1081">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
-                <element signature="method#onCreate#0;class#NearbyActivity#0" />
                 <element signature="class#3914:4368" />
                 <element signature="method#onClick#0;class#3914:4368" />
                 <element signature="e#4087#4212#1" />
@@ -432,8 +513,6 @@
                 <element signature="method#onClick#0;class#4407:4862" />
                 <element signature="e#4581#4706#1" />
                 <element signature="e#4712#4838#1" />
-                <element signature="class#4902:5369" />
-                <element signature="method#onClick#0;class#4902:5369" />
                 <element signature="e#5088#5213#1" />
                 <element signature="e#5219#5345#1" />
                 <element signature="class#5530:5945" />
@@ -471,7 +550,6 @@
                 <element signature="class#12781:13054" />
                 <element signature="method#onClick#0;class#12781:13054" />
                 <element signature="e#11446#11948#1" />
-                <element signature="e#11760#11818#0" />
                 <element signature="e#11839#11891#0" />
                 <element signature="class#12023:12561" />
                 <element signature="method#onServiceDisconnected#0;class#12023:12561" />
@@ -563,6 +641,130 @@
           <provider editor-type-id="android-designer2" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="784" selection-start-line="784" selection-end-line="784" />
+              <folding>
+                <element signature="e#2651#3133#0" />
+                <element signature="e#2700#3127#0" />
+                <element signature="e#3012#3091#1" />
+                <element signature="e#3139#3436#0" />
+                <element signature="e#3442#3896#0" />
+                <element signature="e#3902#4583#0" />
+                <element signature="e#4800#5027#0" />
+                <element signature="e#5033#5298#0" />
+                <element signature="e#5304#5419#0" />
+                <element signature="e#5425#6347#0" />
+                <element signature="e#6028#6294#1" />
+                <element signature="e#6140#6255#1" />
+                <element signature="e#6353#6668#0" />
+                <element signature="e#6552#6641#1" />
+                <element signature="e#6674#6993#0" />
+                <element signature="e#6999#7472#0" />
+                <element signature="e#7268#7357#1" />
+                <element signature="e#7363#7417#1" />
+                <element signature="e#7478#7985#0" />
+                <element signature="e#7772#7870#1" />
+                <element signature="e#7876#7930#1" />
+                <element signature="e#7991#8416#0" />
+                <element signature="e#8221#8299#1" />
+                <element signature="e#8305#8410#1" />
+                <element signature="e#8422#9789#0" />
+                <element signature="e#8592#9580#0" />
+                <element signature="e#8861#8956#1" />
+                <element signature="e#8962#9545#1" />
+                <element signature="e#9465#9531#1" />
+                <element signature="e#9601#9731#0" />
+                <element signature="e#9795#10997#0" />
+                <element signature="e#10099#10991#1" />
+                <element signature="e#10137#10209#1" />
+                <element signature="e#10215#10981#1" />
+                <element signature="e#10869#10935#1" />
+                <element signature="e#11003#11275#0" />
+                <element signature="e#11281#11437#0" />
+                <element signature="e#11443#11691#0" />
+                <element signature="e#11786#12068#0" />
+                <element signature="e#12155#12348#0" />
+                <element signature="e#12354#13153#0" />
+                <element signature="e#13159#14024#0" />
+                <element signature="e#13363#13920#0" />
+                <element signature="e#13488#13889#1" />
+                <element signature="e#13707#13819#1" />
+                <element signature="e#13941#13995#0" />
+                <element signature="e#14030#14391#0" />
+                <element signature="e#14112#14146#1" />
+                <element signature="e#14307#14384#1" />
+                <element signature="e#14397#15155#0" />
+                <element signature="e#14452#15071#0" />
+                <element signature="e#14614#15061#1" />
+                <element signature="e#14748#15047#1" />
+                <element signature="e#14801#15029#1" />
+                <element signature="e#15161#15757#0" />
+                <element signature="e#15591#15629#1" />
+                <element signature="e#15673#15709#1" />
+                <element signature="e#15715#15751#1" />
+                <element signature="e#15763#16161#0" />
+                <element signature="e#16167#16737#0" />
+                <element signature="e#16510#16617#1" />
+                <element signature="e#16623#16731#1" />
+                <element signature="e#16743#17302#0" />
+                <element signature="e#17308#17400#0" />
+                <element signature="e#17308#17689#0" />
+                <element signature="e#17695#18574#0" />
+                <element signature="class#18087:18482" />
+                <element signature="method#onSensorChanged#0;class#18087:18482" />
+                <element signature="method#onAccuracyChanged#0;class#18087:18482" />
+                <element signature="e#18580#18923#0" />
+                <element signature="e#18929#19165#0" />
+                <element signature="e#19171#19947#0" />
+                <element signature="e#19696#19912#1" />
+                <element signature="e#19953#20426#0" />
+                <element signature="e#20206#20242#1" />
+                <element signature="e#20432#20562#0" />
+                <element signature="e#20568#20887#0" />
+                <element signature="e#20893#21273#0" />
+                <element signature="e#21279#21819#0" />
+                <element signature="e#21485#21813#1" />
+                <element signature="e#21825#22015#0" />
+                <element signature="e#22021#22765#0" />
+                <element signature="e#22217#22549#1" />
+                <element signature="e#22235#22366#0" />
+                <element signature="e#22387#22469#0" />
+                <element signature="e#22555#22757#1" />
+                <element signature="e#22771#23056#0" />
+                <element signature="e#22931#23050#1" />
+                <element signature="e#23062#23783#0" />
+                <element signature="e#23129#23237#0" />
+                <element signature="e#23609#23756#1" />
+                <element signature="e#23789#24778#0" />
+                <element signature="e#24619#24740#1" />
+                <element signature="e#24784#24921#0" />
+                <element signature="e#24927#26542#0" />
+                <element signature="e#25435#26509#1" />
+                <element signature="e#25453#26426#0" />
+                <element signature="e#26447#26499#0" />
+                <element signature="e#26548#27197#0" />
+                <element signature="e#27203#28102#0" />
+                <element signature="e#27707#28068#1" />
+                <element signature="e#27725#27985#0" />
+                <element signature="e#28006#28058#0" />
+                <element signature="e#28108#28331#0" />
+                <element signature="e#28337#28693#0" />
+                <element signature="e#28558#28687#1" />
+                <element signature="e#28699#29584#0" />
+                <element signature="e#28861#29468#0" />
+                <element signature="e#28912#29458#1" />
+                <element signature="e#28934#29285#0" />
+                <element signature="e#29306#29444#0" />
+                <element signature="e#29489#29578#0" />
+                <element signature="e#29681#30933#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -598,7 +800,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>findface</find>
       <find>onacti</find>
       <find>custom</find>
       <find>999</find>
@@ -628,6 +829,7 @@
       <find>test</find>
       <find>color</find>
       <find>Collections.</find>
+      <find>bonuspac</find>
     </findStrings>
     <replaceStrings>
       <replace>Toast.makeText</replace>
@@ -719,8 +921,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Crawler.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_crawler.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/CrawlerActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_real_time_chart.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/notif_lay_up.xml" />
@@ -728,9 +928,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/RealTimeChart.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
       </list>
     </option>
   </component>
@@ -985,13 +1187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
-    </task>
-    <task id="LOCAL-00034" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;custom dialog with working progressbar (calculations needed)">
-      <created>1552062218974</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1552062218974</updated>
     </task>
     <task id="LOCAL-00035" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql">
       <created>1552078921388</created>
@@ -1329,7 +1524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568008076979</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="NearbyActivity got three new buttons for range limitations: 1km, 10km, infinite&#10;need some fix with the markers^">
+      <created>1568037981718</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1568037981719</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1343,7 +1545,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49866667" visible="true" weight="0.24939272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1356,12 +1557,12 @@
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49473685" weight="0.27353463" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49473685" visible="true" weight="0.27353463" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39609236" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
-      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.49959514" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49959514" weight="0.3285968" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.6802842" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50526315" side_tool="true" weight="0.27353463" />
       <window_info anchor="bottom" id="Logcat" order="10" sideWeight="0.49473685" weight="0.3339254" />
@@ -1394,7 +1595,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;                             &#10;nearbyactivity fix&#10;upload fix&#10;&#10;webview changed to show mobile version&#10;&#10;works fine.&#10;android 8+&#10;&#10;persistent notification is now showed (need to fix appquit)&#10;&#10;Reworked main and nearby activity." />
     <MESSAGE value="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;                             &#10;nearbyactivity fix&#10;upload fix&#10;&#10;webview changed to show mobile version&#10;&#10;works fine.&#10;android 8+&#10;&#10;persistent notification is now showed (need to fix appquit)&#10;&#10;Reworked main and nearby activity.&#10;&#10;ongoing_notification fixed&#10;live status notification fixed&#10;devideid fixed" />
     <MESSAGE value="notifications fixed" />
     <MESSAGE value="better notifications" />
@@ -1419,7 +1619,8 @@
     <MESSAGE value="crawler working -&gt; with redirections" />
     <MESSAGE value="crawler fixed" />
     <MESSAGE value="realtime chart on mainactivity to show nearby wifi count over a short period of time" />
-    <option name="LAST_COMMIT_MESSAGE" value="realtime chart on mainactivity to show nearby wifi count over a short period of time" />
+    <MESSAGE value="NearbyActivity got three new buttons for range limitations: 1km, 10km, infinite&#10;need some fix with the markers^" />
+    <option name="LAST_COMMIT_MESSAGE" value="NearbyActivity got three new buttons for range limitations: 1km, 10km, infinite&#10;need some fix with the markers^" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1776,132 +1977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="111" column="70" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="70" />
-          <folding>
-            <element signature="e#2651#3133#0" />
-            <element signature="e#2700#3127#0" />
-            <element signature="e#3012#3091#1" />
-            <element signature="e#3442#4123#0" />
-            <element signature="e#4340#4567#0" />
-            <element signature="e#4573#4838#0" />
-            <element signature="e#4843#4958#0" />
-            <element signature="e#4964#5886#0" />
-            <element signature="e#5567#5833#1" />
-            <element signature="e#5679#5794#1" />
-            <element signature="e#5892#6207#0" />
-            <element signature="e#6091#6180#1" />
-            <element signature="e#6213#6532#0" />
-            <element signature="e#6538#7011#0" />
-            <element signature="e#6807#6896#1" />
-            <element signature="e#6902#6956#1" />
-            <element signature="e#7017#7524#0" />
-            <element signature="e#7311#7409#1" />
-            <element signature="e#7415#7469#1" />
-            <element signature="e#7530#7955#0" />
-            <element signature="e#7760#7838#1" />
-            <element signature="e#7844#7949#1" />
-            <element signature="e#7961#9328#0" />
-            <element signature="e#8131#9119#0" />
-            <element signature="e#8400#8495#1" />
-            <element signature="e#8501#9084#1" />
-            <element signature="e#9004#9070#1" />
-            <element signature="e#9140#9270#0" />
-            <element signature="e#9334#10536#0" />
-            <element signature="e#9638#10530#1" />
-            <element signature="e#9676#9748#1" />
-            <element signature="e#9754#10520#1" />
-            <element signature="e#10408#10474#1" />
-            <element signature="e#10542#10814#0" />
-            <element signature="e#10820#10976#0" />
-            <element signature="e#10982#11230#0" />
-            <element signature="e#11325#11607#0" />
-            <element signature="e#11694#11887#0" />
-            <element signature="e#11893#12692#0" />
-            <element signature="e#12698#13563#0" />
-            <element signature="e#12902#13459#0" />
-            <element signature="e#13027#13428#1" />
-            <element signature="e#13246#13358#1" />
-            <element signature="e#13480#13534#0" />
-            <element signature="e#13569#13930#0" />
-            <element signature="e#13651#13685#1" />
-            <element signature="e#13846#13923#1" />
-            <element signature="e#13936#14694#0" />
-            <element signature="e#13991#14610#0" />
-            <element signature="e#14153#14600#1" />
-            <element signature="e#14287#14586#1" />
-            <element signature="e#14340#14568#1" />
-            <element signature="e#14700#15296#0" />
-            <element signature="e#15130#15168#1" />
-            <element signature="e#15212#15248#1" />
-            <element signature="e#15254#15290#1" />
-            <element signature="e#15302#15700#0" />
-            <element signature="e#15706#16276#0" />
-            <element signature="e#16049#16156#1" />
-            <element signature="e#16162#16270#1" />
-            <element signature="e#16282#16841#0" />
-            <element signature="e#16847#16939#0" />
-            <element signature="e#16847#17228#0" />
-            <element signature="e#17234#18113#0" />
-            <element signature="class#17626:18021" />
-            <element signature="method#onSensorChanged#0;class#17626:18021" />
-            <element signature="method#onAccuracyChanged#0;class#17626:18021" />
-            <element signature="e#18119#18462#0" />
-            <element signature="e#18468#18704#0" />
-            <element signature="e#18710#19486#0" />
-            <element signature="e#19235#19451#1" />
-            <element signature="e#19492#19965#0" />
-            <element signature="e#19745#19781#1" />
-            <element signature="e#19971#20101#0" />
-            <element signature="e#20107#20426#0" />
-            <element signature="e#20432#20812#0" />
-            <element signature="e#20818#21358#0" />
-            <element signature="e#21024#21352#1" />
-            <element signature="e#21364#21554#0" />
-            <element signature="e#21560#22304#0" />
-            <element signature="e#21756#22088#1" />
-            <element signature="e#21774#21905#0" />
-            <element signature="e#21926#22008#0" />
-            <element signature="e#22094#22296#1" />
-            <element signature="e#22310#22595#0" />
-            <element signature="e#22470#22589#1" />
-            <element signature="e#22601#23322#0" />
-            <element signature="e#22668#22776#0" />
-            <element signature="e#23148#23295#1" />
-            <element signature="e#23328#24317#0" />
-            <element signature="e#24158#24279#1" />
-            <element signature="e#24323#24460#0" />
-            <element signature="e#24466#26081#0" />
-            <element signature="e#24974#26048#1" />
-            <element signature="e#24992#25965#0" />
-            <element signature="e#25986#26038#0" />
-            <element signature="e#26087#26736#0" />
-            <element signature="e#26742#27641#0" />
-            <element signature="e#27246#27607#1" />
-            <element signature="e#27264#27524#0" />
-            <element signature="e#27545#27597#0" />
-            <element signature="e#27647#27870#0" />
-            <element signature="e#27876#28232#0" />
-            <element signature="e#28097#28226#1" />
-            <element signature="e#28238#29123#0" />
-            <element signature="e#28400#29007#0" />
-            <element signature="e#28451#28997#1" />
-            <element signature="e#28473#28824#0" />
-            <element signature="e#28845#28983#0" />
-            <element signature="e#29028#29117#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_crawler.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -1909,13 +1984,6 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="144" column="47" selection-start-line="144" selection-start-column="47" selection-end-line="144" selection-end-column="47" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2293,10 +2361,25 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="1174" column="33" selection-start-line="1174" selection-start-column="33" selection-end-line="1174" selection-end-column="33" />
+        <state relative-caret-position="187">
+          <caret line="1184" column="49" selection-start-line="1184" selection-start-column="49" selection-end-line="1184" selection-end-column="49" />
           <folding>
             <element signature="class#7305:12217" />
             <element signature="method#run#0;class#7305:12217" />
@@ -2478,20 +2561,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+        <state relative-caret-position="-867">
+          <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
+        <state relative-caret-position="-1081">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
-            <element signature="method#onCreate#0;class#NearbyActivity#0" />
             <element signature="class#3914:4368" />
             <element signature="method#onClick#0;class#3914:4368" />
             <element signature="e#4087#4212#1" />
@@ -2500,8 +2581,6 @@
             <element signature="method#onClick#0;class#4407:4862" />
             <element signature="e#4581#4706#1" />
             <element signature="e#4712#4838#1" />
-            <element signature="class#4902:5369" />
-            <element signature="method#onClick#0;class#4902:5369" />
             <element signature="e#5088#5213#1" />
             <element signature="e#5219#5345#1" />
             <element signature="class#5530:5945" />
@@ -2539,7 +2618,6 @@
             <element signature="class#12781:13054" />
             <element signature="method#onClick#0;class#12781:13054" />
             <element signature="e#11446#11948#1" />
-            <element signature="e#11760#11818#0" />
             <element signature="e#11839#11891#0" />
             <element signature="class#12023:12561" />
             <element signature="method#onServiceDisconnected#0;class#12023:12561" />
@@ -2616,6 +2694,128 @@
             <element signature="method#buildClusterMarker#0;class#CustomCluster#0" />
             <element signature="e#32209#32274#1" />
             <element signature="class#CustomMarker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="784" selection-start-line="784" selection-end-line="784" />
+          <folding>
+            <element signature="e#2651#3133#0" />
+            <element signature="e#2700#3127#0" />
+            <element signature="e#3012#3091#1" />
+            <element signature="e#3139#3436#0" />
+            <element signature="e#3442#3896#0" />
+            <element signature="e#3902#4583#0" />
+            <element signature="e#4800#5027#0" />
+            <element signature="e#5033#5298#0" />
+            <element signature="e#5304#5419#0" />
+            <element signature="e#5425#6347#0" />
+            <element signature="e#6028#6294#1" />
+            <element signature="e#6140#6255#1" />
+            <element signature="e#6353#6668#0" />
+            <element signature="e#6552#6641#1" />
+            <element signature="e#6674#6993#0" />
+            <element signature="e#6999#7472#0" />
+            <element signature="e#7268#7357#1" />
+            <element signature="e#7363#7417#1" />
+            <element signature="e#7478#7985#0" />
+            <element signature="e#7772#7870#1" />
+            <element signature="e#7876#7930#1" />
+            <element signature="e#7991#8416#0" />
+            <element signature="e#8221#8299#1" />
+            <element signature="e#8305#8410#1" />
+            <element signature="e#8422#9789#0" />
+            <element signature="e#8592#9580#0" />
+            <element signature="e#8861#8956#1" />
+            <element signature="e#8962#9545#1" />
+            <element signature="e#9465#9531#1" />
+            <element signature="e#9601#9731#0" />
+            <element signature="e#9795#10997#0" />
+            <element signature="e#10099#10991#1" />
+            <element signature="e#10137#10209#1" />
+            <element signature="e#10215#10981#1" />
+            <element signature="e#10869#10935#1" />
+            <element signature="e#11003#11275#0" />
+            <element signature="e#11281#11437#0" />
+            <element signature="e#11443#11691#0" />
+            <element signature="e#11786#12068#0" />
+            <element signature="e#12155#12348#0" />
+            <element signature="e#12354#13153#0" />
+            <element signature="e#13159#14024#0" />
+            <element signature="e#13363#13920#0" />
+            <element signature="e#13488#13889#1" />
+            <element signature="e#13707#13819#1" />
+            <element signature="e#13941#13995#0" />
+            <element signature="e#14030#14391#0" />
+            <element signature="e#14112#14146#1" />
+            <element signature="e#14307#14384#1" />
+            <element signature="e#14397#15155#0" />
+            <element signature="e#14452#15071#0" />
+            <element signature="e#14614#15061#1" />
+            <element signature="e#14748#15047#1" />
+            <element signature="e#14801#15029#1" />
+            <element signature="e#15161#15757#0" />
+            <element signature="e#15591#15629#1" />
+            <element signature="e#15673#15709#1" />
+            <element signature="e#15715#15751#1" />
+            <element signature="e#15763#16161#0" />
+            <element signature="e#16167#16737#0" />
+            <element signature="e#16510#16617#1" />
+            <element signature="e#16623#16731#1" />
+            <element signature="e#16743#17302#0" />
+            <element signature="e#17308#17400#0" />
+            <element signature="e#17308#17689#0" />
+            <element signature="e#17695#18574#0" />
+            <element signature="class#18087:18482" />
+            <element signature="method#onSensorChanged#0;class#18087:18482" />
+            <element signature="method#onAccuracyChanged#0;class#18087:18482" />
+            <element signature="e#18580#18923#0" />
+            <element signature="e#18929#19165#0" />
+            <element signature="e#19171#19947#0" />
+            <element signature="e#19696#19912#1" />
+            <element signature="e#19953#20426#0" />
+            <element signature="e#20206#20242#1" />
+            <element signature="e#20432#20562#0" />
+            <element signature="e#20568#20887#0" />
+            <element signature="e#20893#21273#0" />
+            <element signature="e#21279#21819#0" />
+            <element signature="e#21485#21813#1" />
+            <element signature="e#21825#22015#0" />
+            <element signature="e#22021#22765#0" />
+            <element signature="e#22217#22549#1" />
+            <element signature="e#22235#22366#0" />
+            <element signature="e#22387#22469#0" />
+            <element signature="e#22555#22757#1" />
+            <element signature="e#22771#23056#0" />
+            <element signature="e#22931#23050#1" />
+            <element signature="e#23062#23783#0" />
+            <element signature="e#23129#23237#0" />
+            <element signature="e#23609#23756#1" />
+            <element signature="e#23789#24778#0" />
+            <element signature="e#24619#24740#1" />
+            <element signature="e#24784#24921#0" />
+            <element signature="e#24927#26542#0" />
+            <element signature="e#25435#26509#1" />
+            <element signature="e#25453#26426#0" />
+            <element signature="e#26447#26499#0" />
+            <element signature="e#26548#27197#0" />
+            <element signature="e#27203#28102#0" />
+            <element signature="e#27707#28068#1" />
+            <element signature="e#27725#27985#0" />
+            <element signature="e#28006#28058#0" />
+            <element signature="e#28108#28331#0" />
+            <element signature="e#28337#28693#0" />
+            <element signature="e#28558#28687#1" />
+            <element signature="e#28699#29584#0" />
+            <element signature="e#28861#29468#0" />
+            <element signature="e#28912#29458#1" />
+            <element signature="e#28934#29285#0" />
+            <element signature="e#29306#29444#0" />
+            <element signature="e#29489#29578#0" />
+            <element signature="e#29681#30933#0" />
           </folding>
         </state>
       </provider>

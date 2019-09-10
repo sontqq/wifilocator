@@ -1428,7 +1428,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable direction_arrow
 drawable example_appwidget_preview
 drawable exiticon
 drawable googleg_disabled_color_18
@@ -1502,6 +1501,7 @@ drawable pin2
 drawable popup_shape
 drawable previous
 drawable refresh_tiny
+drawable round_navigation_white_48
 drawable rounded_corner
 drawable route
 drawable search1
@@ -2423,6 +2423,8 @@ string set_mode_hide_me
 string set_mode_offline
 string set_mode_online
 string set_mode_show_me
+string snapshot
+string states
 string status_bar_notification_info_overflow
 string topo
 string unknown

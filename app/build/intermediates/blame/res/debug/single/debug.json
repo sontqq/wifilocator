@@ -28,6 +28,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\895559d2bf708e950c8f9daa6bb1fb41\\support-compat-28.0.0\\res\\drawable\\notification_bg_low.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_person.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\person.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
@@ -112,6 +116,10 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\layout\\activity_real_time_chart.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_person.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\person.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
@@ -169,7 +177,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_ic_map_ortho.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\osm_ic_ic_map_ortho.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\osm_ic_ic_map_ortho.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_action_bar_arrow_back.png.flat",
@@ -240,6 +248,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\anim\\design_snackbar_out.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_round_navigation_white_48.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\round_navigation_white_48.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_button_send_click.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable-hdpi-v4\\bugsee_feedback_button_send_click.png"
     },
@@ -273,7 +285,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_sharp_remove_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\sharp_remove_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\sharp_remove_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_ic_check_circle.png.flat",
@@ -290,6 +302,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_btn_google_dark_normal.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-tvdpi-v4\\btn_google_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_marker_default_focused_base.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\marker_default_focused_base.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_tooltip_enter.xml.flat",
@@ -337,11 +353,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_sharp_add_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\sharp_add_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\sharp_add_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_osm_ic_follow_me_on.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\osm_ic_follow_me_on.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\osm_ic_follow_me_on.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_chronometer.xml.flat",
@@ -357,7 +373,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_osm_ic_center_map.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\osm_ic_center_map.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\osm_ic_center_map.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_tabs_icon_color_selector_colored.xml.flat",
@@ -436,6 +452,10 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\rounded_corner.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_marker_default_focused_base.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\marker_default_focused_base.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_btn_google_signin_light_disabled.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-hdpi-v4\\btn_google_signin_light_disabled.9.png"
     },
@@ -489,7 +509,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bonuspack_bubble.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\bonuspack_bubble.9.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\bonuspack_bubble.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_btn_google_light_focus.9.png.flat",
@@ -513,7 +533,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_osm_ic_ic_map_ortho.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\osm_ic_ic_map_ortho.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\osm_ic_ic_map_ortho.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_bottom_nav_item_tint.xml.flat",
@@ -521,7 +541,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_sharp_add_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\sharp_add_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\sharp_add_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_button_icon.xml.flat",
@@ -632,8 +652,12 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_marker_default.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\marker_default.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_osm_ic_follow_me.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\osm_ic_follow_me.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\osm_ic_follow_me.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_btn_google_light_focus.9.png.flat",
@@ -642,10 +666,6 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_action_bar_background_clicked.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable\\bugsee_action_bar_background_clicked.xml"
-    },
-    {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_marker_default.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\marker_default.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi_example_appwidget_preview.png.flat",
@@ -700,6 +720,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_person.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\person.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b9ffff42fac733baed479ce77a508552\\play-services-base-16.0.1\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
@@ -709,7 +733,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_sharp_add_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\sharp_add_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\sharp_add_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_progress.xml.flat",
@@ -817,7 +841,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_osm_ic_center_map.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\osm_ic_center_map.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\osm_ic_center_map.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_custom.xml.flat",
@@ -861,7 +885,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_sharp_remove_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\sharp_remove_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\sharp_remove_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_stub_titleframe.xml.flat",
@@ -917,7 +941,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_osm_ic_follow_me.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\osm_ic_follow_me.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\osm_ic_follow_me.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mtrl_chip_checked_black.xml.flat",
@@ -1000,6 +1024,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\644a404847cc236424ec3a287024efbb\\facebook-common-5.1.1\\res\\drawable\\com_facebook_auth_dialog_cancel_background.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_marker_default.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\marker_default.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_btn_google_signin_light_disabled.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-xxxhdpi-v4\\btn_google_signin_light_disabled.9.png"
     },
@@ -1020,6 +1048,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable-xxhdpi-v4\\bugsee_feedback_developer_message_background.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_marker_default.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\marker_default.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-hdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },
@@ -1033,7 +1065,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_follow_me_on.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\osm_ic_follow_me_on.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\osm_ic_follow_me_on.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_fab_show_motion_spec.xml.flat",
@@ -1101,7 +1133,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_navto_small.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\navto_small.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\navto_small.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_design_fab_background.xml.flat",
@@ -1137,7 +1169,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_moreinfo_arrow_pressed.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\moreinfo_arrow_pressed.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\moreinfo_arrow_pressed.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\interpolator-v21_mtrl_fast_out_slow_in.xml.flat",
@@ -1153,7 +1185,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_zoom_out.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\zoom_out.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\zoom_out.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_retry.png.flat",
@@ -1256,10 +1288,6 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\644a404847cc236424ec3a287024efbb\\facebook-common-5.1.1\\res\\drawable-mdpi-v4\\com_facebook_button_icon_blue.png"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_direction_arrow.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\direction_arrow.png"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_btn_google_signin_light_focus.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-mdpi-v4\\btn_google_signin_light_focus.9.png"
     },
@@ -1292,6 +1320,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4e298708e0c95c5d36be843d694eca60\\core-0.9.0.2\\res\\layout\\md_listitem.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_marker_default_focused_base.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\marker_default_focused_base.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_menu_layout.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\layout\\abc_action_menu_layout.xml"
     },
@@ -1306,6 +1338,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b9ffff42fac733baed479ce77a508552\\play-services-base-16.0.1\\res\\drawable-xhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_round_navigation_white_48.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\round_navigation_white_48.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_xout.png.flat",
@@ -1337,7 +1373,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_osm_ic_center_map.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\osm_ic_center_map.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\osm_ic_center_map.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_switch_thumb_material_dark.xml.flat",
@@ -1404,10 +1440,6 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-mdpi-v4\\btn_google_light_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_person.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\person.png"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pin2.png.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\pin2.png"
     },
@@ -1465,7 +1497,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_zoom_in.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\zoom_in.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\zoom_in.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_btn_google_signin_dark_focus.9.png.flat",
@@ -1477,7 +1509,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_mapmode.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\ic_menu_mapmode.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\ic_menu_mapmode.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_design_ic_visibility.png.flat",
@@ -1505,7 +1537,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_osm_ic_center_map.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\osm_ic_center_map.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\osm_ic_center_map.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_btn_google_signin_dark_focus.9.png.flat",
@@ -1549,7 +1581,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bonuspack_bubble.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\layout\\bonuspack_bubble.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\layout\\bonuspack_bubble.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mtrl_chip_checked_circle.xml.flat",
@@ -1589,7 +1621,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_sharp_remove_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\sharp_remove_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\sharp_remove_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_anteater_red_icon.png.flat",
@@ -1613,7 +1645,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_next.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\next.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\next.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_design_error.xml.flat",
@@ -1705,7 +1737,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_osm_ic_ic_map_ortho.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\osm_ic_ic_map_ortho.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\osm_ic_ic_map_ortho.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_alert_dialog_title_material.xml.flat",
@@ -1748,6 +1780,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-mdpi-v4\\btn_google_signin_light_disabled.9.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_marker_default.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\marker_default.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_list.png.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable-v24\\list.png"
     },
@@ -1784,6 +1820,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\layout\\mtrl_layout_snackbar.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_person.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\person.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_button_send_normal.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable-xhdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
@@ -1809,7 +1849,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_sharp_remove_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\sharp_remove_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\sharp_remove_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -1845,7 +1885,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_osm_ic_ic_map_ortho.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\osm_ic_ic_map_ortho.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\osm_ic_ic_map_ortho.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -2057,7 +2097,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_osm_ic_follow_me.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\osm_ic_follow_me.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\osm_ic_follow_me.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_mappinicon.png.flat",
@@ -2204,6 +2244,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable\\bugsee_screenshot_label_color_red_normal.xml"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_marker_default_focused_base.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\marker_default_focused_base.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\895559d2bf708e950c8f9daa6bb1fb41\\support-compat-28.0.0\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
     },
@@ -2253,7 +2297,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_sharp_add_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\sharp_add_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\sharp_add_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_md_btn_selector_dark.xml.flat",
@@ -2269,7 +2313,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_moreinfo_arrow.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\moreinfo_arrow.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\moreinfo_arrow.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout-v26_abc_screen_toolbar.xml.flat",
@@ -2314,6 +2358,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\raw_lbpcascade_frontalface_improved.xml.flat",
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\raw\\lbpcascade_frontalface_improved.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_round_navigation_white_48.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\round_navigation_white_48.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_gpsicon.png.flat",
@@ -2448,12 +2496,12 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\8fccbb40182c2e3b21ec1844359b3d2c\\google-signin-1.0.0\\res\\drawable-xxhdpi-v4\\btn_google_signin_light_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_btn_unelevated_state_list_anim.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\animator\\mtrl_btn_unelevated_state_list_anim.xml"
-    },
-    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_favicon_blue.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\644a404847cc236424ec3a287024efbb\\facebook-common-5.1.1\\res\\drawable\\com_facebook_favicon_blue.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\animator_mtrl_btn_unelevated_state_list_anim.xml.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\animator\\mtrl_btn_unelevated_state_list_anim.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_client_message_background.9.png.flat",
@@ -2465,11 +2513,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_mylocation.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\ic_menu_mylocation.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\ic_menu_mylocation.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_center.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\center.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\center.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
@@ -2489,11 +2537,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_sharp_add_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\sharp_add_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\sharp_add_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_osm_ic_follow_me_on.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\osm_ic_follow_me_on.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\osm_ic_follow_me_on.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_btn_google_signin_light_focus.9.png.flat",
@@ -2530,10 +2578,6 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_com_facebook_auth_dialog_header_background.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\644a404847cc236424ec3a287024efbb\\facebook-common-5.1.1\\res\\drawable\\com_facebook_auth_dialog_header_background.xml"
-    },
-    {
-        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_marker_default_focused_base.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\marker_default_focused_base.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_btn_google_light_focus.9.png.flat",
@@ -2597,7 +2641,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_osm_ic_follow_me_on.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\osm_ic_follow_me_on.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\osm_ic_follow_me_on.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_btn_google_dark_pressed.9.png.flat",
@@ -2637,7 +2681,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_marker_cluster.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\129c2679b6f4afb53102e5495650b1bd\\osmbonuspack-6.5.2\\res\\drawable-mdpi-v4\\marker_cluster.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\277b1b0ad60a97e23d979f641c3fe1de\\osmbonuspack-6.6.0\\res\\drawable-mdpi-v4\\marker_cluster.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_btn_google_light_pressed.9.png.flat",
@@ -2681,7 +2725,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_previous.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\previous.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\previous.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_voice_search_api_material.xml.flat",
@@ -2714,6 +2758,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_anteater_icon_white.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable-xhdpi-v4\\bugsee_anteater_icon_white.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_marker_default_focused_base.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\marker_default_focused_base.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_close.png.flat",
@@ -2773,7 +2821,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_offline.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\ic_menu_offline.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\ic_menu_offline.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_green_checked.xml.flat",
@@ -3076,6 +3124,10 @@
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_round_navigation_white_48.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\round_navigation_white_48.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_close_item_material.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
@@ -3125,7 +3177,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_osm_ic_follow_me_on.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-mdpi-v4\\osm_ic_follow_me_on.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-mdpi-v4\\osm_ic_follow_me_on.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\xml_wifi_widget_info.xml.flat",
@@ -3213,7 +3265,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_sharp_remove_black_36.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xhdpi-v4\\sharp_remove_black_36.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\sharp_remove_black_36.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_btn_google_dark_pressed.9.png.flat",
@@ -3254,6 +3306,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_left_mtrl_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_marker_default.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xhdpi-v4\\marker_default.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_layout.xml.flat",
@@ -3565,7 +3621,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_osm_ic_follow_me.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxhdpi-v4\\osm_ic_follow_me.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxhdpi-v4\\osm_ic_follow_me.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_btn_google_signin_dark_normal.9.png.flat",
@@ -3577,7 +3633,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_follow_me.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\osm_ic_follow_me.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\osm_ic_follow_me.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_basic.xml.flat",
@@ -3641,7 +3697,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_center_map.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-xxxhdpi-v4\\osm_ic_center_map.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\osm_ic_center_map.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_googleg_standard_color_18.png.flat",
@@ -3724,6 +3780,10 @@
         "source": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\src\\main\\res\\drawable\\wifi4.png"
     },
     {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_person.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\person.png"
+    },
+    {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tooltip_frame_dark.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\drawable\\tooltip_frame_dark.xml"
     },
@@ -3761,7 +3821,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_osm_ic_ic_map_ortho.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable-hdpi-v4\\osm_ic_ic_map_ortho.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-hdpi-v4\\osm_ic_ic_map_ortho.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -3853,7 +3913,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_compass.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\ic_menu_compass.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\ic_menu_compass.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_5.png.flat",
@@ -3882,6 +3942,10 @@
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_green_normal.xml.flat",
         "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\17ed99522dd821e9fcca951dbeb938a2\\bugsee-android-1.14.9\\res\\drawable\\bugsee_screenshot_label_color_green_normal.xml"
+    },
+    {
+        "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_round_navigation_white_48.png.flat",
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable-xxxhdpi-v4\\round_navigation_white_48.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -3957,7 +4021,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_moreinfo.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4b26f326685c4443d3dac0489c7e1377\\osmdroid-android-6.0.3\\res\\drawable\\btn_moreinfo.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\a59cbfa860e0c6bbfc070ce58dfe61cd\\osmdroid-android-6.1.0\\res\\drawable\\btn_moreinfo.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_popup_enter.xml.flat",
