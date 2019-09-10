@@ -145,28 +145,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="GFX export method added&#10;-&gt; php file should give method to export all coords as json/gson/gfx/kml">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -435,8 +414,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="785" column="58" lean-forward="true" selection-start-line="785" selection-start-column="58" selection-end-line="785" selection-end-column="58" />
+            <state relative-caret-position="222">
+              <caret line="796" column="100" lean-forward="true" selection-start-line="796" selection-start-column="100" selection-end-line="796" selection-end-column="100" />
               <folding>
                 <element signature="e#2651#3133#0" />
                 <element signature="e#2700#3127#0" />
@@ -1160,13 +1139,6 @@
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
     </task>
-    <task id="LOCAL-00036" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;&#10;Custom http upload layout">
-      <created>1552109065980</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1552109065980</updated>
-    </task>
     <task id="LOCAL-00037" summary="+ unique url requests are implemented. should save bandwidth and probably extends battery's life&#10;+ statistical fixes (charts,stats)&#10;+ count of gps satellites in view is now displayed on the notification&#10;+ Upload to PHP/HTTP and FTP is working.&#10;+ custom dialog with working progressbar (calculations needed)&#10;&#10;TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;&#10;+ auto csv upload at 100 kilobytes">
       <created>1552215855284</created>
       <option name="number" value="00037" />
@@ -1503,7 +1475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568096825273</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="GFX export method added&#10;-&gt; php file should give method to export all coords as json/gson/gfx/kml">
+      <created>1568110043381</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1568110043384</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2685,8 +2664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="785" column="58" lean-forward="true" selection-start-line="785" selection-start-column="58" selection-end-line="785" selection-end-column="58" />
+        <state relative-caret-position="222">
+          <caret line="796" column="100" lean-forward="true" selection-start-line="796" selection-start-column="100" selection-end-line="796" selection-end-column="100" />
           <folding>
             <element signature="e#2651#3133#0" />
             <element signature="e#2700#3127#0" />
