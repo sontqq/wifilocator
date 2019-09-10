@@ -579,7 +579,15 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 //Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
                 //startActivity(i);
 
-                SontHelper.generateKML(BackgroundService.locations);
+                String x = SontHelper.generateKML(BackgroundService.locations);
+                String y = SontHelper.generateGFX(BackgroundService.locations);
+
+                if (x != null) {
+                    Toast.makeText(getApplicationContext(), "KML File saved to: " + x, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "GFX File saved to: " + y, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "IO Error", Toast.LENGTH_LONG).show();
+                }
 
                 /*
                 final String[] site = {""};

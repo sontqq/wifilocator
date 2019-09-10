@@ -757,7 +757,9 @@ public class SontHelper extends Application {
         }
     }
 
-    public static void generateGFX(File file, String name, List<Location> points) {
+    public static String generateGFX(List<Location> points) {
+        String name = "gfxfile.gfx";
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), name);
         String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx xmlns=\"http://www.topografix.com/GPX/1/1\" creator=\"MapSource 6.15.5\" version=\"1.1\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd\"><trk>\n";
         name = "<name>" + name + "</name><trkseg>\n";
 
@@ -779,11 +781,13 @@ public class SontHelper extends Application {
             writer.close();
 
         } catch (IOException e) {
-            Log.e("generateGfx", "Error Writting Path", e);
+            e.printStackTrace();
+            return null;
         }
+        return file.getAbsolutePath();
     }
 
-    public static void generateKML(List<Location> points) {
+    public static String generateKML(List<Location> points) {
         String fullKML = "";
         String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n <kml xmlns=\"http://earth.google.com/kml/2.2\">\n";
         String segments = "";
@@ -799,7 +803,6 @@ public class SontHelper extends Application {
         }
 
         fullKML = header + segments + footer;
-        Log.d("KML_", fullKML);
         File file = null;
         try {
             file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "wifiloc.kml");
@@ -811,8 +814,10 @@ public class SontHelper extends Application {
             writer.close();
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         } finally {
             Log.d("KML_location", file.toString());
         }
+        return file.getAbsolutePath();
     }
 }

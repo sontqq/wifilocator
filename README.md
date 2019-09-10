@@ -18,6 +18,8 @@ Suggested: Android 8.1
 
 Tested & recommended: Android 9.0 SAMSUNG
 
+Please note that this application may contains functions that are totally irrelevant to the wardriving. They are for personal use.
+
 
 Screenshots:
 
