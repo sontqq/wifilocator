@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.Nearby_browser"></activity>
         <activity
             android:name=".activities.RealTimeChart"
-            android:hardwareAccelerated="true"></activity>
+            android:hardwareAccelerated="true" />
         <activity android:name=".activities.CrawlerActivity" />
         <activity
             android:name=".opencv_realtime"
@@ -29,14 +30,12 @@
             android:name=".activity_camera"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity android:name=".activities.HeatMapp" />
-
         <activity
             android:name=".activities.NearbyActivity"
             android:alwaysRetainTaskState="true"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activities.ListActivity"
             android:alwaysRetainTaskState="true"
@@ -53,7 +52,6 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -66,7 +64,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MainActivity"
             android:alwaysRetainTaskState="true"
@@ -97,7 +94,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-4051604993335718~5748521133" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -114,7 +110,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/wifi_widget_info" />
         </receiver>
-
         <receiver android:name=".BroadcReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -135,13 +130,12 @@
             android:enabled="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
-
     <uses-feature android:name="android.hardware.wifi" />
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="false" />
-    <uses-feature android:name="android.hardware.camera" />
 
+    <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -177,7 +171,6 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
@@ -185,7 +178,6 @@
     <uses-permission
         android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
-
     <uses-permission
         android:name="android.permission.MANAGE_DOCUMENTS"
         tools:ignore="ProtectedPermissions" />
@@ -193,5 +185,8 @@
     <uses-permission
         android:name="android.permission.BLUETOOTH_PRIVILEGED"
         tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
 
 </manifest>

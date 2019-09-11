@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="5316"
+    android:versionCode="5324"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -50,6 +50,8 @@
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <uses-feature
@@ -104,6 +106,8 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity android:name="com.sontme.esp.getlocation.activities.Nearby_browser" >
+        </activity>
         <activity
             android:name="com.sontme.esp.getlocation.activities.RealTimeChart"
             android:hardwareAccelerated="true" />

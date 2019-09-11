@@ -2003,6 +2003,7 @@ id version
 id versionChangedInfo
 id view_offset_helper
 id visible
+id webmap
 id webview
 id wide
 id widget_btn1
@@ -2082,6 +2083,7 @@ layout activity_list
 layout activity_main
 layout activity_map
 layout activity_nearby
+layout activity_nearby_browser
 layout activity_opencv_realtime
 layout activity_real_time_chart
 layout activity_temp

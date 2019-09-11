@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
-    android:versionCode="5307"
+    android:versionCode="5317"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -103,6 +103,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity android:name="com.sontme.esp.getlocation.activities.Nearby_browser" />
         <activity
             android:name="com.sontme.esp.getlocation.activities.RealTimeChart"
             android:hardwareAccelerated="true" />
