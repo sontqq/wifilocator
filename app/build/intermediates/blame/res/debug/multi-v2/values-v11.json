@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4e298708e0c95c5d36be843d694eca60\\core-0.9.0.2\\res\\values-v11\\values-v11.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\4651812b77a1592911ab96274e00a3d7\\core-0.9.0.2\\res\\values-v11\\values-v11.xml",
                     "from": {
                         "startLines": "2,19",
                         "startColumns": "4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\e1d0f276a4023c8a2971fbe879be8b14\\zxing-android-embedded-3.1.0\\res\\values-v11\\values-v11.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\e8ff9c0d8c2e6109ead24d09de8b721a\\zxing-android-embedded-3.1.0\\res\\values-v11\\values-v11.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

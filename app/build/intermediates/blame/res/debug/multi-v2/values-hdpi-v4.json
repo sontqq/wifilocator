@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\bad742b21bd0267a08398649491313a4\\core-1.9.13\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\1b3835808fcdb5f205d74bd8ec5fe79c\\core-1.9.13\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\64b0ce25622b4ea581c92bae169e27cb\\appcompat-v7-28.0.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

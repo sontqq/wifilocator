@@ -4,24 +4,7 @@
             "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-watch-v20\\values-watch-v20.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\55824029a8db6a90a24ba6eb891ed1e7\\play-services-auth-16.0.0\\res\\values-watch-v20\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11",
-                        "startColumns": "0,0,0,0,0,0,0,0",
-                        "startOffsets": "171,246,322,397,472,559,636,723",
-                        "endColumns": "74,75,74,74,86,76,86,75",
-                        "endOffsets": "245,321,396,471,558,635,722,798"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,134,214,293,372,463,544,635",
-                        "endColumns": "78,79,78,78,90,80,90,79",
-                        "endOffsets": "129,209,288,367,458,539,630,710"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\64b0ce25622b4ea581c92bae169e27cb\\appcompat-v7-28.0.0\\res\\values-watch-v20\\values-watch-v20.xml",
                     "from": {
                         "startLines": "2,5,8",
                         "startColumns": "4,4,4",
@@ -37,6 +20,23 @@
                         "endLines": "12,15,18",
                         "endColumns": "12,12,12",
                         "endOffsets": "869,1040,1213"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\99105aaab885fe5a662a2d871f25f8b6\\play-services-auth-16.0.0\\res\\values-watch-v20\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11",
+                        "startColumns": "0,0,0,0,0,0,0,0",
+                        "startOffsets": "171,246,322,397,472,559,636,723",
+                        "endColumns": "74,75,74,74,86,76,86,75",
+                        "endOffsets": "245,321,396,471,558,635,722,798"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,134,214,293,372,463,544,635",
+                        "endColumns": "78,79,78,78,90,80,90,79",
+                        "endOffsets": "129,209,288,367,458,539,630,710"
                     }
                 }
             ]

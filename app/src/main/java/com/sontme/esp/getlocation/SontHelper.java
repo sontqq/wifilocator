@@ -46,6 +46,8 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.telephony.NeighboringCellInfo;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -819,5 +821,15 @@ public class SontHelper extends Application {
             Log.d("KML_location", file.toString());
         }
         return file.getAbsolutePath();
+    }
+
+    public static List<NeighboringCellInfo> getCellTowers(Context ctx) {
+        // Please note that this information may not available on your device.
+        // Most of the Samsung devices does not support this method.
+        TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        }
+        List<NeighboringCellInfo> neighbors = tm.getNeighboringCellInfo();
+        return neighbors;
     }
 }

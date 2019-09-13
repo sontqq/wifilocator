@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="5317"
+    android:versionCode="5336"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -51,6 +51,8 @@
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
     <uses-feature

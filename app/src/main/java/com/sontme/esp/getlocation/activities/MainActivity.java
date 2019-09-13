@@ -577,9 +577,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 //Intent i = new Intent(getApplicationContext(),HeatMapp.class);
                 //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
                 //Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
+                //Intent i = new Intent(getApplicationContext(), Nearby_browser.class);
+                //startActivity(i);
 
-                Intent i = new Intent(getApplicationContext(), Nearby_browser.class);
-                startActivity(i);
+
 
                 //String x = SontHelper.generateKML(BackgroundService.locations);
                 //String y = SontHelper.generateGFX(BackgroundService.locations);

@@ -535,6 +535,37 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.d("BS_R", action);
+            if (action.equals(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION)) {
+                WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                SupplicantState supl_state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
+                switch (supl_state) {
+                    case ASSOCIATED:
+                        Log.d("WIFI_PREVENT", "ASSOCIATED");
+                    case ASSOCIATING:
+                        Log.d("WIFI_PREVENT", "PREVENTED");
+                        wifi.disconnect();
+                        break;
+                    case AUTHENTICATING:
+                        Log.d("WIFI_PREVENT", "PREVENTED");
+                        wifi.disconnect();
+                        break;
+                    case DORMANT:
+                        Log.d("WIFI_PREVENT", "PREVENTED");
+                        wifi.disconnect();
+                        break;
+                    case FOUR_WAY_HANDSHAKE:
+                        Log.d("WIFI_PREVENT", "PREVENTED");
+                        wifi.disconnect();
+                        break;
+                    case GROUP_HANDSHAKE:
+                        Log.d("WIFI_PREVENT", "PREVENTED");
+                        wifi.disconnect();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
                 udp.execute("SCREEN ON");

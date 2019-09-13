@@ -4,7 +4,24 @@
             "outputFile": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\0c2055b1aba02a73f695ebf186ceb2d2\\MaterialStyledDialogs-2.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\2747d29aa772a6f37664a570c6356c5c\\design-28.0.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,177",
+                        "endColumns": "121,133",
+                        "endOffsets": "172,306"
+                    },
+                    "to": {
+                        "startLines": "15,16",
+                        "startColumns": "4,4",
+                        "startOffsets": "968,1090",
+                        "endColumns": "121,133",
+                        "endOffsets": "1085,1219"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\d0fa45a7a0d891c5f8b206f50b626a7a\\MaterialStyledDialogs-2.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\b320a443effd06c78f4f9e5ddfe89b1a\\appcompat-v7-28.0.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\64b0ce25622b4ea581c92bae169e27cb\\appcompat-v7-28.0.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "55,114,185,256,326,396,464,748,852",
                         "endColumns": "58,70,70,69,69,67,67,103,115",
                         "endOffsets": "109,180,251,321,391,459,527,847,963"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6c2164896ca319583b40d5b80aa35763\\design-28.0.0\\res\\values-large-v4\\values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,177",
-                        "endColumns": "121,133",
-                        "endOffsets": "172,306"
-                    },
-                    "to": {
-                        "startLines": "15,16",
-                        "startColumns": "4,4",
-                        "startOffsets": "968,1090",
-                        "endColumns": "121,133",
-                        "endOffsets": "1085,1219"
                     }
                 }
             ]
