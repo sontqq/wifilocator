@@ -1688,6 +1688,7 @@ id firstlin_sw3
 id firstlin_sw4
 id fixed
 id forever
+id forgeview
 id framelay
 id front
 id getimg
@@ -1790,6 +1791,7 @@ id middleLevelGroup
 id mini
 id minimalist_notif
 id minimalist_notif_text
+id more
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
@@ -2082,6 +2084,7 @@ layout activity_image
 layout activity_list
 layout activity_main
 layout activity_map
+layout activity_mapsforge
 layout activity_nearby
 layout activity_nearby_browser
 layout activity_opencv_realtime

@@ -192,6 +192,16 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         createNotifGroup("wifi", "wifi");
         SontHelper.vibrate(getApplicationContext(), 1, 50);
         try {
+            WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            //wifi.disconnect();
+
+
+            String encryptedText = SontHelper.Crypt.encrypt("teszt");
+            String decryptedText = SontHelper.Crypt.decrypt(encryptedText);
+
+            Log.d("ENCRYPT", "Encrypted: " + encryptedText);
+            Log.d("ENCRYPT", "Decrypted: " + decryptedText);
+
             wiFiDirectBroadcastReceiver = WiFiP2PInstance.getInstance(this).getBroadcastReceiver();
 
             UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
@@ -937,9 +947,10 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                             result.SSID + "</b> -> " +
                             SontHelper.convertDBM(result.level) + "% -> <i>" +
                             result.BSSID + "</i>\n";
-
+                    /*
                     ObjectSender s = new ObjectSender(result, "127.0.0.1", 1234, getApplicationContext());
                     s.execute();
+                    */
                     lastSSID = result.SSID + " " + SontHelper.convertDBM(result.level) + "%";
                     if (!uniqueAPS.contains(result.BSSID)) {
                         uniqueAPS.add(result.BSSID);
@@ -960,6 +971,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     String reqBody = "?id=0&ssid=" + result.SSID + "&add=service" + "&bssid=" + result.BSSID + "&source=" + DEVICE_ACCOUNT + "_v" + versionCode + "&enc=" + enc + "&rssi=" + SontHelper.convertDBM(result.level) + "&long=" + longi + "&lat=" + lati + "&channel=" + result.frequency;
                     if (!macList_uniq.contains(result.BSSID)) {
                         macList_uniq.add(result.BSSID);
+                        // if new, vibrate
                         SontHelper.vibrate(getApplicationContext());
                     }
                     if (!urlList_uniq.contains(url + reqBody)) {

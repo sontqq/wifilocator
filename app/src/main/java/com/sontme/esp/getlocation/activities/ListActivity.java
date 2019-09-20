@@ -3,6 +3,7 @@ package com.sontme.esp.getlocation.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -88,6 +89,11 @@ public class ListActivity extends AppCompatActivity {
                         Intent i4 = new Intent(ListActivity.this, NearbyActivity.class);
                         startActivity(i4);
                         return true;
+                    case R.id.more:
+                        dl.closeDrawers();
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sont.sytes.net/moreapps"));
+                        startActivity(browserIntent);
+                        return true;
                     default:
                         dl.closeDrawers();
                         return true;
@@ -98,7 +104,7 @@ public class ListActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nv3);
         View hView = navigationView.getHeaderView(0);
         TextView tex = hView.findViewById(R.id.header_verinfo);
-        String version = "Version: " + String.valueOf(BuildConfig.VERSION_NAME) + " Build: " + String.valueOf(BuildConfig.VERSION_CODE);
+        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
         tex.setText(version);
 
         final Handler handler = new Handler();
@@ -125,7 +131,7 @@ public class ListActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 content = new String(response, StandardCharsets.UTF_8);
                 String stripped = html2text(content);
-                String lines[] = stripped.split("\\r?\\n");
+                String[] lines = stripped.split("\\r?\\n");
                 for (String s : lines) {
                     String[] splittedStr = s.split("OVER");
                     List<ApStrings> aps = new ArrayList<>();

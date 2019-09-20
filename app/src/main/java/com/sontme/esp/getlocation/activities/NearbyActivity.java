@@ -16,6 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -225,6 +226,11 @@ public class NearbyActivity extends AppCompatActivity implements GpsStatus.Liste
                         return true;
                     case R.id.nearby:
                         dl.closeDrawers();
+                        return true;
+                    case R.id.more:
+                        dl.closeDrawers();
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sont.sytes.net/moreapps"));
+                        startActivity(browserIntent);
                         return true;
                     default:
                         dl.closeDrawers();

@@ -150,6 +150,11 @@ public class MapActivity extends AppCompatActivity implements GpsStatus.Listener
                         Intent i4 = new Intent(MapActivity.this,NearbyActivity.class);
                         startActivity(i4);
                         return true;
+                    case R.id.more:
+                        dl.closeDrawers();
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sont.sytes.net/moreapps"));
+                        startActivity(browserIntent);
+                        return true;
                     default:
                         dl.closeDrawers();
                         return true;

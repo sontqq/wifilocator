@@ -35,7 +35,7 @@ public class UDP_Client extends AsyncTask<String, String, String> {
             DatagramPacket sendPacket = new DatagramPacket(tosenddata, tosenddata.length, IPAddress, port);
             serverSocket.send(sendPacket);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
     }

@@ -17,6 +17,12 @@
         android:title="Nearby"/>
 </group>
     <group>
+        <item
+            android:id="@+id/more"
+            android:icon="@drawable/btn_moreinfo"
+            android:title="More apps" />
+    </group>
+    <group>
         <item android:id="@+id/exit"
             android:icon="@drawable/exiticon"
             android:title="Exit"/>

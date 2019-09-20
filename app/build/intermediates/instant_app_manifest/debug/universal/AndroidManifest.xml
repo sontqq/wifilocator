@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="5338"
+    android:versionCode="5410"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -100,6 +100,7 @@
         android:debuggable="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/computer"
+        android:installLocation="preferExternal"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@drawable/computer"
@@ -107,6 +108,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity android:name="com.sontme.esp.getlocation.activities.mapsforge" />
         <activity android:name="com.sontme.esp.getlocation.activities.Nearby_browser" />
         <activity
             android:name="com.sontme.esp.getlocation.activities.RealTimeChart"

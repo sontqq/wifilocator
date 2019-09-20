@@ -578,7 +578,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
                 //Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
                 //Intent i = new Intent(getApplicationContext(), Nearby_browser.class);
-                //startActivity(i);
+                Intent i = new Intent(getApplicationContext(), mapsforge.class);
+                startActivity(i);
 
 
 
@@ -961,6 +962,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         //startActivity(i4);
                         Intent i4 = new Intent(getApplicationContext(), Nearby_browser.class);
                         startActivity(i4);
+                        return true;
+                    case R.id.more:
+                        dl.closeDrawers();
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://sont.sytes.net/moreapps.php"));
+                        startActivity(browserIntent);
                         return true;
                     default:
                         dl.closeDrawers();
