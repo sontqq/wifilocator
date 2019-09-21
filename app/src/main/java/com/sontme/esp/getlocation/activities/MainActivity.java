@@ -133,8 +133,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -142,6 +146,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import javax.crypto.SealedObject;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -563,6 +569,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             Log.d("GOOGLE_LOGIN", "logged out");
             //mGoogleSignInClient.silentSignIn();
         }
+        startReceivingObject();
 
         UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STARTED ACT");
@@ -578,14 +585,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
                 //Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
                 //Intent i = new Intent(getApplicationContext(), Nearby_browser.class);
-                Intent i = new Intent(getApplicationContext(), mapsforge.class);
-                startActivity(i);
-
-
-
+                //Intent i = new Intent(getApplicationContext(), mapsforge.class);
+                //startActivity(i);
                 //String x = SontHelper.generateKML(BackgroundService.locations);
                 //String y = SontHelper.generateGFX(BackgroundService.locations);
-
 
                 /*
                 final String[] site = {""};
@@ -754,38 +757,11 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 bluetooth.startScanning();
                 */
                 // endregion
-                //region udp
-                /*
-                Thread thx = new Thread() {
-                    public void run() {
-                        //boolean check = true;
-                        boolean check = false;
-                        try {
-                            ServerSocket server = new ServerSocket(1234);
-                            while (check) {
-                                Socket s = server.accept();
-                                ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-                                Object obj = in.readObject();
-                                //String objReceived = (String) in.readObject();
-                                if (obj instanceof String) {
-                                    Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + obj);
-                                } else if (obj instanceof ApStrings) {
-                                    Log.d("OBJECT_SCK_", "RECEIVED_APSTRINGS_" + obj);
-                                } else if (obj instanceof Location) {
-                                    Log.d("OBJECT_SCK_", "RECEIVED_LOCATION");
-                                }
-                            }
-                        } catch (Exception e) {
-                            check = false;
-                            e.printStackTrace();
-                            Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
-                        }
-                    }
-                };
-                thx.start();*/
-                //endregion
+
+                startReceivingObject();
             }
         });
+
         sharebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1200,6 +1176,38 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         };
         mHandler2.postDelayed(mTimer1, 0);
 
+    }
+
+    public void startReceivingObject() {
+        //region udp
+
+        Thread thx = new Thread() {
+            public void run() {
+                boolean check = true;
+                //boolean check = false;
+                try {
+                    ServerSocket server = new ServerSocket(1234);
+                    while (check) {
+                        Socket s = server.accept();
+                        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
+
+                        Key sKey = (Key) in.readObject();
+                        SealedObject obj = (SealedObject) in.readObject();
+
+                        String str = (String) obj.getObject(sKey);
+
+                        Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + str);
+
+                    }
+                } catch (Exception e) {
+                    check = false;
+                    e.printStackTrace();
+                    Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
+                }
+            }
+        };
+        thx.start();
+        //endregion
     }
 
     private DataPoint[] generateData() {

@@ -11,7 +11,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ENCRYPT" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="OBJECT_SCK" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -136,7 +136,7 @@
     <last-search-timestamp>1565076500682</last-search-timestamp>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" line="12" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" line="22" />
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -144,71 +144,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="now the app is preventing to connect to any wifi why its running&#10;(to prevent freezes if the connection link is poor or while connecting)">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/mapsforge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_mapsforge.xml" afterDir="false" />
+    <list default="true" id="13b93062-f926-48e8-89b7-85b92d920aaa" name="Default" comment="string encrypt/decrypt methods are added">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/sontme/esp/getlocation/test/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/sontme/esp/getlocation/BuildConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/apk_list/debug/mainApkListPersistenceDebug/apk-list.gson" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ar.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-cs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-de.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-fr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-hi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ja.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values-ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi-v2/values.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/processDebugManifest/bundle-manifest/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/tGqf2qmEjUFgRLl6M_fyNsEjoug=" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/dex-renamer-state.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/universalDebug/zip-cache/kECNY+nZASGE06bhI6QF0pjGb0Y=" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/universal/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/x86_64/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debugAndroidTest/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/metadata_feature_manifest/debug/processDebugManifest/metadata-feature/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/output.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/processDebugResources/out/resources-universalDebug.ap_" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/menu_navigation_menu.xml.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/menu_navigation_menu.xml.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values_values.arsc.flat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-universal-debug.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/output.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/ListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/ListActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/version.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/version.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -266,12 +228,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7395">
-              <caret line="580" column="72" selection-start-line="580" selection-start-column="63" selection-end-line="580" selection-end-column="72" />
+            <state relative-caret-position="-245">
+              <caret line="1187" column="16" selection-start-line="1187" selection-start-column="16" selection-end-line="1187" selection-end-column="16" />
               <folding>
+                <element signature="e#21457#21955#1" />
+                <element signature="e#38293#38294#0" expanded="true" />
+                <element signature="e#50917#50918#0" expanded="true" />
+                <element signature="e#54181#55100#0" expanded="true" />
+                <element signature="e#55099#55100#0" expanded="true" />
                 <element signature="class#DownloadImageTask#0" />
                 <element signature="method#doInBackground#0;class#DownloadImageTask#0" />
               </folding>
@@ -281,19 +248,19 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_mapsforge.xml">
-          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+            <state relative-caret-position="136">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
             </state>
           </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="203" column="57" selection-start-line="203" selection-start-column="57" selection-end-line="203" selection-end-column="57" />
+            <state relative-caret-position="102">
+              <caret line="299" column="20" selection-start-line="299" selection-start-column="20" selection-end-line="299" selection-end-column="20" />
               <folding>
                 <element signature="e#3231#3374#0" />
                 <element signature="e#3382#3415#0" />
@@ -307,136 +274,39 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+              <folding>
+                <element signature="e#585#586#0" expanded="true" />
+                <element signature="e#615#616#0" expanded="true" />
+                <element signature="e#653#654#0" expanded="true" />
+                <element signature="e#685#686#0" expanded="true" />
+                <element signature="e#725#726#0" expanded="true" />
+                <element signature="e#759#760#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="140" column="39" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="143" column="75" lean-forward="true" selection-start-line="143" selection-start-column="75" selection-end-line="143" selection-end-column="75" />
+            <state relative-caret-position="307">
+              <caret line="204" column="37" selection-start-line="204" selection-start-column="37" selection-end-line="204" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2889#3371#0" />
-                <element signature="e#2938#3365#0" />
-                <element signature="e#3250#3329#1" />
-                <element signature="e#3377#3674#0" />
-                <element signature="e#3680#4134#0" />
-                <element signature="e#4140#4821#0" />
-                <element signature="e#5038#5265#0" />
-                <element signature="e#5271#5536#0" />
-                <element signature="e#5542#5657#0" />
-                <element signature="e#5663#6585#0" />
-                <element signature="e#6266#6532#1" />
-                <element signature="e#6378#6493#1" />
-                <element signature="e#6591#6906#0" />
-                <element signature="e#6790#6879#1" />
-                <element signature="e#6912#7231#0" />
-                <element signature="e#7237#7710#0" />
-                <element signature="e#7506#7595#1" />
-                <element signature="e#7601#7655#1" />
-                <element signature="e#7716#8223#0" />
-                <element signature="e#8010#8108#1" />
-                <element signature="e#8114#8168#1" />
-                <element signature="e#8229#8654#0" />
-                <element signature="e#8459#8537#1" />
-                <element signature="e#8543#8648#1" />
-                <element signature="e#8660#10027#0" />
-                <element signature="e#8830#9818#0" />
-                <element signature="e#9099#9194#1" />
-                <element signature="e#9200#9783#1" />
-                <element signature="e#9703#9769#1" />
-                <element signature="e#9839#9969#0" />
-                <element signature="e#10033#11235#0" />
-                <element signature="e#10337#11229#1" />
-                <element signature="e#10375#10447#1" />
-                <element signature="e#10453#11219#1" />
-                <element signature="e#11107#11173#1" />
-                <element signature="e#11241#11513#0" />
-                <element signature="e#11519#11675#0" />
-                <element signature="e#11681#11929#0" />
-                <element signature="e#12024#12306#0" />
-                <element signature="e#12393#12586#0" />
-                <element signature="e#12592#13391#0" />
-                <element signature="e#13397#14262#0" />
-                <element signature="e#13601#14158#0" />
-                <element signature="e#13726#14127#1" />
-                <element signature="e#13945#14057#1" />
-                <element signature="e#14179#14233#0" />
-                <element signature="e#14268#14629#0" />
-                <element signature="e#14350#14384#1" />
-                <element signature="e#14545#14622#1" />
-                <element signature="e#14635#15393#0" />
-                <element signature="e#14690#15309#0" />
-                <element signature="e#14852#15299#1" />
-                <element signature="e#14986#15285#1" />
-                <element signature="e#15039#15267#1" />
-                <element signature="e#15399#15995#0" />
-                <element signature="e#15829#15867#1" />
-                <element signature="e#15911#15947#1" />
-                <element signature="e#15953#15989#1" />
-                <element signature="e#16001#16399#0" />
-                <element signature="e#16405#16975#0" />
-                <element signature="e#16748#16855#1" />
-                <element signature="e#16861#16969#1" />
-                <element signature="e#16981#17540#0" />
-                <element signature="e#17546#17638#0" />
-                <element signature="e#17546#17927#0" />
-                <element signature="e#17933#18812#0" />
-                <element signature="class#18325:18720" />
-                <element signature="method#onSensorChanged#0;class#18325:18720" />
-                <element signature="method#onAccuracyChanged#0;class#18325:18720" />
-                <element signature="e#18818#19161#0" />
-                <element signature="e#19167#19403#0" />
-                <element signature="e#19409#20185#0" />
-                <element signature="e#19934#20150#1" />
-                <element signature="e#20191#20664#0" />
-                <element signature="e#20444#20480#1" />
-                <element signature="e#20670#20800#0" />
-                <element signature="e#20806#21125#0" />
-                <element signature="e#21131#21511#0" />
-                <element signature="e#21517#22057#0" />
-                <element signature="e#21723#22051#1" />
-                <element signature="e#22063#22253#0" />
-                <element signature="e#22259#23003#0" />
-                <element signature="e#22455#22787#1" />
-                <element signature="e#22473#22604#0" />
-                <element signature="e#22625#22707#0" />
-                <element signature="e#22793#22995#1" />
-                <element signature="e#23009#23294#0" />
-                <element signature="e#23169#23288#1" />
-                <element signature="e#23300#24021#0" />
-                <element signature="e#23367#23475#0" />
-                <element signature="e#23847#23994#1" />
-                <element signature="e#24027#25016#0" />
-                <element signature="e#24857#24978#1" />
-                <element signature="e#25022#25159#0" />
-                <element signature="e#25165#26780#0" />
-                <element signature="e#25673#26747#1" />
-                <element signature="e#25691#26664#0" />
-                <element signature="e#26685#26737#0" />
-                <element signature="e#26786#27435#0" />
-                <element signature="e#27441#28340#0" />
-                <element signature="e#27945#28306#1" />
-                <element signature="e#27963#28223#0" />
-                <element signature="e#28244#28296#0" />
-                <element signature="e#28346#28569#0" />
-                <element signature="e#28575#28931#0" />
-                <element signature="e#28796#28925#1" />
-                <element signature="e#28937#29822#0" />
-                <element signature="e#29099#29706#0" />
-                <element signature="e#29150#29696#1" />
-                <element signature="e#29172#29523#0" />
-                <element signature="e#29544#29682#0" />
-                <element signature="e#29727#29816#0" />
-                <element signature="e#29828#31248#0" />
-                <element signature="e#30583#30778#1" />
-                <element signature="e#30842#31111#0" />
-                <element signature="e#31134#31203#0" />
-                <element signature="e#31254#32630#0" />
-                <element signature="e#31570#31922#1" />
-                <element signature="e#32008#32423#0" />
-                <element signature="e#32444#32513#0" />
-                <element signature="e#32522#32585#0" />
-                <element signature="e#32636#33203#0" />
-                <element signature="e#32713#32783#0" />
               </folding>
             </state>
           </provider>
@@ -444,28 +314,26 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml">
-          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+            <state relative-caret-position="357">
+              <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
             </state>
           </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml">
-          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor" />
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/mapsforge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="122" column="56" selection-start-line="122" selection-start-column="56" selection-end-line="122" selection-end-column="56" />
+            <state relative-caret-position="1292">
+              <caret line="109" column="56" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
               <folding>
-                <element signature="e#5281#5282#0" expanded="true" />
-                <element signature="e#5368#5369#0" expanded="true" />
                 <element signature="method#unzip#0;class#mapsforge#0" />
               </folding>
             </state>
@@ -487,8 +355,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>realtime</find>
-      <find>bugsee</find>
       <find>public GraphVie</find>
       <find>30</find>
       <find>test</find>
@@ -517,6 +383,8 @@
       <find>connected</find>
       <find>mapsforge</find>
       <find>base64</find>
+      <find>object</find>
+      <find>object se</find>
     </findStrings>
     <replaceStrings>
       <replace>PopUpWin</replace>
@@ -571,7 +439,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UdpServerThread.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SerialLocation.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/secrets_apikeys.xml" />
@@ -614,20 +481,21 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/NearbyActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_mapsforge.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/UDP_Client.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/mapsforge.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="99" />
     <option name="y" value="168" />
-    <option name="width" value="1944" />
-    <option name="height" value="1044" />
+    <option name="width" value="1677" />
+    <option name="height" value="927" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -643,29 +511,14 @@
           <expand>
             <path>
               <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="getlocation" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="getlocation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -835,13 +688,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547309149699</updated>
-    </task>
-    <task id="LOCAL-00043" summary="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements">
-      <created>1552726736051</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1552726736051</updated>
     </task>
     <task id="LOCAL-00044" summary="TODO:&#10;Auto HTTP Upload on WiFi&#10;csv import to mysql&#10;Custom http upload layout&#10;MapActivity &quot;keep points&quot;&#10;&#10;chart improvements&#10;&#10;upload is also workingbon huawei phones">
       <created>1552803887449</created>
@@ -1179,7 +1025,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568368764633</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="string encrypt/decrypt methods are added">
+      <created>1568979647330</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1568979647333</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1244,7 +1097,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="minor revmap with classes&#10;&#10;huge revmap with main notification (shinker)(not expandable)" />
     <MESSAGE value="minor revmap with classes&#10;&#10;huge revmap with main notification (shinker)(expandable)" />
     <MESSAGE value="bluetooth feature started to being implemented" />
     <MESSAGE value="bluetooth fixes" />
@@ -1269,40 +1121,19 @@
     <MESSAGE value="minor" />
     <MESSAGE value="nearbyactivity changed. it uses a simple webview+leafletmap instead of osmdroid (openstreetmap)" />
     <MESSAGE value="now the app is preventing to connect to any wifi why its running&#10;(to prevent freezes if the connection link is poor or while connecting)" />
-    <option name="LAST_COMMIT_MESSAGE" value="now the app is preventing to connect to any wifi why its running&#10;(to prevent freezes if the connection link is poor or while connecting)" />
+    <MESSAGE value="string encrypt/decrypt methods are added" />
+    <option name="LAST_COMMIT_MESSAGE" value="string encrypt/decrypt methods are added" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/graphics/Canvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="1598" column="16" selection-start-line="1598" selection-start-column="16" selection-end-line="1598" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_img.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/util/Patterns.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="427" column="32" selection-start-line="427" selection-start-column="32" selection-end-line="427" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_dialog_img_full.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Crawler.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/threadDump1.txt">
@@ -1397,35 +1228,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_crawler.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/17ed99522dd821e9fcca951dbeb938a2/bugsee-android-1.14.9/jars/classes.jar!/com/bugsee/library/Bugsee.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1712" column="35" selection-start-line="1712" selection-start-column="35" selection-end-line="1712" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/17ed99522dd821e9fcca951dbeb938a2/bugsee-android-1.14.9/jars/classes.jar!/com/bugsee/library/Bugsee.class" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay_up.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/notif_lay.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jjoe64/graphview/4.2.2/b518d09891b93df1172b3e2ee5726942341d1fe1/graphview-4.2.2-sources.jar!/com/jjoe64/graphview/series/DataPoint.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1558,12 +1383,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="217" selection-start-line="217" selection-end-line="217" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/RealTimeChart.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1577,20 +1402,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_real_time_chart.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/CsvExporter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1600,12 +1425,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_nearby_browser.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/CrawlerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1663,12 +1488,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1747,60 +1572,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7395">
-          <caret line="580" column="72" selection-start-line="580" selection-start-column="63" selection-end-line="580" selection-end-column="72" />
-          <folding>
-            <element signature="class#DownloadImageTask#0" />
-            <element signature="method#doInBackground#0;class#DownloadImageTask#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_mapsforge.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/mapsforge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="122" column="56" selection-start-line="122" selection-start-column="56" selection-end-line="122" selection-end-column="56" />
-          <folding>
-            <element signature="e#5281#5282#0" expanded="true" />
-            <element signature="e#5368#5369#0" expanded="true" />
-            <element signature="method#unzip#0;class#mapsforge#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-37">
           <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2057">
-          <caret line="145" column="22" selection-start-line="145" selection-start-column="22" selection-end-line="145" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1811,10 +1586,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_mapsforge.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/mapsforge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="109" column="56" selection-start-line="109" selection-start-column="56" selection-end-line="109" selection-end-column="56" />
+          <folding>
+            <element signature="method#unzip#0;class#mapsforge#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="140" column="39" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-net/commons-net/3.6/961dc27eabbe71bf32478baffe0e1be915ce7689/commons-net-3.6-sources.jar!/org/apache/commons/net/util/Base64.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="653" column="25" selection-start-line="653" selection-start-column="25" selection-end-line="653" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="204" column="37" selection-start-line="204" selection-start-column="37" selection-end-line="204" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/java/io/ObjectOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="245" column="11" selection-start-line="245" selection-start-column="11" selection-end-line="245" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/BackgroundService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="203" column="57" selection-start-line="203" selection-start-column="57" selection-end-line="203" selection-end-column="57" />
+        <state relative-caret-position="102">
+          <caret line="299" column="20" selection-start-line="299" selection-start-column="20" selection-end-line="299" selection-end-column="20" />
           <folding>
             <element signature="e#3231#3374#0" />
             <element signature="e#3382#3415#0" />
@@ -1827,135 +1663,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/SontHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/Servers/ObjectSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="143" column="75" lean-forward="true" selection-start-line="143" selection-start-column="75" selection-end-line="143" selection-end-column="75" />
+        <state relative-caret-position="187">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2889#3371#0" />
-            <element signature="e#2938#3365#0" />
-            <element signature="e#3250#3329#1" />
-            <element signature="e#3377#3674#0" />
-            <element signature="e#3680#4134#0" />
-            <element signature="e#4140#4821#0" />
-            <element signature="e#5038#5265#0" />
-            <element signature="e#5271#5536#0" />
-            <element signature="e#5542#5657#0" />
-            <element signature="e#5663#6585#0" />
-            <element signature="e#6266#6532#1" />
-            <element signature="e#6378#6493#1" />
-            <element signature="e#6591#6906#0" />
-            <element signature="e#6790#6879#1" />
-            <element signature="e#6912#7231#0" />
-            <element signature="e#7237#7710#0" />
-            <element signature="e#7506#7595#1" />
-            <element signature="e#7601#7655#1" />
-            <element signature="e#7716#8223#0" />
-            <element signature="e#8010#8108#1" />
-            <element signature="e#8114#8168#1" />
-            <element signature="e#8229#8654#0" />
-            <element signature="e#8459#8537#1" />
-            <element signature="e#8543#8648#1" />
-            <element signature="e#8660#10027#0" />
-            <element signature="e#8830#9818#0" />
-            <element signature="e#9099#9194#1" />
-            <element signature="e#9200#9783#1" />
-            <element signature="e#9703#9769#1" />
-            <element signature="e#9839#9969#0" />
-            <element signature="e#10033#11235#0" />
-            <element signature="e#10337#11229#1" />
-            <element signature="e#10375#10447#1" />
-            <element signature="e#10453#11219#1" />
-            <element signature="e#11107#11173#1" />
-            <element signature="e#11241#11513#0" />
-            <element signature="e#11519#11675#0" />
-            <element signature="e#11681#11929#0" />
-            <element signature="e#12024#12306#0" />
-            <element signature="e#12393#12586#0" />
-            <element signature="e#12592#13391#0" />
-            <element signature="e#13397#14262#0" />
-            <element signature="e#13601#14158#0" />
-            <element signature="e#13726#14127#1" />
-            <element signature="e#13945#14057#1" />
-            <element signature="e#14179#14233#0" />
-            <element signature="e#14268#14629#0" />
-            <element signature="e#14350#14384#1" />
-            <element signature="e#14545#14622#1" />
-            <element signature="e#14635#15393#0" />
-            <element signature="e#14690#15309#0" />
-            <element signature="e#14852#15299#1" />
-            <element signature="e#14986#15285#1" />
-            <element signature="e#15039#15267#1" />
-            <element signature="e#15399#15995#0" />
-            <element signature="e#15829#15867#1" />
-            <element signature="e#15911#15947#1" />
-            <element signature="e#15953#15989#1" />
-            <element signature="e#16001#16399#0" />
-            <element signature="e#16405#16975#0" />
-            <element signature="e#16748#16855#1" />
-            <element signature="e#16861#16969#1" />
-            <element signature="e#16981#17540#0" />
-            <element signature="e#17546#17638#0" />
-            <element signature="e#17546#17927#0" />
-            <element signature="e#17933#18812#0" />
-            <element signature="class#18325:18720" />
-            <element signature="method#onSensorChanged#0;class#18325:18720" />
-            <element signature="method#onAccuracyChanged#0;class#18325:18720" />
-            <element signature="e#18818#19161#0" />
-            <element signature="e#19167#19403#0" />
-            <element signature="e#19409#20185#0" />
-            <element signature="e#19934#20150#1" />
-            <element signature="e#20191#20664#0" />
-            <element signature="e#20444#20480#1" />
-            <element signature="e#20670#20800#0" />
-            <element signature="e#20806#21125#0" />
-            <element signature="e#21131#21511#0" />
-            <element signature="e#21517#22057#0" />
-            <element signature="e#21723#22051#1" />
-            <element signature="e#22063#22253#0" />
-            <element signature="e#22259#23003#0" />
-            <element signature="e#22455#22787#1" />
-            <element signature="e#22473#22604#0" />
-            <element signature="e#22625#22707#0" />
-            <element signature="e#22793#22995#1" />
-            <element signature="e#23009#23294#0" />
-            <element signature="e#23169#23288#1" />
-            <element signature="e#23300#24021#0" />
-            <element signature="e#23367#23475#0" />
-            <element signature="e#23847#23994#1" />
-            <element signature="e#24027#25016#0" />
-            <element signature="e#24857#24978#1" />
-            <element signature="e#25022#25159#0" />
-            <element signature="e#25165#26780#0" />
-            <element signature="e#25673#26747#1" />
-            <element signature="e#25691#26664#0" />
-            <element signature="e#26685#26737#0" />
-            <element signature="e#26786#27435#0" />
-            <element signature="e#27441#28340#0" />
-            <element signature="e#27945#28306#1" />
-            <element signature="e#27963#28223#0" />
-            <element signature="e#28244#28296#0" />
-            <element signature="e#28346#28569#0" />
-            <element signature="e#28575#28931#0" />
-            <element signature="e#28796#28925#1" />
-            <element signature="e#28937#29822#0" />
-            <element signature="e#29099#29706#0" />
-            <element signature="e#29150#29696#1" />
-            <element signature="e#29172#29523#0" />
-            <element signature="e#29544#29682#0" />
-            <element signature="e#29727#29816#0" />
-            <element signature="e#29828#31248#0" />
-            <element signature="e#30583#30778#1" />
-            <element signature="e#30842#31111#0" />
-            <element signature="e#31134#31203#0" />
-            <element signature="e#31254#32630#0" />
-            <element signature="e#31570#31922#1" />
-            <element signature="e#32008#32423#0" />
-            <element signature="e#32444#32513#0" />
-            <element signature="e#32522#32585#0" />
-            <element signature="e#32636#33203#0" />
-            <element signature="e#32713#32783#0" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#615#616#0" expanded="true" />
+            <element signature="e#653#654#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sontme/esp/getlocation/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-245">
+          <caret line="1187" column="16" selection-start-line="1187" selection-start-column="16" selection-end-line="1187" selection-end-column="16" />
+          <folding>
+            <element signature="e#21457#21955#1" />
+            <element signature="e#38293#38294#0" expanded="true" />
+            <element signature="e#50917#50918#0" expanded="true" />
+            <element signature="e#54181#55100#0" expanded="true" />
+            <element signature="e#55099#55100#0" expanded="true" />
+            <element signature="class#DownloadImageTask#0" />
+            <element signature="method#doInBackground#0;class#DownloadImageTask#0" />
           </folding>
         </state>
       </provider>

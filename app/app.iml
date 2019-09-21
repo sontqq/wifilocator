@@ -216,5 +216,6 @@
     <orderEntry type="module" module-name="openCVLibrary343" />
     <orderEntry type="library" name="Gradle: org.apache.http.legacy-android-28" level="project" />
     <orderEntry type="module" module-name="openCVLibrary343" />
+    <orderEntry type="module" module-name="openCVLibrary343" />
   </component>
 </module>

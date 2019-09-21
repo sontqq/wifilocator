@@ -49,7 +49,6 @@ import android.support.v4.app.ActivityCompat;
 import android.telephony.NeighboringCellInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -58,6 +57,7 @@ import org.opencv.core.Scalar;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -66,7 +66,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
@@ -87,20 +91,63 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.SealedObject;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import static android.util.Base64.NO_WRAP;
+import static android.util.Base64.decode;
+import static android.util.Base64.encodeToString;
 
 /*
    Frequently used methods to keep other classes clear
 */
 
 public class SontHelper extends Application {
+    public static class a implements Serializable {
+        public void enc() {
 
-    static class Crypt {
+        }
+    }
+
+    public static class Test {
+        public static ObjectOutputStream test(Serializable object, OutputStream ostream) {
+            String s = "asd";
+            try {
+                a x = new a();
+
+                final byte[] key = "password".getBytes();
+                final String transformation = "AES/ECB/PKCS5Padding";
+
+                SecretKeySpec sks = new SecretKeySpec(key, transformation);
+
+                // Create cipher
+                Cipher cipher = Cipher.getInstance(transformation);
+                cipher.init(Cipher.ENCRYPT_MODE, sks);
+                SealedObject sealedObject = new SealedObject(x, cipher);
+
+                // Wrap the output stream
+                CipherOutputStream cos = new CipherOutputStream(ostream, cipher);
+                ObjectOutputStream outputStream = new ObjectOutputStream(cos);
+                outputStream.writeObject(sealedObject);
+                outputStream.close();
+                return outputStream;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+    public static class Crypt {
 
         public final static String TOKEN_KEY = "fqJfdzGDvfwbedsKSUGty3VZ9taXxMVw";
 
@@ -112,7 +159,7 @@ public class SontHelper extends Application {
                 cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(TOKEN_KEY.getBytes(StandardCharsets.UTF_8), "AES"), new IvParameterSpec(iv));
                 byte[] cipherText = cipher.doFinal(plain.getBytes(StandardCharsets.UTF_8));
                 byte[] ivAndCipherText = getCombinedArray(iv, cipherText);
-                return Base64.encodeToString(ivAndCipherText, Base64.NO_WRAP);
+                return encodeToString(ivAndCipherText, NO_WRAP);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -121,7 +168,7 @@ public class SontHelper extends Application {
 
         public static String decrypt(String encoded) {
             try {
-                byte[] ivAndCipherText = Base64.decode(encoded, Base64.NO_WRAP);
+                byte[] ivAndCipherText = decode(encoded, NO_WRAP);
                 byte[] iv = Arrays.copyOfRange(ivAndCipherText, 0, 16);
                 byte[] cipherText = Arrays.copyOfRange(ivAndCipherText, 16, ivAndCipherText.length);
 
@@ -144,7 +191,6 @@ public class SontHelper extends Application {
 
     }
 
-
     public static class BluetoothFunctions {
         public boolean isBLDevicePaired(BluetoothDevice device) {
             BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
@@ -156,6 +202,40 @@ public class SontHelper extends Application {
             }
             return false;
         }
+    }
+
+    public static byte[] compressGZIP(String str) throws Exception {
+        if (str == null || str.length() == 0) {
+            return null;
+        }
+        Log.d("Compress_", "output str length: " + str.length());
+        ByteArrayOutputStream obj = new ByteArrayOutputStream();
+        GZIPOutputStream gzip = new GZIPOutputStream(obj);
+        gzip.write(str.getBytes(StandardCharsets.UTF_8));
+        gzip.close();
+
+        return obj.toByteArray();
+    }
+
+    public static String decompressGZIP(byte[] str) throws Exception {
+        if (str == null) {
+            return null;
+        }
+
+        GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(str));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8));
+        String outStr = "";
+        String line;
+        while ((line = bf.readLine()) != null) {
+            outStr += line;
+        }
+        Log.d("Compress_", "output str length: " + outStr.length());
+        return outStr;
+    }
+
+    public static String byteArrayToString(byte[] barr) {
+        //return encodeBase64String(barr);
+        return new String(barr);
     }
 
     public static boolean isWifiConnected(Context ctx) {
