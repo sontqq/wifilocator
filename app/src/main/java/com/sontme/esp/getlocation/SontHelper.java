@@ -6,6 +6,7 @@ import android.app.Application;
 import android.app.admin.DevicePolicyManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -30,8 +31,13 @@ import android.hardware.usb.UsbManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.media.AudioFormat;
 import android.media.AudioManager;
+import android.media.AudioRecord;
+import android.media.AudioTrack;
 import android.media.FaceDetector;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -41,6 +47,8 @@ import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
+import android.os.ParcelUuid;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.MediaStore;
@@ -66,15 +74,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.text.DateFormat;
@@ -97,8 +105,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import javax.crypto.Cipher;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.SealedObject;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -111,39 +117,148 @@ import static android.util.Base64.encodeToString;
 */
 
 public class SontHelper extends Application {
-    public static class a implements Serializable {
-        public void enc() {
+
+    public static class AudioTools {
+        public static void play(short[] audio) {
+            AudioTrack track = new AudioTrack(AudioManager.STREAM_MUSIC, 8000, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, 8000 * 10, AudioTrack.MODE_STREAM);
+            track.write(audio, 0, audio.length);
+            track.stop();
+            track.release();
 
         }
-    }
 
-    public static class Test {
-        public static ObjectOutputStream test(Serializable object, OutputStream ostream) {
-            String s = "asd";
+        public static void recordAndPlay(Context ctx) {
+            android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
+
+            AudioRecord recorder = null;
+            AudioTrack track = null;
+            short[][] buffers = new short[256][160];
+            int ix = 0;
+            String audio = null;
+
             try {
-                a x = new a();
+                int N = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+                recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10);
+                track = new AudioTrack(AudioManager.STREAM_MUSIC, 8000, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10, AudioTrack.MODE_STREAM);
+                recorder.startRecording();
+                track.play();
+                while (true) {
+                    short[] buffer = buffers[ix++ % buffers.length];
+                    N = recorder.read(buffer, 0, buffer.length);
+                    track.write(buffer, 0, buffer.length);
+                    for (int i = 0; i < buffers.length; i++) {
+                        for (int j = 0; j < buffers[i].length; j++) {
+                            //Log.d("audio_stream","buffers _ " + buffers.length + " - > " + buffers[i][j]);
+                            audio = audio + buffers[i][j];
 
-                final byte[] key = "password".getBytes();
-                final String transformation = "AES/ECB/PKCS5Padding";
+                        }
+                    }
+                    play(buffer);
+                    //if(audio.length() >= 8000)
+                    //play(audio.toCharArray());
+                    //Log.d("audio_stream","file size: " + mp3.length()/1024 + " kb");
 
-                SecretKeySpec sks = new SecretKeySpec(key, transformation);
-
-                // Create cipher
-                Cipher cipher = Cipher.getInstance(transformation);
-                cipher.init(Cipher.ENCRYPT_MODE, sks);
-                SealedObject sealedObject = new SealedObject(x, cipher);
-
-                // Wrap the output stream
-                CipherOutputStream cos = new CipherOutputStream(ostream, cipher);
-                ObjectOutputStream outputStream = new ObjectOutputStream(cos);
-                outputStream.writeObject(sealedObject);
-                outputStream.close();
-                return outputStream;
-
+                }
             } catch (Exception e) {
                 e.printStackTrace();
-                return null;
+            } finally {
+                recorder.stop();
+                recorder.release();
+                track.stop();
+                track.release();
+
             }
+        }
+
+        public static void record_play(Activity ctx) {
+            if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(ctx, new String[]{Manifest.permission.RECORD_AUDIO}, 2);
+            }
+            if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.CAPTURE_AUDIO_OUTPUT) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(ctx, new String[]{Manifest.permission.CAPTURE_AUDIO_OUTPUT}, 1);
+            }
+            Thread streamThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
+
+                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+                        ParcelFileDescriptor[] descriptors = ParcelFileDescriptor.createPipe();
+                        ParcelFileDescriptor parcelRead = new ParcelFileDescriptor(descriptors[0]);
+                        ParcelFileDescriptor parcelWrite = new ParcelFileDescriptor(descriptors[1]);
+
+                        InputStream inputStream = new ParcelFileDescriptor.AutoCloseInputStream(parcelRead);
+
+                        MediaRecorder recorder = new MediaRecorder();
+                        // recorder.release();
+                        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                        recorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
+                        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                        recorder.setOutputFile(parcelWrite.getFileDescriptor());
+                        recorder.prepare();
+                        recorder.start();
+
+                        int read;
+                        byte[] data = new byte[8000];
+                        while ((read = inputStream.read(data, 0, data.length)) != -1) {
+                            Log.d("audio_stream", "stream: " + read + " -> " + data.length / 1024 + " kb");
+                            byteArrayOutputStream.write(data, 0, read);
+                        }
+
+                        byte[] sound = byteArrayOutputStream.toByteArray();
+
+                        File path = new File(ctx.getCacheDir() + "/wifisound.mp3");
+
+                        FileOutputStream fos = new FileOutputStream(path);
+                        fos.write(sound);
+                        fos.close();
+
+                        MediaPlayer mediaPlayer = new MediaPlayer();
+
+                        FileInputStream fis = new FileInputStream(path);
+                        mediaPlayer.setDataSource(ctx.getCacheDir() + "/wifisound.mp3");
+
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+
+                        byteArrayOutputStream.flush();
+                    } catch (Exception e) {
+                        Log.d("audio_stream", "error: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+            });
+            streamThread.start();
+        }
+
+    }
+
+    public static class ImageTools {
+        /**
+         * For STREAMING
+         *
+         * @param bitmap
+         * @return
+         */
+        public static ByteArrayInputStream BitmapToByteArrayInputStream(Bitmap bitmap) {
+            int byteSize = bitmap.getRowBytes() * bitmap.getHeight();
+            ByteBuffer byteBuffer = ByteBuffer.allocate(byteSize);
+            bitmap.copyPixelsToBuffer(byteBuffer);
+
+            byte[] byteArray = byteBuffer.array();
+            return new ByteArrayInputStream(byteArray);
+        }
+
+        public static byte[] BitmapToByteArrayInputStream_2(Bitmap bitmap) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            return baos.toByteArray();
+        }
+
+        public static Bitmap byteArrayToBitmap(byte[] imagedata) {
+            return BitmapFactory.decodeByteArray(imagedata, 0, imagedata.length);
         }
     }
 
@@ -192,19 +307,66 @@ public class SontHelper extends Application {
     }
 
     public static class BluetoothFunctions {
-        public boolean isBLDevicePaired(BluetoothDevice device) {
+        public static boolean isBLDevicePaired(BluetoothDevice device) {
             BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
             Set<BluetoothDevice> list = ba.getBondedDevices();
-
             Log.d("BLUETOOTH_LIBRARY_", "Paired count: " + list.size());
             for (BluetoothDevice dev : list) {
                 return device.getAddress() == dev.getAddress();
             }
             return false;
         }
+
+        public static Set<BluetoothDevice> getPaired() {
+            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            return mBluetoothAdapter.getBondedDevices();
+        }
+
+        public static void native_BL() {
+            BluetoothSocket socket = null;
+            try {
+                BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                //bluetoothAdapter.startDiscovery();
+                bluetoothAdapter.startLeScan(new BluetoothAdapter.LeScanCallback() {
+                    @Override
+                    public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+                        try {
+                            Log.d("BL_NA", "onLeScan -> name: " + device.getName() + "_ uuid: " + device.getUuids()[0] + "_ rssi: " + rssi + "_ len: " + scanRecord.length);
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+                Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+                for (BluetoothDevice device : pairedDevices) {
+                    //Log.d("BL_NATIVE", "debug0_" + device.getName() + " - " + device.getAddress());
+                    Method getUuidsMethod = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
+                    ParcelUuid[] uuids = (ParcelUuid[]) getUuidsMethod.invoke(bluetoothAdapter, null);
+
+                    //socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+                    //socket.connect();
+                    //InputStream is = socket.getInputStream();
+                    //OutputStream os = socket.getOutputStream();
+                    //String debug = null;
+                    //String a = IOUtils.toString(is);
+                    //Log.d("BL_NATIVE", "debug1_" + debug);
+                    //Log.d("BL_NATIVE", "debug2_" + a);
+                }
+            } catch (Exception e) {
+                Log.d("BL_NATIVE", "error " + e.getMessage());
+                try {
+                    socket.close();
+                    native_BL();
+                } catch (Exception e2) {
+                    Log.d("BL_NATIVE", "error_2 " + e.getMessage());
+                    e2.printStackTrace();
+                }
+                e.printStackTrace();
+            }
+        }
+
     }
 
-    public static byte[] compressGZIP(String str) throws Exception {
+    public static byte[] compress_GZIP(String str) throws Exception {
         if (str == null || str.length() == 0) {
             return null;
         }
@@ -217,7 +379,7 @@ public class SontHelper extends Application {
         return obj.toByteArray();
     }
 
-    public static String decompressGZIP(byte[] str) throws Exception {
+    public static String decompress_GZIP(byte[] str) throws Exception {
         if (str == null) {
             return null;
         }
@@ -644,7 +806,7 @@ public class SontHelper extends Application {
         UsbManager manager = (UsbManager) c.getSystemService(Context.USB_SERVICE);
         HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
         Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
-        Log.d("TEST_", "dev list_ " + deviceList.size());
+        Log.d("USB_LIST", "dev list_ " + deviceList.size());
         if (deviceList.size() >= 1) {
             //Toast.makeText(c,"USB device found: " + deviceList.size(),Toast.LENGTH_LONG).show();
         }

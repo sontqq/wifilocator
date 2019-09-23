@@ -30,7 +30,6 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.BatteryManager;
 import android.os.Binder;
 import android.os.Build;
@@ -45,20 +44,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import com.abemart.wroup.client.WroupClient;
-import com.abemart.wroup.common.WiFiDirectBroadcastReceiver;
-import com.abemart.wroup.common.WiFiP2PError;
-import com.abemart.wroup.common.WiFiP2PInstance;
-import com.abemart.wroup.common.WroupDevice;
-import com.abemart.wroup.common.WroupServiceDevice;
-import com.abemart.wroup.common.listeners.ClientConnectedListener;
-import com.abemart.wroup.common.listeners.ClientDisconnectedListener;
-import com.abemart.wroup.common.listeners.DataReceivedListener;
-import com.abemart.wroup.common.listeners.ServiceConnectedListener;
-import com.abemart.wroup.common.listeners.ServiceDiscoveredListener;
-import com.abemart.wroup.common.listeners.ServiceRegisteredListener;
-import com.abemart.wroup.common.messages.MessageWrapper;
-import com.abemart.wroup.service.WroupService;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -185,7 +170,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
 
-    private WiFiDirectBroadcastReceiver wiFiDirectBroadcastReceiver;
 
     @Override
     public void onCreate() {
@@ -195,14 +179,11 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             //wifi.disconnect();
 
-
             String encryptedText = SontHelper.Crypt.encrypt("teszt");
             String decryptedText = SontHelper.Crypt.decrypt(encryptedText);
 
             Log.d("ENCRYPT", "Encrypted: " + encryptedText);
             Log.d("ENCRYPT", "Decrypted: " + decryptedText);
-
-            wiFiDirectBroadcastReceiver = WiFiP2PInstance.getInstance(this).getBroadcastReceiver();
 
             UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
             udp.execute("STARTED SERVICE");
@@ -249,15 +230,17 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
             intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
-            registerReceiver(broadcastReceiver, intentFilter);
 
-            // WiFi P2p
-            IntentFilter intentFilter_p2p = new IntentFilter();
-            intentFilter_p2p.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-            intentFilter_p2p.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-            intentFilter_p2p.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-            intentFilter_p2p.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
-            registerReceiver(wiFiDirectBroadcastReceiver, intentFilter_p2p);
+            intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+            intentFilter.addAction(BluetoothDevice.EXTRA_DEVICE);
+            intentFilter.addAction(BluetoothDevice.EXTRA_NAME);
+            intentFilter.addAction(BluetoothDevice.EXTRA_UUID);
+            intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
+
+            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+            intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+            registerReceiver(broadcastReceiver, intentFilter);
 
             if (SontHelper.isLocationServicesEnabled(getApplicationContext()) == false) {
                 SontHelper.openLocationSettings(getApplicationContext());
@@ -376,58 +359,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             };
             mCountDownTimer.start();
 
-            wifi_p2p_timer = new CountDownTimer(5000, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    WroupClient wroupClient = WroupClient.getInstance(getApplicationContext());
-                    final WroupServiceDevice[] wsdevice = new WroupServiceDevice[1];
-                    ServiceConnectedListener scl = new ServiceConnectedListener() {
-                        @Override
-                        public void onServiceConnected(WroupDevice serviceDevice) {
-                            Log.d("wifi_p2p", "client_service connected: " + serviceDevice.toString());
-                            Toast.makeText(getApplicationContext(), "Client connected: " + serviceDevice.getDeviceName(), Toast.LENGTH_LONG).show();
-                        }
-                    };
-                    wroupClient.setDataReceivedListener(new DataReceivedListener() {
-                        @Override
-                        public void onDataReceived(MessageWrapper messageWrapper) {
-                            Log.d("wifi_p2p_", messageWrapper.getMessage());
-                        }
-                    });
-                    wroupClient.discoverServices(4000L, new ServiceDiscoveredListener() {
-                        @Override
-                        public void onNewServiceDeviceDiscovered(WroupServiceDevice serviceDevice) {
-                            Log.d("wifi_p2p", "client_service device discovered: " + serviceDevice.toString());
-                        }
-
-                        @Override
-                        public void onFinishServiceDeviceDiscovered(List<WroupServiceDevice> serviceDevices) {
-                            for (WroupServiceDevice wsd : serviceDevices) {
-                                Log.d("wifi_p2p", "client_service devices found: " + wsd.toString());
-                                Toast.makeText(getApplicationContext(), "Client connected: " + wsd.getDeviceName(), Toast.LENGTH_LONG).show();
-                                wsdevice[0] = wsd;
-                            }
-                        }
-
-                        @Override
-                        public void onError(WiFiP2PError wiFiP2PError) {
-                            Log.d("wifi_p2p", "client_discover error: " + wiFiP2PError.toString());
-                        }
-                    });
-                    wroupClient.connectToService(wsdevice[0], scl);
-                    MessageWrapper message = new MessageWrapper();
-                    message.setMessage("hello");
-                    message.setMessageType(MessageWrapper.MessageType.NORMAL);
-                    wroupClient.sendMessageToAllClients(message);
-                    wroupClient.sendMessageToServer(message);
-                    Log.d("wifi_p2p", "trying to connect to: " + wsdevice[0].getDeviceMac());
-                    Log.d("wifi_p2p", "p2p discovering ran");
-                }
-
-                @Override
-                public void onFinish() {
-                }
-            };
 
             // Every day 10:05 -> BroadcastReceiver.class -> "run"
             Calendar calendar = Calendar.getInstance();
@@ -447,88 +378,6 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             SontHelper.turnGPSOn(getApplicationContext());
 
             startUpdatesGPS();
-            if (DEVICE_ACCOUNT.contains("sont16@gmail.com") || DEVICE_ACCOUNT.contains("2152161")) {
-                WroupService wroupService = WroupService.getInstance(getApplicationContext());
-                wroupService.registerService("sont_wifilocator", new ServiceRegisteredListener() {
-                    @Override
-                    public void onSuccessServiceRegistered() {
-                        Log.d("wifi_p2p", "service_service registered");
-                    }
-
-                    @Override
-                    public void onErrorServiceRegistered(WiFiP2PError wiFiP2PError) {
-                        Log.d("wifi_p2p", "service_error: " + wiFiP2PError.toString());
-                    }
-                });
-                wroupService.setClientConnectedListener(new ClientConnectedListener() {
-                    @Override
-                    public void onClientConnected(WroupDevice wroupDevice) {
-                        Log.d("wifi_p2p", "service_client connected: " + wroupDevice.toString());
-                        Toast.makeText(getApplicationContext(), "Client connected: " + wroupDevice.getDeviceName(), Toast.LENGTH_LONG).show();
-                    }
-                });
-                wroupService.setDataReceivedListener(new DataReceivedListener() {
-                    @Override
-                    public void onDataReceived(MessageWrapper messageWrapper) {
-                        Log.d("wifi_p2p_", messageWrapper.getMessage());
-                    }
-                });
-                wroupService.setClientDisconnectedListener(new ClientDisconnectedListener() {
-                    @Override
-                    public void onClientDisconnected(WroupDevice wroupDevice) {
-                        Log.d("wifi_p2p", "service_client disconnected: " + wroupDevice.toString());
-                        Toast.makeText(getApplicationContext(), "Client disconnected: " + wroupDevice.getDeviceName(), Toast.LENGTH_LONG).show();
-                    }
-                });
-                MessageWrapper message = new MessageWrapper();
-                message.setMessage("hello this is server");
-                message.setMessageType(MessageWrapper.MessageType.NORMAL);
-                wroupService.sendMessageToAllClients(message);
-                Log.d("wifi_p2p", "service listening");
-            } else {
-                WroupClient wroupClient = WroupClient.getInstance(getApplicationContext());
-                final WroupServiceDevice[] wsdevice = new WroupServiceDevice[1];
-                ServiceConnectedListener scl = new ServiceConnectedListener() {
-                    @Override
-                    public void onServiceConnected(WroupDevice serviceDevice) {
-                        Log.d("wifi_p2p", "client_service connected: " + serviceDevice.toString());
-                        Toast.makeText(getApplicationContext(), "Client connected: " + serviceDevice.getDeviceName(), Toast.LENGTH_LONG).show();
-                    }
-                };
-                wroupClient.setDataReceivedListener(new DataReceivedListener() {
-                    @Override
-                    public void onDataReceived(MessageWrapper messageWrapper) {
-                        Log.d("wifi_p2p_", messageWrapper.getMessage());
-                    }
-                });
-                wroupClient.discoverServices(10000L, new ServiceDiscoveredListener() {
-                    @Override
-                    public void onNewServiceDeviceDiscovered(WroupServiceDevice serviceDevice) {
-                        Log.d("wifi_p2p", "client_service device discovered: " + serviceDevice.toString());
-                    }
-
-                    @Override
-                    public void onFinishServiceDeviceDiscovered(List<WroupServiceDevice> serviceDevices) {
-                        for (WroupServiceDevice wsd : serviceDevices) {
-                            Log.d("wifi_p2p", "client_service devices found: " + wsd.toString());
-                            Toast.makeText(getApplicationContext(), "Client connected: " + wsd.getDeviceName(), Toast.LENGTH_LONG).show();
-                            wsdevice[0] = wsd;
-                        }
-                    }
-
-                    @Override
-                    public void onError(WiFiP2PError wiFiP2PError) {
-                        Log.d("wifi_p2p", "client_discover error: " + wiFiP2PError.toString());
-                    }
-                });
-                wroupClient.connectToService(wsdevice[0], scl);
-                MessageWrapper message = new MessageWrapper();
-                message.setMessage("hello");
-                message.setMessageType(MessageWrapper.MessageType.NORMAL);
-                wroupClient.sendMessageToAllClients(message);
-                wroupClient.sendMessageToServer(message);
-                Log.d("wifi_p2p", "trying to connect to: " + wsdevice[0].getDeviceMac());
-            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -585,14 +434,17 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 udp.execute("SCREEN OFF");
             }
             if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(action)) {
-                Log.d("BLUETOOTH_", "pairing request !");
+                Log.d("BL_NA", "pairing request !");
+            }
+            if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
+                Log.d("BL_NA", "Discovery STARTED !");
             }
             if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                Log.d("BLUETOOTH_", "Discovery FINISHED !");
+                Log.d("BL_NA", "Discovery FINISHED !");
             }
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Log.d("BLUETOOTH_",
+                Log.d("BL_NA",
                         "BSERVICE_BL_NAME_" + device.getName() +
                                 "_ADDRESS_" + device.getAddress());
 
@@ -600,7 +452,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                     // check if CHARGING
                     // BluetoothAdapter ba = BluetoothAdapter.getDefaultAdapter();
                     // ba.cancelDiscovery();
-                    Log.d("BLUETOOTH_1", "BSERVICE_near_home ! discovery CANCELLED !");
+                    Log.d("BL_NA", "BSERVICE_near_home ! discovery CANCELLED !");
                 }
             }
             if (WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION.equals(action) ||

@@ -19,7 +19,7 @@ import com.androidnetworking.interfaces.StringRequestListener;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.SontHelper;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.commonscopy.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -42,6 +42,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
+
+//import org.apache.commons.io.IOUtils;
 
 public class CrawlerActivity extends AppCompatActivity {
 

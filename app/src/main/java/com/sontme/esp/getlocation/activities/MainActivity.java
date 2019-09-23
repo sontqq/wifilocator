@@ -191,9 +191,16 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     //endregion
 
     private BillingClient billingClient;
-
     private Handler mHandler = new Handler();
-    AlertDialog.Builder alert_dialog;
+    public AlertDialog.Builder alert_dialog;
+    public DrawerLayout dl;
+    public ActionBarDrawerToggle t;
+    public CallbackManager callbackManager;
+
+    private final Handler mHandler2 = new Handler();
+    private Runnable mTimer1;
+    private LineGraphSeries<DataPoint> mSeries1;
+    private double graph2LastXValue = 5d;
 
     public Runnable runnable = new Runnable() {
         @Override
@@ -215,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     if (BackgroundService.uniqueAPS.size() > 0) {
                         // uniq.setText(SontHelper.uniqueAPS.size());
                     }
-                    WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+                    //WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
                     String ipv4 = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
                     BackgroundService.ipaddress = ipv4;
                     TextView ip = findViewById(R.id.ip);
@@ -310,274 +317,28 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         }
     };
 
-    public DrawerLayout dl;
-    public ActionBarDrawerToggle t;
-    public NavigationView nv;
-
-    CallbackManager callbackManager;
-
-    private final Handler mHandler2 = new Handler();
-    private Runnable mTimer1;
-    private LineGraphSeries<DataPoint> mSeries1;
-    private LineGraphSeries<DataPoint> mSeries2;
-    private double graph2LastXValue = 5d;
-
-    private void setFacebookData(final LoginResult loginResult) {
-        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        try {
-                            String email = response.getJSONObject().getString("email");
-                            String firstName = response.getJSONObject().getString("first_name");
-                            String lastName = response.getJSONObject().getString("last_name");
-
-                            Profile profile = Profile.getCurrentProfile();
-                            String id = profile.getId();
-                            String link = profile.getLinkUri().toString();
-
-                            if (Profile.getCurrentProfile() != null) {
-                                Log.d("FACEBOOK_LOGIN_", "PROFILEPICTURE: " + Profile.getCurrentProfile().getProfilePictureUri(200, 200));
-                                ImageView imgv = findViewById(R.id.fbprofimg);
-                                TextView txtname = findViewById(R.id.fbtxtname);
-                                txtname.setText(Profile.getCurrentProfile().getName());
-                                new DownloadImageTask(imgv)
-                                        .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 50)));
-                                imgv.setVisibility(View.VISIBLE);
-                                txtname.setVisibility(View.VISIBLE);
-                            } else {
-                                Log.d("FACEBOOK_LOGIN_", "profile is null !");
-                                ImageView imgv = findViewById(R.id.fbprofimg);
-                                TextView txtname = findViewById(R.id.fbtxtname);
-                                imgv.setVisibility(View.VISIBLE);
-                                txtname.setVisibility(View.VISIBLE);
-                            }
-
-                            Log.d("FACEBOOK_LOGIN_" + "Email: ", email);
-                            Log.d("FACEBOOK_LOGIN_" + "FirstName: ", firstName);
-                            Log.d("FACEBOOK_LOGIN_" + "LastName: ", lastName);
-                            Log.d("FACEBOOK_LOGIN_" + "ID: ", id);
-                            Log.d("FACEBOOK_LOGIN_" + "Link: ", link);
-                            Log.d("FACEBOOK_LOGIN_", response.getJSONObject().getString("friends"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,email,first_name,last_name,gender,friends");
-        request.setParameters(parameters);
-        request.executeAsync();
-    }
-
-    private boolean isGLogged() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        return account != null;
-    }
-
-    private boolean isFbLogged() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        return isLoggedIn;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK)
-            switch (requestCode) {
-                case 101:
-                    try {
-                        String type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE);
-                        String name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                        Log.d("GOOGLE_ACC_", type + "_" + name);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case 999:
-                    try {
-                        Uri selectedImage = data.getData();
-                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);
-                        Bitmap faced_bmp = BitmapFactory.decodeStream(imageStream);
-                        AlertDialog.Builder face_img_dialog = new AlertDialog.Builder(MainActivity.this);
-                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View v = inflater.inflate(R.layout.custom_dialog_img_full, null, false);
-                        ImageView imgv = v.findViewById(R.id.popupimg);
-                        imgv.setImageBitmap(SontHelper.findFaceDrawRectROI(faced_bmp, 5));
-                        //imgv.setImageBitmap(SontHelper.findFaceCropROI(faced_bmp,5));
-                        face_img_dialog.setView(v);
-                        face_img_dialog.show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-            }
-        if (requestCode == 102) { // GOOGLE SIGN IN CALLBACK
-            try {
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d("GOOGLE_LOGIN", "Success: " + account.getEmail() + " _ " + account.getDisplayName() + " _ " + account.getPhotoUrl().toString());
-                TextView gtxt = findViewById(R.id.googletxtname);
-                ImageView gimg = findViewById(R.id.googleprofimg);
-                Button btn = findViewById(R.id.gsignout);
-                GoogleSignInButton btn2 = findViewById(R.id.sign_in_button);
-
-                gimg.setVisibility(View.VISIBLE);
-                btn.setVisibility(View.VISIBLE);
-                gtxt.setVisibility(View.VISIBLE);
-                btn2.setVisibility(View.GONE);
-                gtxt.setText(account.getDisplayName());
-                new DownloadImageTask(gimg)
-                        .execute(account.getPhotoUrl().toString());
-            } catch (Exception e) {
-                Log.d("GOOGLE_LOGIN", "Error: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        HashMap<String, Object> options = new HashMap<>();
-        options.put(Bugsee.Option.NotificationBarTrigger, false);
-
-        Bugsee.launch(this, "c92a6836-3405-491e-ac28-e5024324a9d6", options);
-
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        FacebookSdk.setAutoLogAppEventsEnabled(true);
-        FacebookSdk.setAutoInitEnabled(true);
-        FacebookSdk.fullyInitialize();
-        FacebookSdk.setAdvertiserIDCollectionEnabled(true);
-        AppEventsLogger logger = AppEventsLogger.newLogger(this);
-        logger.logEvent("app_started");
-
-        new FlurryAgent.Builder()
-                .withLogEnabled(true)
-                .build(this, getResources().getString(R.string.flurry_key));
-        if (BuildConfig.DEBUG)
-            Log.d("APP_DEBUG_", "DEBUG on!");
-
-        callbackManager = CallbackManager.Factory.create();
-        setAutoLogAppEventsEnabled(true);
 
         FrameLayout placeholder = findViewById(R.id.placeholder);
         NavigationView nv = findViewById(R.id.nv);
         placeholder.setVisibility(View.VISIBLE);
         nv.setVisibility(View.VISIBLE);
 
-        Log.d("FACEBOOK_LOGIN", "key:" + FacebookSdk.getApplicationSignature(this));
-        if (isFbLogged()) {
-            Log.d("FACEBOOK_LOGIN", "Status: Logged IN");
-            ImageView imgv = findViewById(R.id.fbprofimg);
-            TextView txtname = findViewById(R.id.fbtxtname);
-
-            txtname.setVisibility(View.VISIBLE);
-            imgv.setVisibility(View.VISIBLE);
-
-            txtname.setText(Profile.getCurrentProfile().getName());
-            new DownloadImageTask(imgv)
-                    .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 50)));
-        } else {
-            Log.d("FACEBOOK_LOGIN", "Status: Logged OFF");
-            ImageView imgv = findViewById(R.id.fbprofimg);
-            TextView txtname = findViewById(R.id.fbtxtname);
-            txtname.setText("Logged out");
-
-            txtname.setVisibility(View.GONE);
-            imgv.setVisibility(View.GONE);
-            //imgv.setImageResource(R.drawable.com_facebook_button_icon);
-        }
-        // CHECK FB LOGIN/LOGOUT
-        ProfileTracker profileTracker = new ProfileTracker() {
-            @Override
-            protected void onCurrentProfileChanged(
-                    Profile oldProfile,
-                    Profile currentProfile) {
-                if (currentProfile == null) {
-                    Log.d("FACEBOOK_LOGIN", "LOGGED OUT");
-                    ImageView imgv = findViewById(R.id.fbprofimg);
-                    TextView txtname = findViewById(R.id.fbtxtname);
-                    txtname.setText("Logged out");
-                    txtname.setVisibility(View.GONE);
-                    imgv.setVisibility(View.GONE);
-                    //imgv.setImageResource(R.drawable.com_facebook_button_icon);
-                } else {
-                    Log.d("FACEBOOK_LOGIN", "PROFILE_CHANGED_1");
-
-                    ImageView imgv = findViewById(R.id.fbprofimg);
-                    TextView txtname = findViewById(R.id.fbtxtname);
-                    LoginButton btn = findViewById(R.id.login_button);
-                    imgv.setVisibility(View.VISIBLE);
-                    txtname.setVisibility(View.VISIBLE);
-                    txtname.setText(Profile.getCurrentProfile().getName());
-                    new DownloadImageTask(imgv)
-                            .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 500)));
-                }
-            }
-        };
-        profileTracker.startTracking();
-
-        //region Google Firebase
-        FirebaseApp.initializeApp(getApplicationContext());
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-        mGoogleApiClient.connect();
-        GoogleSignInButton googleSignInButton = findViewById(R.id.sign_in_button);
-        //endregion
-
-        if (isGLogged() == true) {
-            googleSignInButton.setVisibility(View.GONE);
-            Button so = findViewById(R.id.gsignout);
-            ImageView img = findViewById(R.id.googleprofimg);
-            img.setVisibility(View.VISIBLE);
-            so.setVisibility(View.VISIBLE);
-            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-            Log.d("GOOGLE_LOGIN", "already logged in " + account.getEmail());
-            //googleSignInButton.setText("Unlink Google");
-            TextView gtxt = findViewById(R.id.googletxtname);
-            ImageView gimg = findViewById(R.id.googleprofimg);
-            gtxt.setText(account.getDisplayName());
-            gtxt.setVisibility(View.VISIBLE);
-            new DownloadImageTask(gimg)
-                    .execute(account.getPhotoUrl().toString());
-        } else {
-            ImageView img = findViewById(R.id.googleprofimg);
-            img.setVisibility(View.GONE);
-            //img.setImageResource(R.drawable.exiticon);
-            googleSignInButton.setVisibility(View.VISIBLE);
-            googleSignInButton.setText("Sign in with Google");
-            Button so = findViewById(R.id.gsignout);
-            so.setVisibility(View.GONE);
-            TextView gtxt = findViewById(R.id.googletxtname);
-            gtxt.setVisibility(View.GONE);
-            Log.d("GOOGLE_LOGIN", "logged out");
-            //mGoogleSignInClient.silentSignIn();
-        }
-        startReceivingObject();
-
         UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
-        udp.execute("STARTED ACT");
+        udp.execute("STARTED ACTIVITY");
 
         Button sharebutton = findViewById(R.id.sharebutton);
         Button testbutton = findViewById(R.id.testbutton);
-        //testbutton.setVisibility(View.GONE);
+        Button livebtn = findViewById(R.id.testbutton2);
         sharebutton.setVisibility(View.GONE);
+        //testbutton.setVisibility(View.GONE);
+
         testbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -631,8 +392,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 */
 
 
-
                 // region BL
+
+                SontHelper.BluetoothFunctions.native_BL();
+                //SontHelper.AudioTools.record(MainActivity.this);
+                SontHelper.AudioTools.recordAndPlay(getApplicationContext());
+
                 /*
                 final BluetoothDevice[] connectTo = new BluetoothDevice[1];
                 SontHelper.playTone();
@@ -679,14 +444,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 DiscoveryCallback discoveryCallback = new DiscoveryCallback() {
                     @Override
                     public void onDiscoveryStarted() {
-                        Log.d("BLUETOOTH_LIBRARY_", "Discovery Started ! " +
-                                System.currentTimeMillis());
                     }
 
                     @Override
                     public void onDiscoveryFinished() {
-                        Log.d("BLUETOOTH_LIBRARY_", "Discovery Finished ! " +
-                                System.currentTimeMillis());
                         try {
                             bluetooth.onStop();
                             bluetooth.onStart();
@@ -695,8 +456,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                             bluetooth.startScanning();
 
                             //bluetooth.pair(connectTo[0]);
-                            if (bluetooth != null)
-                                Log.d("BLUETOOTH_LIBRARY_", "Bluetooth NOT null");
+                            //bluetooth.connectToDevice(connectTo[0]);
+
                             if (connectTo[0] != null) {
                                 Log.d("BLUETOOTH_LIBRARY_", "Device NOT null");
                                 bluetooth.connectToDevice(connectTo[0]);
@@ -708,6 +469,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                             e.printStackTrace();
                             Log.d("BLUETOOTH_LIBRARY_", e.getMessage());
                         }
+
                         MainActivity.this.runOnUiThread(new Runnable() {
                             public void run() {
                                 SontHelper.double_vibrate(getApplicationContext());
@@ -717,8 +479,18 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
                     @Override
                     public void onDeviceFound(BluetoothDevice device) {
+                        Log.d("BLUETOOTH_LIBRARY_","device found: " + device.getName() + "_" + device.getAddress());
+                        SontHelper.playTone();
+                        SontHelper.vibrate(getApplicationContext());
+                        try {
+                            bluetooth.pair(device);
+                            bluetooth.connectToDevice(device);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Log.d("BLUETOOTH_LIBRARY_","error: " + e.getMessage());
+                        }
                         if (device.getAddress().equals("00:19:86:00:10:AE")) {
-                            if (isBLDevicePaired(device) == true) {
+                            if (SontHelper.BluetoothFunctions.isBLDevicePaired(device) == true) {
                                 Log.d("BLUETOOTH_LIBRARY_", "Found: " +
                                         device.getAddress() + " _ PAIRED");
                             } else {
@@ -748,9 +520,10 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         Log.d("BLUETOOTH_LIBRARY_", "Error_ " + errorCode);
                     }
                 };
-                //bluetooth.setBluetoothCallback(bluetoothCallback);
+
                 bluetooth.setDiscoveryCallback(discoveryCallback);
                 bluetooth.setDeviceCallback(deviceCallback);
+
                 bluetooth.onStart();
                 if (!bluetooth.isEnabled())
                     bluetooth.enable();
@@ -758,10 +531,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 */
                 // endregion
 
-                startReceivingObject();
             }
         });
-
         sharebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -789,7 +560,114 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 }
             }
         });
+        livebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
+                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+                    alert_dialog.setView(alert_v);
+                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
+                    alert_dialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+        //region API INIT
+        HashMap<String, Object> options = new HashMap<>();
+        options.put(Bugsee.Option.NotificationBarTrigger, false);
+        Bugsee.launch(this, "c92a6836-3405-491e-ac28-e5024324a9d6", options);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.setAutoLogAppEventsEnabled(true);
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
+        FacebookSdk.setAdvertiserIDCollectionEnabled(true);
+        AppEventsLogger logger = AppEventsLogger.newLogger(this);
+        logger.logEvent("app_started");
+
+        new FlurryAgent.Builder()
+                .withLogEnabled(true)
+                .build(this, getResources().getString(R.string.flurry_key));
+        if (BuildConfig.DEBUG)
+            Log.d("APP_DEBUG_", "DEBUG on!");
+
+        setAutoLogAppEventsEnabled(true);
+        //endregion
+        //region Google Firebase
+        FirebaseApp.initializeApp(getApplicationContext());
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        mGoogleApiClient.connect();
+
+        //endregion
+        //region EXPERIMENTAL FEATURES
+        startReceivingObject();
+
+        //SontHelper.BluetoothFunctions.native_BL();
+        //endregion
+        //region SIGN IN/OUT BUTTONS
+        callbackManager = CallbackManager.Factory.create();
+        if (isFbLogged()) {
+            Log.d("FACEBOOK_LOGIN", "Status: Logged IN");
+            ImageView imgv = findViewById(R.id.fbprofimg);
+            TextView txtname = findViewById(R.id.fbtxtname);
+
+            txtname.setVisibility(View.VISIBLE);
+            imgv.setVisibility(View.VISIBLE);
+
+            txtname.setText(Profile.getCurrentProfile().getName());
+            new DownloadImageTask(imgv)
+                    .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 50)));
+        } else {
+            Log.d("FACEBOOK_LOGIN", "Status: Logged OFF");
+            ImageView imgv = findViewById(R.id.fbprofimg);
+            TextView txtname = findViewById(R.id.fbtxtname);
+            txtname.setText("Logged out");
+
+            txtname.setVisibility(View.GONE);
+            imgv.setVisibility(View.GONE);
+            //imgv.setImageResource(R.drawable.com_facebook_button_icon);
+        }
+        ProfileTracker profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(
+                    Profile oldProfile,
+                    Profile currentProfile) {
+                if (currentProfile == null) {
+                    Log.d("FACEBOOK_LOGIN", "LOGGED OUT");
+                    ImageView imgv = findViewById(R.id.fbprofimg);
+                    TextView txtname = findViewById(R.id.fbtxtname);
+                    txtname.setText("Logged out");
+                    txtname.setVisibility(View.GONE);
+                    imgv.setVisibility(View.GONE);
+                    //imgv.setImageResource(R.drawable.com_facebook_button_icon);
+                } else {
+                    Log.d("FACEBOOK_LOGIN", "PROFILE_CHANGED_1");
+
+                    ImageView imgv = findViewById(R.id.fbprofimg);
+                    TextView txtname = findViewById(R.id.fbtxtname);
+                    LoginButton btn = findViewById(R.id.login_button);
+                    imgv.setVisibility(View.VISIBLE);
+                    txtname.setVisibility(View.VISIBLE);
+                    txtname.setText(Profile.getCurrentProfile().getName());
+                    new DownloadImageTask(imgv)
+                            .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 500)));
+                }
+            }
+        };
+        profileTracker.startTracking();
+
+        GoogleSignInButton googleSignInButton = findViewById(R.id.sign_in_button);
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -797,8 +675,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 startActivityForResult(signInIntent, 102);
             }
         });
-
-
         LoginButton loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("email", "public_profile"));
         loginButton.setLoginText("Login");
@@ -821,7 +697,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 Log.d("FACEBOOK_LOGIN", "error: " + error.toString());
             }
         });
-
         Button googlesignout = findViewById(R.id.gsignout);
         googlesignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -847,29 +722,61 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         });
 
+        if (isGLogged() == true) {
+            googleSignInButton.setVisibility(View.GONE);
+            Button so = findViewById(R.id.gsignout);
+            ImageView img = findViewById(R.id.googleprofimg);
+            img.setVisibility(View.VISIBLE);
+            so.setVisibility(View.VISIBLE);
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            Log.d("GOOGLE_LOGIN", "already logged in " + account.getEmail());
+            //googleSignInButton.setText("Unlink Google");
+            TextView gtxt = findViewById(R.id.googletxtname);
+            ImageView gimg = findViewById(R.id.googleprofimg);
+            gtxt.setText(account.getDisplayName());
+            gtxt.setVisibility(View.VISIBLE);
+            new DownloadImageTask(gimg)
+                    .execute(account.getPhotoUrl().toString());
+        } else {
+            ImageView img = findViewById(R.id.googleprofimg);
+            img.setVisibility(View.GONE);
+            //img.setImageResource(R.drawable.exiticon);
+            googleSignInButton.setVisibility(View.VISIBLE);
+            googleSignInButton.setText("Sign in with Google");
+            Button so = findViewById(R.id.gsignout);
+            so.setVisibility(View.GONE);
+            TextView gtxt = findViewById(R.id.googletxtname);
+            gtxt.setVisibility(View.GONE);
+            Log.d("GOOGLE_LOGIN", "logged out");
+            //mGoogleSignInClient.silentSignIn();
+        }
+
+        //endregion
+        //region LinearLayout Definitions
         LinearLayout lin2 = findViewById(R.id.firstlin2);
         LinearLayout lin3 = findViewById(R.id.firstlin3);
         LinearLayout lin4 = findViewById(R.id.firstlin4);
         LinearLayout lin5 = findViewById(R.id.firstlin5);
-
         lin2.setVisibility(LinearLayout.GONE);
         lin3.setVisibility(LinearLayout.GONE);
         lin4.setVisibility(LinearLayout.GONE);
         lin5.setVisibility(LinearLayout.GONE);
-
+        //endregion
+        //region PERMISSIONS / GPS INITIALIZATION
         SontHelper.wifi_check_enabled(getApplicationContext());
         SontHelper.adminPermission_check(getApplicationContext(), MainActivity.this);
         SontHelper.requestPermissions(this);
         SontHelper.turnGPSOn(getApplicationContext());
-
-        // NOTIFICATION BAR COLOR RANDOMIZATOR
+        //endregion
+        //region NOTIFICATION BAR COLOR RANDOMIZATOR
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         Collections.shuffle(Arrays.asList(myColors));
         window.setStatusBarColor(Color.parseColor(myColors[1]));
         window.setNavigationBarColor(Color.parseColor(myColors[1]));
         setTitleColor(Color.parseColor(myColors[1]));
-
+        //endregion
+        //region UNHANDLED EXCEPTION HANDLER
         Thread.UncaughtExceptionHandler defaultUEH = Thread.getDefaultUncaughtExceptionHandler();
         Thread.UncaughtExceptionHandler _unCaughtExceptionHandler = new Thread.UncaughtExceptionHandler() {
             @Override
@@ -886,7 +793,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         };
         Thread.setDefaultUncaughtExceptionHandler(_unCaughtExceptionHandler);
-
+        //endregion
+        //region GET ACCOUNT INFO
         AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
         Account[] list = manager.getAccounts();
         String acc = "no";
@@ -901,12 +809,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             BackgroundService.googleAccount = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                     Settings.Secure.ANDROID_ID);
         }
-
-        String ipv4 = SontHelper.getLocalIpAddress();
-        BackgroundService.ipaddress = ipv4;
-        TextView ip = findViewById(R.id.ip);
-        ip.setText(BackgroundService.ipaddress);
-
+        //endregion
+        //region DRAWER VERSION INFO
+        View hView = nv.getHeaderView(0);
+        TextView tex = hView.findViewById(R.id.header_verinfo);
+        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
+        tex.setText(version);
+        //endregion
         //region DRAWER
         dl = findViewById(R.id.drawler);
         t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
@@ -1045,9 +954,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 }
             }
         });
-
-        //endregion
-
         exitb.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -1057,29 +963,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 System.exit(0);
             }
         });
-
-        // DRAWER VERSION INFO
-        View hView = nv.getHeaderView(0);
-        TextView tex = hView.findViewById(R.id.header_verinfo);
-        String version = "Version: " + BuildConfig.VERSION_NAME + " Build: " + BuildConfig.VERSION_CODE;
-        tex.setText(version);
-
-        handler.postDelayed(runnable, 1000);
-        chart_handler.postDelayed(chart_runnable, 5000);
-
-        Thread th3 = new Thread() {
-            public void run() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(new Intent(MainActivity.this, BackgroundService.class));
-                    bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
-                } else {
-                    startService(new Intent(MainActivity.this, BackgroundService.class));
-                    bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
-                }
-            }
-        };
-        th3.start();
-
+        //endregion
         //region SET UP BILLING
         billingClient = BillingClient.newBuilder(this)
                 .enablePendingPurchases()
@@ -1099,55 +983,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             }
         });
         //endregion
-
-        if (OpenCVLoader.initDebug()) {
-            Log.d("open_cv", "init done");
-        } else {
-            Log.d("open_cv", "init fail");
-        }
-
-        alert_dialog = new AlertDialog.Builder(MainActivity.this);
-
-        Button livebtn = findViewById(R.id.testbutton2);
-        livebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
-                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
-                    alert_dialog.setView(alert_v);
-                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
-                    alert_dialog.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.d("test_func", "ran");
-                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
-                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
-                    alert_dialog.setView(alert_v);
-                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
-                    //alert_dialog.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        //findFaceOnAllPhotos();
-        //SontHelper.pickImage(MainActivity.this);
-
+        //region REALTIME GRAPH
         GraphView graph = findViewById(R.id.rlgraph_main);
-
         graph.setTitle("Realtime WiFi");
-
         mSeries1 = new LineGraphSeries<>(generateData());
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
@@ -1165,7 +1003,39 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         paint.setStrokeWidth(10);
         mSeries1.setCustomPaint(paint);
         graph.addSeries(mSeries1);
+        //endregion
+        //region OPEN_CV
+        if (OpenCVLoader.initDebug()) {
+            Log.d("open_cv", "init done");
+        } else {
+            Log.d("open_cv", "init fail");
+        }
+        //endregion
 
+        ServiceConnection mConnection = new ServiceConnection() {
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
+                backgroundService = mLocalBinder.getServerInstance();
+            }
+        };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(MainActivity.this, BackgroundService.class));
+            bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
+        } else {
+            startService(new Intent(MainActivity.this, BackgroundService.class));
+            bindService(new Intent(MainActivity.this, BackgroundService.class), mConnection, BIND_AUTO_CREATE);
+        }
+
+        // TIMED EVENTS (CHARTS / LIVE DATA)
+        alert_dialog = new AlertDialog.Builder(MainActivity.this);
+        chart_handler.postDelayed(chart_runnable, 5000);
+        handler.postDelayed(runnable, 1000);
         mTimer1 = new Runnable() {
             @Override
             public void run() {
@@ -1174,7 +1044,141 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 mHandler2.postDelayed(this, 100);
             }
         };
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.d("test_func", "ran");
+                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
+                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+                    alert_dialog.setView(alert_v);
+                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
+                    //alert_dialog.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         mHandler2.postDelayed(mTimer1, 0);
+
+
+    }
+
+    private void setFacebookData(final LoginResult loginResult) {
+        GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            String email = response.getJSONObject().getString("email");
+                            String firstName = response.getJSONObject().getString("first_name");
+                            String lastName = response.getJSONObject().getString("last_name");
+
+                            Profile profile = Profile.getCurrentProfile();
+                            String id = profile.getId();
+                            String link = profile.getLinkUri().toString();
+
+                            if (Profile.getCurrentProfile() != null) {
+                                Log.d("FACEBOOK_LOGIN_", "PROFILEPICTURE: " + Profile.getCurrentProfile().getProfilePictureUri(200, 200));
+                                ImageView imgv = findViewById(R.id.fbprofimg);
+                                TextView txtname = findViewById(R.id.fbtxtname);
+                                txtname.setText(Profile.getCurrentProfile().getName());
+                                new DownloadImageTask(imgv)
+                                        .execute(String.valueOf(Profile.getCurrentProfile().getProfilePictureUri(50, 50)));
+                                imgv.setVisibility(View.VISIBLE);
+                                txtname.setVisibility(View.VISIBLE);
+                            } else {
+                                Log.d("FACEBOOK_LOGIN_", "profile is null !");
+                                ImageView imgv = findViewById(R.id.fbprofimg);
+                                TextView txtname = findViewById(R.id.fbtxtname);
+                                imgv.setVisibility(View.VISIBLE);
+                                txtname.setVisibility(View.VISIBLE);
+                            }
+
+                            Log.d("FACEBOOK_LOGIN_" + "Email: ", email);
+                            Log.d("FACEBOOK_LOGIN_" + "FirstName: ", firstName);
+                            Log.d("FACEBOOK_LOGIN_" + "LastName: ", lastName);
+                            Log.d("FACEBOOK_LOGIN_" + "ID: ", id);
+                            Log.d("FACEBOOK_LOGIN_" + "Link: ", link);
+                            Log.d("FACEBOOK_LOGIN_", response.getJSONObject().getString("friends"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,email,first_name,last_name,gender,friends");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    private boolean isGLogged() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        return account != null;
+    }
+
+    private boolean isFbLogged() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        return isLoggedIn;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case 101:
+                    try {
+                        String type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE);
+                        String name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                        Log.d("GOOGLE_ACC_", type + "_" + name);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 999:
+                    try {
+                        Uri selectedImage = data.getData();
+                        InputStream imageStream = getContentResolver().openInputStream(selectedImage);
+                        Bitmap faced_bmp = BitmapFactory.decodeStream(imageStream);
+                        AlertDialog.Builder face_img_dialog = new AlertDialog.Builder(MainActivity.this);
+                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View v = inflater.inflate(R.layout.custom_dialog_img_full, null, false);
+                        ImageView imgv = v.findViewById(R.id.popupimg);
+                        imgv.setImageBitmap(SontHelper.findFaceDrawRectROI(faced_bmp, 5));
+                        //imgv.setImageBitmap(SontHelper.findFaceCropROI(faced_bmp,5));
+                        face_img_dialog.setView(v);
+                        face_img_dialog.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+            }
+        if (requestCode == 102) { // GOOGLE SIGN IN CALLBACK
+            try {
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                Log.d("GOOGLE_LOGIN", "Success: " + account.getEmail() + " _ " + account.getDisplayName() + " _ " + account.getPhotoUrl().toString());
+                TextView gtxt = findViewById(R.id.googletxtname);
+                ImageView gimg = findViewById(R.id.googleprofimg);
+                Button btn = findViewById(R.id.gsignout);
+                GoogleSignInButton btn2 = findViewById(R.id.sign_in_button);
+
+                gimg.setVisibility(View.VISIBLE);
+                btn.setVisibility(View.VISIBLE);
+                gtxt.setVisibility(View.VISIBLE);
+                btn2.setVisibility(View.GONE);
+                gtxt.setText(account.getDisplayName());
+                new DownloadImageTask(gimg)
+                        .execute(account.getPhotoUrl().toString());
+            } catch (Exception e) {
+                Log.d("GOOGLE_LOGIN", "Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -1227,35 +1231,12 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         return r;
     }
 
-    private double getWifiC_nearby() {
-        double r = 0;
-        try {
-            r = BackgroundService.uniqueAPS.size();
-        } catch (Exception e) {
-            r = 0;
-        }
-        return r;
-    }
-
     @Override
     public void onStop() {
         UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
         udp.execute("STOPPED ACT");
         super.onStop();
     }
-
-    ServiceConnection mConnection = new ServiceConnection() {
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Toast.makeText(getApplicationContext(), "Service is disconnected", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            BackgroundService.LocalBinder mLocalBinder = (BackgroundService.LocalBinder) service;
-            backgroundService = mLocalBinder.getServerInstance();
-        }
-    };
 
     @Override
     public void onResume() {

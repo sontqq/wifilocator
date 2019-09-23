@@ -190,4 +190,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
 
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 </manifest>

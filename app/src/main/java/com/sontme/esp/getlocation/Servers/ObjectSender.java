@@ -6,9 +6,11 @@ import android.util.Log;
 
 import com.sontme.esp.getlocation.BackgroundService;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.Key;
 
@@ -85,4 +87,33 @@ public class ObjectSender extends AsyncTask<Object, Object, Object> {
         return null;
     }
 
+
+    public void startReceivingObject() {
+        Thread thx = new Thread() {
+            public void run() {
+                boolean check = true;
+                //boolean check = false;
+                try {
+                    ServerSocket server = new ServerSocket(1234);
+                    while (check) {
+                        Socket s = server.accept();
+                        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
+
+                        Key sKey = (Key) in.readObject();
+                        SealedObject obj = (SealedObject) in.readObject();
+
+                        String str = (String) obj.getObject(sKey);
+
+                        Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + str);
+
+                    }
+                } catch (Exception e) {
+                    check = false;
+                    e.printStackTrace();
+                    Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
+                }
+            }
+        };
+        thx.start();
+    }
 }

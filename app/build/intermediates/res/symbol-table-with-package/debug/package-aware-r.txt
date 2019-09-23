@@ -17,6 +17,7 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim lin_grow
 anim md_styled_slide_down_fast
 anim md_styled_slide_down_normal
 anim md_styled_slide_down_slow
