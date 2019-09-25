@@ -104,23 +104,6 @@
                         "endColumns": "158,130,145,111,83,86,77,89,97,117,116,96,96,112,132,81,79,173,94,112,113,117,135",
                         "endOffsets": "2946,3077,3223,3335,3419,3506,3584,3674,3772,3890,4007,4104,4201,4314,4447,4529,4609,4783,4878,4991,5105,5223,5359"
                     }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\e8ff9c0d8c2e6109ead24d09de8b721a\\zxing-android-embedded-3.1.0\\res\\values-fi\\values-fi.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,114,161,321",
-                        "endColumns": "58,46,159,103",
-                        "endOffsets": "109,156,316,420"
-                    },
-                    "to": {
-                        "startLines": "79,80,81,82",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "8812,8871,8918,9078",
-                        "endColumns": "58,46,159,103",
-                        "endOffsets": "8866,8913,9073,9177"
-                    }
                 }
             ]
         }

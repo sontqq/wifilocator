@@ -36,4 +36,7 @@ public class ApStrings implements Serializable {
     public String getLati(){ return lati; }
     public String getLongi(){ return longi; }
 
+    public String toString() {
+        return "AP: " + ssid + " " + "STR: " + str;
+    }
 }

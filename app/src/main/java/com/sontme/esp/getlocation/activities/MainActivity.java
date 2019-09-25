@@ -118,15 +118,18 @@ import com.shobhitpuri.custombuttons.GoogleSignInButton;
 import com.sontme.esp.getlocation.BackgroundService;
 import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.CustomFormatter;
+import com.sontme.esp.getlocation.DeviceInfo;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.opencv.android.OpenCVLoader;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -138,7 +141,6 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -147,7 +149,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.crypto.Cipher;
 import javax.crypto.SealedObject;
+import javax.crypto.spec.SecretKeySpec;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -346,11 +350,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 //Intent i = new Intent(getApplicationContext(), opencv_realtime.class);
                 //Intent i = new Intent(getApplicationContext(), RealTimeChart.class);
                 //Intent i = new Intent(getApplicationContext(), Nearby_browser.class);
-                //Intent i = new Intent(getApplicationContext(), mapsforge.class);
-                //startActivity(i);
                 //String x = SontHelper.generateKML(BackgroundService.locations);
                 //String y = SontHelper.generateGFX(BackgroundService.locations);
 
+                Intent i = new Intent(getApplicationContext(), testAct.class);
+                startActivity(i);
+
+                //region CRAWLER START
                 /*
                 final String[] site = {""};
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -390,13 +396,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 });
                 builder.show();
                 */
-
+                //endregion
 
                 // region BL
 
-                SontHelper.BluetoothFunctions.native_BL();
+                //SontHelper.BluetoothFunctions.native_BL();
                 //SontHelper.AudioTools.record(MainActivity.this);
-                SontHelper.AudioTools.recordAndPlay(getApplicationContext());
+                //SontHelper.AudioTools.recordAndPlay(getApplicationContext());
 
                 /*
                 final BluetoothDevice[] connectTo = new BluetoothDevice[1];
@@ -530,6 +536,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 bluetooth.startScanning();
                 */
                 // endregion
+
 
             }
         });
@@ -1185,26 +1192,39 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void startReceivingObject() {
         //region udp
 
+
         Thread thx = new Thread() {
             public void run() {
                 boolean check = true;
-                //boolean check = false;
                 try {
                     ServerSocket server = new ServerSocket(1234);
                     while (check) {
                         Socket s = server.accept();
-                        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
 
-                        Key sKey = (Key) in.readObject();
-                        SealedObject obj = (SealedObject) in.readObject();
+                        //CipherInputStream cipherInputStream = new CipherInputStream(s.getInputStream(), cipher);
+                        //ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
 
-                        String str = (String) obj.getObject(sKey);
+                        InputStream is = s.getInputStream();
+                        byte[] data = IOUtils.toByteArray(is);
 
-                        Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + str);
+                        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
+
+                        Object obj = ois.readObject();
+
+                        if (obj instanceof SealedObject) {
+                            Log.d("OBJECT_SCK_", "RECEIVED: sealed");
+                            byte[] key = "1234567890000000".getBytes();
+                            String transformation = "Blowfish";
+                            SecretKeySpec sks = new SecretKeySpec(key, transformation);
+                            Cipher cipher = Cipher.getInstance(transformation);
+                            cipher.init(Cipher.DECRYPT_MODE, sks);
+
+                            DeviceInfo di = (DeviceInfo) ((SealedObject) obj).getObject(cipher);
+                            Log.d("OBJECT_SCK_", "RECEIVED: sealed, DEVICEINFO -> " + di.TEST1);
+                        }
 
                     }
                 } catch (Exception e) {
-                    check = false;
                     e.printStackTrace();
                     Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
                 }

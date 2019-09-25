@@ -61,6 +61,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.apache.commons.net.util.Base64;
 import org.opencv.core.Scalar;
 
 import java.io.BufferedInputStream;
@@ -111,6 +112,7 @@ import javax.crypto.spec.SecretKeySpec;
 import static android.util.Base64.NO_WRAP;
 import static android.util.Base64.decode;
 import static android.util.Base64.encodeToString;
+import static org.apache.commons.net.util.Base64.encodeBase64String;
 
 /*
    Frequently used methods to keep other classes clear
@@ -366,16 +368,21 @@ public class SontHelper extends Application {
 
     }
 
-    public static byte[] compress_GZIP(String str) throws Exception {
-        if (str == null || str.length() == 0) {
+    public static byte[] compress_GZIP(String str) {
+        ByteArrayOutputStream obj;
+        try {
+            if (str == null || str.length() == 0) {
+                return null;
+            }
+            Log.d("Compress_", "output str length: " + str.length());
+            obj = new ByteArrayOutputStream();
+            GZIPOutputStream gzip = new GZIPOutputStream(obj);
+            gzip.write(str.getBytes(StandardCharsets.UTF_8));
+            gzip.close();
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
-        Log.d("Compress_", "output str length: " + str.length());
-        ByteArrayOutputStream obj = new ByteArrayOutputStream();
-        GZIPOutputStream gzip = new GZIPOutputStream(obj);
-        gzip.write(str.getBytes(StandardCharsets.UTF_8));
-        gzip.close();
-
         return obj.toByteArray();
     }
 
@@ -383,7 +390,6 @@ public class SontHelper extends Application {
         if (str == null) {
             return null;
         }
-
         GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(str));
         BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8));
         String outStr = "";
@@ -395,9 +401,26 @@ public class SontHelper extends Application {
         return outStr;
     }
 
+    public static String decompress_GZIP_string(String str) throws Exception {
+        if (str == null) {
+            return null;
+        }
+        //byte[] strr = str.getBytes();
+        byte[] strr = Base64.decodeBase64(str);
+        GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(strr));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8));
+        String outStr = "";
+        String line;
+        while ((line = bf.readLine()) != null) {
+            outStr += line;
+        }
+        Log.d("Compress_", "output str length: " + outStr.length());
+        return outStr;
+    }
+
     public static String byteArrayToString(byte[] barr) {
-        //return encodeBase64String(barr);
-        return new String(barr);
+        return encodeBase64String(barr);
+        //return new String(barr);
     }
 
     public static boolean isWifiConnected(Context ctx) {

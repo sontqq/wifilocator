@@ -121,23 +121,6 @@
                         "endColumns": "65,89,65,66,72,87,66",
                         "endOffsets": "10326,10416,10482,10549,10622,10710,10777"
                     }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\e8ff9c0d8c2e6109ead24d09de8b721a\\zxing-android-embedded-3.1.0\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,109,156,256",
-                        "endColumns": "53,46,99,81",
-                        "endOffsets": "104,151,251,333"
-                    },
-                    "to": {
-                        "startLines": "119,120,121,122",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "10961,11015,11062,11162",
-                        "endColumns": "53,46,99,81",
-                        "endOffsets": "11010,11057,11157,11239"
-                    }
                 }
             ]
         }

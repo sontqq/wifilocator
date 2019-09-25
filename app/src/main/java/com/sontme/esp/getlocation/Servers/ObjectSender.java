@@ -4,81 +4,50 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.sontme.esp.getlocation.BackgroundService;
-
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.Key;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SealedObject;
+import javax.crypto.spec.SecretKeySpec;
 
 public class ObjectSender extends AsyncTask<Object, Object, Object> {
-    public class objectWrapper implements Serializable {
-        Object o;
 
-        objectWrapper(Object obj) {
-            this.o = obj;
-        }
+    final byte[] key = "1234567890000000".getBytes();
+    private static final String transformation = "Blowfish";
 
-        public Object getObj() {
-            return o;
-        }
-
-        public void setObj(Object obj) {
-            this.o = obj;
-        }
-    }
-    private int port;
-    private Context ctx;
     private Object o;
 
-    public ObjectSender(String ip, int port, Context ctx) {
-        this.port = port;
-        this.ctx = ctx;
+    public SealedObject encryptObject(Serializable obj) {
+        try {
+            SecretKeySpec sks = new SecretKeySpec(key, transformation);
+            Cipher cipher = Cipher.getInstance(transformation);
+            cipher.init(Cipher.ENCRYPT_MODE, sks);
+
+            return new SealedObject(obj, cipher);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public ObjectSender(Object o, String ip, int port, Context ctx) {
-        this.port = port;
-        this.ctx = ctx;
         this.o = o;
     }
 
     @Override
     protected Object doInBackground(Object... strings) {
         try {
-            InetAddress IPAddress;
-            if (BackgroundService.check_if_local(ctx) == true) {
-                IPAddress = InetAddress.getByName("192.168.0.248");
-            } else {
-                IPAddress = InetAddress.getByName("89.134.254.96"); // localhost/127.0.0.1
-            }
-
-            // Create cipher
-            KeyGenerator gen = KeyGenerator.getInstance("AES");
-            gen.init(256);
-            Key sKey = gen.generateKey();
-
-            Cipher c = Cipher.getInstance("AES");
-            c.init(Cipher.ENCRYPT_MODE, sKey);
-
-            Object objectToSend = o;
-
-            SealedObject so = new SealedObject((Serializable) objectToSend, c);
-
             Socket s = new Socket("127.0.0.1", 1234);
 
-            ObjectOutputStream oOut = new ObjectOutputStream(s.getOutputStream());
+            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 
-            oOut.writeObject(sKey);
-            oOut.writeObject(so);
-            oOut.flush();
-            oOut.close();
+            SealedObject send = encryptObject((Serializable) o);
+
+            oos.writeObject(send);
+            oos.flush();
+            oos.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,33 +56,4 @@ public class ObjectSender extends AsyncTask<Object, Object, Object> {
         return null;
     }
 
-
-    public void startReceivingObject() {
-        Thread thx = new Thread() {
-            public void run() {
-                boolean check = true;
-                //boolean check = false;
-                try {
-                    ServerSocket server = new ServerSocket(1234);
-                    while (check) {
-                        Socket s = server.accept();
-                        ObjectInputStream in = new ObjectInputStream(s.getInputStream());
-
-                        Key sKey = (Key) in.readObject();
-                        SealedObject obj = (SealedObject) in.readObject();
-
-                        String str = (String) obj.getObject(sKey);
-
-                        Log.d("OBJECT_SCK_", "RECEIVED_STRING_" + str);
-
-                    }
-                } catch (Exception e) {
-                    check = false;
-                    e.printStackTrace();
-                    Log.d("OBJECT_SCK_", "ERROR_main_" + e.toString());
-                }
-            }
-        };
-        thx.start();
-    }
 }

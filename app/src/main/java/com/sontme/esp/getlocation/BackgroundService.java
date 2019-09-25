@@ -182,6 +182,7 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             String encryptedText = SontHelper.Crypt.encrypt("teszt");
             String decryptedText = SontHelper.Crypt.decrypt(encryptedText);
 
+
             Log.d("ENCRYPT", "Encrypted: " + encryptedText);
             Log.d("ENCRYPT", "Decrypted: " + decryptedText);
 
@@ -278,10 +279,13 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 public void onTick(long millisUntilFinished) {
                     // EVERY 10000 SECONDS
 
-                    String ap = "hello_bello";
+                    DeviceInfo devinfo = new DeviceInfo();
+                    devinfo.TEST1 = "test1";
+                    devinfo.TEST2 = "test2";
+                    devinfo.TEST3 = "test3";
 
-                    ObjectSender s = new ObjectSender(ap, "127.0.0.1", 1234, getApplicationContext());
-                    s.execute();
+                    ObjectSender os2 = new ObjectSender(devinfo, "127.0.0.1", 1234, getApplicationContext());
+                    os2.execute();
 
                     BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
                     int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);

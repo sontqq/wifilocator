@@ -1,6 +1,5 @@
 package com.sontme.esp.getlocation.activities;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,24 +12,17 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.sontme.esp.getlocation.R;
 import com.sontme.esp.getlocation.SontHelper;
-import com.sontme.esp.getlocation.activity_camera;
-
-import net.glxn.qrgen.android.QRCode;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -215,52 +207,9 @@ public class HeatMapp extends AppCompatActivity implements SurfaceHolder.Callbac
             }
         });
 
-        showQR();
         // END OF ONCREATE()
     }
 
-    public void showQR() {
-        Dialog qr_dialog = new Dialog(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View newView = inflater.inflate(R.layout.custom_dialog_img, null);
-        qr_dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        qr_dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        qr_dialog.setContentView(newView);
-        ImageView iv = newView.findViewById(R.id.qr_img);
-        Button btn_qr = newView.findViewById(R.id.closediag);
-        Button readqr_btn = newView.findViewById(R.id.readqr);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qr_dialog.cancel();
-            }
-        });
-        btn_qr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qr_dialog.cancel();
-            }
-        });
-        readqr_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("camera_api", "clicked");
-                Intent i = new Intent(HeatMapp.this, activity_camera.class);
-                startActivity(i);
-                //finish();
-            }
-        });
-        Bitmap bm = genQR("teszt_qr");
-        iv.setMaxWidth(width);
-        iv.setMaxHeight(height);
-        iv.setImageBitmap(bm);
-        qr_dialog.show();
-    }
-
-    public Bitmap genQR(String str) {
-        Bitmap qr = QRCode.from(str).bitmap();
-        return qr;
-    }
 
     public String generateHeatMapData(int lines, int columns) {
 
@@ -295,18 +244,6 @@ public class HeatMapp extends AppCompatActivity implements SurfaceHolder.Callbac
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String scanContent = null;
-        String scanFormat = null;
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (scanningResult != null) {
-            if (scanningResult.getContents() != null) {
-                scanContent = scanningResult.getContents();
-                scanFormat = scanningResult.getFormatName();
-            }
-            Log.d("QR_", "scan done: " + scanContent + "_" + scanFormat);
-        } else {
-            Log.d("QR_", "scan done, nothing found");
-        }
     }
 
     @Override

@@ -138,23 +138,6 @@
                         "endColumns": "100",
                         "endOffsets": "14241"
                     }
-                },
-                {
-                    "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\e8ff9c0d8c2e6109ead24d09de8b721a\\zxing-android-embedded-3.1.0\\res\\values-ru\\values-ru.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,117,164,306",
-                        "endColumns": "61,46,141,125",
-                        "endOffsets": "112,159,301,427"
-                    },
-                    "to": {
-                        "startLines": "141,142,143,144",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "14246,14308,14355,14497",
-                        "endColumns": "61,46,141,125",
-                        "endOffsets": "14303,14350,14492,14618"
-                    }
                 }
             ]
         }

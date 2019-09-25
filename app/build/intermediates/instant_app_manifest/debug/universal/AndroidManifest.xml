@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.getlocation"
     android:targetSandboxVersion="2"
-    android:versionCode="5514"
+    android:versionCode="5628"
     android:versionName="3.0" >
 
     <uses-sdk
@@ -76,21 +76,6 @@
         android:required="false" />
 
     <uses-permission android:name="com.android.vending.BILLING" />
-
-    <uses-feature
-        android:name="android.hardware.camera.front"
-        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
-    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.flash"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.screen.landscape"
-        android:required="false" />
-
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -109,7 +94,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity android:name="com.sontme.esp.getlocation.activities.mapsforge" />
+        <activity android:name="com.sontme.esp.getlocation.activities.testAct" />
         <activity android:name="com.sontme.esp.getlocation.activities.Nearby_browser" />
         <activity
             android:name="com.sontme.esp.getlocation.activities.RealTimeChart"
@@ -267,13 +252,6 @@
             android:name="com.android.billingclient.api.ProxyBillingActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:clearTaskOnLaunch="true"
-            android:screenOrientation="sensorLandscape"
-            android:stateNotNeeded="true"
-            android:theme="@style/zxing_CaptureTheme"
-            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.bugsee.library.RequestPermissionsActivity"
             android:theme="@style/BugseeTheme.Transparent" />
