@@ -123,6 +123,7 @@
     <orderEntry type="library" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.caverock:androidsvg:1.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.6@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup:seismic:1.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:design:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.javiersantos:MaterialStyledDialogs:2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.amitshekhar.android:android-networking:1.0.2@aar" level="project" />
@@ -203,8 +204,12 @@
     <orderEntry type="library" name="Gradle: com.github.jakebonk:NotifyMe:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: me.aflak.libraries:bluetooth:1.3.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.flurry.android:analytics:11.6.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.bugsee:bugsee-android:1.14.10@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.bugsee:bugsee-android:1.14.11@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:multidex:1.0.3@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.nisrulz:easydeviceinfo:2.4.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.nisrulz:easydeviceinfo-ads:2.4.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.nisrulz:easydeviceinfo-base:2.4.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.nisrulz:easydeviceinfo-common:2.4.1@aar" level="project" />
     <orderEntry type="module" module-name="openCVLibrary343" />
     <orderEntry type="library" name="Gradle: org.apache.http.legacy-android-28" level="project" />
   </component>

@@ -2,8 +2,6 @@ package com.sontme.esp.getlocation;
 
 import android.Manifest;
 import android.app.Application;
-import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -53,8 +51,6 @@ public class Global extends Application{
     public static List<String> urlList_failed = new ArrayList<String>();
     public static List<String> urlList_successed = new ArrayList<String>();
     */
-    public static DevicePolicyManager mDPM;
-    public static ComponentName mAdminName;
 
     public static String getCompleteAddressString(Context c, double LATITUDE, double LONGITUDE) {
         String strAdd = "";
@@ -121,6 +117,7 @@ public class Global extends Application{
             quality = 2 * (dbm + 100);
         return quality;
     }
+
     public static long getUsedMemorySize() {
 
         long freeSize = 0L;

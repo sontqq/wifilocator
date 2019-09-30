@@ -6,7 +6,7 @@
     <application
         android:name=".Global"
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/computer"
         android:installLocation="preferExternal"
         android:label="@string/app_name"

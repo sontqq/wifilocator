@@ -65,7 +65,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_standard_dialog_button_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_standard_dialog_button_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_standard_dialog_button_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_text_color_selector.xml.flat",
@@ -85,7 +85,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_severity_text_color.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_severity_text_color.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_severity_text_color.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -125,7 +125,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_close.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_close.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_close.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -133,11 +133,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_4.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_bug_4.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_bug_4.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxxhdpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxxhdpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -181,7 +181,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-ldpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-ldpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_round_corner_progress_icon.png.flat",
@@ -253,7 +253,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -273,7 +273,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_blue.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_blue.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_blue.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_item_material.xml.flat",
@@ -313,7 +313,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_retry.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_retry.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_retry.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_design_ic_visibility_off.png.flat",
@@ -333,7 +333,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_retry_click.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_retry_click.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_retry_click.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
@@ -381,7 +381,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_standard_dialog_button.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_standard_dialog_button.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_standard_dialog_button.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -417,7 +417,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_anteater_red_icon_big.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_anteater_red_icon_big.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_anteater_red_icon_big.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_btn_google_light_pressed.9.png.flat",
@@ -461,11 +461,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_dialog_2_buttons_background_inset.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_dialog_2_buttons_background_inset.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_dialog_2_buttons_background_inset.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_dialog_2_buttons_background.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_dialog_2_buttons_background.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_dialog_2_buttons_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_btn_google_signin_light_focus.9.png.flat",
@@ -473,7 +473,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_blue_checked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_blue_checked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_blue_checked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout-v14_md_stub_progress_indeterminate.xml.flat",
@@ -497,7 +497,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_red_checked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_red_checked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_red_checked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_holo_dark.xml.flat",
@@ -557,7 +557,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_bug_2.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_2.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_2.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
@@ -565,7 +565,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_action_bar_background_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_action_bar_background_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_action_bar_background_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_stroke_color_selector.xml.flat",
@@ -581,7 +581,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_feedback_button_skip_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_feedback_button_skip_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_feedback_button_skip_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_grow_fade_in_from_bottom.xml.flat",
@@ -589,7 +589,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_cab_background_top_mtrl_alpha.9.png.flat",
@@ -629,19 +629,19 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_feedback_button_send.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_feedback_button_send.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_feedback_button_send.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_anteater_icon_white.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_anteater_icon_white.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_anteater_icon_white.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_bug_3.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_3.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_3.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_anteater_icon_white.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_anteater_icon_white.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_anteater_icon_white.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -661,7 +661,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_action_bar_background_clicked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_action_bar_background_clicked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_action_bar_background_clicked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-nodpi_example_appwidget_preview.png.flat",
@@ -669,7 +669,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_dark_gray_click.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_dark_gray_click.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_dark_gray_click.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_wifi4_cluster.png.flat",
@@ -697,7 +697,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_yellow.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_yellow.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_yellow.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -753,7 +753,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_feedback_button_skip_click.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_feedback_button_skip_click.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_feedback_button_skip_click.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_md_nav_back.png.flat",
@@ -765,7 +765,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_design_password_eye.xml.flat",
@@ -805,11 +805,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-ldpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-ldpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_md_item_selected.xml.flat",
@@ -817,7 +817,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_blue_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_blue_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_blue_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -833,7 +833,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_blue_click.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_blue_click.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_blue_click.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_osm_ic_center_map.png.flat",
@@ -865,7 +865,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_blue_topnub.png.flat",
@@ -989,7 +989,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_activity_feedback.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_activity_feedback.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_activity_feedback.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_menuarrow.png.flat",
@@ -1009,7 +1009,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-ldpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-ldpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_tooltip_black_xout.png.flat",
@@ -1041,7 +1041,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_developer_message_background.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_developer_message_background.9.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_developer_message_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_marker_default.png.flat",
@@ -1057,7 +1057,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_yellow_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_yellow_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_yellow_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_follow_me_on.png.flat",
@@ -1105,11 +1105,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_severity.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_severity.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_severity.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_dialog_2_buttons.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_dialog_2_buttons.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_dialog_2_buttons.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_borderless_material.xml.flat",
@@ -1117,7 +1117,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_bugsee_feedback_button_send_click.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-anydpi-v21\\bugsee_feedback_button_send_click.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-anydpi-v21\\bugsee_feedback_button_send_click.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -1125,7 +1125,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v21_bugsee_feedback_icon_message_not_sent.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v21\\bugsee_feedback_icon_message_not_sent.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v21\\bugsee_feedback_icon_message_not_sent.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_navto_small.png.flat",
@@ -1137,7 +1137,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_feedback_loading_item.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_feedback_loading_item.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_feedback_loading_item.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_item_background_holo_light.xml.flat",
@@ -1173,7 +1173,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light.xml.flat",
@@ -1185,7 +1185,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
@@ -1213,7 +1213,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_blue.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_blue.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_blue.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_icon_round_corner_progress_bar.xml.flat",
@@ -1221,7 +1221,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_bugsee_feedback_button_send_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-anydpi-v21\\bugsee_feedback_button_send_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-anydpi-v21\\bugsee_feedback_button_send_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
@@ -1269,7 +1269,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -1365,7 +1365,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_osm_ic_center_map.png.flat",
@@ -1381,7 +1381,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_fragment_feedback_messages.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_fragment_feedback_messages.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_fragment_feedback_messages.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_btn_colored_borderless_text_material.xml.flat",
@@ -1425,7 +1425,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_developer_message_background.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_developer_message_background.9.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_developer_message_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_dark.xml.flat",
@@ -1453,11 +1453,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_anteater_red_icon.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_anteater_red_icon.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_anteater_red_icon.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_client_message_background.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_client_message_background.9.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_client_message_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_black_background.9.png.flat",
@@ -1469,7 +1469,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_edit_text_material.xml.flat",
@@ -1477,7 +1477,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\interpolator-v21_mtrl_linear_out_slow_in.xml.flat",
@@ -1545,7 +1545,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-ldpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-ldpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -1557,7 +1557,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_retry.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_retry.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_retry.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_in.xml.flat",
@@ -1621,11 +1621,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_anteater_red_icon.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_anteater_red_icon.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_anteater_red_icon.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_severity_checked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_severity_checked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_severity_checked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
@@ -1681,7 +1681,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
@@ -1745,7 +1745,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_anteater_icon_white.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_anteater_icon_white.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_anteater_icon_white.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_md_nav_back.png.flat",
@@ -1789,7 +1789,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_feedback_message.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_feedback_message.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_feedback_message.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_com_facebook_tooltip_blue_bottomnub.png.flat",
@@ -1817,7 +1817,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -1981,7 +1981,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_bugsee_feedback_retry.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-anydpi-v21\\bugsee_feedback_retry.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-anydpi-v21\\bugsee_feedback_retry.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
@@ -2013,7 +2013,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_btn_google_dark_focus.9.png.flat",
@@ -2073,7 +2073,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -2233,7 +2233,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_red_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_red_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_red_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_marker_default_focused_base.png.flat",
@@ -2265,7 +2265,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_normal.xml.flat",
@@ -2285,7 +2285,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_issue_types.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_issue_types.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_issue_types.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_sharp_add_black_36.png.flat",
@@ -2329,11 +2329,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_green.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_green.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_green.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_black_48dp.png.flat",
@@ -2393,7 +2393,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-ldpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-ldpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -2429,7 +2429,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_feedback_version_info_background.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_feedback_version_info_background.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_feedback_version_info_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout-v14_md_stub_progress.xml.flat",
@@ -2437,7 +2437,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_action_bar_background.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_action_bar_background.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_action_bar_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_wifi2.png.flat",
@@ -2465,11 +2465,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_bug_1.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_1.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_1.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_2.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_bug_2.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_bug_2.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_btn_google_signin_light_pressed.9.png.flat",
@@ -2497,7 +2497,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_client_message_background.9.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_client_message_background.9.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_client_message_background.9.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20_common_google_signin_btn_text_dark_normal.xml.flat",
@@ -2525,7 +2525,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_blue_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_blue_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_blue_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_nearby_browser.xml.flat",
@@ -2561,7 +2561,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_close.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_close.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_close.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_text_cursor_material.xml.flat",
@@ -2693,7 +2693,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_feedback_button_send_normal.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_feedback_button_send_normal.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_feedback_button_send_normal.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_btn_google_light_pressed.9.png.flat",
@@ -2741,7 +2741,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_bug_5.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_5.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_5.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
@@ -2753,7 +2753,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_anteater_icon_white.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_anteater_icon_white.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_anteater_icon_white.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_marker_default_focused_base.png.flat",
@@ -2821,7 +2821,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_green_checked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_green_checked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_green_checked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -2853,7 +2853,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_action_bar_arrow_back.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_action_bar_arrow_back.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_action_bar_arrow_back.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_com_facebook_button_like_icon_selected.png.flat",
@@ -2869,7 +2869,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_undo.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_undo.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_undo.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_btn_google_dark_focus.9.png.flat",
@@ -2885,7 +2885,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_feedback_action_bar.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_feedback_action_bar.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_feedback_action_bar.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_md_btn_selector_ripple_dark.xml.flat",
@@ -2893,11 +2893,11 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_feedback_button_skip.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_feedback_button_skip.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_feedback_button_skip.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_edit_screenshot_background.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_edit_screenshot_background.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_edit_screenshot_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_text_btn_ripple_color.xml.flat",
@@ -2917,7 +2917,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_bug_4.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_4.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_bug_4.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_hint_foreground_material_light.xml.flat",
@@ -2933,7 +2933,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_blue_disabled.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_blue_disabled.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_blue_disabled.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -2941,15 +2941,15 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_close_dot.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_close_dot.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_close_dot.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_anteater_red_icon_big.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_anteater_red_icon_big.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_anteater_red_icon_big.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-mdpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-mdpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -3009,7 +3009,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\raw_bugsee_isoparser_default.properties.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\raw\\bugsee_isoparser_default.properties"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\raw\\bugsee_isoparser_default.properties"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -3033,7 +3033,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_3.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_bug_3.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_bug_3.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
@@ -3041,7 +3041,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_dialog_send_bundle.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_dialog_send_bundle.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_dialog_send_bundle.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_btn_google_signin_light_pressed.9.png.flat",
@@ -3049,7 +3049,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxxhdpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_search_api_material.xml.flat",
@@ -3077,7 +3077,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_bugsee_action_bar_arrow_back.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-anydpi-v21\\bugsee_action_bar_arrow_back.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-anydpi-v21\\bugsee_action_bar_arrow_back.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -3113,7 +3113,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_severity_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_severity_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_severity_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
@@ -3153,7 +3153,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_yellow_checked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_yellow_checked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_yellow_checked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_secondary_text_material_light.xml.flat",
@@ -3185,7 +3185,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_1.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_bug_1.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_bug_1.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -3297,7 +3297,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_dialog_1_button.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_dialog_1_button.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_dialog_1_button.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -3321,7 +3321,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_activity_edit_screenshot.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_activity_edit_screenshot.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_activity_edit_screenshot.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
@@ -3361,7 +3361,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\raw_bugsee_inject_hidden_view.js.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\raw\\bugsee_inject_hidden_view.js"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\raw\\bugsee_inject_hidden_view.js"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_btn_google_signin_dark_disabled.9.png.flat",
@@ -3377,7 +3377,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_dialog_background.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_dialog_background.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_dialog_background.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
@@ -3417,7 +3417,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_dark_gray_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_dark_gray_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_dark_gray_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -3469,7 +3469,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_red.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_red.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_red.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_design_ic_visibility.png.flat",
@@ -3501,7 +3501,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_standard_dialog_button_clicked.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_standard_dialog_button_clicked.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_standard_dialog_button_clicked.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_seekbar_track_material.xml.flat",
@@ -3517,7 +3517,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\anim_bugsee_clear_screenshot.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\anim\\bugsee_clear_screenshot.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\anim\\bugsee_clear_screenshot.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_btn_google_signin_light_focus.9.png.flat",
@@ -3533,7 +3533,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_bugsee_feedback_icon_message_sent.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-anydpi-v21\\bugsee_feedback_icon_message_sent.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-anydpi-v21\\bugsee_feedback_icon_message_sent.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_com_facebook_close.png.flat",
@@ -3553,19 +3553,19 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_bugsee_feedback_icon_message_sent.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xhdpi-v4\\bugsee_feedback_icon_message_sent.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xhdpi-v4\\bugsee_feedback_icon_message_sent.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_fragment_request_email.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_fragment_request_email.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_fragment_request_email.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_close_dot.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_close_dot.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_close_dot.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_icon_undo.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_icon_undo.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_icon_undo.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -3653,7 +3653,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_bugsee_feedback_button_send_click.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-xxhdpi-v4\\bugsee_feedback_button_send_click.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-xxhdpi-v4\\bugsee_feedback_button_send_click.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -3689,7 +3689,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_edit_screenshot_action_bar.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_edit_screenshot_action_bar.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_edit_screenshot_action_bar.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_osm_ic_center_map.png.flat",
@@ -3801,7 +3801,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\raw_bugsee_inject_ajax.js.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\raw\\bugsee_inject_ajax.js"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\raw\\bugsee_inject_ajax.js"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_header.xml.flat",
@@ -3837,7 +3837,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_retry_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_retry_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_retry_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_btn_google_dark_pressed.9.png.flat",
@@ -3909,7 +3909,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\layout_bugsee_standard_dialog.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\layout\\bugsee_standard_dialog.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\layout\\bugsee_standard_dialog.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_compass.png.flat",
@@ -3917,7 +3917,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_bugsee_icon_bug_5.png.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable-hdpi-v4\\bugsee_icon_bug_5.png"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable-hdpi-v4\\bugsee_icon_bug_5.png"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -3941,7 +3941,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_screenshot_label_color_green_normal.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_screenshot_label_color_green_normal.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_screenshot_label_color_green_normal.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_round_navigation_white_48.png.flat",
@@ -3977,7 +3977,7 @@
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bugsee_button_dark_gray.xml.flat",
-        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\6773763873436a7d9ab2efd198a52a28\\bugsee-android-1.14.10\\res\\drawable\\bugsee_button_dark_gray.xml"
+        "source": "C:\\Users\\sont1\\.gradle\\caches\\transforms-2\\files-2.1\\10102850141f2c5133fb8174fedd04e7\\bugsee-android-1.14.11\\res\\drawable\\bugsee_button_dark_gray.xml"
     },
     {
         "merged": "C:\\Users\\sont1\\Desktop\\Sending-and-Receiving-Data-with-Bluetooth-master\\getlocation\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_btn_google_light_pressed.9.png.flat",

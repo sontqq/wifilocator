@@ -702,19 +702,6 @@
                 android:layout_height="match_parent">
 
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/exitb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:layout_weight="0"
-                    android:src="@drawable/exiticon"
-                    android:text="EXIT"
-                    android:visibility="visible"
-                    app:backgroundTint="@color/notifText"
-                    app:layout_anchorGravity="bottom" />
             </android.support.design.widget.CoordinatorLayout>
 
             <LinearLayout

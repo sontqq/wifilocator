@@ -1,6 +1,5 @@
 package com.sontme.esp.getlocation.Servers;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -32,15 +31,15 @@ public class ObjectSender extends AsyncTask<Object, Object, Object> {
         }
     }
 
-    public ObjectSender(Object o, String ip, int port, Context ctx) {
+    public ObjectSender(Object o) {
         this.o = o;
     }
 
     @Override
     protected Object doInBackground(Object... strings) {
         try {
-            Socket s = new Socket("127.0.0.1", 1234);
-
+            //Socket s = new Socket("127.0.0.1", 1234);
+            Socket s = new Socket("192.168.0.157", 1234);
             ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
 
             SealedObject send = encryptObject((Serializable) o);

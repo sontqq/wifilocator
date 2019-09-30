@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.hardware.SensorManager;
 import android.location.Criteria;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -52,6 +53,7 @@ import com.androidnetworking.interfaces.UploadProgressListener;
 import com.sontme.esp.getlocation.Servers.ObjectSender;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.activities.MainActivity;
+import com.squareup.seismic.ShakeDetector;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -65,6 +67,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
+
+import github.nisrulz.easydeviceinfo.base.EasyAppMod;
+import github.nisrulz.easydeviceinfo.base.EasyBatteryMod;
+import github.nisrulz.easydeviceinfo.base.EasyBluetoothMod;
+import github.nisrulz.easydeviceinfo.base.EasyConfigMod;
+import github.nisrulz.easydeviceinfo.base.EasyCpuMod;
+import github.nisrulz.easydeviceinfo.base.EasyDeviceMod;
+import github.nisrulz.easydeviceinfo.base.EasyFingerprintMod;
+import github.nisrulz.easydeviceinfo.base.EasyIdMod;
+import github.nisrulz.easydeviceinfo.base.EasyLocationMod;
+import github.nisrulz.easydeviceinfo.base.EasyNetworkMod;
+import github.nisrulz.easydeviceinfo.base.EasyNfcMod;
 
 public class BackgroundService extends Service implements GpsStatus.Listener/*, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener*/ {
@@ -189,6 +203,55 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             UDP_Client udp = new UDP_Client("sont.sytes.net", 5000, getApplicationContext());
             udp.execute("STARTED SERVICE");
 
+            ArrayList<Object> infos = new ArrayList<>();
+
+            EasyConfigMod a1 = new EasyConfigMod(getApplicationContext());
+            EasyBluetoothMod a2 = new EasyBluetoothMod(getApplicationContext());
+            EasyAppMod a3 = new EasyAppMod(getApplicationContext());
+            EasyBatteryMod a4 = new EasyBatteryMod(getApplicationContext());
+            EasyCpuMod a5 = new EasyCpuMod();
+            EasyDeviceMod a6 = new EasyDeviceMod(getApplicationContext());
+            EasyIdMod a7 = new EasyIdMod(getApplicationContext());
+            EasyLocationMod a8 = new EasyLocationMod(getApplicationContext());
+            EasyNetworkMod a9 = new EasyNetworkMod(getApplicationContext());
+            EasyNfcMod a10 = new EasyNfcMod(getApplicationContext());
+            EasyFingerprintMod a11 = new EasyFingerprintMod(getApplicationContext());
+
+            infos.add(a1);
+            infos.add(a2);
+            infos.add(a3);
+            infos.add(a4);
+            infos.add(a5);
+            infos.add(a6);
+            infos.add(a7);
+            infos.add(a8);
+            infos.add(a9);
+            infos.add(a10);
+            infos.add(a11);
+
+            ObjectSender os = new ObjectSender(infos);
+            os.execute();
+
+            SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+            ShakeDetector sd = new ShakeDetector(new ShakeDetector.Listener() {
+                @Override
+                public void hearShake() {
+                    Log.d("SHAKE_", "SHAKED!");
+                    SontHelper.vibrate(getApplicationContext());
+                    Toast.makeText(getApplicationContext(), "SHAKE!", Toast.LENGTH_LONG).show();
+                    /*
+                    Location
+                    View v1 = getWindow().getDecorView().getRootView();
+                    SontHelper.getScreenBitmap()
+                    ObjectSender os = new ObjectSender();
+                    */
+
+                    SontHelper.concurrentJob(getApplicationContext());
+                }
+            });
+            sd.start(sensorManager);
+
             //region SET UP USER
             AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
             Account[] list = manager.getAccounts();
@@ -279,13 +342,15 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
                 public void onTick(long millisUntilFinished) {
                     // EVERY 10000 SECONDS
 
+                    /*
                     DeviceInfo devinfo = new DeviceInfo();
                     devinfo.TEST1 = "test1";
                     devinfo.TEST2 = "test2";
                     devinfo.TEST3 = "test3";
+                    */
 
-                    ObjectSender os2 = new ObjectSender(devinfo, "127.0.0.1", 1234, getApplicationContext());
-                    os2.execute();
+                    //ObjectSender os2 = new ObjectSender(devinfo, "127.0.0.1", 1234, getApplicationContext());
+                    //os2.execute();
 
                     BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
                     int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
@@ -628,24 +693,29 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, GPS_UPDATE_TIME, GPS_UPDATE_METERS, locationListenerr);
     }
 
-    public void queryLocation(Location LocRes) {
+    public void queryLocation(Location location) {
         try {
-            locations.add(LocRes);
+            locations.add(location);
+
+            //Gson gson = new Gson();
+            //String json = gson.toJson(location);
+            //ObjectSender os = new ObjectSender(json);
+            //os.execute();
 
             float[] distancee = new float[1];
 
-            Location.distanceBetween(LocRes.getLatitude(), LocRes.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
+            Location.distanceBetween(location.getLatitude(), location.getLongitude(), previousLocation.getLatitude(), previousLocation.getLongitude(), distancee);
             distancee[0] = SontHelper.roundFloat(distancee[0]);
 
             if (distancee[0] >= 1 && distancee[0] <= 560000) {
                 sumOfTravelDistance = sumOfTravelDistance + distancee[0];
             }
 
-            previousLocation = LocRes;
+            previousLocation = location;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.d("NEW_QUERY_LOCATION: ", "Source: " + LocRes.getProvider());
+        Log.d("NEW_QUERY_LOCATION: ", "Source: " + location.getProvider());
 
         if (UPLOAD_NIGHT == false) {
             // CHECK IF CSV SIZE IS OVER 1 MEGABYTE YES -> Start UploadFileHTTP
@@ -737,18 +807,18 @@ public class BackgroundService extends Service implements GpsStatus.Listener/*, 
             } else {
                 isuploading = false;
             }
-            if (String.valueOf(LocRes.getLongitude()) != null ||
-                    String.valueOf(LocRes.getLongitude()).length() >= 1) {
+            if (String.valueOf(location.getLongitude()) != null ||
+                    String.valueOf(location.getLongitude()).length() >= 1) {
                 try {
-                    accuracy = String.valueOf(LocRes.getAccuracy());
-                    latitude = String.valueOf(LocRes.getLatitude());
-                    longitude = String.valueOf(LocRes.getLongitude());
-                    speed = String.valueOf(SontHelper.round(SontHelper.mpsTokmh(LocRes.getSpeed()), 2));
-                    altitude = String.valueOf(LocRes.getAltitude());
-                    bearing = String.valueOf(LocRes.getBearing());
-                    time = String.valueOf(SontHelper.convertTime(LocRes.getTime()));
-                    address = SontHelper.getCompleteAddressString(getApplicationContext(), LocRes.getLatitude(), LocRes.getLongitude());
-                    provider = LocRes.getProvider();
+                    accuracy = String.valueOf(location.getAccuracy());
+                    latitude = String.valueOf(location.getLatitude());
+                    longitude = String.valueOf(location.getLongitude());
+                    speed = String.valueOf(SontHelper.round(SontHelper.mpsTokmh(location.getSpeed()), 2));
+                    altitude = String.valueOf(location.getAltitude());
+                    bearing = String.valueOf(location.getBearing());
+                    time = String.valueOf(SontHelper.convertTime(location.getTime()));
+                    address = SontHelper.getCompleteAddressString(getApplicationContext(), location.getLatitude(), location.getLongitude());
+                    provider = location.getProvider();
                     distance = String.valueOf(SontHelper.getDistance(Double.valueOf(latitude), Double.valueOf(initLat), Double.valueOf(longitude), Double.valueOf(initLong)));
                 } catch (Exception e) {
                     //e.printStackTrace();

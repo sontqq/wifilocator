@@ -9,6 +9,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothDevice;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +20,18 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.hardware.display.DisplayManager;
+import android.hardware.display.VirtualDisplay;
 import android.location.GpsStatus;
+import android.location.Location;
+import android.media.Image;
+import android.media.ImageReader;
+import android.media.projection.MediaProjection;
+import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
@@ -35,8 +44,6 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -45,7 +52,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.format.Formatter;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,7 +80,6 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
-import com.bugsee.library.Bugsee;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -108,6 +116,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.gson.Gson;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -120,6 +129,7 @@ import com.sontme.esp.getlocation.BuildConfig;
 import com.sontme.esp.getlocation.CustomFormatter;
 import com.sontme.esp.getlocation.DeviceInfo;
 import com.sontme.esp.getlocation.R;
+import com.sontme.esp.getlocation.Servers.ObjectSender;
 import com.sontme.esp.getlocation.Servers.UDP_Client;
 import com.sontme.esp.getlocation.SontHelper;
 
@@ -130,6 +140,7 @@ import org.opencv.android.OpenCVLoader;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -140,6 +151,7 @@ import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -157,6 +169,8 @@ import cz.msebera.android.httpclient.Header;
 
 import static com.facebook.FacebookSdk.setAutoLogAppEventsEnabled;
 
+//import com.bugsee.library.Bugsee;
+
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener, PurchasesUpdatedListener {
 
     //region DEFINING VARIABLES
@@ -172,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public static Switch sw3;
     public static Switch sw4;
     public static TextView dst;
-    public static FloatingActionButton exitb;
+
     public static TextView add;
     public static TextView provider;
     public static TextView uniq;
@@ -574,6 +588,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
                     TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+
                     alert_dialog.setView(alert_v);
                     alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
                     alert_dialog.show();
@@ -584,9 +599,9 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         });
 
         //region API INIT
-        HashMap<String, Object> options = new HashMap<>();
-        options.put(Bugsee.Option.NotificationBarTrigger, false);
-        Bugsee.launch(this, "c92a6836-3405-491e-ac28-e5024324a9d6", options);
+        //HashMap<String, Object> options = new HashMap<>();
+        //options.put(Bugsee.Option.NotificationBarTrigger, false);
+        //Bugsee.launch(this, "c92a6836-3405-491e-ac28-e5024324a9d6", options);
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSdk.setAutoLogAppEventsEnabled(true);
         FacebookSdk.setAutoInitEnabled(true);
@@ -900,14 +915,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         sw2 = findViewById(R.id.switch2);
         sw3 = findViewById(R.id.switch3);
         sw4 = findViewById(R.id.switch4);
-        exitb = findViewById(R.id.exitb);
+
         provider = findViewById(R.id.prov);
         uniq = findViewById(R.id.uniq);
         WebView webview = findViewById(R.id.webview);
         servicestatus = findViewById(R.id.servstatus);
         csv = findViewById(R.id.val_csv);
         zip = findViewById(R.id.val_zip);
-        exitb.setBackgroundColor(Color.TRANSPARENT);
 
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -961,15 +975,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                 }
             }
         });
-        exitb.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-                finish();
-                finishAffinity();
-                System.exit(0);
-            }
-        });
+
         //endregion
         //region SET UP BILLING
         billingClient = BillingClient.newBuilder(this)
@@ -1055,21 +1061,184 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             @Override
             public void run() {
                 try {
-                    Log.d("test_func", "ran");
-                    LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
-                    TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
-                    alert_dialog.setView(alert_v);
-                    alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
+                    //Log.d("test_func", "ran");
+                    //LayoutInflater alert_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    //View alert_v = alert_inflater.inflate(R.layout.custom_dialog_livedata, null, false);
+                    //TextView alert_txt = alert_v.findViewById(R.id.txt_livedata);
+                    //alert_dialog.setView(alert_v);
+                    //alert_txt.setText(Html.fromHtml(BackgroundService.livedata));
                     //alert_dialog.show();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
             }
         });
         mHandler2.postDelayed(mTimer1, 0);
+        Thread thread = new Thread() {
+            public void run() {
+                while (true) {
+                    try {
+                        SontHelper.takeFullScreenshot(getApplicationContext(), MainActivity.this);
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        //thread.start();
 
+        Thread th = new Thread() {
+            public void run() {
+                while (true) {
+                    try {
 
+                        long start = System.currentTimeMillis();
+
+                        View iv = findViewById(R.id.drawler);
+                        iv.setDrawingCacheEnabled(true);
+                        Bitmap img = iv.getDrawingCache();
+
+                        int chunks = 4;
+
+                        img = resizeBitmap(img, 4);
+                        byte[] image = SontHelper.bitmapToArray(img);
+                        byte[] compressed = SontHelper.GZIPCompress(image);
+                        /*
+                        ArrayList<Bitmap> splitted = splitImagee(img, chunks);
+                        HashMap<Integer, byte[]> parts_byte = new HashMap<>();
+
+                        int c = 0;
+                        for(Bitmap b : splitted){
+                            byte[] bit = bitmapToArray_2(b);
+                            parts_byte.put(c, bit);
+                            c++;
+                        }
+                        */
+                        ObjectSender os = new ObjectSender(compressed);
+                        //ObjectSender os = new ObjectSender(parts_byte);
+                        os.execute();
+
+                        iv.setDrawingCacheEnabled(false);
+                        img.recycle();
+
+                    } catch (Exception e) {
+                        Log.d("STREAMING_", e.toString());
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        };
+        if (SontHelper.isWifiConnected(getApplicationContext())) {
+            //th.start();
+        }
+    }
+
+    public static Bitmap resizeBitmap(Bitmap bmp, int div) {
+        Bitmap b = bmp;
+        try {
+            b = bmp.copy(bmp.getConfig(), true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Bitmap bm = Bitmap.createScaledBitmap(b, b.getWidth() / div, b.getHeight() / div, true);
+        return bm;
+    }
+
+    public static byte[] bitmapToArray(Bitmap bmp) {
+        ByteBuffer buffer = null;
+        try {
+            int bytes = bmp.getByteCount();
+            buffer = ByteBuffer.allocate(bytes);
+            bmp.copyPixelsToBuffer(buffer);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            //return null;
+        }
+        return buffer.array();
+    }
+
+    public static byte[] bitmapToArray_2(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            Bitmap b = bmp.copy(bmp.getConfig(), true);
+            b.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return baos.toByteArray();
+    }
+
+    public static Bitmap[] splitBitmap(Bitmap picture) {
+        Bitmap[] imgs = new Bitmap[4];
+
+        imgs[0] = Bitmap.createBitmap(picture, 0, 0, picture.getWidth() / 2, picture.getHeight() / 2);
+        imgs[1] = Bitmap.createBitmap(picture, picture.getWidth() / 2, 0, picture.getWidth() / 2, picture.getHeight() / 2);
+        imgs[2] = Bitmap.createBitmap(picture, 0, picture.getHeight() / 2, picture.getWidth() / 2, picture.getHeight() / 2);
+        imgs[3] = Bitmap.createBitmap(picture, picture.getWidth() / 2, picture.getHeight() / 2, picture.getWidth() / 2, picture.getHeight() / 2);
+
+        return imgs;
+    }
+
+    private static ArrayList<Bitmap> splitImagee(Bitmap image, int chunkNumbers) {
+        int rows, cols;
+        int chunkHeight, chunkWidth;
+
+        ArrayList<Bitmap> chunkedImages = new ArrayList<Bitmap>(chunkNumbers);
+
+        Bitmap bitmap = image;
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+
+        rows = cols = (int) Math.sqrt(chunkNumbers);
+        chunkHeight = bitmap.getHeight() / rows;
+        chunkWidth = bitmap.getWidth() / cols;
+
+        int yCoord = 0;
+        for (int x = 0; x < rows; x++) {
+            int xCoord = 0;
+            for (int y = 0; y < cols; y++) {
+                chunkedImages.add(Bitmap.createBitmap(scaledBitmap, xCoord, yCoord, chunkWidth, chunkHeight));
+                xCoord += chunkWidth;
+            }
+            yCoord += chunkHeight;
+        }
+        return chunkedImages;
+    }
+
+    private static Bitmap[] splitImage(Bitmap image, int chunkNumbers) {
+
+        int rows, cols;
+        int chunkHeight, chunkWidth;
+
+        //ArrayList<Bitmap> chunkedImages = new ArrayList<Bitmap>(chunkNumbers);
+
+        Bitmap[] chunkedImages = new Bitmap[chunkNumbers];
+        try {
+            //Getting the scaled bitmap of the source image
+            //BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
+            //Bitmap bitmap = drawable.getBitmap();
+            Bitmap bitmap = image;
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+            rows = cols = (int) Math.sqrt(chunkNumbers);
+            chunkHeight = bitmap.getHeight() / rows;
+            chunkWidth = bitmap.getWidth() / cols;
+
+            //xCoord and yCoord are the pixel positions of the image chunks
+            int yCoord = 0;
+            for (int x = 0; x < rows; x++) {
+                int xCoord = 0;
+                for (int y = 0; y < cols; y++) {
+                    //chunkedImages.add(Bitmap.createBitmap(scaledBitmap, xCoord, yCoord, chunkWidth, chunkHeight));
+                    chunkedImages[x] = Bitmap.createBitmap(scaledBitmap, xCoord, yCoord, chunkWidth, chunkHeight);
+                    xCoord += chunkWidth;
+                }
+                yCoord += chunkHeight;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chunkedImages;
     }
 
     private void setFacebookData(final LoginResult loginResult) {
@@ -1147,8 +1316,63 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         e.printStackTrace();
                     }
                     break;
+                case 5000:
+                    Log.d("SCREENSHOT_", "ran");
+                    MediaProjectionManager mgr = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+                    MediaProjection a = mgr.getMediaProjection(resultCode, data);
+
+                    DisplayMetrics metrics = getResources().getDisplayMetrics();
+                    int mDensity = metrics.densityDpi;
+                    Display mDisplay = getWindowManager().getDefaultDisplay();
+
+                    Point size = new Point();
+                    mDisplay.getSize(size);
+                    int mWidth = size.x;
+                    int mHeight = size.y;
+
+                    // start capture reader
+                    ImageReader mImageReader = ImageReader.newInstance(mWidth, mHeight, PixelFormat.RGBA_8888, 2);
+                    int VIRTUAL_DISPLAY_FLAGS = DisplayManager.VIRTUAL_DISPLAY_FLAG_OWN_CONTENT_ONLY | DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC;
+                    VirtualDisplay mVirtualDisplay = a.createVirtualDisplay("screenshot", mWidth, mHeight, mDensity, VIRTUAL_DISPLAY_FLAGS, mImageReader.getSurface(), null, mHandler);
+
+                    ImageAvailableListener listener = new ImageAvailableListener() {
+                        @Override
+                        public void onImageAvailable(ImageReader reader) {
+                            //int w = reader.acquireLatestImage().getWidth();
+                            Image image = reader.acquireLatestImage();
+                            Log.d("screenshot_", "got image: " + image.getHeight() + " -> " + reader.getHeight());
+
+                            final Image.Plane[] planes = image.getPlanes();
+
+                            final ByteBuffer buffer = planes[0].getBuffer();
+                            int offset = 0;
+                            int pixelStride = planes[0].getPixelStride();
+                            int rowStride = planes[0].getRowStride();
+                            int rowPadding = rowStride - pixelStride * 200;
+
+                            Bitmap bmp = Bitmap.createBitmap(image.getWidth() + rowPadding / pixelStride, image.getHeight(), Bitmap.Config.RGB_565);
+                            bmp.copyPixelsFromBuffer(buffer);
+
+                            Log.d("screenshot_", "h: " + bmp.getHeight() + " w: " + bmp.getWidth());
+
+                            Bitmap img = resizeBitmap(bmp, 4);
+                            byte[] imagee = SontHelper.bitmapToArray(img);
+                            byte[] compressed = SontHelper.GZIPCompress(imagee);
+                            ObjectSender os = new ObjectSender(compressed);
+                            os.execute();
+                            img.recycle();
+
+                            image.close();
+                            reader.close();
+                        }
+                    };
+                    mImageReader.setOnImageAvailableListener(listener, new Handler());
+
+                    //a.registerCallback(listener, new Handler());
+
                 case 999:
                     try {
+                        /*
                         Uri selectedImage = data.getData();
                         InputStream imageStream = getContentResolver().openInputStream(selectedImage);
                         Bitmap faced_bmp = BitmapFactory.decodeStream(imageStream);
@@ -1160,6 +1384,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                         //imgv.setImageBitmap(SontHelper.findFaceCropROI(faced_bmp,5));
                         face_img_dialog.setView(v);
                         face_img_dialog.show();
+                        */
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -1192,7 +1417,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     public void startReceivingObject() {
         //region udp
 
-
         Thread thx = new Thread() {
             public void run() {
                 boolean check = true;
@@ -1201,26 +1425,42 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
                     while (check) {
                         Socket s = server.accept();
 
-                        //CipherInputStream cipherInputStream = new CipherInputStream(s.getInputStream(), cipher);
-                        //ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
-
                         InputStream is = s.getInputStream();
                         byte[] data = IOUtils.toByteArray(is);
 
                         ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
-
                         Object obj = ois.readObject();
 
                         if (obj instanceof SealedObject) {
-                            Log.d("OBJECT_SCK_", "RECEIVED: sealed");
                             byte[] key = "1234567890000000".getBytes();
                             String transformation = "Blowfish";
                             SecretKeySpec sks = new SecretKeySpec(key, transformation);
                             Cipher cipher = Cipher.getInstance(transformation);
                             cipher.init(Cipher.DECRYPT_MODE, sks);
+                            Object o = ((SealedObject) obj).getObject(cipher);
 
-                            DeviceInfo di = (DeviceInfo) ((SealedObject) obj).getObject(cipher);
-                            Log.d("OBJECT_SCK_", "RECEIVED: sealed, DEVICEINFO -> " + di.TEST1);
+                            if (o instanceof Location) {
+                                String str = (String) ((SealedObject) obj).getObject(cipher);
+                                Gson gson = new Gson();
+                                Location loc = gson.fromJson(str, Location.class);
+                                Log.d("OBJECT_SCK_", "Received: Location : ");
+                            }
+                            if (o instanceof DeviceInfo) {
+                                String str = (String) ((SealedObject) obj).getObject(cipher);
+                                Gson gson = new Gson();
+                                DeviceInfo di = gson.fromJson(str, DeviceInfo.class);
+                                Log.d("OBJECT_SCK_", "Received: DeviceInfo : " + di.toString());
+                            }
+                            if (o instanceof BluetoothDevice) {
+                                String str = (String) ((SealedObject) obj).getObject(cipher);
+                                Gson gson = new Gson();
+                                BluetoothDevice bd = gson.fromJson(str, BluetoothDevice.class);
+                                Log.d("OBJECT_SCK_", "Received: BluetoothDevice : " + bd.toString());
+                            }
+                            //DeviceInfo di = (DeviceInfo) ((SealedObject) obj).getObject(cipher);
+
+
+                            //Log.d("OBJECT_SCK_", "RECEIVED: sealed, DEVICEINFO -> " + di.TEST1);
                         }
 
                     }
@@ -1643,19 +1883,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         }
     }
 
-    public Bitmap resizeBitmap(Bitmap bm, int newWidth, int newHeight) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleWidth, scaleHeight);
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
-        bm.recycle();
-        return resizedBitmap;
-    }
-
     @Override
     public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
         Log.d("BILLING_", "debug_callback: " + billingResult.getDebugMessage());
@@ -1709,5 +1936,14 @@ class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
+    }
+}
+
+class ImageAvailableListener extends android.media.projection.MediaProjection.Callback implements ImageReader.OnImageAvailableListener {
+    @Override
+    public void onImageAvailable(ImageReader reader) {
+        //int w = reader.acquireLatestImage().getWidth();
+        //Log.d("screenshot_", "got image: " + w + " -> " + reader.getHeight());
+        //reader.close();
     }
 }

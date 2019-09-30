@@ -30,9 +30,10 @@ MERGED from [com.flurry.android:analytics:11.6.0] C:\Users\sont1\.gradle\caches\
 MERGED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e93664c5273ac83c0210050d11c8b04\billing-2.0.1\AndroidManifest.xml:2:1-23:12
 MERGED from [ca.heartlandsoftware:androidheatmap:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e7231b7e472bf172e033538b648994b\androidheatmap-1.1.1\AndroidManifest.xml:2:1-17:12
 MERGED from [:openCVLibrary343] C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\openCVLibrary343\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:2:1-34:12
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:2:1-34:12
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\0f342ca72bf85ffb94c647e5e16b0098\graphview-4.2.2\AndroidManifest.xml:2:1-14:12
 MERGED from [com.android.support:multidex:1.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\ef402e4d22fcd08c614f48e693335134\multidex-1.0.3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.nisrulz:easydeviceinfo:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\db8837e2227b156b0a26d55cb14bc8e9\easydeviceinfo-2.4.1\AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\03e6f69c235efe446ecc924bc2b254a3\play-services-auth-api-phone-15.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-auth-base:15.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\1836ce4ef06b9df883162566cc6c13a0\play-services-auth-base-15.1.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:17:1-34:12
@@ -46,6 +47,7 @@ MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4f664c19267d368417358de928c2bb48\firebase-common-16.0.3\AndroidManifest.xml:2:1-17:12
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cb0c0be7e9cc91ae471423933b1955f5\play-services-tasks-16.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9018b474861fbbae69d72c4c36bb3270\play-services-ads-17.1.2\AndroidManifest.xml:17:1-25:12
+MERGED from [com.github.nisrulz:easydeviceinfo-ads:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cc8c5d345a3574a89e93ec5bffd62e4b\easydeviceinfo-ads-2.4.1\AndroidManifest.xml:17:1-30:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f7aedeb96a8906a64bc6bcf352d0003f\play-services-ads-identifier-16.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f312082c9f310ae31fc707e54842667c\play-services-ads-lite-17.1.2\AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.android.gms:play-services-gass:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\17d9f8a5f0887485fbf717303655d532\play-services-gass-17.1.2\AndroidManifest.xml:2:1-9:12
@@ -77,6 +79,7 @@ MERGED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\c
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\bd06d8ddb93998ba04cfc7d10bdc69a4\versionedparcelable-28.0.0\AndroidManifest.xml:17:1-25:12
 MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\34e0cbed2b5b68ec0d5bf106f4aa1ad4\cursoradapter-28.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8a3b6887926ea5b8613ebb5d8027545\cardview-v7-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.nisrulz:easydeviceinfo-base:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8c1523a91e61a427d1606ee544e3172\easydeviceinfo-base-2.4.1\AndroidManifest.xml:17:1-30:12
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\5e3d91f5dcbe8d21b14e665fb67ceadf\runtime-1.1.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:documentfile:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\1809de81746c7de6f9c9957259aa5ee3\documentfile-28.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\350569a437244b72e0bf4fa96ba69c2e\localbroadcastmanager-28.0.0\AndroidManifest.xml:17:1-22:12
@@ -87,6 +90,7 @@ MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\sont1\.gradle\cache
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\ad397b1f5848cb7e7bc9631cefe3ab9b\livedata-core-1.1.1\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\26effff15aa8a0a128ce9a7ff87ffeff\runtime-1.1.1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8b78ae5946bb47264654f7bb3254f407\play-services-ads-base-17.1.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.nisrulz:easydeviceinfo-common:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\97b41ef750c9a5056f40f5169da424fd\easydeviceinfo-common-2.4.1\AndroidManifest.xml:17:1-30:12
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-194:12
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-194:12
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:2:1-194:12
@@ -144,10 +148,12 @@ MERGED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\cac
 MERGED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e93664c5273ac83c0210050d11c8b04\billing-2.0.1\AndroidManifest.xml:12:5-21:19
 MERGED from [ca.heartlandsoftware:androidheatmap:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e7231b7e472bf172e033538b648994b\androidheatmap-1.1.1\AndroidManifest.xml:11:5-15:19
 MERGED from [ca.heartlandsoftware:androidheatmap:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e7231b7e472bf172e033538b648994b\androidheatmap-1.1.1\AndroidManifest.xml:11:5-15:19
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:16:5-32:19
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:16:5-32:19
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:16:5-32:19
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:16:5-32:19
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\0f342ca72bf85ffb94c647e5e16b0098\graphview-4.2.2\AndroidManifest.xml:11:5-12:19
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\0f342ca72bf85ffb94c647e5e16b0098\graphview-4.2.2\AndroidManifest.xml:11:5-12:19
+MERGED from [com.github.nisrulz:easydeviceinfo:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\db8837e2227b156b0a26d55cb14bc8e9\easydeviceinfo-2.4.1\AndroidManifest.xml:27:5-28:19
+MERGED from [com.github.nisrulz:easydeviceinfo:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\db8837e2227b156b0a26d55cb14bc8e9\easydeviceinfo-2.4.1\AndroidManifest.xml:27:5-28:19
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:26:5-32:19
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:26:5-32:19
 MERGED from [com.google.firebase:firebase-analytics:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\49e15f7d22e20e31e5c9b77ab0babdda\firebase-analytics-16.0.6\AndroidManifest.xml:28:5-53:19
@@ -168,6 +174,8 @@ MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\
 MERGED from [com.google.firebase:firebase-common:16.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4f664c19267d368417358de928c2bb48\firebase-common-16.0.3\AndroidManifest.xml:9:5-15:19
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cb0c0be7e9cc91ae471423933b1955f5\play-services-tasks-16.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cb0c0be7e9cc91ae471423933b1955f5\play-services-tasks-16.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.github.nisrulz:easydeviceinfo-ads:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cc8c5d345a3574a89e93ec5bffd62e4b\easydeviceinfo-ads-2.4.1\AndroidManifest.xml:27:5-28:19
+MERGED from [com.github.nisrulz:easydeviceinfo-ads:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cc8c5d345a3574a89e93ec5bffd62e4b\easydeviceinfo-ads-2.4.1\AndroidManifest.xml:27:5-28:19
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f7aedeb96a8906a64bc6bcf352d0003f\play-services-ads-identifier-16.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f7aedeb96a8906a64bc6bcf352d0003f\play-services-ads-identifier-16.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f312082c9f310ae31fc707e54842667c\play-services-ads-lite-17.1.2\AndroidManifest.xml:26:5-40:19
@@ -190,8 +198,12 @@ MERGED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\c
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9daed20b214cbf823bd53ea88746d536\support-compat-28.0.0\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\bd06d8ddb93998ba04cfc7d10bdc69a4\versionedparcelable-28.0.0\AndroidManifest.xml:22:5-23:19
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\bd06d8ddb93998ba04cfc7d10bdc69a4\versionedparcelable-28.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.github.nisrulz:easydeviceinfo-base:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8c1523a91e61a427d1606ee544e3172\easydeviceinfo-base-2.4.1\AndroidManifest.xml:27:5-28:19
+MERGED from [com.github.nisrulz:easydeviceinfo-base:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8c1523a91e61a427d1606ee544e3172\easydeviceinfo-base-2.4.1\AndroidManifest.xml:27:5-28:19
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8b78ae5946bb47264654f7bb3254f407\play-services-ads-base-17.1.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8b78ae5946bb47264654f7bb3254f407\play-services-ads-base-17.1.2\AndroidManifest.xml:7:5-20
+MERGED from [com.github.nisrulz:easydeviceinfo-common:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\97b41ef750c9a5056f40f5169da424fd\easydeviceinfo-common-2.4.1\AndroidManifest.xml:27:5-28:19
+MERGED from [com.github.nisrulz:easydeviceinfo-common:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\97b41ef750c9a5056f40f5169da424fd\easydeviceinfo-common-2.4.1\AndroidManifest.xml:27:5-28:19
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9daed20b214cbf823bd53ea88746d536\support-compat-28.0.0\AndroidManifest.xml:22:18-91
 	android:supportsRtl
@@ -199,7 +211,7 @@ MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont
 	android:label
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:12:9-41
 	android:hardwareAccelerated
-		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:9:9-44
 	android:roundIcon
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:14:9-47
 	android:largeHeap
@@ -478,8 +490,8 @@ MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\c
 MERGED from [com.koushikdutta.async:androidasync:2.2.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\a8e1bd1d0c04f4119ce3fe3517c5f188\androidasync-2.2.1\AndroidManifest.xml:11:5-67
 MERGED from [com.flurry.android:analytics:11.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\c47eaeec8d00fcc204ed6accd8f59d47\analytics-11.6.0\AndroidManifest.xml:12:5-67
 MERGED from [com.flurry.android:analytics:11.6.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\c47eaeec8d00fcc204ed6accd8f59d47\analytics-11.6.0\AndroidManifest.xml:12:5-67
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:13:5-67
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:13:5-67
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:13:5-67
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:13:5-67
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-analytics:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\49e15f7d22e20e31e5c9b77ab0babdda\firebase-analytics-16.0.6\AndroidManifest.xml:23:5-67
@@ -502,8 +514,8 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:145:5-79
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4a0d5d90a760413ab5ccb2033df64deb\play-services-maps-16.1.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\4a0d5d90a760413ab5ccb2033df64deb\play-services-maps-16.1.0\AndroidManifest.xml:23:5-79
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:14:5-79
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:14:5-79
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:14:5-79
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:14:5-79
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-analytics:16.0.6] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\49e15f7d22e20e31e5c9b77ab0babdda\firebase-analytics-16.0.6\AndroidManifest.xml:24:5-79
@@ -542,14 +554,14 @@ ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-mast
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:152:22-63
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:153:5-81
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:11:5-81
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:11:5-81
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:11:5-81
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:11:5-81
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:153:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
 ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:154:5-80
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:12:5-80
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:12:5-80
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:12:5-80
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:12:5-80
 	android:name
 		ADDED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml:154:22-77
 uses-permission#android.permission.WRITE_INTERNAL_STORAGE
@@ -736,12 +748,14 @@ MERGED from [ca.heartlandsoftware:androidheatmap:1.1.1] C:\Users\sont1\.gradle\c
 MERGED from [ca.heartlandsoftware:androidheatmap:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e7231b7e472bf172e033538b648994b\androidheatmap-1.1.1\AndroidManifest.xml:7:5-9:41
 MERGED from [:openCVLibrary343] C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\openCVLibrary343\build\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
 MERGED from [:openCVLibrary343] C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\openCVLibrary343\build\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-8:41
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:7:5-9:41
-MERGED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:7:5-9:41
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:7:5-9:41
+MERGED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:7:5-9:41
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\0f342ca72bf85ffb94c647e5e16b0098\graphview-4.2.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\0f342ca72bf85ffb94c647e5e16b0098\graphview-4.2.2\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:multidex:1.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\ef402e4d22fcd08c614f48e693335134\multidex-1.0.3\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:multidex:1.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\ef402e4d22fcd08c614f48e693335134\multidex-1.0.3\AndroidManifest.xml:20:5-43
+MERGED from [com.github.nisrulz:easydeviceinfo:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\db8837e2227b156b0a26d55cb14bc8e9\easydeviceinfo-2.4.1\AndroidManifest.xml:23:5-25:41
+MERGED from [com.github.nisrulz:easydeviceinfo:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\db8837e2227b156b0a26d55cb14bc8e9\easydeviceinfo-2.4.1\AndroidManifest.xml:23:5-25:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\03e6f69c235efe446ecc924bc2b254a3\play-services-auth-api-phone-15.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-api-phone:15.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\03e6f69c235efe446ecc924bc2b254a3\play-services-auth-api-phone-15.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:15.1.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\1836ce4ef06b9df883162566cc6c13a0\play-services-auth-base-15.1.0\AndroidManifest.xml:5:5-44
@@ -768,6 +782,8 @@ MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.
 MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cb0c0be7e9cc91ae471423933b1955f5\play-services-tasks-16.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9018b474861fbbae69d72c4c36bb3270\play-services-ads-17.1.2\AndroidManifest.xml:21:5-23:62
 MERGED from [com.google.android.gms:play-services-ads:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\9018b474861fbbae69d72c4c36bb3270\play-services-ads-17.1.2\AndroidManifest.xml:21:5-23:62
+MERGED from [com.github.nisrulz:easydeviceinfo-ads:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cc8c5d345a3574a89e93ec5bffd62e4b\easydeviceinfo-ads-2.4.1\AndroidManifest.xml:23:5-25:41
+MERGED from [com.github.nisrulz:easydeviceinfo-ads:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\cc8c5d345a3574a89e93ec5bffd62e4b\easydeviceinfo-ads-2.4.1\AndroidManifest.xml:23:5-25:41
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f7aedeb96a8906a64bc6bcf352d0003f\play-services-ads-identifier-16.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-identifier:16.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f7aedeb96a8906a64bc6bcf352d0003f\play-services-ads-identifier-16.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-lite:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f312082c9f310ae31fc707e54842667c\play-services-ads-lite-17.1.2\AndroidManifest.xml:20:5-44
@@ -830,6 +846,8 @@ MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\sont1\.gradle\ca
 MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\34e0cbed2b5b68ec0d5bf106f4aa1ad4\cursoradapter-28.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8a3b6887926ea5b8613ebb5d8027545\cardview-v7-28.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8a3b6887926ea5b8613ebb5d8027545\cardview-v7-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.github.nisrulz:easydeviceinfo-base:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8c1523a91e61a427d1606ee544e3172\easydeviceinfo-base-2.4.1\AndroidManifest.xml:23:5-25:41
+MERGED from [com.github.nisrulz:easydeviceinfo-base:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\f8c1523a91e61a427d1606ee544e3172\easydeviceinfo-base-2.4.1\AndroidManifest.xml:23:5-25:41
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\5e3d91f5dcbe8d21b14e665fb67ceadf\runtime-1.1.1\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\5e3d91f5dcbe8d21b14e665fb67ceadf\runtime-1.1.1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:documentfile:28.0.0] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\1809de81746c7de6f9c9957259aa5ee3\documentfile-28.0.0\AndroidManifest.xml:20:5-44
@@ -850,6 +868,8 @@ MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\tran
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\26effff15aa8a0a128ce9a7ff87ffeff\runtime-1.1.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8b78ae5946bb47264654f7bb3254f407\play-services-ads-base-17.1.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads-base:17.1.2] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8b78ae5946bb47264654f7bb3254f407\play-services-ads-base-17.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.github.nisrulz:easydeviceinfo-common:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\97b41ef750c9a5056f40f5169da424fd\easydeviceinfo-common-2.4.1\AndroidManifest.xml:23:5-25:41
+MERGED from [com.github.nisrulz:easydeviceinfo-common:2.4.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\97b41ef750c9a5056f40f5169da424fd\easydeviceinfo-common-2.4.1\AndroidManifest.xml:23:5-25:41
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\sont1\Desktop\Sending-and-Receiving-Data-with-Bluetooth-master\getlocation\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
@@ -969,29 +989,29 @@ ADDED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\cach
 	android:name
 		ADDED from [com.android.billingclient:billing:2.0.1] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\8e93664c5273ac83c0210050d11c8b04\billing-2.0.1\AndroidManifest.xml:18:13-78
 activity#com.bugsee.library.RequestPermissionsActivity
-ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:17:9-19:62
+ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:17:9-19:62
 	android:theme
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:19:13-59
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:19:13-59
 	android:name
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:18:13-73
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:18:13-73
 activity#com.bugsee.library.send.SendBundleActivity
-ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:20:9-23:20
+ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:20:9-23:20
 	android:theme
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:22:13-55
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:22:13-55
 	android:name
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:21:13-70
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:21:13-70
 activity#com.bugsee.library.activity.EditScreenshotActivity
-ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:24:9-27:20
+ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:24:9-27:20
 	android:theme
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:26:13-55
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:26:13-55
 	android:name
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:25:13-78
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:25:13-78
 activity#com.bugsee.library.activity.FeedbackActivity
-ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:28:9-31:20
+ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:28:9-31:20
 	android:theme
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:30:13-55
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:30:13-55
 	android:name
-		ADDED from [com.bugsee:bugsee-android:1.14.10] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6773763873436a7d9ab2efd198a52a28\bugsee-android-1.14.10\AndroidManifest.xml:29:13-72
+		ADDED from [com.bugsee:bugsee-android:1.14.11] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\10102850141f2c5133fb8174fedd04e7\bugsee-android-1.14.11\AndroidManifest.xml:29:13-72
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [com.google.firebase:firebase-measurement-connector-impl:17.0.4] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\6335841fe7f6aca45d04e4dfb9e694c8\firebase-measurement-connector-impl-17.0.4\AndroidManifest.xml:27:9-31:19
 MERGED from [com.google.firebase:firebase-iid:17.0.3] C:\Users\sont1\.gradle\caches\transforms-2\files-2.1\ff7448b3f49ca15410dd803287113f5c\firebase-iid-17.0.3\AndroidManifest.xml:29:9-35:19

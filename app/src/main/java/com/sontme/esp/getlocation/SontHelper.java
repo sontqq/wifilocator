@@ -22,6 +22,7 @@ import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -39,6 +40,7 @@ import android.media.FaceDetector;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.ToneGenerator;
+import android.media.projection.MediaProjectionManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -61,6 +63,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.util.Base64;
 import org.opencv.core.Scalar;
 
@@ -77,8 +80,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.URI;
@@ -98,8 +103,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.ForkJoinPool;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+import java.util.zip.Deflater;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
@@ -121,6 +129,7 @@ import static org.apache.commons.net.util.Base64.encodeBase64String;
 public class SontHelper extends Application {
 
     public static class AudioTools {
+
         public static void play(short[] audio) {
             AudioTrack track = new AudioTrack(AudioManager.STREAM_MUSIC, 8000, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, 8000 * 10, AudioTrack.MODE_STREAM);
             track.write(audio, 0, audio.length);
@@ -368,22 +377,86 @@ public class SontHelper extends Application {
 
     }
 
-    public static byte[] compress_GZIP(String str) {
-        ByteArrayOutputStream obj;
-        try {
-            if (str == null || str.length() == 0) {
-                return null;
+    public static void takeFullScreenshot(Context ctx, Activity act) {
+        MediaProjectionManager mgr = (MediaProjectionManager) ctx.getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        act.startActivityForResult(mgr.createScreenCaptureIntent(), 5000);
+    }
+
+    public static void concurrentJob(Context ctx) {
+        Thread th2 = new Thread() {
+            public void run() {
+                try {
+                    if (SontHelper.isWifiConnected(ctx)) {
+                        int allRequestsCount = 254;
+                        int parallelism = 254;
+                        // ^--> ALL AT ONCE (i think xd)
+                        ForkJoinPool forkJoinPool = new ForkJoinPool(parallelism);
+                        IntStream.range(0, parallelism).forEach(i -> forkJoinPool.submit(() -> {
+                            int chunkSize = allRequestsCount / parallelism;
+                            IntStream.range(i * chunkSize, i * chunkSize + chunkSize)
+                                    .forEach(num -> {
+                                        try {
+                                            String localip;
+                                            try (final DatagramSocket socket = new DatagramSocket()) {
+                                                socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+                                                localip = socket.getLocalAddress().getHostAddress();
+                                            }
+                                            InetAddress localhost = InetAddress.getByName(localip);
+
+                                            byte[] ip = localhost.getAddress();
+
+                                            ip[3] = (byte) i;
+                                            InetAddress address = InetAddress.getByAddress(ip);
+
+                                            Log.d("CONCURRENT", "byte ip: " + ip);
+                                            if (address.isReachable(100)) {
+                                                String foundip = address.toString().substring(1);
+                                                String domain = address.getCanonicalHostName();
+                                                String domain2 = address.getHostName();
+                                                Log.d("CONCURRENT_", "found: " + foundip + " / " + domain + " / " + domain2);
+                                                Toast.makeText(ctx, "Found: " + domain2, Toast.LENGTH_LONG).show();
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
+                        }));
+                    } else {
+                        Toast.makeText(ctx, "Please connect to WiFi", Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-            Log.d("Compress_", "output str length: " + str.length());
-            obj = new ByteArrayOutputStream();
-            GZIPOutputStream gzip = new GZIPOutputStream(obj);
-            gzip.write(str.getBytes(StandardCharsets.UTF_8));
-            gzip.close();
+        };
+        th2.start();
+
+
+    }
+
+    public static byte[] GZIPCompress(byte[] uncompressedData) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            //GZIPOutputStream gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream);
+            MyGZIPOutputStream gzipOutputStream = new MyGZIPOutputStream(byteArrayOutputStream);
+            gzipOutputStream.setLevel(Deflater.BEST_COMPRESSION);
+            gzipOutputStream.write(uncompressedData);
+            gzipOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
-        return obj.toByteArray();
+        //Log.d("COMPRESSION_", "Ratio: " + 1.0f * byteArrayOutputStream.size() / uncompressedData.length);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    public static byte[] GZIPDEcompress(byte[] compressedData) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            IOUtils.copy(new GZIPInputStream(new ByteArrayInputStream(compressedData)), out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return out.toByteArray();
     }
 
     public static String decompress_GZIP(byte[] str) throws Exception {
@@ -416,6 +489,24 @@ public class SontHelper extends Application {
         }
         Log.d("Compress_", "output str length: " + outStr.length());
         return outStr;
+    }
+
+    public static byte[] compress_GZIP(String str) {
+        ByteArrayOutputStream obj;
+        try {
+            if (str == null || str.length() == 0) {
+                return null;
+            }
+            Log.d("Compress_", "output str length: " + str.length());
+            obj = new ByteArrayOutputStream();
+            GZIPOutputStream gzip = new GZIPOutputStream(obj);
+            gzip.write(str.getBytes(StandardCharsets.UTF_8));
+            gzip.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj.toByteArray();
     }
 
     public static String byteArrayToString(byte[] barr) {
@@ -848,6 +939,7 @@ public class SontHelper extends Application {
         view.buildDrawingCache();
 
         if (view.getDrawingCache() == null) {
+            Log.d("STREAMING_", "ERROR NULL !");
             return null;
         }
 
@@ -861,6 +953,33 @@ public class SontHelper extends Application {
     public static Scalar argbtoScalar(int r, int g, int b, int a) {
         Scalar s = new Scalar(r, b, g, a);
         return s;
+    }
+
+    public static byte[] bitmapToArray(Bitmap bmp) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        bmp.recycle();
+        return byteArray;
+    }
+
+    public static Bitmap getBitmapFromView(View view) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null)
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        else
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        // draw the view on the canvas
+        view.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
     }
 
     public static Bitmap convertViewToBitmap(View v) {
@@ -1149,5 +1268,17 @@ public class SontHelper extends Application {
         }
         List<NeighboringCellInfo> neighbors = tm.getNeighboringCellInfo();
         return neighbors;
+    }
+}
+
+class MyGZIPOutputStream
+        extends GZIPOutputStream {
+
+    public MyGZIPOutputStream(OutputStream out) throws IOException {
+        super(out);
+    }
+
+    public void setLevel(int level) {
+        def.setLevel(level);
     }
 }

@@ -1634,7 +1634,6 @@ id errorContainer
 id errorInfo
 id exit
 id exitUntilCollapsed
-id exitb
 id expand_activities_button
 id expanded_menu
 id fblin
@@ -2738,6 +2737,7 @@ style Theme_AppCompat_Light_Dialog_MinWidth
 style Theme_AppCompat_Light_DialogWhenLarge
 style Theme_AppCompat_Light_NoActionBar
 style Theme_AppCompat_NoActionBar
+style Theme_D1NoTitleDim
 style Theme_Design
 style Theme_Design_BottomSheetDialog
 style Theme_Design_Light
